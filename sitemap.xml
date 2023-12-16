@@ -13,6 +13,9 @@
     <loc>https://drieslab.github.io/GiottoVisuals/index.html</loc>
   </url>
   <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/news/index.html</loc>
+  </url>
+  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/FSV_show.html</loc>
   </url>
   <url>
@@ -22,16 +25,10 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/aes_string2.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/createHeatmap_DT.html</loc>
-  </url>
-  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/create_cluster_dendrogram.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/data_access_params.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/decide_cluster_order.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/dimCellPlot.html</loc>
@@ -46,19 +43,46 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/dimPlot.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/dimPlot_2D_plotly.html</loc>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-create_heatmap_dt.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/dimPlot_3D_plotly.html</loc>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-decide_cluster_order.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-dimPlot_2d_plotly.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-dimPlot_3d_plotly.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-sankey_compare.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-sankey_networkd3.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-sankey_relation_pair.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-spatInSituPlotDensity_single.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-spatInSituPlotHex_single.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-spatPlot2D_single.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-spatPlot_2d_plotly.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dot-spatPlot_3d_plotly.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/expand_feature_info.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/getColors.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/getDistinctColors.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/get_continuous_colors.html</loc>
@@ -193,12 +217,6 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/sankeySetAddresses.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/sankey_compare.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/sankey_relation_pair.html</loc>
-  </url>
-  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/set_default_color_continuous.html</loc>
   </url>
   <url>
@@ -259,13 +277,7 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity_single.html</loc>
-  </url>
-  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotHex.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotHex_single.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.html</loc>
@@ -281,15 +293,6 @@
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatPlot.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatPlot2D_single.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatPlot_2D_plotly.html</loc>
-  </url>
-  <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatPlot_3D_plotly.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/subsetSankeySet.html</loc>
