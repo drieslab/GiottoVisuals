@@ -1,0 +1,52 @@
+url: https://drieslab.github.io/GiottoVisuals/
+
+authors:
+  Ruben Dries:
+    href: https://www.drieslab.com
+  Guo-Cheng Yuan:
+    href: https://labs.icahn.mssm.edu/yuanlab/
+  Joselyn C. Chávez-Fuentes:
+    href: https://josschavezf.github.io
+
+deploy:
+  install_metadata: true
+
+template:
+  bootstrap: 5
+  bslib:
+    bg: "#FFFFFF"
+    fg: "#000000"
+    primary: "#7E69AE"
+    code_font: {google: "JetBrains Mono"}
+
+navbar:
+  bg: light
+  structure:
+    left:
+    - intro
+    - reference
+    - news
+    right:
+    - suite
+    - github
+  components:
+    reference:
+      text: Documentation
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    suite:
+      text: Suite
+      href: https://drieslab.github.io/Giotto/
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/drieslab/GiottoVisuals/
+      aria-label: github
+
+news:
+  cran_dates: false
+
+home:
+  sidebar:
+    structure: [links, license, community, citation, authors, dev]
