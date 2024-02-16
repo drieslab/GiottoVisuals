@@ -4,9 +4,9 @@ name: pkgdown
 
 on:
   push:
-    branches: [main, master]
+    branches: [website]
   pull_request:
-    branches: [main, master]
+    branches: [website]
   release:
     types: [published]
   workflow_dispatch:
