@@ -30,9 +30,9 @@ plotMetaDataHeatmap(
   strip_text_size = 8,
   title = NULL,
   plot_title = deprecated(),
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "plotMetaDataHeatmap"
 )
@@ -44,29 +44,35 @@ plotMetaDataHeatmap(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
 \item{metadata_cols}{annotation columns found in pDataDT(gobject)}
 
 \item{selected_feats}{subset of features to use}
 
-\item{first_meta_col}{if more than 1 metadata column, select the x-axis factor}
+\item{first_meta_col}{if more than 1 metadata column,
+select the x-axis factor}
 
-\item{second_meta_col}{if more than 1 metadata column, select the facetting factor}
+\item{second_meta_col}{if more than 1 metadata column,
+select the facetting factor}
 
-\item{show_values}{which values to show on heatmap (e.g. "zscores", "original", "zscores_rescaled")}
+\item{show_values}{which values to show on heatmap
+(e.g. "zscores", "original", "zscores_rescaled")}
 
 \item{custom_cluster_order}{custom cluster order (default = NULL)}
 
 \item{clus_cor_method}{correlation method for clusters, default to "pearson"}
 
-\item{clus_cluster_method}{hierarchical cluster method for the clusters, default to "complete"}
+\item{clus_cluster_method}{hierarchical cluster method for the clusters,
+default to "complete"}
 
 \item{custom_feat_order}{custom feature order (default = NULL)}
 
 \item{feat_cor_method}{correlation method for features, default to "pearson"}
 
-\item{feat_cluster_method}{hierarchical cluster method for the features, default to "complete"}
+\item{feat_cluster_method}{hierarchical cluster method for the features,
+default to "complete"}
 
 \item{gradient_color}{character. continuous colors to use. palette to
 use or vector of colors to use (minimum of 2).}
@@ -96,9 +102,11 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot or data.table
@@ -107,10 +115,20 @@ ggplot or data.table
 Creates heatmap for features within aggregated clusters.
 }
 \details{
-Creates heatmap for the average expression of selected features in the different annotation/cluster groups.
-Calculation of cluster or feature order is done on the provided expression values, but visualization
-is by default on the z-scores. Other options are the original values or z-scores rescaled per feature (-1 to 1).
+Creates heatmap for the average expression of selected features
+in the different annotation/cluster groups.
+Calculation of cluster or feature order is done on the provided expression
+values, but visualization
+is by default on the z-scores. Other options are the original values or
+z-scores rescaled per feature (-1 to 1).
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
+selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
+
 }
 \seealso{
-\code{\link{plotMetaDataCellsHeatmap}} for numeric cell annotation instead of feature expression.
+\code{\link{plotMetaDataCellsHeatmap}} for numeric cell annotation
+instead of feature expression.
 }

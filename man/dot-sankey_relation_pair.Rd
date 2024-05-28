@@ -15,6 +15,10 @@
 
 \item{node_idx_start}{starting index to assign new nodes}
 }
+\value{
+list with 1. node names and 2. data.table with cols source, target,
+and value
+}
 \description{
 Get matched values to compare from the giotto object. Comparison columns
 are then passed as a data.table to \code{.sankey_compare} to be calculated.

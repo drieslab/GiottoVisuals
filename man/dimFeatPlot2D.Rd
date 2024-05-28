@@ -15,7 +15,7 @@ dimFeatPlot2D(
   dim_reduction_name = NULL,
   dim1_to_use = 1,
   dim2_to_use = 2,
-  show_NN_network = F,
+  show_NN_network = FALSE,
   nn_network_to_use = "sNN",
   network_name = "sNN.pca",
   network_color = "lightgray",
@@ -30,7 +30,7 @@ dimFeatPlot2D(
   gradient_limits = NULL,
   point_border_col = "black",
   point_border_stroke = 0.1,
-  show_legend = T,
+  show_legend = TRUE,
   legend_text = 10,
   background_color = "white",
   axis_text = 8,
@@ -39,9 +39,9 @@ dimFeatPlot2D(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "dimFeatPlot2D"
 )
@@ -71,13 +71,15 @@ dimFeatPlot2D(
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{network_color}{color of NN network}
 
 \item{edge_alpha}{column to use for alpha of the edges}
 
-\item{scale_alpha_with_expression}{scale expression with ggplot alpha parameter}
+\item{scale_alpha_with_expression}{scale expression with ggplot alpha
+parameter}
 
 \item{point_shape}{point with border or not (border or no_border)}
 
@@ -123,17 +125,25 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
-Visualize gene expression according to dimension reduction coordinates
+Visualize gene expression according to dimension reduction
+coordinates
 }
 \details{
 Description of parameters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+dimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
+
 }
 \concept{dimension reduction feature expression visualizations}

@@ -18,8 +18,8 @@ create_cluster_dendrogram(
 )
 }
 \arguments{
-\item{data}{data.table. Should include columns with clustering labels, variables
-that are being clustered, and the values of those clusters.}
+\item{data}{data.table. Should include columns with clustering labels,
+variables that are being clustered, and the values of those clusters.}
 
 \item{clus_col}{character. name of column with clustering info}
 
@@ -27,9 +27,11 @@ that are being clustered, and the values of those clusters.}
 
 \item{val_col}{character. name of column with values info}
 
-\item{cor}{correlation score to calculate distance (e.g. "pearson", "spearman")}
+\item{cor}{correlation score to calculate distance
+(e.g. "pearson", "spearman")}
 
-\item{distance}{distance method to use for hierarchical clustering, default to "ward.D"}
+\item{distance}{distance method to use for hierarchical clustering,
+default to "ward.D"}
 
 \item{h}{height of horizontal lines to plot}
 
@@ -47,9 +49,27 @@ that are being clustered, and the values of those clusters.}
 \code{\link[ggdendro:theme_dendro]{theme_dendro()}})}
   }}
 }
+\value{
+ggdendrogram
+}
 \description{
 Create a dendrogram based on a data.table with columns for
 cluster ID, variables, and their values. If no specific values are provided
 for the 'col' params then they will be assumed as 1. clus_col, 2. var_col,
 3. val_col
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+
+g_expression <- head(GiottoClass::getExpression(g, output = "matrix"))
+g_expression_df <- as.data.frame(as.matrix(g_expression))
+g_expression_df$feat_ID <- rownames(g_expression)
+
+g_expression_melt <- reshape2::melt(g_expression_df, id.vars = "feat_ID", 
+measure.vars = colnames(g_expression), variable.name = "cell_ID", 
+value.name = "raw_expression")
+
+create_cluster_dendrogram(data.table::as.data.table(g_expression_melt), 
+var_col = "cell_ID", clus_col = "feat_ID", "raw_expression")
+
 }

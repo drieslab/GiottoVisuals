@@ -26,21 +26,25 @@ plotTSNE_3D(
     \item{\code{show_plot}}{logical. show plot}
     \item{\code{return_plot}}{logical. return ggplot object}
     \item{\code{save_plot}}{logical. save the plot}
-    \item{\code{save_param}}{list of saving parameters, see \code{\link{showSaveParameters}}}
+    \item{\code{save_param}}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
     \item{\code{dim1_to_use}}{numeric. dimension to use on x-axis}
     \item{\code{dim2_to_use}}{numeric. dimension to use on y-axis}
     \item{\code{dim3_to_use}}{numeric. dimension to use on z-axis}
     \item{\code{show_NN_network}}{logical. Show underlying NN network}
     \item{\code{nn_network_to_use}}{character. type of NN network to use (kNN vs sNN)}
-    \item{\code{network_name}}{character. name of NN network to use, if show_NN_network = TRUE}
-    \item{\code{spat_enr_names}}{character. names of spatial enrichment results to include}
+    \item{\code{network_name}}{character. name of NN network to use,
+if show_NN_network = TRUE}
+    \item{\code{spat_enr_names}}{character. names of spatial enrichment results
+to include}
     \item{\code{cell_color}}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
-    \item{\code{color_as_factor}}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+    \item{\code{color_as_factor}}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
     \item{\code{cell_color_code}}{character. discrete colors to use. palette to use or
 named vector of colors}
-    \item{\code{select_cell_groups}}{select subset of cells/clusters based on cell_color parameter}
+    \item{\code{select_cell_groups}}{select subset of cells/clusters based on
+cell_color parameter}
     \item{\code{select_cells}}{select subset of cells based on cell IDs}
     \item{\code{show_other_cells}}{display not selected cells}
     \item{\code{other_cell_color}}{color for not selected cells}
@@ -62,16 +66,21 @@ Visualize cells according to dimension reduction coordinates
 \details{
 Description of parameters.
 }
+\examples{
+g <- GiottoData::loadGiottoMini("starmap")
+plotTSNE_3D(g)
+
+}
 \seealso{
 Other reduced dimension visualizations: 
 \code{\link{dimPlot2D}()},
+\code{\link{plotPCA}()},
 \code{\link{plotPCA_2D}()},
 \code{\link{plotPCA_3D}()},
-\code{\link{plotPCA}()},
-\code{\link{plotTSNE_2D}()},
 \code{\link{plotTSNE}()},
+\code{\link{plotTSNE_2D}()},
+\code{\link{plotUMAP}()},
 \code{\link{plotUMAP_2D}()},
-\code{\link{plotUMAP_3D}()},
-\code{\link{plotUMAP}()}
+\code{\link{plotUMAP_3D}()}
 }
 \concept{reduced dimension visualizations}

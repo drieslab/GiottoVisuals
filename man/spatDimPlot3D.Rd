@@ -24,24 +24,24 @@ spatDimPlot3D(
   network_name = "sNN.pca",
   nn_network_color = "lightgray",
   nn_network_alpha = 0.5,
-  show_cluster_center = F,
-  show_center_label = T,
+  show_cluster_center = FALSE,
+  show_center_label = TRUE,
   center_point_size = 4,
   label_size = 16,
   select_cell_groups = NULL,
   select_cells = NULL,
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   other_point_size = 1.5,
   cell_color = NULL,
-  color_as_factor = T,
+  color_as_factor = TRUE,
   cell_color_code = NULL,
   dim_point_size = 3,
-  show_spatial_network = F,
+  show_spatial_network = FALSE,
   spatial_network_name = "Delaunay_network",
   spatial_network_color = "lightgray",
   spatial_network_alpha = 0.5,
-  show_spatial_grid = F,
+  show_spatial_grid = FALSE,
   spatial_grid_name = "spatial_grid",
   spatial_grid_color = NULL,
   spatial_grid_alpha = 0.5,
@@ -52,9 +52,9 @@ spatDimPlot3D(
   y_ticks = NULL,
   z_ticks = NULL,
   legend_text_size = 12,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatDimPlot3D"
 )
@@ -106,7 +106,8 @@ spatDimPlot3D(
 
 \item{label_size}{size of the center label}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -119,8 +120,8 @@ spatDimPlot3D(
 \item{cell_color}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
 
-\item{color_as_factor}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+\item{color_as_factor}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
@@ -163,15 +164,18 @@ named vector of colors}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 plotly
 }
 \description{
-Visualize cells according to spatial AND dimension reduction coordinates in plotly mode
+Visualize cells according to spatial AND dimension
+reduction coordinates in plotly mode
 }
 \details{
 Description of parameters.

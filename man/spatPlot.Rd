@@ -10,7 +10,7 @@ spatPlot2D(
   gobject,
   spat_unit = NULL,
   feat_type = NULL,
-  show_image = F,
+  show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
   largeImage_name = NULL,
@@ -21,7 +21,7 @@ spatPlot2D(
   sdimy = "sdimy",
   spat_enr_names = NULL,
   cell_color = NULL,
-  color_as_factor = T,
+  color_as_factor = TRUE,
   cell_color_code = NULL,
   cell_color_gradient = NULL,
   gradient_midpoint = NULL,
@@ -34,27 +34,27 @@ spatPlot2D(
   point_alpha = 1,
   point_border_col = "black",
   point_border_stroke = 0.1,
-  show_cluster_center = F,
-  show_center_label = F,
+  show_cluster_center = FALSE,
+  show_center_label = FALSE,
   center_point_size = 4,
   center_point_border_col = "black",
   center_point_border_stroke = 0.1,
   label_size = 4,
   label_fontface = "bold",
-  show_network = F,
+  show_network = FALSE,
   spatial_network_name = "Delaunay_network",
   network_color = NULL,
   network_alpha = 1,
-  show_grid = F,
+  show_grid = FALSE,
   spatial_grid_name = "spatial_grid",
   grid_color = NULL,
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   other_point_size = 1,
   other_cells_alpha = 0.1,
   coord_fix_ratio = 1,
   title = NULL,
-  show_legend = T,
+  show_legend = TRUE,
   legend_text = 10,
   legend_symbol_size = 2,
   background_color = "white",
@@ -67,10 +67,11 @@ spatPlot2D(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
+  theme_param = list(),
   default_save_name = "spatPlot2D"
 )
 
@@ -89,28 +90,28 @@ spatPlot3D(
   cell_color_code = NULL,
   select_cell_groups = NULL,
   select_cells = NULL,
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   other_point_size = 0.5,
   other_cell_alpha = 0.5,
-  show_network = F,
+  show_network = FALSE,
   spatial_network_name = "Delaunay_network",
   network_color = NULL,
   network_alpha = 1,
-  show_grid = F,
+  show_grid = FALSE,
   spatial_grid_name = "spatial_grid",
   grid_color = NULL,
   grid_alpha = 1,
   title = "",
-  show_legend = T,
+  show_legend = TRUE,
   axis_scale = c("cube", "real", "custom"),
   custom_ratio = NULL,
   x_ticks = NULL,
   y_ticks = NULL,
   z_ticks = NULL,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spat3D"
 )
@@ -128,9 +129,11 @@ spatPlot3D(
 
 \item{image_name}{name of a giotto image or multiple images with group_by}
 
-\item{largeImage_name}{name of a giottoLargeImage or multiple images with group_by}
+\item{largeImage_name}{name of a giottoLargeImage or multiple images
+with group_by}
 
-\item{group_by}{character. Create multiple plots based on cell annotation column}
+\item{group_by}{character. Create multiple plots based on cell
+annotation column}
 
 \item{group_by_subset}{character. subset the group_by factor column}
 
@@ -140,13 +143,14 @@ spatPlot3D(
 
 \item{sdimy}{y-axis dimension name (default = 'sdimy')}
 
-\item{spat_enr_names}{character. names of spatial enrichment results to include}
+\item{spat_enr_names}{character. names of spatial enrichment results
+to include}
 
 \item{cell_color}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
 
-\item{color_as_factor}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+\item{color_as_factor}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
@@ -161,7 +165,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{gradient_limits}{vector with lower and upper limits}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -247,9 +252,13 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{theme_param}{list of additional params passed to \code{ggplot2::theme()}}
+
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{\dots}{spatPLot(...) passes to spatPlot2D}
 
@@ -270,13 +279,23 @@ or 'sequential' (scaled based on data range)}
 \item{z_ticks}{set the number of ticks on the z-axis}
 }
 \value{
+ggplot
+
 ggplot (2D), plotly (3D)
+
+ggplot
 }
 \description{
 Visualize cells according to spatial coordinates
 }
 \details{
 coord_fix_ratio: set to NULL to use default ggplot parameters
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+spatPlot2D(g)
+g <- GiottoData::loadGiottoMini("visium")
+spatPlot(g)
 }
 \seealso{
 \code{\link{spatPlot3D}}

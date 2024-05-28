@@ -13,9 +13,9 @@ showClusterHeatmap(
   cluster_column,
   cor = c("pearson", "spearman"),
   distance = "ward.D",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "showClusterHeatmap",
   ...
@@ -28,15 +28,19 @@ showClusterHeatmap(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
 \item{feats}{vector of features to use, default to 'all'}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for clusters
+(e.g. "leiden_clus")}
 
-\item{cor}{correlation score to calculate distance (e.g. "pearson", "spearman")}
+\item{cor}{correlation score to calculate distance
+(e.g. "pearson", "spearman")}
 
-\item{distance}{distance method to use for hierarchical clustering, default to "ward.D"}
+\item{distance}{distance method to use for hierarchical clustering,
+default to "ward.D"}
 
 \item{show_plot}{logical. show plot}
 
@@ -44,9 +48,11 @@ showClusterHeatmap(
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{...}{
   Arguments passed on to \code{\link[ComplexHeatmap:Heatmap]{ComplexHeatmap::Heatmap}}
@@ -144,4 +150,9 @@ Creates heatmap based on identified clusters
 }
 \details{
 Correlation heatmap of selected clusters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+showClusterHeatmap(g, cluster_column = "leiden_clus")
+
 }

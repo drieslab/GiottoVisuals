@@ -15,7 +15,8 @@ expand_feature_info(
 \arguments{
 \item{spatial_feat_info}{a data.table of spatial feature information}
 
-\item{expand_counts}{logical. whether points should be expanded based on count}
+\item{expand_counts}{logical. whether points should be expanded based on
+count}
 
 \item{jitter}{numeric vector. amount of jitter to add}
 
@@ -27,5 +28,11 @@ data.table
 \description{
 low level function to expand feature coordinates by adding
 jitter to coordinates
+}
+\examples{
+g <- GiottoData::loadGiottoMini("vizgen")
+x <- GiottoClass::getFeatureInfo(g)
+x <- data.table::as.data.table(x)
+
 }
 \keyword{internal}

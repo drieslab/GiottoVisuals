@@ -13,7 +13,8 @@ getColors(
 )
 }
 \arguments{
-\item{pal}{character. palette to use. Partial matching with ignored capitalization}
+\item{pal}{character. palette to use. Partial matching with ignored
+capitalization}
 
 \item{n}{numeric. number of colors wanted}
 
@@ -24,17 +25,21 @@ getColors(
 \item{strategy}{one of 'interpolate', 'recycle', or 'cutoff', what
 strategy to use when more colors are requested than exist for the palette}
 }
+\value{
+vector of color ids
+}
 \description{
 Generate hexadecimal color vectors for use in plotting based on popular color
 palettes and packages. Default is 100 viridis colors.\cr
 [\strong{continuous palettes}] n colors are pulled from the desired palette\cr
-[\strong{discrete palettes}] pulls n colors from discrete palette. If the number of
-colors requested is within the number of discrete colors, the values will be
-pulled without modification starting from the first value. If more are requested
-than exist then the palette will be made continuous\cr
+[\strong{discrete palettes}] pulls n colors from discrete palette. If the
+number of colors requested is within the number of discrete colors,
+the values will be pulled without modification starting from the first
+value. If more are requested than exist then the palette will be made
+continuous\cr
 }
 \examples{
-f <- system.file("ex/elev.tif", package="terra")
+f <- system.file("ex/elev.tif", package = "terra")
 r <- terra::rast(f)
-terra::plot(r, col = getColors(pal = 'Spectral', n = 100))
+terra::plot(r, col = getColors(pal = "Spectral", n = 100))
 }

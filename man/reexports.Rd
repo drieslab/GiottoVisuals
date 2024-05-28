@@ -7,6 +7,13 @@
 \alias{getRainbowColors}
 \alias{getDistinctColors}
 \title{Objects exported from other packages}
+\value{
+a function to create continous colors
+}
+\examples{
+colorRamp2::colorRamp2(breaks = seq_len(2), colors = c("blue", "red"))
+ 
+}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

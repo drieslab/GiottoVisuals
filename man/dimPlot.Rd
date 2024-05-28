@@ -56,9 +56,9 @@ dimPlot2D(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "dimPlot2D"
 )
@@ -77,24 +77,24 @@ dimPlot3D(
   spat_enr_names = NULL,
   select_cell_groups = NULL,
   select_cells = NULL,
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   other_point_size = 2,
-  show_NN_network = F,
+  show_NN_network = FALSE,
   nn_network_to_use = "sNN",
   network_name = "sNN.pca",
-  color_as_factor = T,
+  color_as_factor = TRUE,
   cell_color = NULL,
   cell_color_code = NULL,
-  show_cluster_center = F,
-  show_center_label = T,
+  show_cluster_center = FALSE,
+  show_center_label = TRUE,
   center_point_size = 4,
   label_size = 4,
   edge_alpha = NULL,
   point_size = 3,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "dim3D"
 )
@@ -106,7 +106,8 @@ dimPlot3D(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{group_by}{character. Create multiple plots based on cell annotation column}
+\item{group_by}{character. Create multiple plots based on cell
+annotation column}
 
 \item{group_by_subset}{character. subset the group_by factor column}
 
@@ -118,19 +119,21 @@ dimPlot3D(
 
 \item{dim2_to_use}{numeric. dimension to use on y-axis}
 
-\item{spat_enr_names}{character. names of spatial enrichment results to include}
+\item{spat_enr_names}{character. names of spatial enrichment results
+to include}
 
 \item{show_NN_network}{logical. Show underlying NN network}
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{cell_color}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
 
-\item{color_as_factor}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+\item{color_as_factor}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
@@ -145,7 +148,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{gradient_limits}{numeric vector with lower and upper limits}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -209,9 +213,11 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{\dots}{dimPlot(...) passes to dimPlot2D()}
 
@@ -220,21 +226,29 @@ or 'sequential' (scaled based on data range)}
 \value{
 ggplot
 
+ggplot
+
 plotly (dimplot3D only)
 }
 \description{
 Visualize cells according to dimension reduction coordinates
 }
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+dimPlot2D(g)
+g <- GiottoData::loadGiottoMini("visium")
+dimPlot(g)
+}
 \seealso{
 Other reduced dimension visualizations: 
+\code{\link{plotPCA}()},
 \code{\link{plotPCA_2D}()},
 \code{\link{plotPCA_3D}()},
-\code{\link{plotPCA}()},
+\code{\link{plotTSNE}()},
 \code{\link{plotTSNE_2D}()},
 \code{\link{plotTSNE_3D}()},
-\code{\link{plotTSNE}()},
+\code{\link{plotUMAP}()},
 \code{\link{plotUMAP_2D}()},
-\code{\link{plotUMAP_3D}()},
-\code{\link{plotUMAP}()}
+\code{\link{plotUMAP_3D}()}
 }
 \concept{reduced dimension visualizations}

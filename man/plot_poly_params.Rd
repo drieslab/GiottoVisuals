@@ -10,17 +10,19 @@
 
 \item{polygon_feat_type}{feature type associated with polygon information}
 
-\item{polygon_color}{color for polygon border}
+\item{polygon_color}{color for polygon border. Set \code{NA} to remove border}
 
-\item{polygon_bg_color}{color for polygon background (overruled by polygon_fill)}
+\item{polygon_bg_color}{color for polygon background
+(overruled by polygon_fill)}
 
-\item{polygon_fill}{character. what to color to fill polgyons by (e.g. metadata
-col or spatial enrichment col)}
+\item{polygon_fill}{character. what to color to fill polgyons by
+(e.g. metadata col or spatial enrichment col)}
 
-\item{polygon_fill_gradient}{polygon fill gradient colors given in order from low to high}
+\item{polygon_fill_gradient}{polygon fill gradient colors given in order
+from low to high}
 
-\item{polygon_fill_gradient_midpoint}{value to set as gradient midpoint (optional). If
-left as \code{NULL}, the median value detected will be chosen}
+\item{polygon_fill_gradient_midpoint}{value to set as gradient midpoint
+(optional). If left as \code{NULL}, the median value detected will be chosen}
 
 \item{polygon_fill_gradient_style}{either 'divergent' (midpoint is used in
 color scaling) or 'sequential' (scaled based on data range)}
@@ -32,6 +34,9 @@ color scaling) or 'sequential' (scaled based on data range)}
 \item{polygon_alpha}{alpha of polygon}
 
 \item{polygon_line_size}{line width of the polygon's outline}
+}
+\value{
+ggplot
 }
 \description{
 Params documentation template: plot_poly_params

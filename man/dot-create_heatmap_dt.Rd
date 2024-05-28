@@ -28,27 +28,34 @@
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
 \item{feats}{features to use}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for clusters
+(e.g. "leiden_clus")}
 
-\item{cluster_order}{method to determine cluster order (e.g. "size", "correlation", "custom")}
+\item{cluster_order}{method to determine cluster order
+(e.g. "size", "correlation", "custom")}
 
 \item{cluster_custom_order}{custom order for clusters}
 
-\item{cluster_cor_method}{method for cluster correlation, default to "pearson"}
+\item{cluster_cor_method}{method for cluster correlation,
+default to "pearson"}
 
-\item{cluster_hclust_method}{method for hierarchical clustering of clusters, default to "ward.D"}
+\item{cluster_hclust_method}{method for hierarchical clustering of clusters,
+default to "ward.D"}
 
-\item{feat_order}{method to determine features order (e.g. "correlation", "custom")}
+\item{feat_order}{method to determine features order
+(e.g. "correlation", "custom")}
 
 \item{feat_custom_order}{custom order for features}
 
 \item{feat_cor_method}{method for features correlation, default to "pearson"}
 
-\item{feat_hclust_method}{method for hierarchical clustering of features, default to "complete"}
+\item{feat_hclust_method}{method for hierarchical clustering of features,
+default to "complete"}
 }
 \value{
 list

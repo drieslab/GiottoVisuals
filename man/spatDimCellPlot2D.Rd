@@ -8,7 +8,7 @@ spatDimCellPlot2D(
   gobject,
   feat_type = NULL,
   spat_unit = NULL,
-  show_image = F,
+  show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
   largeImage_name = NULL,
@@ -37,29 +37,29 @@ spatDimCellPlot2D(
   spat_point_alpha = 1,
   spat_point_border_col = "black",
   spat_point_border_stroke = 0.1,
-  dim_show_cluster_center = F,
-  dim_show_center_label = T,
+  dim_show_cluster_center = FALSE,
+  dim_show_center_label = TRUE,
   dim_center_point_size = 4,
   dim_center_point_border_col = "black",
   dim_center_point_border_stroke = 0.1,
   dim_label_size = 4,
   dim_label_fontface = "bold",
-  spat_show_cluster_center = F,
-  spat_show_center_label = F,
+  spat_show_cluster_center = FALSE,
+  spat_show_center_label = FALSE,
   spat_center_point_size = 4,
   spat_center_point_border_col = "black",
   spat_center_point_border_stroke = 0.1,
   spat_label_size = 4,
   spat_label_fontface = "bold",
-  show_NN_network = F,
+  show_NN_network = FALSE,
   nn_network_to_use = "sNN",
   nn_network_name = "sNN.pca",
   dim_edge_alpha = 0.5,
-  spat_show_network = F,
+  spat_show_network = FALSE,
   spatial_network_name = "Delaunay_network",
   spat_network_color = "red",
   spat_network_alpha = 0.5,
-  spat_show_grid = F,
+  spat_show_grid = FALSE,
   spatial_grid_name = "spatial_grid",
   spat_grid_color = "green",
   show_other_cells = TRUE,
@@ -67,7 +67,7 @@ spatDimCellPlot2D(
   dim_other_point_size = 0.5,
   spat_other_point_size = 0.5,
   spat_other_cells_alpha = 0.5,
-  show_legend = T,
+  show_legend = TRUE,
   legend_text = 8,
   legend_symbol_size = 1,
   dim_background_color = "white",
@@ -82,9 +82,9 @@ spatDimCellPlot2D(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatDimCellPlot2D"
 )
@@ -102,11 +102,13 @@ spatDimCellPlot2D(
 
 \item{image_name}{name of a giotto image or multiple images with group_by}
 
-\item{largeImage_name}{name of a giottoLargeImage or multiple images with group_by}
+\item{largeImage_name}{name of a giottoLargeImage or multiple images
+with group_by}
 
 \item{plot_alignment}{direction to align plot}
 
-\item{spat_enr_names}{character. names of spatial enrichment results to include}
+\item{spat_enr_names}{character. names of spatial enrichment results
+to include}
 
 \item{cell_annotation_values}{numeric cell annotation columns}
 
@@ -132,7 +134,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{gradient_limits}{numeric vector with lower and upper limits}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -144,7 +147,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{dim_point_border_col}{border color of points in dim. reduction space}
 
-\item{dim_point_border_stroke}{border stroke of points in dim. reduction space}
+\item{dim_point_border_stroke}{border stroke of points in dim.
+reduction space}
 
 \item{spat_point_shape}{shape of points (border, no_border or voronoi)}
 
@@ -178,7 +182,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{spat_center_point_border_col}{border color of the spatial center points}
 
-\item{spat_center_point_border_stroke}{stroke size of the spatial center points}
+\item{spat_center_point_border_stroke}{stroke size of the spatial center
+points}
 
 \item{spat_label_size}{size of the center label}
 
@@ -188,7 +193,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{nn_network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{nn_network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{dim_edge_alpha}{column to use for alpha of the edges}
 
@@ -222,7 +228,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{legend_symbol_size}{size of legend symbols}
 
-\item{dim_background_color}{background color of points in dim. reduction space}
+\item{dim_background_color}{background color of points in dim. reduction
+space}
 
 \item{spat_background_color}{background color of spatial points}
 
@@ -252,18 +259,26 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
-Visualize numerical features of cells according to spatial AND dimension reduction coordinates in 2D
+Visualize numerical features of cells according to spatial
+AND dimension reduction coordinates in 2D
 }
 \details{
 Description of parameters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+spatDimCellPlot2D(g, cell_annotation_values = "leiden_clus")
+
 }
 \seealso{
 Other spatial and dimension reduction cell annotation visualizations: 

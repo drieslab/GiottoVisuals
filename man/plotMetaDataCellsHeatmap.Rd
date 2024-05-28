@@ -28,9 +28,9 @@ plotMetaDataCellsHeatmap(
   x_text_angle = 45,
   y_text_size = 8,
   strip_text_size = 8,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "plotMetaDataCellsHeatmap"
 )
@@ -48,23 +48,28 @@ plotMetaDataCellsHeatmap(
 
 \item{value_cols}{value columns to use}
 
-\item{first_meta_col}{if more than 1 metadata column, select the x-axis factor}
+\item{first_meta_col}{if more than 1 metadata column,
+select the x-axis factor}
 
-\item{second_meta_col}{if more than 1 metadata column, select the facetting factor}
+\item{second_meta_col}{if more than 1 metadata column,
+select the facetting factor}
 
-\item{show_values}{which values to show on heatmap (e.g. "zscores", "original", "zscores_rescaled")}
+\item{show_values}{which values to show on heatmap
+(e.g. "zscores", "original", "zscores_rescaled")}
 
 \item{custom_cluster_order}{custom cluster order (default = NULL)}
 
 \item{clus_cor_method}{correlation method for clusters, default to "pearson"}
 
-\item{clus_cluster_method}{hierarchical cluster method for the clusters, default to "complete"}
+\item{clus_cluster_method}{hierarchical cluster method for the clusters,
+default to "complete"}
 
 \item{custom_values_order}{custom values order (default = NULL)}
 
 \item{values_cor_method}{correlation method for values, default to "pearson"}
 
-\item{values_cluster_method}{hierarchical cluster method for the values, default to "complete"}
+\item{values_cluster_method}{hierarchical cluster method for the values,
+default to "complete"}
 
 \item{gradient_color}{character. continuous colors to use. palette to
 use or vector of colors to use (minimum of 2).}
@@ -90,19 +95,24 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot or data.table
 }
 \description{
-Creates heatmap for numeric cell metadata within aggregated clusters.
+Creates heatmap for numeric cell metadata within
+aggregated clusters.
 }
 \details{
-Creates heatmap for the average values of selected value columns in the different annotation groups.
+Creates heatmap for the average values of selected value columns
+in the different annotation groups.
 }
 \seealso{
-\code{\link{plotMetaDataHeatmap}} for feature expression instead of numeric cell annotation data.
+\code{\link{plotMetaDataHeatmap}} for feature expression instead
+of numeric cell annotation data.
 }

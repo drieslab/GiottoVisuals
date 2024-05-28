@@ -10,10 +10,17 @@ An object of class \code{list} of length 11.
 \usage{
 pal_names
 }
+\value{
+palette colors
+}
 \description{
 Known color palettes info provided as named list of character vectors.
-List names correspond to the name of the palette package. The character vectors
-list the palettes that are available within. These palettes can be passed to
-the default color setting functions
+List names correspond to the name of the palette package.
+The character vectors list the palettes that are available within.
+These palettes can be passed to the default color setting functions
+}
+\examples{
+pal_names
+
 }
 \keyword{datasets}

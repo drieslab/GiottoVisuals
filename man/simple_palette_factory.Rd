@@ -13,11 +13,18 @@ simple_palette_factory(col, rev = FALSE, strategy = "interpolate")
 
 \item{strategy}{policy when insufficient colors are available}
 }
+\value{
+a function
+}
 \description{
 Simple palette function generator. Creates a function with param n that
 dictates how many colors to return from the provided vector of hexadecimal
 color values. Generated functions send warning if there are not enough colors
 to use and it needs to recycle values.
+}
+\examples{
+simple_palette_factory(col = "#eb4034")
+
 }
 \seealso{
 \code{\link[=set_default_color_discrete]{set_default_color_discrete()}}

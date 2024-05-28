@@ -7,10 +7,12 @@
 showSaveParameters()
 }
 \value{
-Instructions on how to use the automatic plot saving options within Giotto
+Instructions on how to use the automatic plot saving options
+within Giotto
 }
 \description{
-Description of Giotto saving options, links to \code{\link{all_plots_save_function}}
+Description of Giotto saving options,
+links to \code{\link{all_plots_save_function}}
 }
 \examples{
 showSaveParameters()

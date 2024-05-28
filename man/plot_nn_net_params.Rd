@@ -8,13 +8,18 @@
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
-\item{nn_network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{nn_network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{network_color}{color of NN network}
 
 \item{nn_network_alpha}{column to use for alpha of the edges}
+}
+\value{
+ggplot
 }
 \description{
 Params documentation template: plot_nn_net_params

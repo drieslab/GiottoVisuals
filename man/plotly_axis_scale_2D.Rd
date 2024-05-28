@@ -29,3 +29,8 @@ edges in spatial grid as data.table()
 \description{
 adjust the axis scale in 2D plotly plot
 }
+\examples{
+my_cell_locations <- data.frame(x = sample(10), y = sample(10))
+plotly_axis_scale_2D(my_cell_locations)
+
+}

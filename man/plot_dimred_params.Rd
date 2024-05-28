@@ -22,7 +22,11 @@
 
 \item{dim_point_border_col}{border color of points in dim. reduction space}
 
-\item{dim_point_border_stroke}{border stroke of points in dim. reduction space}
+\item{dim_point_border_stroke}{border stroke of points in dim.
+reduction space}
+}
+\value{
+ggplot
 }
 \description{
 Params documentation template: plot_dimred_params

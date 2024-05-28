@@ -18,9 +18,9 @@ violinPlot(
   strip_text = 7,
   axis_text_x_size = 10,
   axis_text_y_size = 6,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "violinPlot"
 )
@@ -32,11 +32,13 @@ violinPlot(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to
+use (e.g. "normalized", "scaled", "custom")}
 
 \item{feats}{features to plot}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for
+clusters (e.g. "leiden_clus")}
 
 \item{cluster_custom_order}{custom order of clusters}
 
@@ -44,7 +46,8 @@ violinPlot(
 
 \item{cluster_color_code}{color code for clusters}
 
-\item{strip_position}{position of gene labels (e.g. "top", "right", "left", "bottom")}
+\item{strip_position}{position of gene
+labels (e.g. "top", "right", "left", "bottom")}
 
 \item{strip_text}{size of strip text}
 
@@ -58,13 +61,21 @@ violinPlot(
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
 Creates violinplot for selected clusters
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+violinPlot(g, feats = c("Gna12", "Ccnd2", "Btbd17"),
+cluster_column = "leiden_clus")
+
 }

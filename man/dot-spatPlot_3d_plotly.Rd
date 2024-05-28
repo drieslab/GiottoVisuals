@@ -18,7 +18,7 @@
   cell_color_code = NULL,
   select_cell_groups = NULL,
   select_cells = NULL,
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   other_point_size = 0.5,
   show_network = FALSE,

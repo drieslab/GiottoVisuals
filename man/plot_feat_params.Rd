@@ -8,6 +8,9 @@
 
 \item{feat_shape_code}{code to shape the provided feature types}
 }
+\value{
+ggplot
+}
 \description{
 Params documentation template: plot_feat_params
 }

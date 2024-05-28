@@ -9,9 +9,9 @@ spatNetwDistributionsKneighbors(
   spat_unit = NULL,
   spatial_network_name = "spatial_network",
   hist_bins = 30,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatNetwDistributionsKneighbors"
 )
@@ -31,13 +31,16 @@ spatNetwDistributionsKneighbors(
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot plot
 }
 \description{
-This function returns a histogram displaying the number of k-neighbors distribution for each cell
+This function returns a histogram displaying the number
+of k-neighbors distribution for each cell
 }

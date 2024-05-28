@@ -7,14 +7,17 @@
 \item{cell_color}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
 
-\item{color_as_factor}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+\item{color_as_factor}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
 
 \item{cell_color_gradient}{character. continuous colors to use. palette to
 use or vector of colors to use (minimum of 2).}
+}
+\value{
+ggplot
 }
 \description{
 Params documentation template: plot_cell_params

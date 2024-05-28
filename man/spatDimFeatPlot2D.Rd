@@ -8,7 +8,7 @@ spatDimFeatPlot2D(
   gobject,
   spat_unit = NULL,
   feat_type = NULL,
-  show_image = F,
+  show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
   largeImage_name = NULL,
@@ -25,8 +25,8 @@ spatDimFeatPlot2D(
   dim_point_alpha = 1,
   dim_point_border_col = "black",
   dim_point_border_stroke = 0.1,
-  show_NN_network = F,
-  show_spatial_network = F,
+  show_NN_network = FALSE,
+  show_spatial_network = FALSE,
   dim_network_color = "gray",
   nn_network_to_use = "sNN",
   network_name = "sNN.pca",
@@ -36,7 +36,7 @@ spatDimFeatPlot2D(
   sdimy = "sdimy",
   spatial_network_name = "Delaunay_network",
   spatial_network_color = NULL,
-  show_spatial_grid = F,
+  show_spatial_grid = FALSE,
   grid_color = NULL,
   spatial_grid_name = "spatial_grid",
   spat_point_shape = c("border", "no_border", "voronoi"),
@@ -62,9 +62,9 @@ spatDimFeatPlot2D(
   vor_alpha = 1,
   axis_text = 8,
   axis_title = 8,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatDimFeatPlot2D"
 )
@@ -82,7 +82,8 @@ spatDimFeatPlot2D(
 
 \item{image_name}{name of a giotto image or multiple images with group_by}
 
-\item{largeImage_name}{name of a giottoLargeImage or multiple images with group_by}
+\item{largeImage_name}{name of a giottoLargeImage or multiple images
+with group_by}
 
 \item{expression_values}{feat expression values to use}
 
@@ -108,7 +109,8 @@ spatDimFeatPlot2D(
 
 \item{dim_point_border_col}{border color of points in dim. reduction space}
 
-\item{dim_point_border_stroke}{border stroke of points in dim. reduction space}
+\item{dim_point_border_stroke}{border stroke of points in dim.
+reduction space}
 
 \item{show_NN_network}{logical. Show underlying NN network}
 
@@ -120,9 +122,11 @@ spatDimFeatPlot2D(
 
 \item{network_name}{name of NN network to use, if show_NN_network = TRUE}
 
-\item{dim_edge_alpha}{dim reduction plot: column to use for alpha of the edges}
+\item{dim_edge_alpha}{dim reduction plot: column to use for alpha of the
+edges}
 
-\item{scale_alpha_with_expression}{scale expression with ggplot alpha parameter}
+\item{scale_alpha_with_expression}{scale expression with ggplot alpha
+parameter}
 
 \item{sdimx}{spatial x-axis dimension name (default = 'sdimx')}
 
@@ -138,7 +142,8 @@ spatDimFeatPlot2D(
 
 \item{spatial_grid_name}{name of spatial grid to use}
 
-\item{spat_point_shape}{spatial points with border or not (border or no_border)}
+\item{spat_point_shape}{spatial points with border or
+not (border or no_border)}
 
 \item{spat_point_size}{spatial plot: point size}
 
@@ -192,17 +197,25 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
-Visualize cells according to spatial AND dimension reduction coordinates in ggplot mode
+Visualize cells according to spatial AND dimension reduction
+coordinates in ggplot mode
 }
 \details{
 Description of parameters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+spatDimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
+
 }
 \concept{spatial and dimension reduction feature expression visualizations}

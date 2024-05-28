@@ -30,9 +30,9 @@ spatInSituPlotHex(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatInSituPlotHex"
 )
@@ -48,10 +48,10 @@ spatInSituPlotHex(
 
 \item{sdimy}{spatial dimension y}
 
-\item{binwidth}{numeric vector for x and y width of bins (default is minor axis
-range/10, where the 10 is from \code{min_axis_bins})}
+\item{binwidth}{numeric vector for x and y width of bins
+(default is minor axis range/10, where the 10 is from \code{min_axis_bins})}
 
-\item{min_axis_bins}{number of bins to create per range defined by minor axis.
+\item{min_axis_bins}{number of bins to create per range defined by minor axis
 (default value is 10)}
 
 \item{alpha}{alpha of hexbin plot}
@@ -60,10 +60,10 @@ range/10, where the 10 is from \code{min_axis_bins})}
 
 \item{polygon_feat_type}{feature type associated with polygon information}
 
-\item{polygon_color}{color for polygon border}
+\item{polygon_color}{color for polygon border. Set \code{NA} to remove border}
 
-\item{polygon_fill}{character. what to color to fill polgyons by (e.g. metadata
-col or spatial enrichment col)}
+\item{polygon_fill}{character. what to color to fill polgyons by
+(e.g. metadata col or spatial enrichment col)}
 
 \item{polygon_fill_as_factor}{is fill color a factor}
 
@@ -97,18 +97,26 @@ col or spatial enrichment col)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
-Function to plot hexbins for features for multiple modalities at the spatial in situ level
+Function to plot hexbins for features for multiple
+modalities at the spatial in situ level
 }
 \details{
 TODO
+}
+\examples{
+g <- GiottoData::loadGiottoMini("vizgen")
+spatInSituPlotHex(g, feats = c("Mlc1", "Gprc5b", "Gfap"),
+polygon_feat_type = "z0")
 }
 \seealso{
 Other In Situ visualizations: 

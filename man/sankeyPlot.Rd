@@ -54,6 +54,8 @@ omitted.}
 \item{...}{
   Arguments passed on to \code{\link[networkD3:sankeyNetwork]{networkD3::sankeyNetwork}}
   \describe{
+    \item{\code{Value}}{character string naming the variable in the \code{Links} data
+frame for how far away the nodes are from one another.}
     \item{\code{NodeGroup}}{character string specifying the node groups in the
 \code{Nodes}. Used to color the nodes in the network.}
     \item{\code{LinkGroup}}{character string specifying the groups in the
@@ -87,6 +89,9 @@ right border of the plot.}
 
 \item{idx}{table subset index for 1 to 1 comparisons}
 }
+\value{
+sankey plot
+}
 \description{
 Create a sankey plot. Pulls from information metadata if giotto object is
 provided. Simple 1 to 1 sankeys can be generated from a single spatial unit
@@ -98,46 +103,48 @@ Also possible to directly use data.frames or lists of data.frames and
 giottoPolygon objects. See usage section and examples.
 }
 \examples{
-\dontrun{
-x = data.frame(
-  col1 = c('a', 'a', 'b'),
-  col2 = c('1', '2', '2')
+x <- data.frame(
+    col1 = c("a", "a", "b"),
+    col2 = c("1", "2", "2")
 )
 sankeyPlot(x)
 
-y = data.frame(
-  col1 = '1',
-  col2 = c('A', 'B', 'C')
+y <- data.frame(
+    col1 = "1",
+    col2 = c("A", "B", "C")
 )
 
 # combine data.frames of relations
 # rbind: note that node "1" is mapped the same for x and y
-sankeyPlot(rbind(x,y), fontSize = 20)
+sankeyPlot(rbind(x, y), fontSize = 20)
 
 # list: note that node "1" is now considered a different node between x and y
-sankeyPlot(list(x,y), fontSize = 20)
+sankeyPlot(list(x, y), fontSize = 20)
 
 # focus on specific nodes/names
-sankeyPlot(rbind(x,y), fontSize = 20, focus_names = c('a', '1', 'B'))
+sankeyPlot(rbind(x, y), fontSize = 20, focus_names = c("a", "1", "B"))
 
-g = GiottoData::loadGiottoMini("vizgen")
+g <- GiottoData::loadGiottoMini("vizgen")
 # with giottoSankeyPlan
-leiden = sankeySet(spat_unit = 'aggregate',
-                   feat_type = 'rna',
-                   col = 'leiden_clus')
-louvain = sankeySet(spat_unit = 'aggregate',
-                    feat_type = 'rna',
-                    col = 'louvain_clus')
+leiden <- sankeySet(
+    spat_unit = "aggregate",
+    feat_type = "rna",
+    col = "leiden_clus"
+)
+louvain <- sankeySet(
+    spat_unit = "aggregate",
+    feat_type = "rna",
+    col = "louvain_clus"
+)
 # place defined sets into same object
-plan = leiden + louvain
+plan <- leiden + louvain
 # assign relationships to compare
-sankeyRelate(plan) = c(0,1)
+sankeyRelate(plan) <- c(0, 1)
 sankeyPlot(g, plan)
 
 # with single set of metadata
-activeSpatUnit(g) = 'aggregate'
-sankeyPlot(g, c('louvain_clus', 'leiden_clus'))
-}
+GiottoClass::activeSpatUnit(g) <- "aggregate"
+sankeyPlot(g, c("louvain_clus", "leiden_clus"))
 }
 \keyword{plotting}
 \keyword{sankey}

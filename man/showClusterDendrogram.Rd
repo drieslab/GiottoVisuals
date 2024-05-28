@@ -15,9 +15,9 @@ showClusterDendrogram(
   h = NULL,
   h_color = "red",
   rotate = FALSE,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "showClusterDendrogram",
   ...
@@ -30,13 +30,17 @@ showClusterDendrogram(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for clusters
+(e.g. "leiden_clus")}
 
-\item{cor}{correlation score to calculate distance (e.g. "pearson", "spearman")}
+\item{cor}{correlation score to calculate distance
+(e.g. "pearson", "spearman")}
 
-\item{distance}{distance method to use for hierarchical clustering, default to "ward.D"}
+\item{distance}{distance method to use for hierarchical clustering,
+default to "ward.D"}
 
 \item{h}{height of horizontal lines to plot}
 
@@ -50,9 +54,11 @@ showClusterDendrogram(
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{...}{
   Arguments passed on to \code{\link[ggdendro:ggdendrogram]{ggdendro::ggdendrogram}}
@@ -75,4 +81,9 @@ Creates dendrogram for selected clusters.
 }
 \details{
 Expression correlation dendrogram for selected clusters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+showClusterDendrogram(g, cluster_column = "leiden_clus")
+
 }

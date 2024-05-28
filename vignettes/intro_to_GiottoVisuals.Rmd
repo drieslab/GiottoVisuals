@@ -1,0 +1,90 @@
+---
+title: "Introduction to GiottoVisuals"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to GiottoVisuals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Description of the module GiottoVisuals
+
+GiottoVisuals contains the main plotting functions of Giotto Suite. 
+
+For full examples of the usage of Giotto visualizations visit http://giottosuite.com
+
+## Script Organization by Prefixes:
+
+aux_ - auxiliary and meta functionality
+- aux_output.R - plot output handling
+- aux_save.R - plot saving
+- aux_defaults.R - set plotting defaults
+- aux_visuals.R - general auxiliary plotting functions
+
+plot_ - general plotting functions organized by type of plot
+- plot_scatter.R - scatter plots
+- plot_violin.R - violin plots
+- plot_heatmap.R - heatmaps
+- plot_dendrogram.R - dendrograms
+
+vis_ - specific plotting functions organized by topic 
+- vis_hvf.R - highly variable features plots
+- vis_pc.R - principle components plots
+- vis_spatial.R 
+- vis_spatial_in_situ.R
+
+gg_ - ggplot2 related
+- gg_info_layers.R - modular internals for plotting the different layers of information
+
+
+Other:
+- color_palettes.R - color palettes and factory functions
+
+
+Package:
+- package_imports.R - all imports
+- globals.R - global variables
+- dd.R - dummy documentation for inheriting
+- zzz.R - onloads
+
+
+## Spatial plots
+
+Load the package
+
+```{r}
+library(GiottoVisuals)
+```
+
+Create a small Giotto object
+
+```{r}
+expression_matrix <- matrix(rnorm(1000), nrow = 10)
+colnames(expression_matrix) <- paste0("cell_", 1:100)
+rownames(expression_matrix) <- paste0("gene_", 1:10)
+
+spatial_locations <- data.frame(
+    cell_ID = paste0("cell_", 1:100),
+    sdimx = rnorm(100),
+    sdimy = rnorm(100)
+)
+
+giotto_object <- GiottoClass::createGiottoObject(
+    expression = expression_matrix,
+    spatial_locs = spatial_locations
+)
+```
+
+Plot the spatial locations
+
+```{r}
+spatPlot2D(giotto_object)
+```
+
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
+

@@ -30,7 +30,8 @@ spatDimCellPlot(...)
     \item{\code{spat_show_center_label}}{provide a label for each cluster}
     \item{\code{spat_center_point_size}}{size of the spatial center points}
     \item{\code{spat_center_point_border_col}}{border color of the spatial center points}
-    \item{\code{spat_center_point_border_stroke}}{stroke size of the spatial center points}
+    \item{\code{spat_center_point_border_stroke}}{stroke size of the spatial center
+points}
     \item{\code{spat_label_size}}{size of the center label}
     \item{\code{spat_label_fontface}}{font of the center label}
     \item{\code{dim_edge_alpha}}{column to use for alpha of the edges}
@@ -45,7 +46,8 @@ spatDimCellPlot(...)
     \item{\code{spat_other_point_size}}{size of not selected spat cells}
     \item{\code{spat_other_cells_alpha}}{alpha of not selected spat cells}
     \item{\code{coord_fix_ratio}}{ratio for coordinates}
-    \item{\code{dim_background_color}}{background color of points in dim. reduction space}
+    \item{\code{dim_background_color}}{background color of points in dim. reduction
+space}
     \item{\code{spat_background_color}}{background color of spatial points}
     \item{\code{vor_border_color}}{border colorr for voronoi plot}
     \item{\code{vor_max_radius}}{maximum radius for voronoi 'cells'}
@@ -56,8 +58,10 @@ spatDimCellPlot(...)
     \item{\code{show_plot}}{logical. show plot}
     \item{\code{return_plot}}{logical. return ggplot object}
     \item{\code{save_plot}}{logical. save the plot}
-    \item{\code{save_param}}{list of saving parameters, see \code{\link{showSaveParameters}}}
-    \item{\code{default_save_name}}{default save name for saving, don't change, change save_name in save_param}
+    \item{\code{save_param}}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
+    \item{\code{default_save_name}}{default save name for saving, don't change,
+change save_name in save_param}
     \item{\code{cell_color_gradient}}{character. continuous colors to use. palette to
 use or vector of colors to use (minimum of 2).}
     \item{\code{cow_n_col}}{cowplot param: how many columns}
@@ -67,8 +71,10 @@ use or vector of colors to use (minimum of 2).}
     \item{\code{show_image}}{show a tissue background image}
     \item{\code{gimage}}{a giotto image}
     \item{\code{image_name}}{name of a giotto image or multiple images with group_by}
-    \item{\code{largeImage_name}}{name of a giottoLargeImage or multiple images with group_by}
-    \item{\code{spat_enr_names}}{character. names of spatial enrichment results to include}
+    \item{\code{largeImage_name}}{name of a giottoLargeImage or multiple images
+with group_by}
+    \item{\code{spat_enr_names}}{character. names of spatial enrichment results
+to include}
     \item{\code{dim_reduction_to_use}}{character. dimension reduction to use}
     \item{\code{dim_reduction_name}}{character. dimension reduction name}
     \item{\code{dim1_to_use}}{numeric. dimension to use on x-axis}
@@ -77,15 +83,18 @@ use or vector of colors to use (minimum of 2).}
     \item{\code{dim_point_size}}{size of points in dim. reduction space}
     \item{\code{dim_point_alpha}}{transparancy of point in dim. reduction space}
     \item{\code{dim_point_border_col}}{border color of points in dim. reduction space}
-    \item{\code{dim_point_border_stroke}}{border stroke of points in dim. reduction space}
+    \item{\code{dim_point_border_stroke}}{border stroke of points in dim.
+reduction space}
     \item{\code{show_NN_network}}{logical. Show underlying NN network}
     \item{\code{nn_network_to_use}}{character. type of NN network to use (kNN vs sNN)}
-    \item{\code{nn_network_name}}{character. name of NN network to use, if show_NN_network = TRUE}
+    \item{\code{nn_network_name}}{character. name of NN network to use,
+if show_NN_network = TRUE}
     \item{\code{gradient_midpoint}}{numeric. midpoint for color gradient}
     \item{\code{gradient_style}}{either 'divergent' (midpoint is used in color scaling)
 or 'sequential' (scaled based on data range)}
     \item{\code{gradient_limits}}{numeric vector with lower and upper limits}
-    \item{\code{select_cell_groups}}{select subset of cells/clusters based on cell_color parameter}
+    \item{\code{select_cell_groups}}{select subset of cells/clusters based on
+cell_color parameter}
     \item{\code{select_cells}}{select subset of cells based on cell IDs}
     \item{\code{show_other_cells}}{display not selected cells}
     \item{\code{other_cell_color}}{color for not selected cells}
@@ -100,10 +109,16 @@ or 'sequential' (scaled based on data range)}
 ggplot
 }
 \description{
-Visualize numerical features of cells according to spatial AND dimension reduction coordinates in 2D
+Visualize numerical features of cells according to spatial
+AND dimension reduction coordinates in 2D
 }
 \details{
 Description of parameters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+spatDimCellPlot(g, cell_annotation_values = "leiden_clus")
+
 }
 \seealso{
 Other spatial and dimension reduction cell annotation visualizations: 

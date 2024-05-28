@@ -23,8 +23,8 @@ GiottoVisuals contains the main plotting functions of Giotto Suite
 You can install GiottoVisuals like:
 
 ``` r
-library(remotes)
-install_github('drieslab/GiottoVisuals')
+if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+pak::pak("drieslab/GiottoVisuals")
 ```
 
 ## Script Organization by Prefixes:

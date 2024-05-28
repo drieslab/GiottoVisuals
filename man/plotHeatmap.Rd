@@ -28,9 +28,9 @@ plotHeatmap(
   feat_label_selection = NULL,
   axis_text_y_size = NULL,
   legend_nrows = 1,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "plotHeatmap"
 )
@@ -42,31 +42,39 @@ plotHeatmap(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
 \item{feats}{features to use}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for clusters
+(e.g. "leiden_clus")}
 
-\item{cluster_order}{method to determine cluster order (e.g. "size", "correlation", "custom")}
+\item{cluster_order}{method to determine cluster order
+(e.g. "size", "correlation", "custom")}
 
 \item{cluster_custom_order}{custom order for clusters}
 
 \item{cluster_color_code}{color code for clusters}
 
-\item{cluster_cor_method}{method for cluster correlation, default to "pearson"}
+\item{cluster_cor_method}{method for cluster correlation,
+default to "pearson"}
 
-\item{cluster_hclust_method}{method for hierarchical clustering of clusters, default to "ward.D"}
+\item{cluster_hclust_method}{method for hierarchical clustering of
+clusters, default to "ward.D"}
 
-\item{feat_order}{method to determine features order (e.g. "correlation", "custom")}
+\item{feat_order}{method to determine features order
+(e.g. "correlation", "custom")}
 
 \item{feat_custom_order}{custom order for features}
 
 \item{feat_cor_method}{method for features correlation, default to "pearson"}
 
-\item{feat_hclust_method}{method for hierarchical clustering of features, default to "complete"}
+\item{feat_hclust_method}{method for hierarchical clustering of
+features, default to "complete"}
 
-\item{show_values}{which values to show on heatmap (e.g. "rescaled", "z-scaled", "original")}
+\item{show_values}{which values to show on heatmap
+(e.g. "rescaled", "z-scaled", "original")}
 
 \item{size_vertical_lines}{sizes for vertical lines}
 
@@ -90,9 +98,11 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
@@ -103,7 +113,13 @@ Creates heatmap for features and clusters.
 \details{
 If you want to display many features there are 2 ways to proceed:
 \itemize{
-\item{1. set axis_text_y_size to a really small value and show all features}
+\item{1. set axis_text_y_size to a very small value and show all features}
 \item{2. provide a subset of features to display to feat_label_selection}
 }
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+plotHeatmap(g, feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
+cluster_column = "leiden_clus")
+
 }

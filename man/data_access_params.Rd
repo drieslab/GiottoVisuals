@@ -10,6 +10,9 @@
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 }
+\value{
+internal giotto object slot
+}
 \description{
 Params documentation template: data_access_params
 }

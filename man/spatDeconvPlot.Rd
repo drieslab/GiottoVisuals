@@ -9,7 +9,7 @@ spatDeconvPlot(
   spat_unit = NULL,
   feat_type = NULL,
   deconv_name = "DWLS",
-  show_image = F,
+  show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
   largeImage_name = NULL,
@@ -26,10 +26,11 @@ spatDeconvPlot(
   axis_text = 8,
   axis_title = 8,
   coord_fix_ratio = 1,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
+  theme_param = list(),
   default_save_name = "spatDeconvPlot"
 )
 }
@@ -83,16 +84,18 @@ named vector of colors}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{theme_param}{list of additional params passed to \code{ggplot2::theme()}}
+
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 }
 \value{
 ggplot
 }
 \description{
-Visualize cell type enrichment / deconvolution results in a scatterpie
-}
-\details{
-Description of parameters.
+Visualize cell type enrichment / deconvolution results
+in a scatterpie
 }

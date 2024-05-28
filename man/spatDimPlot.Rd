@@ -9,7 +9,7 @@ spatDimPlot2D(
   gobject,
   spat_unit = NULL,
   feat_type = NULL,
-  show_image = F,
+  show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
   largeImage_name = NULL,
@@ -23,7 +23,7 @@ spatDimPlot2D(
   sdimy = "sdimy",
   spat_enr_names = NULL,
   cell_color = NULL,
-  color_as_factor = T,
+  color_as_factor = TRUE,
   cell_color_code = NULL,
   cell_color_gradient = NULL,
   gradient_midpoint = NULL,
@@ -41,38 +41,38 @@ spatDimPlot2D(
   spat_point_alpha = 1,
   spat_point_border_col = "black",
   spat_point_border_stroke = 0.1,
-  dim_show_cluster_center = F,
-  dim_show_center_label = T,
+  dim_show_cluster_center = FALSE,
+  dim_show_center_label = TRUE,
   dim_center_point_size = 4,
   dim_center_point_border_col = "black",
   dim_center_point_border_stroke = 0.1,
   dim_label_size = 4,
   dim_label_fontface = "bold",
-  spat_show_cluster_center = F,
-  spat_show_center_label = F,
+  spat_show_cluster_center = FALSE,
+  spat_show_center_label = FALSE,
   spat_center_point_size = 4,
   spat_center_point_border_col = "blue",
   spat_center_point_border_stroke = 0.1,
   spat_label_size = 4,
   spat_label_fontface = "bold",
-  show_NN_network = F,
+  show_NN_network = FALSE,
   nn_network_to_use = "sNN",
   network_name = "sNN.pca",
   nn_network_alpha = 0.05,
-  show_spatial_network = F,
+  show_spatial_network = FALSE,
   spat_network_name = "Delaunay_network",
   spat_network_color = "blue",
   spat_network_alpha = 0.5,
-  show_spatial_grid = F,
+  show_spatial_grid = FALSE,
   spat_grid_name = "spatial_grid",
   spat_grid_color = "blue",
-  show_other_cells = T,
+  show_other_cells = TRUE,
   other_cell_color = "lightgrey",
   dim_other_point_size = 1,
   spat_other_point_size = 1,
   spat_other_cells_alpha = 0.5,
-  dim_show_legend = F,
-  spat_show_legend = F,
+  dim_show_legend = FALSE,
+  spat_show_legend = FALSE,
   legend_text = 10,
   legend_symbol_size = 2,
   dim_background_color = "white",
@@ -82,9 +82,9 @@ spatDimPlot2D(
   vor_alpha = 1,
   axis_text = 8,
   axis_title = 8,
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "spatDimPlot2D"
 )
@@ -104,7 +104,7 @@ spatDimPlot(gobject, ...)
 
 \item{image_name}{name of a giotto image or multiple images with group_by}
 
-\item{largeImage_name}{name of a giottoLargeImage or multiple images with group_by}
+\item{largeImage_name}{deprecated}
 
 \item{spat_loc_name}{name of spatial locations}
 
@@ -122,13 +122,14 @@ spatDimPlot(gobject, ...)
 
 \item{sdimy}{= spatial dimension to use on y-axis}
 
-\item{spat_enr_names}{character. names of spatial enrichment results to include}
+\item{spat_enr_names}{character. names of spatial enrichment results
+to include}
 
 \item{cell_color}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
 
-\item{color_as_factor}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+\item{color_as_factor}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
@@ -143,7 +144,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{gradient_limits}{numeric vector with lower and upper limits}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -155,7 +157,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{dim_point_border_col}{border color of points in dim. reduction space}
 
-\item{dim_point_border_stroke}{border stroke of points in dim. reduction space}
+\item{dim_point_border_stroke}{border stroke of points in dim.
+reduction space}
 
 \item{spat_point_shape}{shape of points (border, no_border or voronoi)}
 
@@ -199,7 +202,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{nn_network_alpha}{column to use for alpha of the edges}
 
@@ -255,20 +259,33 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{\dots}{spatDimPlot(...) passes to spatDimPlot2D()}
 }
 \value{
 ggplot
+
+ggplot
 }
 \description{
-Visualize cells according to spatial AND dimension reduction coordinates 2D
+Visualize cells according to spatial AND dimension reduction
+coordinates 2D
 }
 \details{
 Description of parameters.
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+spatDimPlot2D(g)
+
+g <- GiottoData::loadGiottoMini("visium")
+spatDimPlot(g)
+
 }
 \seealso{
 \code{\link{spatDimPlot3D}}

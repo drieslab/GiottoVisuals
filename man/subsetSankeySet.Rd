@@ -13,6 +13,9 @@ subsetSankeySet(x, set_id, index = list())
 
 \item{index}{new index subset, provided in the same order as the set_id}
 }
+\value{
+a \code{giottoSankeyPlan}
+}
 \description{
 Apply subset index on a sankey set
 }

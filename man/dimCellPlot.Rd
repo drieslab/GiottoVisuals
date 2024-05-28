@@ -15,7 +15,7 @@ dimCellPlot2D(
   dim2_to_use = 2,
   spat_enr_names = NULL,
   cell_annotation_values = NULL,
-  show_NN_network = F,
+  show_NN_network = FALSE,
   nn_network_to_use = "sNN",
   network_name = "sNN.pca",
   cell_color_code = NULL,
@@ -51,9 +51,9 @@ dimCellPlot2D(
   cow_rel_h = 1,
   cow_rel_w = 1,
   cow_align = "h",
-  show_plot = NA,
-  return_plot = NA,
-  save_plot = NA,
+  show_plot = NULL,
+  return_plot = NULL,
+  save_plot = NULL,
   save_param = list(),
   default_save_name = "dimCellPlot2D"
 )
@@ -75,7 +75,8 @@ dimCellPlot(gobject, ...)
 
 \item{dim2_to_use}{numeric. dimension to use on y-axis}
 
-\item{spat_enr_names}{character. names of spatial enrichment results to include}
+\item{spat_enr_names}{character. names of spatial enrichment results
+to include}
 
 \item{cell_annotation_values}{numeric cell annotation columns}
 
@@ -83,7 +84,8 @@ dimCellPlot(gobject, ...)
 
 \item{nn_network_to_use}{character. type of NN network to use (kNN vs sNN)}
 
-\item{network_name}{character. name of NN network to use, if show_NN_network = TRUE}
+\item{network_name}{character. name of NN network to use,
+if show_NN_network = TRUE}
 
 \item{cell_color_code}{character. discrete colors to use. palette to use or
 named vector of colors}
@@ -98,7 +100,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{gradient_limits}{numeric vector with lower and upper limits}
 
-\item{select_cell_groups}{select subset of cells/clusters based on cell_color parameter}
+\item{select_cell_groups}{select subset of cells/clusters based on
+cell_color parameter}
 
 \item{select_cells}{select subset of cells based on cell IDs}
 
@@ -160,19 +163,34 @@ or 'sequential' (scaled based on data range)}
 
 \item{save_plot}{logical. save the plot}
 
-\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
+\item{save_param}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
 
-\item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+\item{default_save_name}{default save name for saving, don't change,
+change save_name in save_param}
 
 \item{...}{dimCellPlot(...) passes to dimCellPlot2D()}
 }
 \value{
 ggplot
+
+ggplot
 }
 \description{
-Visualize cells according to dimension reduction coordinates
+Visualize cells according to dimension reduction coordinates.
 }
 \details{
 Description of parameters. For 3D plots see \code{\link{dimPlot3D}}
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+dimCellPlot2D(
+    g, spat_enr_names = "cluster_metagene",
+    cell_annotation_values = as.character(seq(4))
+)
+
+g <- GiottoData::loadGiottoMini("visium")
+dimCellPlot(g, cell_annotation_values = "leiden_clus")
+
 }
 \concept{dimension reduction cell annotation visualizations}

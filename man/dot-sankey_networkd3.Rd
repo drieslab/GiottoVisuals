@@ -19,6 +19,9 @@
   ...
 )
 }
+\value{
+networkd3 sankey
+}
 \description{
 Wrapper for networkd3's sankeyNetwork function. Adds some
 additional params for controlling the plot.

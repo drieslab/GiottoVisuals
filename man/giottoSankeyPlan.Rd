@@ -5,6 +5,9 @@
 \alias{giottoSankeyPlan}
 \alias{giottoSankeyPlan-class}
 \title{S4 giottoSankeyPlan class}
+\value{
+giottoSankeyPlan
+}
 \description{
 Object to organize the sets of information to select from a Giotto object's
 metadata to compare across annotations from the same or across spatial

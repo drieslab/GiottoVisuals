@@ -12,7 +12,14 @@ calculated if \code{NULL} is passed.}
 
 \item{nr_plots}{number of plots to use with cowplot}
 }
+\value{
+numeric
+}
 \description{
 Determine a default cow_n_col param value for cowplot based on the number of
 items to plot.
+}
+\examples{
+set_default_cow_n_col(nr_plots = 4)
+
 }

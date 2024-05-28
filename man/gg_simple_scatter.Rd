@@ -35,10 +35,16 @@ gg_simple_scatter(
   \describe{
     \item{\code{}}{}
   }}
-
-\item{return}{ggplot object}
+}
+\value{
+a ggplot object
 }
 \description{
 gg_simple_scatter
+}
+\examples{
+x <- data.frame(x = rnorm(10), y = rnorm(10))
+gg_simple_scatter(data = x, x = "x", y = "y")
+
 }
 \keyword{internal}

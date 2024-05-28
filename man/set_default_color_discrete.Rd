@@ -29,26 +29,36 @@ set_default_color_discrete_heatmap_clus(colors = NULL, instrs, ...)
 
 \item{\dots}{additional params to pass}
 
-\item{instr_pal, instr_rev, instr_strategy}{used by upstream function to pass specific \code{giottoInstructions} params}
+\item{instr_pal, instr_rev, instr_strategy}{used by upstream function to
+pass specific \code{giottoInstructions} params}
 
 \item{instrs}{\code{giottoInstructions} object (output of \code{instructions(gobject)})}
 }
+\value{
+a palette function
+
+vector of color ids
+}
 \description{
-Provides a palette function that will generate 'n' hexadecimal color codes for
-discrete colors. Sets a default coloring palette if \code{NULL} is passed to \code{colors}
-param.\cr\cr
+Provides a palette function that will generate 'n' hexadecimal color codes
+for discrete colors. Sets a default coloring palette if \code{NULL} is passed
+to \code{colors} param.\cr\cr
 
 Supports colors setting at three levels:
 \itemize{
-\item \strong{global options} (general session setting with blanket color palette type effects)
+\item \strong{global options} (general session setting with blanket color palette
+type effects)
 \itemize{
 \item options('giotto.color_d_pal) - palette to use
 \item options('giotto.color_d_rev) - whether colors should be reversed
-\item options('giotto.color_d_strategy) - strategy to use when making colors continuous. See \code{\link[=get_continuous_colors]{get_continuous_colors()}}
+\item options('giotto.color_d_strategy) - strategy to use when making colors
+continuous. See \code{\link[=get_continuous_colors]{get_continuous_colors()}}
 }
-\item \strong{giotto instructions} (gobject specific and effects specific types of plots)
+\item \strong{giotto instructions} (gobject specific and effects specific types
+of plots)
 \itemize{
-\item run \code{showColorInstructions()} for details on options/params to set in the \code{giottoInstructions} object
+\item run \code{showColorInstructions()} for details on options/params to set
+in the \code{giottoInstructions} object
 }
 \item \strong{function specific} (directly pass desired colors to plotting function)
 \cr\cr
@@ -57,15 +67,22 @@ Supports colors setting at three levels:
 If a character vector of length 1 input is provided then it will be assumed
 that a known color palette is being requested from \code{\link[=pal_names]{pal_names()}}.\cr
 If a longer character input is provided then they will be expected to be
-a vector of colors to use. These values will be passed to \link{simple_palette_factory}
-which will generate a palette function that interpolates between the colors
-provided by default and has a \code{n} param for number of requested colors.\cr
-Custom function inputs to \code{colors} is also supported but these custom functions
-should have a \code{n} param for number of requested colors.
+a vector of colors to use. These values will be passed to
+\link{simple_palette_factory} which will generate a palette function that
+interpolates between the colors provided by default and has a \code{n} param for
+number of requested colors.\cr
+Custom function inputs to \code{colors} is also supported but these custom
+functions should have a \code{n} param for number of requested colors.
 }
 \section{Functions}{
 \itemize{
-\item \code{set_default_color_discrete()}: Framework function. Direct use should be minimal.
-Wrap this for specific things (plots or types of features) that need defaults setting.
+\item \code{set_default_color_discrete()}: Framework function.
+Direct use should be minimal.
+Wrap this for specific things (plots or types of features) that need
+defaults setting.
 
 }}
+\examples{
+set_default_color_discrete(colors = "#eb4034",
+instr_rev = NULL, instr_strategy = NULL)
+}

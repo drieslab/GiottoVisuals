@@ -15,7 +15,11 @@ giotto_point(
 \arguments{
 \item{\dots}{geom_point parameters}
 }
+\value{
+ggplot2::geom_point layer
+}
 \description{
-uses ggplot::geom_point, scattermore::geom_scattermore or scattermore::geom_scattermost
+uses ggplot::geom_point, scattermore::geom_scattermore
+or scattermore::geom_scattermost
 }
 \keyword{internal}

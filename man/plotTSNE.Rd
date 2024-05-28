@@ -21,17 +21,20 @@ plotTSNE(gobject, dim_reduction_name = NULL, default_save_name = "tSNE", ...)
     \item{\code{show_plot}}{logical. show plot}
     \item{\code{return_plot}}{logical. return ggplot object}
     \item{\code{save_plot}}{logical. save the plot}
-    \item{\code{save_param}}{list of saving parameters, see \code{\link{showSaveParameters}}}
+    \item{\code{save_param}}{list of saving parameters,
+see \code{\link{showSaveParameters}}}
     \item{\code{dim1_to_use}}{numeric. dimension to use on x-axis}
     \item{\code{dim2_to_use}}{numeric. dimension to use on y-axis}
     \item{\code{show_NN_network}}{logical. Show underlying NN network}
     \item{\code{nn_network_to_use}}{character. type of NN network to use (kNN vs sNN)}
-    \item{\code{network_name}}{character. name of NN network to use, if show_NN_network = TRUE}
-    \item{\code{spat_enr_names}}{character. names of spatial enrichment results to include}
+    \item{\code{network_name}}{character. name of NN network to use,
+if show_NN_network = TRUE}
+    \item{\code{spat_enr_names}}{character. names of spatial enrichment results
+to include}
     \item{\code{cell_color}}{character. what to color cells by (e.g. metadata col or
 spatial enrichment col)}
-    \item{\code{color_as_factor}}{logical. convert color column to factor. discrete colors
-are used when this is TRUE. continuous colors when FALSE.}
+    \item{\code{color_as_factor}}{logical. convert color column to factor.
+Discrete colors are used when this is TRUE. continuous colors when FALSE.}
     \item{\code{cell_color_code}}{character. discrete colors to use. palette to use or
 named vector of colors}
     \item{\code{cell_color_gradient}}{character. continuous colors to use. palette to
@@ -40,13 +43,15 @@ use or vector of colors to use (minimum of 2).}
     \item{\code{cow_rel_h}}{cowplot param: relative heights of rows (e.g. c(1,2))}
     \item{\code{cow_rel_w}}{cowplot param: relative widths of columns (e.g. c(1,2))}
     \item{\code{cow_align}}{cowplot param: how to align}
-    \item{\code{group_by}}{character. Create multiple plots based on cell annotation column}
+    \item{\code{group_by}}{character. Create multiple plots based on cell
+annotation column}
     \item{\code{group_by_subset}}{character. subset the group_by factor column}
     \item{\code{gradient_midpoint}}{numeric. midpoint for color gradient}
     \item{\code{gradient_style}}{either 'divergent' (midpoint is used in color scaling)
 or 'sequential' (scaled based on data range)}
     \item{\code{gradient_limits}}{numeric vector with lower and upper limits}
-    \item{\code{select_cell_groups}}{select subset of cells/clusters based on cell_color parameter}
+    \item{\code{select_cell_groups}}{select subset of cells/clusters based on
+cell_color parameter}
     \item{\code{select_cells}}{select subset of cells based on cell IDs}
     \item{\code{show_other_cells}}{display not selected cells}
     \item{\code{other_cell_color}}{color for not selected cells}
@@ -80,18 +85,24 @@ ggplot
 Short wrapper for tSNE visualization
 }
 \details{
-Description of parameters, see \code{\link{dimPlot2D}}. For 3D plots see \code{\link{plotTSNE_3D}}
+Description of parameters, see \code{\link{dimPlot2D}}.
+For 3D plots see \code{\link{plotTSNE_3D}}
+}
+\examples{
+g <- GiottoData::loadGiottoMini("visium")
+plotTSNE(g)
+
 }
 \seealso{
 Other reduced dimension visualizations: 
 \code{\link{dimPlot2D}()},
+\code{\link{plotPCA}()},
 \code{\link{plotPCA_2D}()},
 \code{\link{plotPCA_3D}()},
-\code{\link{plotPCA}()},
 \code{\link{plotTSNE_2D}()},
 \code{\link{plotTSNE_3D}()},
+\code{\link{plotUMAP}()},
 \code{\link{plotUMAP_2D}()},
-\code{\link{plotUMAP_3D}()},
-\code{\link{plotUMAP}()}
+\code{\link{plotUMAP_3D}()}
 }
 \concept{reduced dimension visualizations}

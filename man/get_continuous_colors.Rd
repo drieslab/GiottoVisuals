@@ -14,15 +14,23 @@ get_continuous_colors(col, n, strategy)
 \item{strategy}{one of 'cutoff', 'recycle', or 'interpolate'.
 strategy to use when more colors are requested than exist}
 }
+\value{
+a vector of colors
+}
 \description{
 Based on a vector of colors provided to \code{col}, make these colors continuous
 (i.e. make it possible for an arbitrary \code{n} number of colors to be requested)
 then return those \code{n} colors.\cr
 \code{strategy} describes how to make these colors continuous:
 \itemize{
-\item \strong{'interpolate'} interpolates provided colors using \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}
+\item \strong{'interpolate'} interpolates provided colors using
+\code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}
 \item \strong{'recycle'} - recycles the input color vector across the \code{n} requested.
 \item \strong{'cutoff'} - supply only a maximum of as many colors as exist within the
 originally supplied vector.
 }
+}
+\examples{
+get_continuous_colors(col = "#eb4034", n = 10, strategy = "interpolate")
+
 }

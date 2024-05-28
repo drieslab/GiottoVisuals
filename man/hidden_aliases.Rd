@@ -10,6 +10,9 @@
 \arguments{
 \item{e1, e2}{giottoSankeyPlan}
 }
+\value{
+external methods
+}
 \description{
 hidden_aliases
 }

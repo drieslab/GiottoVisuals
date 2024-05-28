@@ -24,8 +24,16 @@ can be treated categorically.}
 
 \item{label}{(optional) character label for a set}
 }
+\value{
+a \code{giottoSankeyPlan}
+}
 \description{
 Create a \code{giottoSankeyPlan} with one set of annotations
+}
+\examples{
+my_sankeyplan <- sankeySet(spat_unit = "cell", 
+feat_type = "rna", col = "leiden_clus")
+
 }
 \keyword{plotting}
 \keyword{sankey}

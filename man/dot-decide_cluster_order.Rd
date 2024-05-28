@@ -24,13 +24,16 @@
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
-\item{expression_values}{expression values to use (e.g. "normalized", "scaled", "custom")}
+\item{expression_values}{expression values to use
+(e.g. "normalized", "scaled", "custom")}
 
 \item{feats}{features to use (e.g. genes)}
 
-\item{cluster_column}{name of column to use for clusters (e.g. "leiden_clus")}
+\item{cluster_column}{name of column to use for clusters
+(e.g. "leiden_clus")}
 
-\item{cluster_order}{method to determine cluster order (e.g. "size", "correlation", "custom")}
+\item{cluster_order}{method to determine cluster order
+(e.g. "size", "correlation", "custom")}
 
 \item{cluster_custom_order}{custom order for clusters}
 

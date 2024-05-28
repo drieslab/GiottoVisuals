@@ -21,17 +21,20 @@
 
 \S4method{sankeyRelate}{giottoSankeyPlan,missing,ANY}(x) <- value
 
-\S4method{sankeyRelate}{giottoSankeyPlan,missing,`NULL`}(x) <- value
+\S4method{sankeyRelate}{giottoSankeyPlan,missing,NULL}(x) <- value
 }
 \arguments{
 \item{x}{giottoSankeyPlan object}
 
 \item{\dots}{additional params to pass}
 
-\item{add}{logical. whether relation to add through \code{value} shoudld be
+\item{add}{logical. whether relation to add through \code{value} should be
 appended or replace all existing relations}
 
 \item{value}{numerical vector (zero indexed) of sets to compare}
+}
+\value{
+giottoSankeyPlan
 }
 \description{
 Set a relation to be compared across two sets of metadata annotations in the
