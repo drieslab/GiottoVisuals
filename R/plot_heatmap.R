@@ -16,7 +16,7 @@
 #' @details Correlation heatmap of selected clusters.
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' showClusterHeatmap(g, cluster_column = "leiden_clus")
 #' 
 #' @export
@@ -147,7 +147,7 @@ showClusterHeatmap <- function(
 #'   \item{2. provide a subset of features to display to feat_label_selection}
 #' }
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotHeatmap(g, feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
 #' cluster_column = "leiden_clus")
 #' 
@@ -442,7 +442,7 @@ plotHeatmap <- function(
 #' instead of feature expression.
 #' @returns ggplot or data.table
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
 #' selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
 #' 

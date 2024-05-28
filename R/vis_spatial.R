@@ -1370,7 +1370,7 @@ spatDeconvPlot <- function(gobject,
 #' @returns ggplot
 #' @family reduced dimension visualizations
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' dimPlot2D(g)
 #' @export
 dimPlot2D <- function(gobject,
@@ -1634,7 +1634,7 @@ dimPlot2D <- function(gobject,
 #' @description Visualize cells according to dimension reduction coordinates
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' dimPlot(g)
 #' @export
 dimPlot <- function(...) {
@@ -1659,7 +1659,7 @@ dimPlot <- function(...) {
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotUMAP_2D(g)
 #' @export
 plotUMAP_2D <- function(gobject,
@@ -1689,7 +1689,7 @@ plotUMAP_2D <- function(gobject,
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotUMAP(g)
 #'
 #' @export
@@ -1725,7 +1725,7 @@ plotUMAP <- function(gobject,
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotTSNE_2D(g)
 #'
 #' @export
@@ -1757,7 +1757,7 @@ plotTSNE_2D <- function(gobject,
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotTSNE(g)
 #'
 #' @export
@@ -1791,7 +1791,7 @@ plotTSNE <- function(gobject,
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotPCA_2D(g)
 #'
 #' @export
@@ -1825,7 +1825,7 @@ plotPCA_2D <- function(gobject,
 #' @family reduced dimension visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotPCA(g)
 #'
 #' @export
@@ -1914,7 +1914,7 @@ plotPCA <- function(gobject,
 #' @family spatial and dimension reduction visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatDimPlot2D(g)
 #'
 #' @export
@@ -2196,7 +2196,7 @@ spatDimPlot2D <- function(gobject,
 #' @param \dots spatDimPlot(...) passes to spatDimPlot2D()
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatDimPlot(g)
 #'
 #' @export
@@ -2250,7 +2250,7 @@ spatDimPlot <- function(gobject, ...) {
 #' @family spatial feature expression visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatFeatPlot2D_single(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 #'
 #' @export
@@ -2834,7 +2834,7 @@ spatFeatPlot2D_single <- function(
 #' @family spatial feature expression visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatFeatPlot2D(g, feats = "Gna12")
 #'
 #' @export
@@ -3083,7 +3083,7 @@ spatFeatPlot2D <- function(gobject,
 #' @family dimension reduction feature expression visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' dimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 #'
 #' @export
@@ -3530,7 +3530,7 @@ dimFeatPlot2D <- function(gobject,
 #' @family spatial and dimension reduction feature expression visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatDimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 #'
 #' @export
@@ -3757,7 +3757,7 @@ spatDimFeatPlot2D <- function(gobject,
 #' @family spatial cell annotation visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatCellPlot2D(g, cell_annotation_values = "leiden_clus")
 #'
 #' @export
@@ -3951,7 +3951,7 @@ spatCellPlot2D <- function(gobject,
 #' @param \dots spatCellPlot(...) passes to spatCellPlot2D()
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatCellPlot(g, cell_annotation_values = "leiden_clus")
 #'
 #' @export
@@ -3979,7 +3979,7 @@ spatCellPlot <- function(...) {
 #' @family dimension reduction cell annotation visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' dimCellPlot2D(
 #'     g, spat_enr_names = "cluster_metagene",
 #'     cell_annotation_values = as.character(seq(4))
@@ -4156,7 +4156,7 @@ dimCellPlot2D <- function(gobject,
 #' @param ... dimCellPlot(...) passes to dimCellPlot2D()
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' dimCellPlot(g, cell_annotation_values = "leiden_clus")
 #'
 #' @export
@@ -4226,7 +4226,7 @@ dimCellPlot <- function(gobject, ...) {
 #' @family spatial and dimension reduction cell annotation visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatDimCellPlot2D(g, cell_annotation_values = "leiden_clus")
 #'
 #' @export
@@ -4466,7 +4466,7 @@ spatDimCellPlot2D <- function(gobject,
 #' @family spatial and dimension reduction cell annotation visualizations
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatDimCellPlot(g, cell_annotation_values = "leiden_clus")
 #'
 #' @export

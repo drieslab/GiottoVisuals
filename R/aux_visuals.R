@@ -285,7 +285,7 @@ plotly_network <- function(network,
 #'
 #' @returns edges in spatial grid as data.table()
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' 
 #' library(GiottoClass)
 #' g <- createSpatialGrid(gobject = g,

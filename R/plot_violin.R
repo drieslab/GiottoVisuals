@@ -18,7 +18,7 @@
 #' @param axis_text_y_size size of y-axis text
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' violinPlot(g, feats = c("Gna12", "Ccnd2", "Btbd17"),
 #' cluster_column = "leiden_clus")
 #'

@@ -18,7 +18,7 @@
 #' @details Expression correlation dendrogram for selected clusters.
 #' @returns ggplot
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' showClusterDendrogram(g, cluster_column = "leiden_clus")
 #' 
 #' @export
@@ -116,7 +116,7 @@ showClusterDendrogram <- function(
 #' @inheritDotParams ggdendro::ggdendrogram
 #' @returns ggdendrogram
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' 
 #' g_expression <- head(GiottoClass::getExpression(g, output = "matrix"))
 #' g_expression_df <- as.data.frame(as.matrix(g_expression))

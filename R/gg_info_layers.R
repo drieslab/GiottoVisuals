@@ -2058,7 +2058,7 @@ plot_point_layer_ggplot_noFILL <- function(
 #' Numeric. From 0 (transparent) to 1 (fully visible)
 #' @returns an updated spatial ggplot object
 #' @examples
-#' g <- GiottoData::loadGiottoMini("visium")
+#' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #'
 #' my_giottoimage <- GiottoClass::createGiottoImage(g,
 #' mg_object = system.file("image.png", package = "GiottoVisuals"),
