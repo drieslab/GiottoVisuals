@@ -5,30 +5,38 @@ midpoint param only supplied when using color scale with 3 colors.
 Supports colors setting at four levels:
 type specific defaults - defaults for a specific feature or type of
 plot can be passed through data_default param
-global options (general session setting with blanket color palette type effects)
-options('giotto.color_c_pal) - palette to use. Default for 'divergent'
-data is blue, white, red, for sequential, it is 'viridis'
+global options (general session setting with blanket color palette
+type effects)
+options('giotto.color_cd_pal) - default continuous divergent palette
+is blue, white, red, for sequential ('giotto.color_cs_pal), it is
+'viridis'
 options('giotto.color_c_rev) - whether colors should be reversed
 
-giotto instructions (gobject specific and effects specific types of plots)
-run showColorInstructions() for details on options/params to set in the giottoInstructions object
+giotto instructions (gobject specific and effects specific types of
+plots)
+run showColorInstructions() for details on options/params to set in
+the giottoInstructions object
 
 function specific (directly pass desired colors to plotting function)
 
 
-"><title>Set a default color for continuous values — set_default_color_continuous • GiottoVisuals</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/JetBrains_Mono-0.4.8/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set a default color for continuous values — set_default_color_continuous"><meta property="og:description" content="Generates a gradient color palette based on input to colors param. Sets a
+"><title>Set a default color for continuous values — set_default_color_continuous • GiottoVisuals</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set a default color for continuous values — set_default_color_continuous"><meta property="og:description" content="Generates a gradient color palette based on input to colors param. Sets a
 default gradient if NULL is passed.
 midpoint param only supplied when using color scale with 3 colors.
 Supports colors setting at four levels:
 type specific defaults - defaults for a specific feature or type of
 plot can be passed through data_default param
-global options (general session setting with blanket color palette type effects)
-options('giotto.color_c_pal) - palette to use. Default for 'divergent'
-data is blue, white, red, for sequential, it is 'viridis'
+global options (general session setting with blanket color palette
+type effects)
+options('giotto.color_cd_pal) - default continuous divergent palette
+is blue, white, red, for sequential ('giotto.color_cs_pal), it is
+'viridis'
 options('giotto.color_c_rev) - whether colors should be reversed
 
-giotto instructions (gobject specific and effects specific types of plots)
-run showColorInstructions() for details on options/params to set in the giottoInstructions object
+giotto instructions (gobject specific and effects specific types of
+plots)
+run showColorInstructions() for details on options/params to set in
+the giottoInstructions object
 
 function specific (directly pass desired colors to plotting function)
 
@@ -40,11 +48,11 @@ function specific (directly pass desired colors to plotting function)
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">GiottoVisuals</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,11 +96,15 @@ default gradient if <code>NULL</code> is passed.
 <code>midpoint</code> param only supplied when using color scale with 3 colors.<br><br></p>
 <p>Supports colors setting at four levels:</p><ul><li><p><strong>type specific defaults</strong> - defaults for a specific feature or type of
 plot can be passed through <code>data_default</code> param</p></li>
-<li><p><strong>global options</strong> (general session setting with blanket color palette type effects)</p><ul><li><p>options('giotto.color_c_pal) - palette to use. Default for 'divergent'
-data is blue, white, red, for sequential, it is 'viridis'</p></li>
+<li><p><strong>global options</strong> (general session setting with blanket color palette
+type effects)</p><ul><li><p>options('giotto.color_cd_pal) - default continuous divergent palette
+is blue, white, red, for sequential ('giotto.color_cs_pal), it is
+'viridis'</p></li>
 <li><p>options('giotto.color_c_rev) - whether colors should be reversed</p></li>
 </ul></li>
-<li><p><strong>giotto instructions</strong> (gobject specific and effects specific types of plots)</p><ul><li><p>run <code><a href="showColorInstructions.html">showColorInstructions()</a></code> for details on options/params to set in the <code>giottoInstructions</code> object</p></li>
+<li><p><strong>giotto instructions</strong> (gobject specific and effects specific types of
+plots)</p><ul><li><p>run <code><a href="showColorInstructions.html">showColorInstructions()</a></code> for details on options/params to set in
+the <code>giottoInstructions</code> object</p></li>
 </ul></li>
 <li><p><strong>function specific</strong> (directly pass desired colors to plotting function)
 <br><br></p></li>
@@ -158,8 +170,8 @@ data is blue, white, red, for sequential, it is 'viridis'</p></li>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>colors</dt>
-<dd><p>character or <code>NULL</code>. 2 to n number of hex color codes or 1 single
-name of a palette to use can be passed</p></dd>
+<dd><p>character or <code>NULL</code>. 2 to n number of hex color codes or 1
+single name of a palette to use can be passed</p></dd>
 
 
 <dt>midpoint</dt>
@@ -172,15 +184,18 @@ minimum value (sequential)</p></dd>
 
 
 <dt>...</dt>
-<dd><p>additional params to pass to respective ggplot fill_gradient functions</p></dd>
+<dd><p>additional params to pass to respective ggplot fill_gradient
+functions</p></dd>
 
 
 <dt>instr_pal, instr_rev</dt>
-<dd><p>used by upstream function to pass specific <code>giottoInstructions</code> params</p></dd>
+<dd><p>used by upstream function to pass specific
+<code>giottoInstructions</code> params</p></dd>
 
 
 <dt>data_default</dt>
-<dd><p>data type (e.g. cells, polys, heatmap) specific default colors to use</p></dd>
+<dd><p>data type (e.g. cells, polys, heatmap) specific default
+colors to use</p></dd>
 
 
 <dt>type</dt>
@@ -192,62 +207,138 @@ minimum value (sequential)</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>continuous color palette</p>
+    </div>
+    <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
-<ul><li><p><code>set_default_color_continuous()</code>: Framework function. Direct use should
-be minimal. Specific wrapper functions should be used for each item that needs
-defaults setting (plots or types of features).</p></li>
+<ul><li><p><code>set_default_color_continuous()</code>: Framework function. Direct use
+should be minimal. Specific wrapper functions should be used for each item
+that needs defaults setting (plots or types of features).</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://drieslab.github.io/Giotto/" class="external-link">GiottoVisuals</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">GiottoData</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoData/reference/loadGiottoMini.html" class="external-link">loadGiottoMini</a></span><span class="op">(</span><span class="st">"vizgen"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1. read Giotto object</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2. read Giotto feature information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> /home/runner/work/_temp/Library/GiottoData//Mini_datasets/Vizgen/VizgenObject//Features/rna_feature_spatVector.shp</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> rna</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3. read Giotto spatial information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3.1 read Giotto spatial shape information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> aggregate_spatInfo_spatVector.shp z0_spatInfo_spatVector.shp</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  z1_spatInfo_spatVector.shp</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> aggregate</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3.2 read Giotto spatial centroid information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> aggregate</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3.3 read Giotto spatial overlap information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> rna_aggregate_spatInfo_spatVectorOverlaps.shp</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  rna_z0_spatInfo_spatVectorOverlaps.shp rna_z1_spatInfo_spatVectorOverlaps.shp</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> poly_ID feat_ID feat_ID_uniq stack</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> aggregate and rna</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> poly_ID feat_ID feat_ID_uniq</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z0 and rna</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> poly_ID feat_ID feat_ID_uniq</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> z1 and rna</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 4. read Giotto image information</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> no external python path or giotto</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  environment was specified, will check if a</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  default python path is available</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> A default python path was found: /usr/bin/python3 and will be used</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  If this is not the correct python path, either</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1. use installGiottoEnvironment() to install</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  a local miniconda python environment along with required modules</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2. provide an existing python path to</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  python_path to use your own python path which has all modules</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  installed</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Set options("giotto.use_conda" = FALSE) if</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  python functionalities are not needed</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">GiottoData</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoData/reference/loadGiottoMini.html" class="external-link">loadGiottoMini</a></span><span class="op">(</span><span class="st">'vizgen'</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">nr_feat_polys</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="spatInSituPlotPoints.html">spatInSituPlotPoints</a></span><span class="op">(</span><span class="va">g</span>,</span></span>
-<span class="r-in"><span>                       polygon_fill <span class="op">=</span> <span class="st">'nr_feats'</span>,</span></span>
-<span class="r-in"><span>                       polygon_fill_as_factor <span class="op">=</span> <span class="cn">F</span>,</span></span>
-<span class="r-in"><span>                       polygon_feat_type <span class="op">=</span> <span class="st">'aggregate'</span>,</span></span>
-<span class="r-in"><span>                       polygon_line_size <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
-<span class="r-in"><span>                       polygon_alpha <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                       <span class="va">...</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nr_feat_polys</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="spatInSituPlotPoints.html">spatInSituPlotPoints</a></span><span class="op">(</span><span class="va">g</span>,</span></span>
+<span class="r-in"><span>        polygon_fill <span class="op">=</span> <span class="st">"nr_feats"</span>,</span></span>
+<span class="r-in"><span>        polygon_fill_as_factor <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>        polygon_feat_type <span class="op">=</span> <span class="st">"aggregate"</span>,</span></span>
+<span class="r-in"><span>        polygon_line_size <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
+<span class="r-in"><span>        polygon_alpha <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>        <span class="va">...</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># default</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>You need to select features (feats) and modify feature</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  types (feat_type) if you want to show individual features</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  (e.g. transcripts)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  This warning is shown once per session</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set global option level: viridis</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">'giotto.color_c_pal'</span> <span class="op">=</span> <span class="st">'v'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"giotto.color_c_pal"</span> <span class="op">=</span> <span class="st">"v"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set instructions level: magma</span></span></span>
-<span class="r-in"><span><span class="fu">instructions</span><span class="op">(</span><span class="va">g</span>, <span class="st">'poly_color_c_pal'</span><span class="op">)</span> <span class="op">=</span> <span class="st">'magma'</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/instructions-generic.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_pal"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"magma"</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">instructions</span><span class="op">(</span><span class="va">g</span>, <span class="st">'poly_color_c_rev'</span><span class="op">)</span> <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/instructions-generic.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient_style <span class="op">=</span> <span class="st">'s'</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient_style <span class="op">=</span> <span class="st">"s"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># set function level: miami</span></span></span>
-<span class="r-in"><span><span class="fu">instructions</span><span class="op">(</span><span class="va">g</span>, <span class="st">'poly_color_c_rev'</span><span class="op">)</span> <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="st">'miami'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># set function level: mako</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/instructions-generic.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set function level: color vector (2 to n colors)</span></span></span>
-<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'green'</span>, <span class="st">'purple'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>              polygon_fill_gradient_style <span class="op">=</span> <span class="st">'s'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"purple"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    polygon_fill_gradient_style <span class="op">=</span> <span class="st">"s"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'yellow'</span>, <span class="st">'red'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>              polygon_fill_gradient_style <span class="op">=</span> <span class="st">'s'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    polygon_fill_gradient_style <span class="op">=</span> <span class="st">"s"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>                <span class="st">'darkgrey'</span>, <span class="st">'darkblue'</span>, <span class="st">'purple'</span>, <span class="st">'violet'</span>, <span class="st">'cyan'</span></span></span>
-<span class="r-in"><span>              <span class="op">)</span>,</span></span>
-<span class="r-in"><span>              polygon_fill_gradient_style <span class="op">=</span> <span class="st">'s'</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    polygon_fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"darkgrey"</span>, <span class="st">"darkblue"</span>, <span class="st">"purple"</span>, <span class="st">"violet"</span>, <span class="st">"cyan"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    polygon_fill_gradient_style <span class="op">=</span> <span class="st">"s"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
+<span class="r-plt img"><img src="set_default_color_continuous-9.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -255,11 +346,11 @@ defaults setting (plots or types of features).</p></li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://www.drieslab.com" class="external-link">Ruben Dries</a>, Jiaji George Chen, <a href="https://labs.icahn.mssm.edu/yuanlab/" class="external-link">Guo-Cheng Yuan</a>, Matthew O’Brien, <a href="https://josschavezf.github.io" class="external-link">Joselyn C. Chávez-Fuentes</a>, Edward Ruiz.</p>
+  <p>Developed by <a href="https://www.drieslab.com" class="external-link">Ruben Dries</a>, Jiaji George Chen, <a href="https://labs.icahn.mssm.edu/yuanlab/" class="external-link">Guo-Cheng Yuan</a>, Matthew O’Brien, <a href="https://josschavezf.github.io" class="external-link">Joselyn C. Chávez-Fuentes</a>, Edward Ruiz.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer></div>

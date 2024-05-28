@@ -4,7 +4,16 @@
     <loc>https://drieslab.github.io/GiottoVisuals/404.html</loc>
   </url>
   <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/LICENSE-text.html</loc>
+  </url>
+  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/articles/intro_to_GiottoVisuals.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/authors.html</loc>
@@ -25,6 +34,9 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/aes_string2.html</loc>
   </url>
   <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/auto_image_resample.html</loc>
+  </url>
+  <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/create_cluster_dendrogram.html</loc>
   </url>
   <url>
@@ -37,7 +49,7 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/dimFeatPlot2D.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/dimGenePlot3D.html</loc>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/dimFeatPlot3D.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/dimPlot.html</loc>
@@ -107,6 +119,12 @@
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/mixHSV.html</loc>
+  </url>
+  <url>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/mixRGB.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/pal_names.html</loc>
@@ -259,7 +277,7 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatDimFeatPlot2D.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatDimGenePlot3D.html</loc>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatDimFeatPlot3D.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatDimPlot.html</loc>
@@ -274,7 +292,7 @@
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D_single.html</loc>
   </url>
   <url>
-    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatGenePlot3D.html</loc>
+    <loc>https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot3D.html</loc>
   </url>
   <url>
     <loc>https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.html</loc>
