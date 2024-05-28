@@ -276,7 +276,7 @@ AND dimension reduction coordinates in 2D
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 spatDimCellPlot2D(g, cell_annotation_values = "leiden_clus")
 
 }

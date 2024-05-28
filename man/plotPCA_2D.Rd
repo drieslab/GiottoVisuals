@@ -94,7 +94,7 @@ Description of parameters, see \code{\link{dimPlot2D}}.
 For 3D plots see \code{\link{plotPCA_3D}}
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 plotPCA_2D(g)
 
 }

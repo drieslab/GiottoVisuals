@@ -68,7 +68,7 @@ Description of parameters.
 }
 \examples{
 g <- GiottoData::loadGiottoMini("starmap")
-plotUMAP_3D(g)
+plotUMAP_3D(g, dim_reduction_name = "3D_umap")
 
 }
 \seealso{

@@ -180,7 +180,7 @@ spatial coordinates
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 spatFeatPlot2D(g, feats = "Gna12")
 
 }

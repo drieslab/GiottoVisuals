@@ -118,7 +118,7 @@ If you want to display many features there are 2 ways to proceed:
 }
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 plotHeatmap(g, feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
 cluster_column = "leiden_clus")
 

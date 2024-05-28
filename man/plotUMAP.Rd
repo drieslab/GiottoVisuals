@@ -85,7 +85,7 @@ ggplot
 Short wrapper for UMAP visualization
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 plotUMAP(g)
 
 }

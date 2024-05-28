@@ -280,10 +280,10 @@ coordinates 2D
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 spatDimPlot2D(g)
 
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 spatDimPlot(g)
 
 }
