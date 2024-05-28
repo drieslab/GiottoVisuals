@@ -214,7 +214,7 @@ coordinates in ggplot mode
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 spatDimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 
 }

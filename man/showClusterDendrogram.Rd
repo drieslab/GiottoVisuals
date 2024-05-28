@@ -83,7 +83,7 @@ Creates dendrogram for selected clusters.
 Expression correlation dendrogram for selected clusters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 showClusterDendrogram(g, cluster_column = "leiden_clus")
 
 }

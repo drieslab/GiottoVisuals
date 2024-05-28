@@ -183,13 +183,13 @@ Visualize cells according to dimension reduction coordinates.
 Description of parameters. For 3D plots see \code{\link{dimPlot3D}}
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 dimCellPlot2D(
     g, spat_enr_names = "cluster_metagene",
     cell_annotation_values = as.character(seq(4))
 )
 
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 dimCellPlot(g, cell_annotation_values = "leiden_clus")
 
 }

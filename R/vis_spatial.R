@@ -771,15 +771,6 @@ spatPlot2D <- function(
 #'     color_as_factor = FALSE,
 #'     gradient_style = "sequential"
 #' )
-#'
-#'
-#' # load another dataset with 3D data
-#' starmap <- GiottoData::loadGiottoData("starmap", verbose = FALSE)
-#'
-#' # default is to rescale plot as a 3D cube
-#' spatPlot3D(starmap, cell_color = "leiden_clus")
-#' # real scaling
-#' spatPlot3D(g, cell_color = "leiden_clus", axis_scale = "real")
 #' @export
 #' @seealso \code{\link{spatPlot3D}}
 spatPlot <- function(...) {
@@ -5260,7 +5251,7 @@ dimPlot3D <- function(gobject,
 #' @returns plotly
 #' @examples
 #' g <- GiottoData::loadGiottoMini("starmap")
-#' plotUMAP_3D(g, dim_reduction_name = "3D_umap")
+#' plotUMAP_3D(g)
 #'
 #' @export
 plotUMAP_3D <- function(gobject,

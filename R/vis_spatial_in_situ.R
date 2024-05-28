@@ -636,7 +636,6 @@ spatInSituPlotHex <- function(
         polygon_line_size <- polygon_size
     }
 
-    package_check("hexbin")
 
     if (is.null(feats)) {
         stop("You need to select features (feats) and modify

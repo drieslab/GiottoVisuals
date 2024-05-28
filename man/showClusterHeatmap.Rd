@@ -152,7 +152,7 @@ Creates heatmap based on identified clusters
 Correlation heatmap of selected clusters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 showClusterHeatmap(g, cluster_column = "leiden_clus")
 
 }

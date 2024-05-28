@@ -142,7 +142,7 @@ coordinates
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 dimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 
 }

@@ -212,10 +212,10 @@ Visualize cells according to spatial coordinates
 Description of parameters.
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 spatCellPlot2D(g, cell_annotation_values = "leiden_clus")
 
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 spatCellPlot(g, cell_annotation_values = "leiden_clus")
 
 }

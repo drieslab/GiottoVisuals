@@ -59,7 +59,7 @@ for the 'col' params then they will be assumed as 1. clus_col, 2. var_col,
 3. val_col
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 
 g_expression <- head(GiottoClass::getExpression(g, output = "matrix"))
 g_expression_df <- as.data.frame(as.matrix(g_expression))

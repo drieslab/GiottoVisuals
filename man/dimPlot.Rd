@@ -234,9 +234,9 @@ plotly (dimplot3D only)
 Visualize cells according to dimension reduction coordinates
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 dimPlot2D(g)
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 dimPlot(g)
 }
 \seealso{

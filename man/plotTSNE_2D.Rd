@@ -94,7 +94,7 @@ Description of parameters, see \code{\link{dimPlot2D}}.
 For 3D plots see \code{\link{plotTSNE_3D}}
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 plotTSNE_2D(g)
 
 }

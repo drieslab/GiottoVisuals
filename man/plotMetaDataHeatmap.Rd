@@ -123,7 +123,7 @@ is by default on the z-scores. Other options are the original values or
 z-scores rescaled per feature (-1 to 1).
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium")
 plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
 selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
 
