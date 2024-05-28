@@ -292,10 +292,20 @@ Visualize cells according to spatial coordinates
 coord_fix_ratio: set to NULL to use default ggplot parameters
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
-spatPlot2D(g)
-g <- GiottoData::loadGiottoMini("visium")
-spatPlot(g)
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
+spatPlot(g, show_image = TRUE, image_name = "image")
+
+# the more specific spatPlot2D with networks shown
+spatPlot2D(g, show_image = TRUE, image_name = "image", show_network = TRUE)
+
+# plotting of some cell metadata (number of different features detected)
+spatPlot2D(g,
+    show_image = TRUE,
+    image_name = "image",
+    cell_color = "nr_feats",
+    color_as_factor = FALSE,
+    gradient_style = "sequential"
+)
 }
 \seealso{
 \code{\link{spatPlot3D}}
