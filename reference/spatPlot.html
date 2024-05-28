@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">GiottoVisuals</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -527,6 +527,24 @@ change save_name in save_param</p></dd>
 <span class="r-in"><span>    gradient_style <span class="op">=</span> <span class="st">"sequential"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="spatPlot-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># load another dataset with 3D data</span></span></span>
+<span class="r-in"><span><span class="va">starmap</span> <span class="op">&lt;-</span> <span class="fu">GiottoData</span><span class="fu">::</span><span class="fu">loadGiottoData</span><span class="op">(</span><span class="st">"starmap"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'loadGiottoData' is not an exported object from 'namespace:GiottoData'</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># default is to rescale plot as a 3D cube</span></span></span>
+<span class="r-in"><span><span class="fu">spatPlot3D</span><span class="op">(</span><span class="va">starmap</span>, cell_color <span class="op">=</span> <span class="st">"leiden_clus"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> create 3D plot</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'starmap' not found</span>
+<span class="r-in"><span><span class="co"># real scaling</span></span></span>
+<span class="r-in"><span><span class="fu">spatPlot3D</span><span class="op">(</span><span class="va">g</span>, cell_color <span class="op">=</span> <span class="st">"leiden_clus"</span>, axis_scale <span class="op">=</span> <span class="st">"real"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> create 3D plot</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
