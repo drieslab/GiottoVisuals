@@ -30,7 +30,7 @@ an updated spatial ggplot object
 Add a giotto image to a spatial ggplot object post creation
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 
 my_giottoimage <- GiottoClass::createGiottoImage(g,
 mg_object = system.file("image.png", package = "GiottoVisuals"),

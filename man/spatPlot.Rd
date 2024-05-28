@@ -306,6 +306,15 @@ spatPlot2D(g,
     color_as_factor = FALSE,
     gradient_style = "sequential"
 )
+
+
+# load another dataset with 3D data
+starmap <- GiottoData::loadGiottoData("starmap", verbose = FALSE)
+
+# default is to rescale plot as a 3D cube
+spatPlot3D(starmap, cell_color = "leiden_clus")
+# real scaling
+spatPlot3D(g, cell_color = "leiden_clus", axis_scale = "real")
 }
 \seealso{
 \code{\link{spatPlot3D}}

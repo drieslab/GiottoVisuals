@@ -45,6 +45,7 @@ jobs:
             any::ggalluvial
             any::ggforce
             any::ggraph
+            any::hexbin
 
       - name: Set up dependencies (GiottoUtils)
         run: |

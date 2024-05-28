@@ -30,7 +30,7 @@ edges in spatial grid as data.table()
 provide grid segment to draw in plot_ly()
 }
 \examples{
-g <- GiottoData::loadGiottoMini("visium")
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 
 library(GiottoClass)
 g <- createSpatialGrid(gobject = g,
