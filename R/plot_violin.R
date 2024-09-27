@@ -70,7 +70,7 @@ violinPlot <- function(
             expression_values
         ))
     )
-    expr_data <- get_expression_values(
+    expr_data <- getExpression(
         gobject = gobject,
         feat_type = feat_type,
         spat_unit = spat_unit,

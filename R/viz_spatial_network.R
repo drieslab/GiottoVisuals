@@ -33,7 +33,8 @@ spatNetwDistributionsDistance <- function(
     distance <- rank_int <- status <- label <- keep <- NULL
 
     ## spatial network
-    spatial_network <- get_spatialNetwork(gobject,
+    spatial_network <- getSpatialNetwork(
+        gobject = gobject,
         spat_unit = spat_unit,
         name = spatial_network_name,
         output = "networkDT"
@@ -146,7 +147,8 @@ spatNetwDistributionsKneighbors <- function(
 
     ## spatial network
     # spatial_network = gobject@spatial_network[[spatial_network_name]]
-    spatial_network <- get_spatialNetwork(gobject,
+    spatial_network <- getSpatialNetwork(
+        gobject = gobject,
         spat_unit = spat_unit,
         name = spatial_network_name,
         output = "networkDT"
@@ -236,7 +238,8 @@ spatNetwDistributions <- function(
     )
 
     ## spatial network
-    spatial_network <- get_spatialNetwork(gobject,
+    spatial_network <- getSpatialNetwork(
+        gobject = gobject,
         spat_unit = spat_unit,
         name = spatial_network_name,
         output = "networkDT"

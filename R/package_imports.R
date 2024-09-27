@@ -14,7 +14,6 @@
 #' @import RColorBrewer
 #' @importFrom terra as.array
 #' @import ggrepel
-#' @importFrom reshape2 melt
 #' @importFrom scales rescale_mid
 #' @importFrom igraph as_data_frame
 #' @importFrom plotly add_segments

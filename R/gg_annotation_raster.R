@@ -427,7 +427,7 @@ setMethod(
         # RGB EXPECTED #
         # convert to range 0:1 (needed for as.raster())
         x <- scales::rescale(x, to = c(0, 1))
-        r <- as.raster(x)
+        r <- grDevices::as.raster(x)
     }
 
     return(r)

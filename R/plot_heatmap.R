@@ -18,7 +18,7 @@
 #' @examples
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' showClusterHeatmap(g, cluster_column = "leiden_clus")
-#' 
+#'
 #' @export
 showClusterHeatmap <- function(
         gobject,
@@ -150,7 +150,7 @@ showClusterHeatmap <- function(
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotHeatmap(g, feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
 #' cluster_column = "leiden_clus")
-#' 
+#'
 #' @export
 plotHeatmap <- function(
         gobject,
@@ -445,7 +445,7 @@ plotHeatmap <- function(
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
 #' selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
-#' 
+#'
 #' @export
 plotMetaDataHeatmap <- function(gobject,
     spat_unit = NULL,
@@ -567,7 +567,7 @@ plotMetaDataHeatmap <- function(gobject,
             x = t(testmain_mat),
             method = feat_cor_method
         )
-        feat_cordist <- stats::as.dist(1 - feat_cormatrix, 
+        feat_cordist <- stats::as.dist(1 - feat_cormatrix,
                                     diag = TRUE, upper = TRUE)
         feat_corclus <- stats::hclust(
             d = feat_cordist,
@@ -646,11 +646,11 @@ plotMetaDataHeatmap <- function(gobject,
 
         # print, return and save parameters
         show_plot <- ifelse(is.null(show_plot),
-            readGiottoInstructions(gobject, param = "show_plot"), 
+            readGiottoInstructions(gobject, param = "show_plot"),
             show_plot
         )
         save_plot <- ifelse(is.null(save_plot),
-            readGiottoInstructions(gobject, param = "save_plot"), 
+            readGiottoInstructions(gobject, param = "save_plot"),
             save_plot
         )
         return_plot <- ifelse(is.null(return_plot),
@@ -828,7 +828,7 @@ plotMetaDataHeatmap <- function(gobject,
 #' @seealso \code{\link{plotMetaDataHeatmap}} for feature expression instead
 #' of numeric cell annotation data.
 #' @returns ggplot or data.table
-#' 
+#'
 #' @export
 plotMetaDataCellsHeatmap <- function(
         gobject,
@@ -920,7 +920,7 @@ plotMetaDataCellsHeatmap <- function(
     # for clusters
     if (is.null(custom_cluster_order)) {
         cormatrix <- cor_flex(x = testmain_mat, method = clus_cor_method)
-        cordist <- stats::as.dist(1 - cormatrix, 
+        cordist <- stats::as.dist(1 - cormatrix,
                                 diag = TRUE, upper = TRUE)
         corclus <- stats::hclust(d = cordist, method = clus_cluster_method)
         clus_names <- rownames(cormatrix)
@@ -1123,7 +1123,7 @@ plotMetaDataCellsHeatmap <- function(
         expression_values,
         unique(c("normalized", "scaled", "custom", expression_values))
     )
-    expr_values <- get_expression_values(
+    expr_values <- getExpression(
         gobject = gobject,
         spat_unit = spat_unit,
         feat_type = feat_type,
@@ -1160,13 +1160,11 @@ plotMetaDataCellsHeatmap <- function(
     )
 
     ## data.table ##
-    subset_values_DT <- data.table::as.data.table(
-        reshape2::melt(
-            as.matrix(subset_values),
-            varnames = c("feats", "cells"),
-            value.name = "expression",
-            as.is = TRUE
-        )
+    subset_values_DT <- melt_matrix(
+        as.matrix(subset_values),
+        varnames = c("feats", "cells"),
+        value.name = "expression",
+        as.is = TRUE
     )
     subset_values_DT <- merge(
         subset_values_DT,
@@ -1185,7 +1183,7 @@ plotMetaDataCellsHeatmap <- function(
     subset_values_DT[, feats := factor(feats, unique(detected_feats))]
     subset_values_DT[, z_scores := scale(expression), by = feats]
     subset_values_DT[, scale_scores := scales::rescale(x = expression,
-                                                    to = c(0, 1)), 
+                                                    to = c(0, 1)),
                     by = feats]
 
 

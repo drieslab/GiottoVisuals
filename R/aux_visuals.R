@@ -51,7 +51,7 @@ NULL
             expression_values
         ))
     )
-    expr_values <- get_expression_values(
+    expr_values <- getExpression(
         gobject = gobject,
         spat_unit = spat_unit,
         feat_type = feat_type,
@@ -61,7 +61,7 @@ NULL
 
     # subset expression data
     detected_feats <- feats[feats %in% rownames(expr_values)]
-    subset_values <- expr_values[rownames(expr_values) %in% detected_feats, ]
+    # subset_values <- expr_values[rownames(expr_values) %in% detected_feats, ]
 
     # metadata
     cell_metadata <- pDataDT(gobject,
@@ -134,7 +134,7 @@ NULL
 #' start with numeric values
 #' @keywords internal
 #' @returns Aesthetics elements
-#' 
+#'
 aes_string2 <- function(...) {
     args <- lapply(list(...), function(x) sprintf("`%s`", x))
     do.call(ggplot2::aes_string, args)
@@ -168,7 +168,7 @@ gg_input <- function(ggobject) {
 #' @description uses ggplot::geom_point, scattermore::geom_scattermore
 #' or scattermore::geom_scattermost
 #' @returns ggplot2::geom_point layer
-#' 
+#'
 giotto_point <- function(
         plot_method = c("ggplot", "scattermore", "scattermost"),
         size = 1,
@@ -180,34 +180,24 @@ giotto_point <- function(
         choices = c("ggplot", "scattermore", "scattermost")
     )
 
-    if (plot_method == "ggplot") {
-        ggplot2::geom_point(
-            size = size,
-            ...
-        )
-    } else if (plot_method == "scattermore") {
-        package_check(
-            pkg_name = "scattermore",
-            repository = "CRAN"
-        )
-        scattermore::geom_scattermore(
-            pointsize = size,
-            ...
-        )
-    } else if (plot_method == "scattermost") {
-        package_check(
-            pkg_name = "scattermore",
-            repository = "CRAN"
-        )
-        scattermore::geom_scattermost(
-            xy = scattermost_xy,
-            color = scattermost_color,
-            pointsize = size
-        )
-    }
+    switch(plot_method,
+        "ggplot" = {
+            ggplot2::geom_point(size = size, ...)
+        },
+        "scattermore" = {
+            package_check(pkg_name = "scattermore", repository = "CRAN")
+            scattermore::geom_scattermore(pointsize = size, ...)
+        },
+        "scattermost" = {
+            package_check(pkg_name = "scattermore", repository = "CRAN")
+            scattermore::geom_scattermost(
+                xy = scattermost_xy,
+                color = scattermost_color,
+                pointsize = size
+            )
+        }
+    )
 }
-
-
 
 
 
@@ -241,7 +231,7 @@ mid_rescaler <- function(mid) {
 #' @param z_end default to "sdimz_end"
 #'
 #' @returns edges in network as data.table
-#' 
+#'
 #' @export
 plotly_network <- function(network,
     x = "sdimx_begin",
@@ -286,17 +276,17 @@ plotly_network <- function(network,
 #' @returns edges in spatial grid as data.table()
 #' @examples
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-#' 
+#'
 #' library(GiottoClass)
 #' g <- createSpatialGrid(gobject = g,
 #' sdimx_stepsize = 400,
 #' sdimy_stepsize = 400,
 #' minimum_padding = 0)
-#' 
+#'
 #' my_spatial_grid <- getSpatialGrid(g)
-#' 
+#'
 #' plotly_grid(my_spatial_grid)
-#' 
+#'
 #' @export
 plotly_grid <- function(
         spatial_grid,
@@ -345,10 +335,10 @@ plotly_grid <- function(
 #' @param custom_ratio set the ratio artificially
 #' @returns edges in spatial grid as data.table()
 #' @examples
-#' my_cell_locations <- data.frame(x = sample(10), y = sample(10), 
+#' my_cell_locations <- data.frame(x = sample(10), y = sample(10),
 #' z = sample(10))
 #' plotly_axis_scale_3D(my_cell_locations)
-#' 
+#'
 #' @export
 plotly_axis_scale_3D <- function(
         cell_locations,
@@ -398,7 +388,7 @@ plotly_axis_scale_3D <- function(
 #' @examples
 #' my_cell_locations <- data.frame(x = sample(10), y = sample(10))
 #' plotly_axis_scale_2D(my_cell_locations)
-#' 
+#'
 #' @export
 plotly_axis_scale_2D <- function(
         cell_locations,

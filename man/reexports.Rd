@@ -8,6 +8,7 @@
 \alias{getDistinctColors}
 \alias{geom_text_repel}
 \alias{geom_label_repel}
+\alias{plot_grid}
 \title{Objects exported from other packages}
 \value{
 a function to create continous colors
@@ -23,6 +24,8 @@ below to see their documentation.
 
 \describe{
   \item{colorRamp2}{\code{\link[colorRamp2]{colorRamp2}}}
+
+  \item{cowplot}{\code{\link[cowplot]{plot_grid}}}
 
   \item{ggrepel}{\code{\link[ggrepel:geom_text_repel]{geom_label_repel}}, \code{\link[ggrepel]{geom_text_repel}}}
 
