@@ -19,6 +19,11 @@
 #' `giottoLargeImage` passes to automated resampling params see
 #' `?auto_image_resample` for details
 #' @return `gg` object with images to plot appended as annotation rasters
+#' @examples
+#' gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")
+#' gg <- ggplot2::ggplot()
+#' out <- GiottoVisuals::gg_annotation_raster(gg, gimg)
+#' print(out)
 NULL
 
 # * list ####
@@ -422,7 +427,7 @@ setMethod(
         # RGB EXPECTED #
         # convert to range 0:1 (needed for as.raster())
         x <- scales::rescale(x, to = c(0, 1))
-        r <- as.raster(x)
+        r <- grDevices::as.raster(x)
     }
 
     return(r)

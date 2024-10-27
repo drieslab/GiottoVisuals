@@ -29,7 +29,7 @@ spatInSituPlotPoints(
   show_polygon = TRUE,
   use_overlap = TRUE,
   polygon_feat_type = "cell",
-  polygon_color = "black",
+  polygon_color = "grey",
   polygon_bg_color = "black",
   polygon_fill = NULL,
   polygon_fill_gradient = NULL,

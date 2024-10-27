@@ -1,3 +1,19 @@
+# GiottoVisuals 0.2.6 (2024/10/27)
+
+## new
+- `combine_aes()` for combining ggplot2 mappings in a last item wins manner. Allows more than 2 aes to be combined at the same time and provides an optional informative warning
+- `gg_params()` for combining and sorting ggplot2 mappings, toplevel params, and data into an arg list for plotting.
+
+
+# GiottoVisuals 0.2.5 (2024/09/27)
+
+## new
+- `gpsparam()` for generating an object containing plot saving parameters
+- `cowplot::plot_grid()` re-exported
+- `dotPlot()` visualization
+
+## bug fixes
+- fix `coord_fix_ratio` passing in `spatFeatPlot2D()` [#972](https://github.com/drieslab/Giotto/issues/972) by kaizen89
 
 # GiottoVisuals 0.2.4 (2024/07/26)
 

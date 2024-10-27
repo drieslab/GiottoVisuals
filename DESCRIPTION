@@ -1,6 +1,6 @@
 Package: GiottoVisuals
 Title: Visuals for the Giotto spatial biology analysis ecosystem
-Version: 0.2.4
+Version: 0.2.6
 Authors@R: c(
 	person("Ruben", "Dries", email = "rubendries@gmail.com",
 		 role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7650-7754")),
@@ -23,23 +23,19 @@ BugReports: https://github.com/drieslab/Giotto/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends:
-    base (>= 4.1.0),
-    utils (>= 4.1.0),
-    R (>= 4.1.0),
+    R (>= 4.4.1)
 Imports:
     checkmate,
     colorRamp2,
     cowplot (>= 0.9.4),
     data.table,
     ggplot2 (>= 3.1.1),
-    GiottoUtils (>= 0.1.8),
-    GiottoClass (>= 0.3.1),
+    GiottoUtils (>= 0.1.12),
+    GiottoClass (>= 0.3.6),
     ggrepel,
     igraph (>= 1.2.4.1),
     methods,
     plotly,
-    RColorBrewer (>= 1.1-2),
-    reshape2,
     scales (>= 1.0.0),
     scattermore,
     stats,
@@ -53,7 +49,6 @@ Suggests:
     ggsci,
     GiottoData,
     htmlwidgets,
-    Matrix,
     networkD3,
     NineteenEightyR,
     nord,
@@ -61,6 +56,7 @@ Suggests:
     palettetown,
     png,
     rcartocolor,
+    RColorBrewer (>= 1.1-2),
     remotes,
     scatterpie,
     tiff,
@@ -86,19 +82,22 @@ Collate:
     'generics.R'
     'gg_annotation_raster.R'
     'gg_info_layers.R'
+    'gg_param.R'
     'gg_settings.R'
     'globals.R'
     'gstop.R'
     'mixcolor.R'
     'plot_dendrogram.R'
+    'plot_dotplot.R'
     'plot_heatmap.R'
     'plot_sankey.R'
     'plot_scatter.R'
     'plot_violin.R'
     'spatialDE_visuals.R'
     'suite_reexports.R'
-    'vis_spatial.R'
+    'vis_spatial_gg.R'
     'vis_spatial_in_situ.R'
+    'vis_spatial_plotly.R'
     'viz_spatial_network.R'
     'zzz.R'
 biocViews: Software, Technology, Spatial

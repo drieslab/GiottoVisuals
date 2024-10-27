@@ -4,7 +4,9 @@
 # are used in the final plot.                                                 #
 # --------------------------------------------------------------------------- #
 
-
+# TODO clean up this code a little more
+#   (there should only be one geom_point() call)
+# TODO support dimFeatPlot()
 
 # spatial ####
 
@@ -1630,6 +1632,7 @@ plot_point_layer_ggplot <- function(ggobject,
             size = point_size,
             alpha = point_alpha
         )
+    # map color for each cell
     } else if (length(cell_color) > 1) {
         if (is.numeric(cell_color) | is.factor(cell_color)) {
             if (nrow(annotated_DT_selected) != length(cell_color)) {
@@ -1663,6 +1666,7 @@ plot_point_layer_ggplot <- function(ggobject,
             )
         }
     } else if (is.character(cell_color)) {
+        # color by col values
         if (!cell_color %in% colnames(annotated_DT_selected)) {
             if (!cell_color %in% grDevices::colors()) {
                 stop(cell_color, " is not a color or a column name \n")
@@ -1679,6 +1683,8 @@ plot_point_layer_ggplot <- function(ggobject,
         } else {
             class_cell_color <- class(annotated_DT_selected[[cell_color]])
 
+            # if len = 1 + color_as_factor = FALSE + data is numeric,
+            # assume it means data col index with non-factor data
             if ((class_cell_color == "integer" |
                 class_cell_color == "numeric") & color_as_factor == FALSE) {
                 # set upper and lower limits
@@ -1712,7 +1718,7 @@ plot_point_layer_ggplot <- function(ggobject,
                 }
 
                 # if you want to show centers or labels then calculate centers
-                if (show_cluster_center == TRUE | show_center_label == TRUE) {
+                if (show_cluster_center == TRUE || show_center_label == TRUE) {
                     annotated_DT_centers <- annotated_DT_selected[, .(
                         center_1 = stats::median(get(dims[1])),
                         center_2 = stats::median(get(dims[2]))
@@ -1721,6 +1727,10 @@ plot_point_layer_ggplot <- function(ggobject,
                         annotated_DT_centers[[cell_color]])
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
+
+                # if (!is.null(gradient_limits) && !color_as_factor) {
+                #     annotated_DT_selected[, (cell_color) := scales::oob_squish(get(cell_color), gradient_limits)]
+                # }
 
                 pl <- pl + ggplot2::geom_point(
                     data = annotated_DT_selected,

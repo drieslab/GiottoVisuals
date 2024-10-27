@@ -2,51 +2,10 @@
 % Please edit documentation in R/aux_save.R
 \name{plot_save}
 \alias{plot_save}
-\alias{.ggplot_save_function}
-\alias{.general_save_function}
 \alias{all_plots_save_function}
+\alias{gpsparam}
 \title{Plot saving}
 \usage{
-.ggplot_save_function(
-  gobject,
-  plot_object,
-  save_dir = NULL,
-  save_folder = NULL,
-  save_name = NULL,
-  default_save_name = "giotto_plot",
-  save_format = NULL,
-  show_saved_plot = FALSE,
-  ncol = 1,
-  nrow = 1,
-  scale = 1,
-  base_width = NULL,
-  base_height = NULL,
-  base_aspect_ratio = NULL,
-  units = NULL,
-  dpi = NULL,
-  limitsize = TRUE,
-  plot_count = NULL,
-  ...
-)
-
-.general_save_function(
-  gobject,
-  plot_object,
-  save_dir = NULL,
-  save_folder = NULL,
-  save_name = NULL,
-  default_save_name = "giotto_plot",
-  save_format = c("png", "tiff", "pdf", "svg"),
-  show_saved_plot = FALSE,
-  base_width = NULL,
-  base_height = NULL,
-  base_aspect_ratio = NULL,
-  units = NULL,
-  dpi = NULL,
-  plot_count = NULL,
-  ...
-)
-
 all_plots_save_function(
   gobject,
   plot_object,
@@ -65,6 +24,24 @@ all_plots_save_function(
   units = NULL,
   dpi = NULL,
   limitsize = TRUE,
+  plot_count = NULL,
+  GPSPARAM = NULL,
+  ...
+)
+
+gpsparam(
+  instructions,
+  type = c("gg", "plotly", "general"),
+  save_dir = NULL,
+  save_folder = NULL,
+  save_name = NULL,
+  default_save_name = "giotto_plot",
+  save_format = NULL,
+  dpi = NULL,
+  base_width = NULL,
+  base_height = NULL,
+  base_aspect_ratio = NULL,
+  units = NULL,
   plot_count = NULL,
   ...
 )
@@ -109,25 +86,33 @@ pixels.}
 \item{plot_count}{manually set the plot count that is appended to a
 default_save_name}
 
-\item{\dots}{additional parameters to pass downstream save functions}
+\item{GPSPARAM}{\code{giotto_plot_save_param} object. If provided, will be
+used instead of most other general save params. (save_dir, save_folder,
+save_name, default_save_name, save_format, base_width, base_height,
+base_aspect_ratio, units, dpi, plot_count)}
+
+\item{\dots}{additional parameters to pass downstream save functions.
+\code{\link[cowplot:save_plot]{cowplot::save_plot()}} is used for \code{ggplot2} plots. grDevices png, tiff
+svg, pdf is used for base and general saving}
+
+\item{instructions}{\code{giotto} or \code{giottoInstructions} object}
+
+\item{type}{\code{character}. One of \verb{"gg"', '"plotly"', '"general"} to designate
+which type of plot to save. This affects which types of outputs are
+possible.}
 }
 \value{
-a plot file
+\code{all_plots_save_function} returns a plot file. \code{gpsparam} returns
+a \code{giotto_plot_save_param} object
 }
 \description{
-Functions to automatically save plots to directory of interest
+Functions to save plots to directory of interest.
+\code{all_plots_save_function()} is used for plot saving operations. \code{gpsparam()}
+is used to generate a set of save parameters and filepath based on available
+parameter and \code{giottoInstructions} values.
 }
-\section{Functions}{
-\itemize{
-\item \code{.ggplot_save_function()}: (internal) ggplot saving. ...
-passes to cowplot::save_plot
-
-\item \code{.general_save_function()}: (internal) base and general saving.
-... passes to grDevices png, tiff, pdf, svg
-
-}}
 \examples{
-g <- GiottoClass::createGiottoInstructions(save_plot = TRUE)
+g <- GiottoData::loadGiottoMini("vis")
 df <- data.frame(x = rnorm(5), y = rnorm(5))
 g_plot <- ggplot2::ggplot(df, ggplot2::aes(x,y)) + ggplot2::geom_point()
 all_plots_save_function(g, g_plot)
@@ -140,4 +125,3 @@ all_plots_save_function(g, g_plot)
 \code{\link[grDevices]{pdf}}
 \code{\link[grDevices]{svg}}
 }
-\keyword{internal}

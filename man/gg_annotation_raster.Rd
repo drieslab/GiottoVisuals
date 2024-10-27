@@ -44,3 +44,9 @@ No ... params are implemented for \code{giottoImage}. \cr ... params for
 \code{giottoLargeImage} passes to automated resampling params see
 \code{?auto_image_resample} for details
 }
+\examples{
+gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")
+gg <- ggplot2::ggplot()
+out <- GiottoVisuals::gg_annotation_raster(gg, gimg)
+print(out)
+}

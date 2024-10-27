@@ -156,6 +156,8 @@ getColors <- function(
 
 # get palettes ####
 .get_rcolorbrewer_colors <- function(n, pal, strategy) {
+    package_check("RColorBrewer")
+
     # DT vars
     rn <- maxcolors <- NULL
 
@@ -176,10 +178,10 @@ getColors <- function(
     package_check("ggsci")
 
     pal_fullname <- paste0("ggsci::pal_", pal, "()")
-    
+
     # get first 100 colors
     pal_cols <- eval(parse(text = pal_fullname))(100)
-    
+
     get_continuous_colors(
         col = pal_cols[!is.na(pal_cols)],
         n = n,
@@ -321,7 +323,7 @@ getColors <- function(
 #' @returns a vector of colors
 #' @examples
 #' get_continuous_colors(col = "#eb4034", n = 10, strategy = "interpolate")
-#' 
+#'
 #' @export
 get_continuous_colors <- function(col, n, strategy) {
     strategy <- g_match_arg(strategy,
@@ -354,7 +356,7 @@ get_continuous_colors <- function(col, n, strategy) {
 #' @returns a function
 #' @examples
 #' simple_palette_factory(col = "#eb4034")
-#' 
+#'
 #' @export
 simple_palette_factory <- function(col, rev = FALSE, strategy = "interpolate") {
     checkmate::assert_character(col)
@@ -393,7 +395,7 @@ simple_palette_factory <- function(col, rev = FALSE, strategy = "interpolate") {
 #' @returns palette colors
 #' @examples
 #' pal_names
-#' 
+#'
 #' @export
 pal_names <- list(
     hcl = grDevices::hcl.pals(),
