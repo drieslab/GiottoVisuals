@@ -5,33 +5,48 @@
 \alias{gg_annotation_raster,gg,list-method}
 \alias{gg_annotation_raster,gg,giottoImage-method}
 \alias{gg_annotation_raster,gg,giottoLargeImage-method}
+\alias{gg_annotation_raster,gg,giottoAffineImage-method}
 \title{Append image to ggplot as annotation_raster}
 \usage{
-\S4method{gg_annotation_raster}{gg,list}(ggobj, gimage, ...)
+\S4method{gg_annotation_raster}{gg,list}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 
-\S4method{gg_annotation_raster}{gg,giottoImage}(ggobj, gimage, ...)
+\S4method{gg_annotation_raster}{gg,giottoImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 
-\S4method{gg_annotation_raster}{gg,giottoLargeImage}(ggobj, gimage, ext = NULL, ...)
+\S4method{gg_annotation_raster}{gg,giottoLargeImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
+
+\S4method{gg_annotation_raster}{gg,giottoAffineImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 }
 \arguments{
 \item{ggobj}{ggplot2 \code{gg} object}
 
 \item{gimage}{\code{giottoLargeImage}, \code{giottoImage} or \code{list} thereof}
 
-\item{\dots}{additional params to pass}
-
 \item{ext}{Object that responds to \code{ext()}. Defines the plot spatial ROI
-that the image should be sampled for.}
+This extent defines which portions of the image(s) will be plotted/should
+be sampled for. The default is the same extent as the image.}
+
+\item{geom_blank}{logical. Whether to apply \verb{[ggplot2::geom_blank()]} to the
+\code{gg} object so that the image can be plotted by itself.}
+
+\item{\dots}{additional params to pass}
 }
 \value{
 \code{gg} object with images to plot appended as annotation rasters
 }
 \description{
-Append image to ggplot as annotation_raster
+Add a spatially mapped image to a \emph{ggplot2} \code{gg} object.
+For terra-based images, the image will be a cropped and sampled version
+of the full size image on disk that has sufficient resolution for the size
+of the plot requested.
 }
 \details{
 No ... params are implemented for \code{giottoImage}. \cr ... params for
 \code{giottoLargeImage} passes to automated resampling params see
 \code{?auto_image_resample} for details
 }
-\keyword{internal}
+\examples{
+gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")
+gg <- ggplot2::ggplot()
+out <- GiottoVisuals::gg_annotation_raster(gg, gimg)
+print(out)
+}

@@ -18,6 +18,8 @@
 #' @param feat_type feature types of the feats
 #' @param sdimx spatial dimension x
 #' @param sdimy spatial dimension y
+#' @param xlim limits of x-scale (min/max vector)
+#' @param ylim limits of y-scale (min/max vector)
 #' @param point_size size of the points
 #' @param stroke stroke to apply to feature points
 #' @param expand_counts expand feature coordinate counts (see details)
@@ -96,6 +98,8 @@ spatInSituPlotPoints <- function(gobject,
     feat_shape_code = NULL,
     sdimx = "x",
     sdimy = "y",
+    xlim = NULL,
+    ylim = NULL,
     spat_enr_names = NULL,
     point_size = 1.5,
     stroke = 0.5,
@@ -105,7 +109,7 @@ spatInSituPlotPoints <- function(gobject,
     show_polygon = TRUE,
     use_overlap = TRUE,
     polygon_feat_type = "cell",
-    polygon_color = "black",
+    polygon_color = "grey",
     polygon_bg_color = "black",
     polygon_fill = NULL,
     polygon_fill_gradient = NULL,
@@ -414,20 +418,31 @@ spatInSituPlotPoints <- function(gobject,
     plot <- plot + do.call(.gg_theme, args = gg_theme_args)
 
 
-    if (!is.null(coord_fix_ratio)) {
-        plot <- plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+  # subset data based on x and y limits
+  if(!is.null(xlim)) {
+    plot <- plot + ggplot2::xlim(xlim)
+  }
+  if(!is.null(ylim)) {
+    plot <- plot + ggplot2::ylim(ylim)
+  }
 
-    return(plot_output_handler(
-        gobject = gobject,
-        plot_object = plot,
-        save_plot = save_plot,
-        return_plot = return_plot,
-        show_plot = show_plot,
-        default_save_name = default_save_name,
-        save_param = save_param,
-        else_return = NULL
-    ))
+  # fix coordinates
+  if(!is.null(coord_fix_ratio)) {
+    plot = plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
+  }
+
+
+  return(plot_output_handler(
+    gobject = gobject,
+    plot_object = plot,
+    save_plot = save_plot,
+    return_plot = return_plot,
+    show_plot = show_plot,
+    default_save_name = default_save_name,
+    save_param = save_param,
+    else_return = NULL
+  ))
+
 }
 
 
@@ -487,19 +502,11 @@ spatInSituPlotPoints <- function(gobject,
             polygon_feat_type <- gobject@expression_feat[[1]]
         }
 
-
-        # polygon_dt = combineSpatialCellMetadataInfo(gobject,
-        # feat_type = polygon_feat_type)
-        # polygon_dt = polygon_dt[[polygon_feat_type]]
-
-        polygon_info <- get_polygon_info(
+        polygon_dt <- getPolygonInfo(
             gobject = gobject,
             polygon_name = polygon_feat_type
-        )
-        polygon_dt <- data.table::as.data.table(
-            polygon_info,
-            geom = "XY"
-        )
+        ) %>%
+            data.table::as.data.table(geom = "XY")
 
         plot <- plot_cell_polygon_layer(
             ggobject = plot,
@@ -526,9 +533,6 @@ spatInSituPlotPoints <- function(gobject,
         poly_info = polygon_feat_type
     )
 
-    # spatial_feat_info = combineSpatialCellFeatureInfo(gobject = gobject,
-    #                                                 feat_type = feat_type,
-    #                                                 selected_features = feat)
     spatial_feat_info <- do.call("rbind", spatial_feat_info)
 
     plot <- plot_feature_hexbin_layer(
@@ -779,18 +783,11 @@ spatInSituPlotHex <- function(
         }
 
 
-        polygon_info <- get_polygon_info(
+        polygon_dt <- getPolygonInfo(
             gobject = gobject,
             polygon_name = polygon_feat_type
-        )
-        polygon_dt <- data.table::as.data.table(
-            polygon_info,
-            geom = "XY"
-        )
-
-        # polygon_dt = combineSpatialCellMetadataInfo(gobject,
-        # feat_type = polygon_feat_type)
-        # polygon_dt = polygon_dt[[polygon_feat_type]]
+        ) %>%
+            data.table::as.data.table(geom = "XY")
 
         plot <- plot_cell_polygon_layer(
             ggobject = plot,
@@ -816,9 +813,6 @@ spatInSituPlotHex <- function(
         poly_info = polygon_feat_type
     )
 
-    # spatial_feat_info = combineSpatialCellFeatureInfo(gobject = gobject,
-    #                                                  feat_type = feat_type,
-    #                                                  selected_features = feat)
     spatial_feat_info <- do.call("rbind", spatial_feat_info)
 
     plot <- plot_feature_raster_density_layer(

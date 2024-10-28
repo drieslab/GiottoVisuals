@@ -9,6 +9,8 @@
   img,
   plot_ext = NULL,
   img_border = 0.125,
+  crop_ratio_fun = .img_to_crop_ratio_gimage,
+  sample_fun = .sample_gimage,
   flex_resample = TRUE,
   max_sample = getOption("giotto.plot_img_max_sample", 5e+05),
   max_crop = getOption("giotto.plot_img_max_crop", 1e+08),
@@ -18,7 +20,7 @@
 \arguments{
 \item{img}{giotto image to plot}
 
-\item{plot_ext}{extent of plot (required)}
+\item{plot_ext}{extent of plot (defaults to the image extent)}
 
 \item{img_border}{if not 0 or FALSE, expand plot_ext by this percentage on
 each side before applying crop on image. See details}

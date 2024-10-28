@@ -139,8 +139,7 @@ NULL
 #' @param show_image show a tissue background image
 #' @param gimage a giotto image
 #' @param image_name name of a giotto image or multiple images with group_by
-#' @param largeImage_name name of a giottoLargeImage or multiple images
-#' with group_by
+#' @param largeImage_name deprecated. Use `image_name`
 #' @keywords internal
 #' @returns ggplot
 NULL

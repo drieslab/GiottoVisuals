@@ -18,6 +18,8 @@ spatInSituPlotPoints(
   feat_shape_code = NULL,
   sdimx = "x",
   sdimy = "y",
+  xlim = NULL,
+  ylim = NULL,
   spat_enr_names = NULL,
   point_size = 1.5,
   stroke = 0.5,
@@ -27,7 +29,7 @@ spatInSituPlotPoints(
   show_polygon = TRUE,
   use_overlap = TRUE,
   polygon_feat_type = "cell",
-  polygon_color = "black",
+  polygon_color = "grey",
   polygon_bg_color = "black",
   polygon_fill = NULL,
   polygon_fill_gradient = NULL,
@@ -80,6 +82,10 @@ spatInSituPlotPoints(
 \item{sdimx}{spatial dimension x}
 
 \item{sdimy}{spatial dimension y}
+
+\item{xlim}{limits of x-scale (min/max vector)}
+
+\item{ylim}{limits of y-scale (min/max vector)}
 
 \item{spat_enr_names}{character. names of spatial enrichment results
 to include}

@@ -1,134 +1,134 @@
 #' @name gg_annotation_raster
-#' @keywords internal
 #' @title Append image to ggplot as annotation_raster
+#' @description
+#' Add a spatially mapped image to a *ggplot2* `gg` object.
+#' For terra-based images, the image will be a cropped and sampled version
+#' of the full size image on disk that has sufficient resolution for the size
+#' of the plot requested.
+#'
 #' @param ggobj ggplot2 `gg` object
 #' @param gimage `giottoLargeImage`, `giottoImage` or `list` thereof
+#' @param ext Object that responds to `ext()`. Defines the plot spatial ROI
+#' This extent defines which portions of the image(s) will be plotted/should
+#' be sampled for. The default is the same extent as the image.
+#' @param geom_blank logical. Whether to apply `[ggplot2::geom_blank()]` to the
+#' `gg` object so that the image can be plotted by itself.
 #' @param \dots additional params to pass
 #' @details
 #' No ... params are implemented for `giottoImage`. \cr ... params for
 #' `giottoLargeImage` passes to automated resampling params see
 #' `?auto_image_resample` for details
 #' @return `gg` object with images to plot appended as annotation rasters
+#' @examples
+#' gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")
+#' gg <- ggplot2::ggplot()
+#' out <- GiottoVisuals::gg_annotation_raster(gg, gimg)
+#' print(out)
 NULL
 
+# * list ####
 #' @rdname gg_annotation_raster
+#' @export
 setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "list"),
-    function(ggobj, gimage, ...) {
+    function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
+
+        # apply geom_blank
+        ext <- ext %null% ext(gimage[[1L]])
+        if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
+
+        # attach images in a loop
         for (i in seq_along(gimage)) {
-            ggobj <- gg_annotation_raster(ggobj, gimage[[i]], ...)
+            ggobj <- gg_annotation_raster(
+                ggobj, gimage[[i]],
+                ext = ext,
+                geom_blank = FALSE, # hardcode FALSE since already done.
+                ...
+            )
         }
         return(ggobj)
     }
 )
 
+# * giottoImage ####
 #' @rdname gg_annotation_raster
+#' @export
 setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "giottoImage"),
-    function(ggobj, gimage, ...) {
-        # extract min and max from object
-        my_xmax <- gimage@minmax[1]
-        my_xmin <- gimage@minmax[2]
-        my_ymax <- gimage@minmax[3]
-        my_ymin <- gimage@minmax[4]
+    function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
+
+        # apply geom_blank
+        ext <- ext %null% ext(gimage)
+        if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
 
         # convert giotto image object into array
         img_array <- as.numeric(gimage@mg_object[[1]])
 
-        # extract adjustments from object
-        xmax_b <- gimage@boundaries[1]
-        xmin_b <- gimage@boundaries[2]
-        ymax_b <- gimage@boundaries[3]
-        ymin_b <- gimage@boundaries[4]
-
         # append to ggobj
-        ggobj <- ggobj + annotation_raster(
-            img_array,
-            xmin = my_xmin - xmin_b, xmax = my_xmax + xmax_b,
-            ymin = my_ymin - ymin_b, ymax = my_ymax + ymax_b
-        )
+        ggobj <- .gg_append_imagearray(ggobj, img_array, ext)
 
         # TODO geom_raster to accommodate single-channel
         return(ggobj)
     }
 )
 
+# * giottoLargeImage ####
 #' @rdname gg_annotation_raster
-#' @param ext Object that responds to `ext()`. Defines the plot spatial ROI
-#' that the image should be sampled for.
+#' @export
 setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "giottoLargeImage"),
-    function(ggobj, gimage, ext = NULL, ...) {
+    function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
 
-        # apply plot ext
-        if (!is.null(ext)) {
-            gimage <- .auto_resample_gimage(
-                img = gimage,
-                plot_ext = ext,
-                ...
-            )
-        }
+        # geom_blank
+        ext <- ext %null% ext(gimage)
+        if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
 
-        # get plotting minmax
-        extent <- terra::ext(gimage@raster_object)[seq_len(4)]
-        xmin <- extent[["xmin"]]
-        xmax <- extent[["xmax"]]
-        ymin <- extent[["ymin"]]
-        ymax <- extent[["ymax"]]
-
-        # convert raster object into array with 3 channels
-        img_array <- terra::as.array(gimage@raster_object)
-
-        # TODO: check if required, fixes NaN values
-        # replacing NA's by zero or another value directly in raster object?
-        # raster[is.na(raster[])] <- 0
-        if (is.nan(max(img_array[, , 1]))) {
-            img_array[, , 1][is.nan(img_array[, , 1])] <- max(img_array[, , 1],
-                na.rm = TRUE
-            )
-        }
-
-        if (dim(img_array)[3] > 1) {
-            if (is.nan(max(img_array[, , 2]))) {
-                img_array[, , 2][is.nan(img_array[, , 2])] <-
-                    max(img_array[, , 2], na.rm = TRUE)
-            }
-        }
-
-        if (dim(img_array)[3] > 2) {
-            if (is.nan(max(img_array[, , 3]))) {
-                img_array[, , 3][is.nan(img_array[, , 3])] <-
-                    max(img_array[, , 3], na.rm = TRUE)
-            }
-        }
-
-        img_array <- img_array / max(img_array, na.rm = TRUE)
-        if (dim(img_array)[3] == 1) {
-            img_array_RGB <- array(NA, dim = c(dim(img_array)[seq_len(2)], 3))
-            img_array_RGB[, , seq_len(3)] <- img_array
-        } else {
-            img_array_RGB <- img_array
-        }
-
-        # handle NA values
-        img_array_RGB[is.na(img_array_RGB)] <- 0
-
-        # append to ggobj
-        ggobj <- ggobj + annotation_raster(
-            img_array_RGB,
-            xmin = xmin, xmax = xmax,
-            ymin = ymin, ymax = ymax
+        # resample from extent
+        gimage <- .auto_resample_gimage(
+            img = gimage,
+            plot_ext = ext,
+            crop_ratio_fun = .img_to_crop_ratio_gimage,
+            sample_fun = .sample_gimage,
+            ...
         )
 
-        # TODO geom_raster to accommodate single-channel
+        # append raster to gg
+        ggobj <- .gg_append_spatraster(ggobj = ggobj, gimage = gimage)
+
         return(ggobj)
     }
 )
 
+# * giottoAffineImage ####
+#' @rdname gg_annotation_raster
+#' @export
+setMethod(
+    "gg_annotation_raster",
+    signature(ggobj = "gg", gimage = "giottoAffineImage"),
+    function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
 
+        # geom_blank
+        ext <- ext %null% ext(gimage)
+        if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
+
+        # resample from extent
+        gimage <- .auto_resample_gimage(
+            img = gimage,
+            plot_ext = ext,
+            crop_ratio_fun = .img_to_crop_ratio_gaffimage,
+            sample_fun = .sample_gaffimage,
+            ...
+        )
+
+        # append raster to gg
+        ggobj <- .gg_append_spatraster(ggobj = ggobj, gimage = gimage)
+
+        return(ggobj)
+    }
+)
 
 
 
@@ -166,6 +166,29 @@ setMethod(
     return(e)
 }
 
+# internal to convert a SpatExtent into a data.frame with x and y values that
+# ggplot2 can use to determine bounds of placement
+.ext_to_dummy_df <- function(x) {
+    data.frame(
+        sdimx = x[][c(1, 2)],
+        sdimy = x[][c(3, 4)],
+        row.names = NULL
+    )
+}
+
+# apply a region to plot to the gg object. Input should be a SpatExtent or
+# coercible. Returns ggobject with geom_blank assigned
+.gg_geom_blank <- function(ggobj, e) {
+    # NSE vars
+    sdimx <- sdimy <- NULL
+
+    # create minimal dummy value data.frame of spatial locations that cover
+    # the spatial region to plot
+    bounds_dt <- .ext_to_dummy_df(e)
+    # assign region to plot
+    ggobj <- ggobj + geom_blank(data = bounds_dt, aes(sdimx, sdimy))
+    return(ggobj)
+}
 
 #' @name auto_image_resample
 #' @title Optimized image resampling
@@ -202,7 +225,7 @@ setMethod(
 #' determines if this switching behavior happens.
 #' When set to \code{FALSE}, only method A is used.
 #' @param img giotto image to plot
-#' @param plot_ext extent of plot (required)
+#' @param plot_ext extent of plot (defaults to the image extent)
 #' @param img_border if not 0 or FALSE, expand plot_ext by this percentage on
 #' each side before applying crop on image. See details
 #' @param flex_resample logical. Default = TRUE. Forces usage of method A when
@@ -236,6 +259,8 @@ setMethod(
         img,
         plot_ext = NULL,
         img_border = 0.125,
+        crop_ratio_fun = .img_to_crop_ratio_gimage,
+        sample_fun = .sample_gimage,
         flex_resample = TRUE,
         max_sample = getOption("giotto.plot_img_max_sample", 5e5),
         max_crop = getOption("giotto.plot_img_max_crop", 1e8),
@@ -244,16 +269,16 @@ setMethod(
         )
 ) {
 
-    img_ext <- terra::ext(img)
-    if (is.null(plot_ext)) crop_ext <- img_ext # default
+    # 1. determine source image and cropping extents
+    if (is.null(plot_ext)) crop_ext <- ext(img) # default to img extent
     else crop_ext <- ext(plot_ext)
     bound_poly <- as.polygons(crop_ext)
 
-    # override max_crop if needed
+    # 1.1. override max_crop if needed
     if (max_sample > max_crop) max_crop <- max_sample
 
-    # apply img border
-    # - cropping with extent larger than the image extent works
+    # 1.2. apply img border expansion
+    # - note: cropping with extent larger than the image extent is supported
     if (img_border > 0) {
 
         crop_ext <- bound_poly %>%
@@ -264,35 +289,30 @@ setMethod(
         crop_ext <- ext(crop(bound_poly, crop_ext))
     }
 
-    # determine ratio of crop vs original
+    # 2. determine cropping area
     original_dims <- dim(img)[c(2L, 1L)] # x, y ordering
-    ratios <- range(crop_ext) / range(img_ext) # x, y ordering
+    ratios <- crop_ratio_fun(img = img, crop_ext = crop_ext) # x, y ordering
     crop_dims <- original_dims * ratios
     crop_area_px <- prod(crop_dims)
 
+    # 3. perform flexible resample/crop based on cropping area
     if (!isTRUE(flex_resample) || crop_area_px <= max_crop) {
         # [METHOD A]:
         # 1. Crop if needed
         # 2. resample to final image
         if (!isTRUE(flex_resample) && crop_area_px > max_crop) {
-            warning("Plotting large regions with flex_resample == FALSE will
-                    increase time and may require scratch space.")
+            warning(
+                "Plotting large regions with flex_resample == FALSE will\n ",
+                "increase time and may require scratch space."
+            )
         }
 
         vmsg(.is_debug = TRUE,
              sprintf("img auto_res: [A] | area: %f | max: %f",
                      crop_area_px, max_crop))
 
-        crop_img <- terra::crop(
-            x = img@raster_object,
-            y = crop_ext
-        )
-        img@raster_object <- terra::spatSample(
-            crop_img,
-            size = max_sample,
-            method = "regular",
-            as.raster = TRUE
-        )
+        crop_img <- terra::crop(img, crop_ext)
+        res <- sample_fun(crop_img, size = max_sample)
     } else {
         # [METHOD B]:
         # 1. Oversample
@@ -308,18 +328,147 @@ setMethod(
              sprintf("img auto_res: [B] | scalef: %f | max_scale: %f",
                      scalef, max_resample_scale))
 
-        oversample_img <- terra::spatSample(
-            img@raster_object,
-            size = round(max_sample * scalef),
-            method = "regular",
-            as.raster = TRUE
-        )
-        img@raster_object <- terra::crop(
-            x = oversample_img,
-            y = crop_ext
-        )
+        oversample_img <- sample_fun(img, size = round(max_sample * scalef))
+        res <- terra::crop(oversample_img, crop_ext)
     }
-    return(img)
+    return(res)
+}
+
+
+
+
+# determine ratio of crop vs full image extent
+.img_to_crop_ratio_gimage <- function(img, crop_ext) {
+    img_ext <- ext(img)
+    ratio <- range(crop_ext) / range(img_ext)
+    # crops larger than the image are possible, but meaningless for this
+    # calculate. so the ratios are capped at 1.
+    ratio[ratio > 1] <- 1
+    return(ratio)
+}
+
+.img_to_crop_ratio_gaffimage <- function(img, crop_ext) {
+    # Do not use the ext() method for giottoAffineImage
+    # Instead use the mapping applied to the underlying SpatRaster.
+    # For giottoAffineImage, these two values are usually different.
+    img_ext <- ext(img@raster_object)
+    # find the extent needed in the source (untransformed) image
+    crop_bound <- terra::as.polygons(crop_ext)
+    crop_bound$id <- "bound" # affine() requires ID values
+    crop_ext <- ext(affine(crop_bound, img@affine, inv = TRUE))
+    ratio <- range(crop_ext) / range(img_ext)
+    # crops larger than the image are possible, but meaningless for this
+    # calculate. so the ratios are capped at 1.
+    ratio[ratio > 1] <- 1
+    return(ratio)
+}
+
+
+
+
+# pull sampled values from original image into target spatial mapping
+# should return a giottoLargeImage
+.sample_gimage <- function(x, size) {
+    x@raster_object <- terra::spatSample(
+        x = x@raster_object,
+        size = size,
+        method = "regular",
+        as.raster = TRUE
+    )
+    return(x)
+}
+
+.sample_gaffimage <- function(x, size) {
+    res <- x@funs$realize_magick(size = size)
+    return(res)
+}
+
+
+
+
+# make an image array compatible with ggplot::annotation_raster()
+# maxval is the cutoff after which everything is max intensity
+# returns: raster
+.gg_imgarray_2_raster <- function(x, maxval = NULL, col = NULL) {
+    nlyr <- dim(x)[3L] # number of channels/layers
+    if (is.na(nlyr)) nlyr <- 1L
+    # NOTE: 4 layers allowed (rgba), but may conflict with actual 4 info
+    # layer cases which SHOULD be converted to 3 layer
+    #
+    # more than 4 layers -> directly ignore layers past the 3rd
+    if (nlyr > 4L) {
+        nlyr <- 3L
+        x <- x[, , seq_len(3)]
+    }
+
+    # handle NaN values -- set as max value of that layer
+    # these may arise due to save artefacting when values are larger than
+    # expected
+    for (lyr in seq_len(nlyr)) {
+        if (is.nan(max(x[, , lyr]))) {
+            x[, , lyr][is.nan(x[, , lyr])] <-
+                max(x[, , lyr], na.rm = TRUE)
+        }
+    }
+
+    # handle NA values -- set as 0
+    x[is.na(x)] <- 0
+
+    if (nlyr == 1L) {
+        # SINGLE CHANNEL #
+        # max window cutoff
+        if (!is.null(maxval)) x[x > maxval] <- maxval
+        # colorize
+        if (is.null(col)) {
+            col <- getMonochromeColors("white", n = 256)
+        }
+        r <- .colorize_single_channel_raster(x, col = col)
+    } else {
+        # RGB EXPECTED #
+        # convert to range 0:1 (needed for as.raster())
+        x <- scales::rescale(x, to = c(0, 1))
+        r <- grDevices::as.raster(x)
+    }
+
+    return(r)
+}
+
+
+
+
+# `x` is array to use
+# `col` is character vector of colors to use
+.colorize_single_channel_raster <- function(x, col) {
+    if (!is.na(dim(x)[3L])) x <- x[,, 1L] # convert to matrix
+    r <- range(x, na.rm = TRUE)
+    x <- (x - r[1])/(r[2] - r[1])
+    x <- round(x * (length(col) - 1) + 1)
+    x[] <- col[x]
+    terra::as.raster(x)
+}
+
+# append image array to a gg object
+.gg_append_imagearray <- function(ggobj, a, ext) {
+    # append to ggobj
+    extent <- ext(ext)[seq_len(4L)]
+    ggobj <- ggobj + annotation_raster(a,
+        xmin = extent[["xmin"]], xmax = extent[["xmax"]],
+        ymin = extent[["ymin"]], ymax = extent[["ymax"]]
+    )
+}
+
+# append a giotto image object containing a SpatRaster that has already been
+# resampled/pulled into memory. Output is a `gg` object
+.gg_append_spatraster <- function(ggobj, gimage) {
+    # convert gimage to a raster
+    a <- terra::as.array(gimage@raster_object) %>%
+        .gg_imgarray_2_raster(
+            maxval = gimage@max_window,
+            col = gimage@colors
+        )
+
+    ggobj <- .gg_append_imagearray(ggobj, a, ext(gimage))
+    return(ggobj)
 }
 
 

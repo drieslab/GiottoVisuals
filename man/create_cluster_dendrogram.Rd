@@ -65,11 +65,11 @@ g_expression <- head(GiottoClass::getExpression(g, output = "matrix"))
 g_expression_df <- as.data.frame(as.matrix(g_expression))
 g_expression_df$feat_ID <- rownames(g_expression)
 
-g_expression_melt <- reshape2::melt(g_expression_df, id.vars = "feat_ID", 
-measure.vars = colnames(g_expression), variable.name = "cell_ID", 
+g_expression_melt <- data.table::melt(g_expression_df, id.vars = "feat_ID",
+measure.vars = colnames(g_expression), variable.name = "cell_ID",
 value.name = "raw_expression")
 
-create_cluster_dendrogram(data.table::as.data.table(g_expression_melt), 
+create_cluster_dendrogram(data.table::as.data.table(g_expression_melt),
 var_col = "cell_ID", clus_col = "feat_ID", "raw_expression")
 
 }
