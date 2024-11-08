@@ -8,6 +8,7 @@ spatFeatPlot2D(
   gobject,
   feat_type = NULL,
   spat_unit = NULL,
+  plot_method = "ggplot",
   show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
@@ -65,6 +66,9 @@ spatFeatPlot2D(
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
 \item{spat_unit}{spatial unit (e.g. "cell")}
+
+\item{plot_method}{method to plot points. Either "ggplot" (default) or
+"scattermore" (rasterized and faster for large datasets)}
 
 \item{show_image}{show a tissue background image}
 

@@ -1,3 +1,11 @@
+# GiottoVisuals 0.2.7 (2024/11/08)
+
+## enhancements
+- scattermore plotting for `spatPlot2D()` and `spatFeatPlot2D()`
+
+## bug fixes
+- fix color scaling bug for `spatFeatPlot2D()` introduced in 0.2.6
+
 # GiottoVisuals 0.2.6 (2024/10/27)
 
 ## new

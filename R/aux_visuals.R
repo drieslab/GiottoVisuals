@@ -163,15 +163,24 @@ gg_input <- function(ggobject) {
 
 #' @title giotto_point
 #' @name giotto_point
+#' @description Plot a point scatter layer via one of ggplot::geom_point,
+#' scattermore::geom_scattermore or scattermore::geom_scattermost
+#' @param plot_method which scatter plotting method to use.
+#' @param size point size parameter
+#' @param ext SpatVector. Spatial extent of the plotting region. Used when
+#' considering raster size for rasterization with scattermore and scattermost
+#' @param scattermost_xy 2-column object with data. Used with scattermost since
+#' it doesn't talk to ggplot
+#' @param scattermost_color Color vector (or a single color). Used with
+#' scattermost since it doesn't talk to ggplot
 #' @param \dots geom_point parameters
 #' @keywords internal
-#' @description uses ggplot::geom_point, scattermore::geom_scattermore
-#' or scattermore::geom_scattermost
+#' @noRd
 #' @returns ggplot2::geom_point layer
-#'
 giotto_point <- function(
         plot_method = c("ggplot", "scattermore", "scattermost"),
         size = 1,
+        ext,
         scattermost_xy = NULL,
         scattermost_color = NULL,
         ...) {
@@ -180,21 +189,40 @@ giotto_point <- function(
         choices = c("ggplot", "scattermore", "scattermost")
     )
 
+    px <- getOption("giotto.plot_point_raster", 5e5)
+    if (!missing(ext)) {
+        edim <- setNames(range(ext), NULL)
+        ext_area <- prod(edim)
+        px_per_unit <- px / ext_area
+        pixels <- ceiling(edim * sqrt(px_per_unit))
+    } else {
+        pixels <- rep(ceiling(sqrt(px)), 2L)
+    }
+
+    # assemble argslist
+    a <- list(...)
+
+    if (plot_method %in% c("scattermore", "scattermost")) {
+        a$pointsize <- size
+        a$pixels <- pixels
+    } else {
+        a$size <- size
+    }
+
+    # dispatch to plot method
     switch(plot_method,
         "ggplot" = {
-            ggplot2::geom_point(size = size, ...)
+            do.call(ggplot2::geom_point, a)
         },
         "scattermore" = {
             package_check(pkg_name = "scattermore", repository = "CRAN")
-            scattermore::geom_scattermore(pointsize = size, ...)
+            do.call(scattermore::geom_scattermore, a)
         },
         "scattermost" = {
             package_check(pkg_name = "scattermore", repository = "CRAN")
-            scattermore::geom_scattermost(
-                xy = scattermost_xy,
-                color = scattermost_color,
-                pointsize = size
-            )
+            a$xy <- scattermost_xy
+            a$color <- scattermost_color
+            do.call(scattermore::geom_scattermost, a)
         }
     )
 }
