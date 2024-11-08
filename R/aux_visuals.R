@@ -205,6 +205,7 @@ giotto_point <- function(
     if (plot_method %in% c("scattermore", "scattermost")) {
         a$pointsize <- size
         a$pixels <- pixels
+        vmsg(.is_debug = TRUE, "rasterization dims:", pixels)
     } else {
         a$size <- size
     }

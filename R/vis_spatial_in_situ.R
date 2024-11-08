@@ -233,6 +233,7 @@ spatInSituPlotPoints <- function(gobject,
             plot <- plot_feature_points_layer(
                 ggobject = plot,
                 instrs = instructions(gobject),
+                ext = ext(gobject, prefer = "points"),
                 spatial_feat_info = spatial_feat_info,
                 feats = feats,
                 feats_color_code = feats_color_code,

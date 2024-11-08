@@ -1161,6 +1161,7 @@ plot_cell_polygon_layer <- function(
 plot_feature_points_layer <- function(
         ggobject,
         instrs = NULL,
+        ext,
         spatial_feat_info,
         feats,
         feats_color_code = NULL,
@@ -1229,6 +1230,7 @@ plot_feature_points_layer <- function(
     pl <- pl + giotto_point(
         plot_method = plot_method,
         data = spatial_feat_info_subset,
+        ext = ext,
         mapping = ggplot2::aes_string(
             x = sdimx,
             y = sdimy,
