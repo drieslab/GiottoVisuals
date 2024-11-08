@@ -1229,7 +1229,7 @@ plot_feature_points_layer <- function(
     pl <- pl + giotto_point(
         plot_method = plot_method,
         data = spatial_feat_info_subset,
-        ggplot2::aes_string(
+        mapping = ggplot2::aes_string(
             x = sdimx,
             y = sdimy,
             color = color,
