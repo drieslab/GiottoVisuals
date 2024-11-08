@@ -8,6 +8,7 @@
   gobject,
   feat_type = NULL,
   spat_unit = NULL,
+  plot_method = "ggplot",
   show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
