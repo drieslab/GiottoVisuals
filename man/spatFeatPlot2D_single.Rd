@@ -8,6 +8,7 @@ spatFeatPlot2D_single(
   gobject,
   spat_unit = NULL,
   feat_type = NULL,
+  plot_method = "ggplot",
   show_image = FALSE,
   gimage = NULL,
   image_name = NULL,
