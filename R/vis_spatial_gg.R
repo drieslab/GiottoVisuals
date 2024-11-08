@@ -573,6 +573,8 @@ spatPlot2D <- function(gobject,
         image_name <- c(image_name, largeImage_name)
     }
 
+    point_shape <- match.arg(point_shape, c("border", "no_border", "voronoi"))
+
     if (identical(plot_method, "scattermore") && point_shape != "no_border") {
         warning("point_shape changed to \"no_border\" for scattermore")
         point_shape <- "no_border"
