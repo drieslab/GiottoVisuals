@@ -27,6 +27,9 @@
     init_option("giotto.plot_img_max_sample", 5e5)
     init_option("giotto.plot_img_max_crop", 1e8)
     init_option("giotto.plot_img_max_resample_scale", 100)
+
+    # point rasterization
+    init_option("giotto.plot_point_raster", 5e5)
 }
 
 
