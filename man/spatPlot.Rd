@@ -87,13 +87,19 @@ spatPlot3D(
   sdimz = "sdimz",
   spat_enr_names = NULL,
   point_size = 3,
+  point_alpha = 1,
   cell_color = NULL,
   cell_color_code = NULL,
+  cell_color_gradient = NULL,
+  color_as_factor = TRUE,
+  gradient_limits = NULL,
+  gradient_style = "divergent",
+  gradient_midpoint = NULL,
   select_cell_groups = NULL,
   select_cells = NULL,
   show_other_cells = TRUE,
   other_cell_color = "lightgrey",
-  other_point_size = 0.5,
+  other_point_size = 3,
   other_cell_alpha = 0.5,
   show_network = FALSE,
   spatial_network_name = "Delaunay_network",
@@ -295,6 +301,7 @@ Visualize cells according to spatial coordinates
 coord_fix_ratio: set to NULL to use default ggplot parameters
 }
 \examples{
+# 2D Data \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%
 g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 spatPlot(g, show_image = TRUE, image_name = "image")
 
@@ -311,13 +318,39 @@ spatPlot2D(g,
 )
 
 
-# load another dataset with 3D data
+# 3D Data \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%
 starmap <- GiottoData::loadGiottoMini("starmap", verbose = FALSE)
 
 # default is to rescale plot as a 3D cube
 spatPlot3D(starmap, cell_color = "leiden_clus")
 # real scaling
-spatPlot3D(g, cell_color = "leiden_clus", axis_scale = "real")
+spatPlot3D(starmap, cell_color = "leiden_clus", axis_scale = "real")
+
+# plot with selected cell groups
+spatPlot3D(starmap,
+    cell_color = "cell_types",
+    color_as_factor = TRUE,
+    select_cell_groups = c("cell F", "cell C", "cell A"),
+    other_point_size = 1
+)
+
+# use the "sequential" style gradient default
+spatPlot3D(starmap,
+    cell_color = "total_expr",
+    color_as_factor = FALSE,
+    point_alpha = 0.5,
+    axis_scale = "real",
+    gradient_style = "sequential"
+)
+
+# specific color gradient
+spatPlot3D(starmap,
+    cell_color = "total_expr",
+    color_as_factor = FALSE,
+    point_alpha = 0.7,
+    axis_scale = "cube",
+    cell_color_gradient = "mako"
+)
 }
 \seealso{
 \code{\link{spatPlot3D}}

@@ -229,6 +229,130 @@ giotto_point <- function(
 }
 
 
+#' @name giotto_point_3d
+#' @param pl plotly plot object
+#' @param data dataframe-like object with data to plot
+#' @param cell_color column in pl to plot. May be passed as NULL in which case
+#' spots will default to `lightblue` in color.
+#' @param color_as_factor logical. Whether values should be plotted as
+#' categorical. Default is TRUE.
+#' @param cell_color_code specific set of color hex codes to use in plotting
+#' @param cell_color_gradient character. name of gradient to use
+#' @param gradient_limits numeric of length 2. Numerical min and max values to
+#' display in gradient scale.
+#' @param point_size numeric. Size of points
+#' @param data_other dataframe-like object with 'other' data points to plot
+#' @param select_cells character. specific cell_IDs to select. Unselected will
+#' be treated as 'other'
+#' @param show_other_cells logical. whether to plot the 'other' cells.
+#' @param other_cell_color character. Color code(s) to apply to 'other' cells.
+#' @param other_point_size numeric. Size of points for 'other' cells
+#' @param other_cell_alpha numeric. Alpha of 'other' cells
+#' @param instrs giottoInstructions
+#' @keywords internal
+#' @noRd
+giotto_point_3d <- function(pl,
+        data,
+        cell_color = NULL,
+        color_as_factor = TRUE,
+        cell_color_code = NULL,
+        cell_color_gradient = NULL,
+        gradient_limits = NULL,
+        gradient_style = "divergent",
+        gradient_midpoint = NULL,
+        point_size = 3,
+        point_alpha = 1,
+        data_other = NULL,
+        select_cells = NULL,
+        show_other_cells = TRUE,
+        other_cell_color = "lightgrey",
+        other_point_size = 0.5,
+        other_cell_alpha = 3,
+        instrs
+) {
+    # plotly params list init & static params
+    # ** toplevel ** #
+    trace_params <- trace_params_other <- list(
+        type = "scatter3d",
+        mode = "markers",
+        x = ~sdimx,
+        y = ~sdimy,
+        z = ~sdimz
+    )
+    trace_params$colors <- "lightblue" # default with `cell_color` = NULL
+    trace_params$opacity <- point_alpha
+    trace_params_other$name <- "unselected cells"
+    trace_params_other$opacity <- other_cell_alpha
+
+    # ** point aes ** #
+    marker_params <- marker_params_other <- list()
+    marker_params$size <- point_size
+    marker_params_other$size <- other_point_size
+    marker_params_other$color <- other_cell_color
+
+    # finalize data and color
+    if (!is.null(cell_color)) {
+        if (!cell_color %in% colnames(data)) {
+            message(sprintf("`cell_color` '%s' does not exist!", cell_color))
+            return(pl) # return early
+        }
+
+        # finalize color scale
+        if (is.null(cell_color_code)) {
+            if (color_as_factor) { # categorical
+                number_colors <- length(unique(
+                    data[[cell_color]]
+                ))
+                cell_color_code <- set_default_color_discrete_cell(
+                    instrs = instrs
+                )(n = number_colors)
+            } else { # continuous
+                cell_color_code <- set_default_color_continuous_cell(
+                    instrs = instrs,
+                    style = gradient_style,
+                    midpoint = gradient_midpoint,
+                    colors = cell_color_gradient
+                )$palette(seq(0, 1, length.out = 100L))
+            }
+        }
+
+        # finalize data
+        if (color_as_factor) { # categorical
+            data[[cell_color]] <- as.factor(data[[cell_color]])
+        } else { # continuous
+            # assign gradient limits if needed
+            if (!is.null(gradient_limits)) {
+                checkmate::assert_numeric(gradient_limits, len = 2L)
+                lower_lim <- gradient_limits[[1L]]
+                upper_lim <- gradient_limits[[2L]]
+                data[, (cell_color) :=
+                         scales::oob_squish(get(cell_color), gradient_limits)]
+            }
+        }
+        # apply non-default color settings
+        trace_params$color <- data[[cell_color]]
+        trace_params$colors <- cell_color_code
+    }
+    # apply finalized data and marker
+    trace_params$data <- data
+    trace_params$marker <- marker_params
+
+    # other points
+    if (!is.null(select_cells) && isTRUE(show_other_cells)) {
+        trace_params$name <- "selected_cells"
+
+        trace_params_other$data <- data_other
+        trace_params_other$marker <- marker_params_other
+        pl <- do.call(
+            plotly::add_trace, args = c(list(p = pl), trace_params_other)
+        )
+    }
+
+    pl <- do.call(plotly::add_trace, args = c(list(p = pl), trace_params))
+
+    return(pl)
+}
+
 
 
 
