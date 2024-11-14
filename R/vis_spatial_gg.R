@@ -776,6 +776,7 @@ spatPlot2D <- function(gobject,
 #' @family spatial visualizations
 #' @returns ggplot
 #' @examples
+#' # 2D Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #' spatPlot(g, show_image = TRUE, image_name = "image")
 #'
@@ -792,13 +793,39 @@ spatPlot2D <- function(gobject,
 #' )
 #'
 #'
-#' # load another dataset with 3D data
+#' # 3D Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #' starmap <- GiottoData::loadGiottoMini("starmap", verbose = FALSE)
 #'
 #' # default is to rescale plot as a 3D cube
 #' spatPlot3D(starmap, cell_color = "leiden_clus")
 #' # real scaling
-#' spatPlot3D(g, cell_color = "leiden_clus", axis_scale = "real")
+#' spatPlot3D(starmap, cell_color = "leiden_clus", axis_scale = "real")
+#'
+#' # plot with selected cell groups
+#' spatPlot3D(starmap,
+#'     cell_color = "cell_types",
+#'     color_as_factor = TRUE,
+#'     select_cell_groups = c("cell F", "cell C", "cell A"),
+#'     other_point_size = 1
+#' )
+#'
+#' # use the "sequential" style gradient default
+#' spatPlot3D(starmap,
+#'     cell_color = "total_expr",
+#'     color_as_factor = FALSE,
+#'     point_alpha = 0.5,
+#'     axis_scale = "real",
+#'     gradient_style = "sequential"
+#' )
+#'
+#' # specific color gradient
+#' spatPlot3D(starmap,
+#'     cell_color = "total_expr",
+#'     color_as_factor = FALSE,
+#'     point_alpha = 0.7,
+#'     axis_scale = "cube",
+#'     cell_color_gradient = "mako"
+#' )
 #' @export
 #' @seealso \code{\link{spatPlot3D}}
 spatPlot <- function(...) {
@@ -2281,6 +2308,8 @@ spatDimPlot <- function(gobject, ...) {
 #' @inheritParams plot_cow_params
 #' @inheritParams plot_image_params
 #' @inheritParams plot_params
+#' @param plot_method character. How to plot the points. Either "ggplot" for
+#' the default or "scattermore" for a faster rasterized option
 #' @param largeImage_name deprecated
 #' @param spat_loc_name name of spatial locations
 #' @param sdimx x-axis dimension name (default = 'sdimx')

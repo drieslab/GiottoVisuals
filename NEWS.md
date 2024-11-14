@@ -1,3 +1,12 @@
+# GiottoVisuals 0.2.8 (2024/11/14)
+
+## enhancements
+- `spatPlot3D()` now works with non-categorical data. Uses same params as `spatPlot2D()` for color/gradient selection
+
+## changes
+- `spatPlot3D()` `other_point_size` default changed to 3 from 0.5 which was too hard to notice.
+
+
 # GiottoVisuals 0.2.7 (2024/11/08)
 
 ## enhancements

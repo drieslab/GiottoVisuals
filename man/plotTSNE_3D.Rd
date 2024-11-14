@@ -43,6 +43,8 @@ spatial enrichment col)}
 Discrete colors are used when this is TRUE. continuous colors when FALSE.}
     \item{\code{cell_color_code}}{character. discrete colors to use. palette to use or
 named vector of colors}
+    \item{\code{cell_color_gradient}}{character. continuous colors to use. palette to
+use or vector of colors to use (minimum of 2).}
     \item{\code{select_cell_groups}}{select subset of cells/clusters based on
 cell_color parameter}
     \item{\code{select_cells}}{select subset of cells based on cell IDs}

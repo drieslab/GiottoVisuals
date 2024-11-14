@@ -86,6 +86,7 @@ dimPlot3D(
   color_as_factor = TRUE,
   cell_color = NULL,
   cell_color_code = NULL,
+  cell_color_gradient = NULL,
   show_cluster_center = FALSE,
   show_center_label = TRUE,
   center_point_size = 4,
