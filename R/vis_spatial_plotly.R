@@ -702,6 +702,7 @@ dimPlot3D <- function(gobject,
     color_as_factor = TRUE,
     cell_color = NULL,
     cell_color_code = NULL,
+    cell_color_gradient = NULL,
     show_cluster_center = FALSE,
     show_center_label = TRUE,
     center_point_size = 4,
@@ -1225,13 +1226,19 @@ plotPCA_3D <- function(gobject,
     sdimz = NULL,
     spat_enr_names = NULL,
     point_size = 3,
+    point_alpha = 1,
     cell_color = NULL,
     cell_color_code = NULL,
+    cell_color_gradient = NULL,
+    color_as_factor = TRUE,
+    gradient_limits = NULL,
+    gradient_style = "divergent",
+    gradient_midpoint = NULL,
     select_cell_groups = NULL,
     select_cells = NULL,
     show_other_cells = TRUE,
     other_cell_color = "lightgrey",
-    other_point_size = 0.5,
+    other_point_size = 3,
     show_network = FALSE,
     spatial_network_name = "spatial_network",
     network_color = NULL,
@@ -1316,7 +1323,7 @@ plotPCA_3D <- function(gobject,
 
 
     ## create subsets if needed
-    if (!is.null(select_cells) & !is.null(select_cell_groups)) {
+    if (!is.null(select_cells) && !is.null(select_cell_groups)) {
         message("You have selected both individual cell IDs and a group of
         cells")
         group_cell_IDs <- cell_locations_metadata[get(cell_color) %in%
@@ -1361,74 +1368,27 @@ plotPCA_3D <- function(gobject,
 
 
     pl <- plotly::plot_ly()
-    if (!is.null(cell_color)) {
-        if (cell_color %in% colnames(cell_locations_metadata_selected)) {
-            if (is.null(cell_color_code)) {
-                number_colors <- length(unique(
-                    cell_locations_metadata_selected[[cell_color]]
-                ))
-                cell_color_code <- set_default_color_discrete_cell(
-                    instrs = instructions(gobject)
-                )(n = number_colors)
-            }
-            cell_locations_metadata_selected[[cell_color]] <- as.factor(
-                cell_locations_metadata_selected[[cell_color]]
-            )
-            pl <- pl %>% plotly::add_trace(
-                type = "scatter3d", mode = "markers",
-                data = cell_locations_metadata_selected,
-                x = ~sdimx, y = ~sdimy, z = ~sdimz,
-                color = cell_locations_metadata_selected[[cell_color]],
-                colors = cell_color_code,
-                marker = list(size = point_size)
-            )
 
-
-            if (!is.null(select_cells) & show_other_cells) {
-                pl <- pl %>% plotly::add_trace(
-                    type = "scatter3d", mode = "markers",
-                    data = cell_locations_metadata_other,
-                    name = "unselected cells",
-                    x = ~sdimx,
-                    y = ~sdimy,
-                    z = ~sdimz,
-                    marker = list(
-                        size = other_point_size,
-                        color = other_cell_color
-                    ),
-                    opacity = other_cell_alpha
-                )
-            }
-        } else {
-            message("cell_color does not exist!")
-        }
-    } else {
-        pl <- pl %>% plotly::add_trace(
-            type = "scatter3d",
-            data = cell_locations_metadata_selected,
-            x = ~sdimx,
-            y = ~sdimy,
-            z = ~sdimz,
-            mode = "markers",
-            marker = list(size = point_size),
-            colors = "lightblue", name = "selected cells"
-        )
-
-        if (!is.null(select_cells) & show_other_cells) {
-            pl <- pl %>% plotly::add_trace(
-                type = "scatter3d",
-                mode = "markers",
-                data = cell_locations_metadata_other,
-                name = "unselected cells",
-                x = ~sdimx, y = ~sdimy, z = ~sdimz,
-                marker = list(
-                    size = other_point_size,
-                    color = other_cell_color
-                ),
-                opacity = other_cell_alpha
-            )
-        }
-    }
+    ## plot points
+    pl <- giotto_point_3d(pl,
+        data = cell_locations_metadata_selected,
+        cell_color = cell_color,
+        color_as_factor = color_as_factor,
+        cell_color_code = cell_color_code,
+        cell_color_gradient = cell_color_gradient,
+        gradient_limits = gradient_limits,
+        gradient_style = gradient_style,
+        gradient_midpoint = gradient_midpoint,
+        point_size = point_size,
+        point_alpha = point_alpha,
+        data_other = cell_locations_metadata_other,
+        select_cells = select_cells,
+        show_other_cells = show_other_cells,
+        other_cell_color = other_cell_color,
+        other_point_size = other_point_size,
+        other_cell_alpha = other_cell_alpha,
+        instrs = instructions(gobject)
+    )
 
 
     ## plot spatial network
@@ -1499,13 +1459,19 @@ spatPlot3D <- function(gobject,
     sdimz = "sdimz",
     spat_enr_names = NULL,
     point_size = 3,
+    point_alpha = 1,
     cell_color = NULL,
     cell_color_code = NULL,
+    cell_color_gradient = NULL,
+    color_as_factor = TRUE,
+    gradient_limits = NULL,
+    gradient_style = "divergent",
+    gradient_midpoint = NULL,
     select_cell_groups = NULL,
     select_cells = NULL,
     show_other_cells = TRUE,
     other_cell_color = "lightgrey",
-    other_point_size = 0.5,
+    other_point_size = 3,
     other_cell_alpha = 0.5,
     show_network = FALSE,
     spatial_network_name = "Delaunay_network",
@@ -1528,7 +1494,7 @@ spatPlot3D <- function(gobject,
     save_param = list(),
     default_save_name = "spat3D") {
     if (is.null(sdimz)) {
-        message("create 2D plot")
+        vmsg(.is_debug = TRUE, "create 2D plot")
 
         pl <- .spatPlot_2d_plotly(
             gobject = gobject,
@@ -1561,7 +1527,7 @@ spatPlot3D <- function(gobject,
             show_plot = FALSE
         )
     } else {
-        message("create 3D plot")
+        vmsg(.is_debug = TRUE, "create 3D plot")
         pl <- .spatPlot_3d_plotly(
             gobject = gobject,
             spat_unit = spat_unit,
@@ -1570,8 +1536,14 @@ spatPlot3D <- function(gobject,
             sdimy = sdimy,
             sdimz = sdimz,
             point_size = point_size,
+            point_alpha = point_alpha,
             cell_color = cell_color,
+            color_as_factor = color_as_factor,
             cell_color_code = cell_color_code,
+            cell_color_gradient = cell_color_gradient,
+            gradient_limits = gradient_limits,
+            gradient_style = gradient_style,
+            gradient_midpoint = gradient_midpoint,
             select_cell_groups = select_cell_groups,
             select_cells = select_cells,
             show_other_cells = show_other_cells,

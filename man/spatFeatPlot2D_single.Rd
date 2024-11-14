@@ -66,6 +66,9 @@ spatFeatPlot2D_single(
 
 \item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
 
+\item{plot_method}{character. How to plot the points. Either "ggplot" for
+the default or "scattermore" for a faster rasterized option}
+
 \item{show_image}{show a tissue background image}
 
 \item{gimage}{a giotto image}
