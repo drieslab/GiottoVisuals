@@ -1,4 +1,3 @@
-
 .handle_param_dups <- function(x, warn = TRUE, what = "aes") {
     ns <- names(x)
     dups <- duplicated(ns, fromLast = TRUE)
@@ -76,20 +75,21 @@ combine_aes <- function(..., warn_duplicates = TRUE) {
 #' # ----- single step ----- #
 #' p_single <- gg_param(
 #'     data = d,
-#'     x = as.name("xvals"),           # aes
-#'     fill = "green",                 # toplevel
+#'     x = as.name("xvals"), # aes
+#'     fill = "green", # toplevel
 #'     aes(
-#'         size = size_col,            # aes
-#'         y = yvals                   # aes
+#'         size = size_col, # aes
+#'         y = yvals # aes
 #'     ),
-#'     show.legend = TRUE,             # toplevel
+#'     show.legend = TRUE, # toplevel
 #'     list(
-#'         shape = 21,                 # toplevel
-#'         alpha = as.name("values")   # aes
+#'         shape = 21, # toplevel
+#'         alpha = as.name("values") # aes
 #'     )
 #' )
 #'
-#' ggplot() + do.call(geom_point, p_single)
+#' ggplot() +
+#'     do.call(geom_point, p_single)
 #'
 #' # ----- multistep appending ----- #
 #'
@@ -110,14 +110,17 @@ combine_aes <- function(..., warn_duplicates = TRUE) {
 #'
 #' # `quote = TRUE` must be used when using `do.call()` for this
 #' p_multi <- do.call(gg_param, p0, quote = TRUE)
-#' ggplot() + do.call(geom_point, p_multi)
+#' ggplot() +
+#'     do.call(geom_point, p_multi)
 #'
 #' # ----- nested appending ----- #
 #' p_nest <- gg_param(p_single, p_multi)
-#' p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5,]) # change the data to use
+#' p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5, ]) # change the data to use
 #'
-#' ggplot() + do.call(geom_point, p_nest)
-#' ggplot() + do.call(geom_point, p_nest_sub)
+#' ggplot() +
+#'     do.call(geom_point, p_nest)
+#' ggplot() +
+#'     do.call(geom_point, p_nest_sub)
 #' @family ggplot2 plotting wrangling functions
 #' @export
 gg_param <- function(..., data = NULL, warn_duplicates = TRUE) {
@@ -171,7 +174,8 @@ gg_param <- function(..., data = NULL, warn_duplicates = TRUE) {
     a_items <- combine_aes(a_items, warn_duplicates = warn_duplicates)
     p_items <- input[!is_nse]
     p_items <- .handle_param_dups(
-        p_items, warn = warn_duplicates, what = "toplevel"
+        p_items,
+        warn = warn_duplicates, what = "toplevel"
     )
 
     p_items$mapping <- a_items
@@ -179,6 +183,3 @@ gg_param <- function(..., data = NULL, warn_duplicates = TRUE) {
     class(p_items) <- "gplot_param"
     return(p_items)
 }
-
-
-

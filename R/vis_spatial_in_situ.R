@@ -85,55 +85,56 @@
 #'
 #' @family In Situ visualizations
 #' @export
-spatInSituPlotPoints <- function(gobject,
-    show_image = FALSE,
-    gimage = NULL,
-    image_name = NULL,
-    largeImage_name = NULL,
-    spat_unit = NULL,
-    spat_loc_name = NULL,
-    feats = NULL,
-    feat_type = "rna",
-    feats_color_code = NULL,
-    feat_shape_code = NULL,
-    sdimx = "x",
-    sdimy = "y",
-    xlim = NULL,
-    ylim = NULL,
-    spat_enr_names = NULL,
-    point_size = 1.5,
-    stroke = 0.5,
-    expand_counts = FALSE,
-    count_info_column = "count",
-    jitter = c(0, 0),
-    show_polygon = TRUE,
-    use_overlap = TRUE,
-    polygon_feat_type = "cell",
-    polygon_color = "grey",
-    polygon_bg_color = "black",
-    polygon_fill = NULL,
-    polygon_fill_gradient = NULL,
-    polygon_fill_gradient_midpoint = NULL,
-    polygon_fill_gradient_style = c("divergent", "sequential"),
-    polygon_fill_as_factor = NULL,
-    polygon_fill_code = NULL,
-    polygon_alpha = NULL,
-    polygon_line_size = 0.4,
-    axis_text = 8,
-    axis_title = 8,
-    legend_text = 6,
-    coord_fix_ratio = 1,
-    background_color = "black",
-    show_legend = TRUE,
-    plot_method = c("ggplot", "scattermore", "scattermost"),
-    plot_last = c("polygons", "points"),
-    theme_param = list(),
-    show_plot = NULL,
-    return_plot = NULL,
-    save_plot = NULL,
-    save_param = list(),
-    default_save_name = "spatInSituPlotPoints",
-    verbose = TRUE) {
+spatInSituPlotPoints <- function(
+        gobject,
+        show_image = FALSE,
+        gimage = NULL,
+        image_name = NULL,
+        largeImage_name = NULL,
+        spat_unit = NULL,
+        spat_loc_name = NULL,
+        feats = NULL,
+        feat_type = "rna",
+        feats_color_code = NULL,
+        feat_shape_code = NULL,
+        sdimx = "x",
+        sdimy = "y",
+        xlim = NULL,
+        ylim = NULL,
+        spat_enr_names = NULL,
+        point_size = 1.5,
+        stroke = 0.5,
+        expand_counts = FALSE,
+        count_info_column = "count",
+        jitter = c(0, 0),
+        show_polygon = TRUE,
+        use_overlap = TRUE,
+        polygon_feat_type = "cell",
+        polygon_color = "grey",
+        polygon_bg_color = "black",
+        polygon_fill = NULL,
+        polygon_fill_gradient = NULL,
+        polygon_fill_gradient_midpoint = NULL,
+        polygon_fill_gradient_style = c("divergent", "sequential"),
+        polygon_fill_as_factor = NULL,
+        polygon_fill_code = NULL,
+        polygon_alpha = NULL,
+        polygon_line_size = 0.4,
+        axis_text = 8,
+        axis_title = 8,
+        legend_text = 6,
+        coord_fix_ratio = 1,
+        background_color = "black",
+        show_legend = TRUE,
+        plot_method = c("ggplot", "scattermore", "scattermost"),
+        plot_last = c("polygons", "points"),
+        theme_param = list(),
+        show_plot = NULL,
+        return_plot = NULL,
+        save_plot = NULL,
+        save_param = list(),
+        default_save_name = "spatInSituPlotPoints",
+        verbose = TRUE) {
     # set polygon_feat_type
     avail_poly_names <- list_spatial_info_names(gobject = gobject)
     if (polygon_feat_type == "cell" &&
@@ -141,7 +142,7 @@ spatInSituPlotPoints <- function(gobject,
         polygon_feat_type <- spat_unit
         if (verbose) {
             wrap_msg(
-            "[polygon_feat_type] 'cell' not discovered in polygon names.
+                "[polygon_feat_type] 'cell' not discovered in polygon names.
             Defaulting to spat_unit."
             )
         }
@@ -175,7 +176,6 @@ spatInSituPlotPoints <- function(gobject,
 
     ## giotto image ##
     if (isTRUE(show_image)) {
-
         # get 1 or more images
         gimage <- getGiottoImage(
             gobject = gobject,
@@ -189,6 +189,11 @@ spatInSituPlotPoints <- function(gobject,
     ## 0. plot image ##
     if (isTRUE(show_image) &&
         !is.null(gimage)) {
+
+        if (!is.null(xlim) && !is.null(ylim)) {
+            e <- ext(c(xlim, ylim))
+        }
+
         plot <- plot_spat_image_layer_ggplot(
             gg_obj = plot,
             gobject = gobject,
@@ -196,7 +201,8 @@ spatInSituPlotPoints <- function(gobject,
             feat_type = feat_type,
             spat_loc_name = spat_loc_name,
             polygon_feat_type = polygon_feat_type,
-            gimage = gimage
+            gimage = gimage,
+            ext = e
         )
 
         if (isTRUE(verbose)) wrap_msg("plot image layer done")
@@ -256,7 +262,6 @@ spatInSituPlotPoints <- function(gobject,
 
         ## 2. plot polygons/morphology second/last
         if (isTRUE(show_polygon)) {
-
             if (isTRUE(show_image)) {
                 polygon_alpha <- polygon_alpha %null% 0.5
             } else {
@@ -419,31 +424,30 @@ spatInSituPlotPoints <- function(gobject,
     plot <- plot + do.call(.gg_theme, args = gg_theme_args)
 
 
-  # subset data based on x and y limits
-  if(!is.null(xlim)) {
-    plot <- plot + ggplot2::xlim(xlim)
-  }
-  if(!is.null(ylim)) {
-    plot <- plot + ggplot2::ylim(ylim)
-  }
+    # subset data based on x and y limits
+    if (!is.null(xlim)) {
+        plot <- plot + ggplot2::xlim(xlim)
+    }
+    if (!is.null(ylim)) {
+        plot <- plot + ggplot2::ylim(ylim)
+    }
 
-  # fix coordinates
-  if(!is.null(coord_fix_ratio)) {
-    plot = plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-  }
+    # fix coordinates
+    if (!is.null(coord_fix_ratio)) {
+        plot <- plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
+    }
 
 
-  return(plot_output_handler(
-    gobject = gobject,
-    plot_object = plot,
-    save_plot = save_plot,
-    return_plot = return_plot,
-    show_plot = show_plot,
-    default_save_name = default_save_name,
-    save_param = save_param,
-    else_return = NULL
-  ))
-
+    return(plot_output_handler(
+        gobject = gobject,
+        plot_object = plot,
+        save_plot = save_plot,
+        return_plot = return_plot,
+        show_plot = show_plot,
+        default_save_name = default_save_name,
+        save_param = save_param,
+        else_return = NULL
+    ))
 }
 
 
@@ -469,27 +473,26 @@ spatInSituPlotPoints <- function(gobject,
 #' @return ggplot
 #' @details This function can plot one feature for one modality.
 #' @keywords internal
-.spatInSituPlotHex_single <- function(
-        gobject,
-        feat = NULL,
-        feat_type = "rna",
-        sdimx = "x",
-        sdimy = "y",
-        binwidth = NULL,
-        min_axis_bins = NULL,
-        alpha = 0.5,
-        show_polygon = TRUE,
-        polygon_feat_type = "cell",
-        polygon_color = "black",
-        polygon_fill = NULL,
-        polygon_fill_as_factor = NULL,
-        polygon_alpha = 0.5,
-        polygon_size = 0.5,
-        coord_fix_ratio = NULL,
-        axis_text = 8,
-        axis_title = 8,
-        legend_text = 6,
-        background_color = "black") {
+.spatInSituPlotHex_single <- function(gobject,
+    feat = NULL,
+    feat_type = "rna",
+    sdimx = "x",
+    sdimy = "y",
+    binwidth = NULL,
+    min_axis_bins = NULL,
+    alpha = 0.5,
+    show_polygon = TRUE,
+    polygon_feat_type = "cell",
+    polygon_color = "black",
+    polygon_fill = NULL,
+    polygon_fill_as_factor = NULL,
+    polygon_alpha = 0.5,
+    polygon_size = 0.5,
+    coord_fix_ratio = NULL,
+    axis_text = 8,
+    axis_title = 8,
+    legend_text = 6,
+    background_color = "black") {
     if (is.null(feat)) {
         stop("You need to select a feature (feat) and modify feature
             types (feat_type) if needed \n")
@@ -597,40 +600,41 @@ spatInSituPlotPoints <- function(gobject,
 #' @returns ggplot
 #' @examples
 #' g <- GiottoData::loadGiottoMini("vizgen")
-#' spatInSituPlotHex(g, feats = c("Mlc1", "Gprc5b", "Gfap"),
-#' polygon_feat_type = "z0")
+#' spatInSituPlotHex(g,
+#'     feats = c("Mlc1", "Gprc5b", "Gfap"),
+#'     polygon_feat_type = "z0"
+#' )
 #' @export
-spatInSituPlotHex <- function(
-        gobject,
-        feats = NULL,
-        feat_type = "rna",
-        sdimx = "x",
-        sdimy = "y",
-        binwidth = NULL,
-        min_axis_bins = 10,
-        alpha = 0.5,
-        show_polygon = TRUE,
-        polygon_feat_type = "cell",
-        polygon_color = "black",
-        polygon_fill = NULL,
-        polygon_fill_as_factor = NULL,
-        polygon_alpha = 0.5,
-        polygon_size = deprecated(),
-        polygon_line_size = 0.5,
-        coord_fix_ratio = 1,
-        axis_text = 8,
-        axis_title = 8,
-        legend_text = 6,
-        background_color = "white",
-        cow_n_col = NULL,
-        cow_rel_h = 1,
-        cow_rel_w = 1,
-        cow_align = "h",
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "spatInSituPlotHex") {
+spatInSituPlotHex <- function(gobject,
+    feats = NULL,
+    feat_type = "rna",
+    sdimx = "x",
+    sdimy = "y",
+    binwidth = NULL,
+    min_axis_bins = 10,
+    alpha = 0.5,
+    show_polygon = TRUE,
+    polygon_feat_type = "cell",
+    polygon_color = "black",
+    polygon_fill = NULL,
+    polygon_fill_as_factor = NULL,
+    polygon_alpha = 0.5,
+    polygon_size = deprecated(),
+    polygon_line_size = 0.5,
+    coord_fix_ratio = 1,
+    axis_text = 8,
+    axis_title = 8,
+    legend_text = 6,
+    background_color = "white",
+    cow_n_col = NULL,
+    cow_rel_h = 1,
+    cow_rel_w = 1,
+    cow_align = "h",
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "spatInSituPlotHex") {
     # deprecate
     if (GiottoUtils::is_present(polygon_size)) {
         deprecate_warn(
@@ -751,25 +755,24 @@ spatInSituPlotHex <- function(
 #' @return ggplot
 #' @details This function can plot one feature for one modality.
 #' @keywords internal
-.spatInSituPlotDensity_single <- function(
-        gobject,
-        feat = NULL,
-        feat_type = "rna",
-        sdimx = "x",
-        sdimy = "y",
-        alpha = 0.95,
-        show_polygon = TRUE,
-        polygon_feat_type = "cell",
-        polygon_color = "black",
-        polygon_fill = NULL,
-        polygon_fill_as_factor = NULL,
-        polygon_alpha = 0.5,
-        polygon_size = 0.5,
-        coord_fix_ratio = NULL,
-        axis_text = 8,
-        axis_title = 8,
-        legend_text = 6,
-        background_color = "black") {
+.spatInSituPlotDensity_single <- function(gobject,
+    feat = NULL,
+    feat_type = "rna",
+    sdimx = "x",
+    sdimy = "y",
+    alpha = 0.95,
+    show_polygon = TRUE,
+    polygon_feat_type = "cell",
+    polygon_color = "black",
+    polygon_fill = NULL,
+    polygon_fill_as_factor = NULL,
+    polygon_alpha = 0.5,
+    polygon_size = 0.5,
+    coord_fix_ratio = NULL,
+    axis_text = 8,
+    axis_title = 8,
+    legend_text = 6,
+    background_color = "black") {
     if (is.null(feat)) {
         stop("You need to select a feature (feat) and modify feature types
             (feat_type) if needed \n")
@@ -872,39 +875,40 @@ spatInSituPlotHex <- function(
 #' @returns ggplot
 #' @examples
 #' g <- GiottoData::loadGiottoMini("vizgen")
-#' spatInSituPlotDensity(g, feats = c("Mlc1", "Gprc5b", "Gfap"),
-#' polygon_feat_type = "z0")
+#' spatInSituPlotDensity(g,
+#'     feats = c("Mlc1", "Gprc5b", "Gfap"),
+#'     polygon_feat_type = "z0"
+#' )
 #'
 #' @export
-spatInSituPlotDensity <- function(
-        gobject,
-        feats = NULL,
-        feat_type = "rna",
-        sdimx = "x",
-        sdimy = "y",
-        alpha = 0.95,
-        show_polygon = TRUE,
-        polygon_feat_type = "cell",
-        polygon_color = "black",
-        polygon_fill = NULL,
-        polygon_fill_as_factor = NULL,
-        polygon_alpha = 0.5,
-        polygon_size = deprecated(),
-        polygon_line_size = 0.5,
-        coord_fix_ratio = 1,
-        axis_text = 8,
-        axis_title = 8,
-        legend_text = 6,
-        background_color = "black",
-        cow_n_col = NULL,
-        cow_rel_h = 1,
-        cow_rel_w = 1,
-        cow_align = "h",
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "spatInSituPlotDensity") {
+spatInSituPlotDensity <- function(gobject,
+    feats = NULL,
+    feat_type = "rna",
+    sdimx = "x",
+    sdimy = "y",
+    alpha = 0.95,
+    show_polygon = TRUE,
+    polygon_feat_type = "cell",
+    polygon_color = "black",
+    polygon_fill = NULL,
+    polygon_fill_as_factor = NULL,
+    polygon_alpha = 0.5,
+    polygon_size = deprecated(),
+    polygon_line_size = 0.5,
+    coord_fix_ratio = 1,
+    axis_text = 8,
+    axis_title = 8,
+    legend_text = 6,
+    background_color = "black",
+    cow_n_col = NULL,
+    cow_rel_h = 1,
+    cow_rel_w = 1,
+    cow_align = "h",
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "spatInSituPlotDensity") {
     # deprecate
     if (GiottoUtils::is_present(polygon_size)) {
         deprecate_warn(
@@ -1039,12 +1043,11 @@ spatInSituPlotDensity <- function(
 #'
 #' @keywords internal
 #' @export
-expand_feature_info <- function(
-        spatial_feat_info,
-        expand_counts = FALSE,
-        count_info_column = "count",
-        jitter = c(0, 0),
-        verbose = TRUE) {
+expand_feature_info <- function(spatial_feat_info,
+    expand_counts = FALSE,
+    count_info_column = "count",
+    jitter = c(0, 0),
+    verbose = TRUE) {
     # data.table variables
     feat_ID <- x <- y <- feat <- spat_unit <- NULL
 

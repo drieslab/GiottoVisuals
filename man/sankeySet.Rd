@@ -31,8 +31,10 @@ a \code{giottoSankeyPlan}
 Create a \code{giottoSankeyPlan} with one set of annotations
 }
 \examples{
-my_sankeyplan <- sankeySet(spat_unit = "cell", 
-feat_type = "rna", col = "leiden_clus")
+my_sankeyplan <- sankeySet(
+    spat_unit = "cell",
+    feat_type = "rna", col = "leiden_clus"
+)
 
 }
 \keyword{plotting}

@@ -12,8 +12,9 @@
 #' set_default_cow_n_col(nr_plots = 4)
 #'
 #' @export
-set_default_cow_n_col <- function(cow_n_col = NULL,
-    nr_plots) {
+set_default_cow_n_col <- function(
+        cow_n_col = NULL,
+        nr_plots) {
     if (is.null(cow_n_col)) {
         cow_n_col <- ceiling(sqrt(nr_plots))
     } else {
@@ -76,8 +77,10 @@ set_default_cow_n_col <- function(cow_n_col = NULL,
 #' @param \dots additional params to pass
 #' @returns a palette function
 #' @examples
-#' set_default_color_discrete(colors = "#eb4034",
-#' instr_rev = NULL, instr_strategy = NULL)
+#' set_default_color_discrete(
+#'     colors = "#eb4034",
+#'     instr_rev = NULL, instr_strategy = NULL
+#' )
 NULL
 
 
@@ -91,11 +94,12 @@ NULL
 #' pass specific `giottoInstructions` params
 #'
 #' @export
-set_default_color_discrete <- function(colors = NULL,
-    ...,
-    instr_pal,
-    instr_rev,
-    instr_strategy) {
+set_default_color_discrete <- function(
+        colors = NULL,
+        ...,
+        instr_pal,
+        instr_rev,
+        instr_strategy) {
     # global giotto options
     opt_pal <- getOption("giotto.color_d_pal", "distinct")
     opt_rev <- getOption("giotto.color_d_rev", FALSE)
@@ -138,9 +142,10 @@ set_default_color_discrete <- function(colors = NULL,
 #' @rdname set_default_color_discrete
 #' @returns vector of color ids
 #' @export
-set_default_color_discrete_cell <- function(colors = NULL,
-    instrs,
-    ...) {
+set_default_color_discrete_cell <- function(
+        colors = NULL,
+        instrs,
+        ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "cell_color_d_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "cell_color_d_rev", NULL)
@@ -160,9 +165,10 @@ set_default_color_discrete_cell <- function(colors = NULL,
 
 #' @rdname set_default_color_discrete
 #' @export
-set_default_color_discrete_poly <- function(colors = NULL,
-    instrs,
-    ...) {
+set_default_color_discrete_poly <- function(
+        colors = NULL,
+        instrs,
+        ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "poly_color_d_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "poly_color_d_rev", NULL)
@@ -182,9 +188,10 @@ set_default_color_discrete_poly <- function(colors = NULL,
 
 #' @rdname set_default_color_discrete
 #' @export
-set_default_color_discrete_feat <- function(colors = NULL,
-    instrs,
-    ...) {
+set_default_color_discrete_feat <- function(
+        colors = NULL,
+        instrs,
+        ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "feat_color_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "feat_color_rev", NULL)
@@ -204,9 +211,10 @@ set_default_color_discrete_feat <- function(colors = NULL,
 
 #' @rdname set_default_color_discrete
 #' @export
-set_default_color_discrete_heatmap_clus <- function(colors = NULL,
-    instrs,
-    ...) {
+set_default_color_discrete_heatmap_clus <- function(
+        colors = NULL,
+        instrs,
+        ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(
         instrs, "heatmap_clus_color_pal",
@@ -340,14 +348,14 @@ NULL
 #' `giottoInstructions` params
 #' @export
 set_default_color_continuous <- function(
-    colors = NULL, # used for function inputs
-    midpoint = NULL,
-    style = c("divergent", "sequential"),
-    ...,
-    instr_pal,
-    instr_rev,
-    data_default = NULL,
-    type = c("fill", "color")) {
+        colors = NULL, # used for function inputs
+        midpoint = NULL,
+        style = c("divergent", "sequential"),
+        ...,
+        instr_pal,
+        instr_rev,
+        data_default = NULL,
+        type = c("fill", "color")) {
     if (!is.null(midpoint)) checkmate::assert_numeric(midpoint)
     if (!is.null(instr_pal)) checkmate::assert_character(instr_pal)
     if (!is.null(instr_rev)) checkmate::assert_logical(instr_rev)
@@ -418,8 +426,7 @@ set_default_color_continuous <- function(
 }
 
 
-.evaluate_color_gradient_divergent <- function(
-        colors, reverse, midpoint, ..., grad2, grad, gradn) {
+.evaluate_color_gradient_divergent <- function(colors, reverse, midpoint, ..., grad2, grad, gradn) {
     if (is.null(midpoint)) midpoint <- 0
 
     if (inherits(colors, "character")) {
@@ -465,8 +472,7 @@ set_default_color_continuous <- function(
     gradient
 }
 
-.evaluate_color_gradient_sequential <- function(
-        colors, reverse, ..., gradn, grad) {
+.evaluate_color_gradient_sequential <- function(colors, reverse, ..., gradn, grad) {
     if (inherits(colors, "character")) {
         if (length(colors) == 3L) {
             # assume simple palette if 3 entries in vector
@@ -501,13 +507,12 @@ set_default_color_continuous <- function(
 
 #' @rdname set_default_color_continuous
 #' @export
-set_default_color_continuous_cell <- function(
-        colors = NULL,
-        instrs,
-        midpoint = NULL,
-        style = "divergent",
-        ...,
-        data_default = NULL) {
+set_default_color_continuous_cell <- function(colors = NULL,
+    instrs,
+    midpoint = NULL,
+    style = "divergent",
+    ...,
+    data_default = NULL) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "cell_color_c_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "cell_color_c_rev", NULL)
@@ -525,12 +530,11 @@ set_default_color_continuous_cell <- function(
 
 #' @rdname set_default_color_continuous
 #' @export
-set_default_color_continuous_poly <- function(
-        colors = NULL,
-        instrs,
-        midpoint = NULL,
-        style = "divergent",
-        ...) {
+set_default_color_continuous_poly <- function(colors = NULL,
+    instrs,
+    midpoint = NULL,
+    style = "divergent",
+    ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "poly_color_c_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "poly_color_c_rev", NULL)
@@ -548,12 +552,11 @@ set_default_color_continuous_poly <- function(
 
 #' @rdname set_default_color_continuous
 #' @export
-set_default_color_continuous_heatmap <- function(
-        colors = NULL,
-        instrs,
-        midpoint = NULL,
-        style = "divergent",
-        ...) {
+set_default_color_continuous_heatmap <- function(colors = NULL,
+    instrs,
+    midpoint = NULL,
+    style = "divergent",
+    ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "heatmap_color_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "heatmap_color_rev", NULL)
@@ -570,12 +573,11 @@ set_default_color_continuous_heatmap <- function(
 
 #' @rdname set_default_color_continuous
 #' @export
-set_default_color_continuous_CCcom_heatmap <- function(
-        colors = NULL,
-        instrs,
-        midpoint = NULL,
-        style = "divergent",
-        ...) {
+set_default_color_continuous_CCcom_heatmap <- function(colors = NULL,
+    instrs,
+    midpoint = NULL,
+    style = "divergent",
+    ...) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "CCcom_heatmap_color_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "CCcom_heatmap_color_rev", NULL)
@@ -595,16 +597,15 @@ set_default_color_continuous_CCcom_heatmap <- function(
 
 #' @rdname set_default_color_continuous
 #' @export
-set_default_color_continuous_CCcom_dotplot <- function(
-        colors = NULL,
-        instrs,
-        midpoint = NULL,
-        style = "divergent",
-        ...,
-        type = c("fill", "color"),
-        data_default = list(
-            pal = c("darkblue", "blue", "white", "red", "darkred")
-        )) {
+set_default_color_continuous_CCcom_dotplot <- function(colors = NULL,
+    instrs,
+    midpoint = NULL,
+    style = "divergent",
+    ...,
+    type = c("fill", "color"),
+    data_default = list(
+        pal = c("darkblue", "blue", "white", "red", "darkred")
+    )) {
     # read instructions
     instr_pal <- readGiottoInstructions(instrs, "CCcom_dotplot_color_pal", NULL)
     instr_rev <- readGiottoInstructions(instrs, "CCcom_dotplot_color_rev", NULL)

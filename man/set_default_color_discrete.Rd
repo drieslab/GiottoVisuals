@@ -83,6 +83,8 @@ defaults setting.
 
 }}
 \examples{
-set_default_color_discrete(colors = "#eb4034",
-instr_rev = NULL, instr_strategy = NULL)
+set_default_color_discrete(
+    colors = "#eb4034",
+    instr_rev = NULL, instr_strategy = NULL
+)
 }

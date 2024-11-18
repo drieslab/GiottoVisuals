@@ -15,8 +15,9 @@
 #' gg_simple_scatter(data = x, x = "x", y = "y")
 #'
 #' @export
-gg_simple_scatter <- function(ggobject = NULL, data, x, y,
-    xlab = "x", ylab = "y", main = NULL, ...) {
+gg_simple_scatter <- function(
+        ggobject = NULL, data, x, y,
+        xlab = "x", ylab = "y", main = NULL, ...) {
     pl <- gg_input(ggobject)
 
     pl <- pl +

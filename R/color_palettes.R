@@ -23,12 +23,11 @@
 #' r <- terra::rast(f)
 #' terra::plot(r, col = getColors(pal = "Spectral", n = 100))
 #' @export
-getColors <- function(
-        pal = "viridis",
-        n = 100,
-        rev = FALSE,
-        src = NULL,
-        strategy = c("interpolate")) {
+getColors <- function(pal = "viridis",
+    n = 100,
+    rev = FALSE,
+    src = NULL,
+    strategy = c("interpolate")) {
     checkmate::assert_numeric(n, len = 1L)
     checkmate::assert_character(pal, len = 1L)
     checkmate::assert_logical(rev, len = 1L)

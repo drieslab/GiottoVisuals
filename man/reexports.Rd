@@ -15,7 +15,7 @@ a function to create continous colors
 }
 \examples{
 colorRamp2::colorRamp2(breaks = seq_len(2), colors = c("blue", "red"))
- 
+
 }
 \keyword{internal}
 \description{
