@@ -201,11 +201,13 @@ setMethod( # remove all
 #' @param x giottoSankeyPlan
 #' @returns character
 #' @examples
-#' my_sankeyplan <- sankeySet(spat_unit = "cell", 
-#' feat_type = "rna", col = "leiden_clus")
+#' my_sankeyplan <- sankeySet(
+#'     spat_unit = "cell",
+#'     feat_type = "rna", col = "leiden_clus"
+#' )
 #' my_sankeyplan <- `sankeyLabel<-`(my_sankeyplan, value = "my_label")
 #' sankeyLabel(my_sankeyplan)
-#' 
+#'
 #' @export
 sankeyLabel <- function(x) {
     return(x@set_label)
@@ -215,8 +217,10 @@ sankeyLabel <- function(x) {
 #' @param value values to set
 #' @returns a `giottoSankeyPlan`
 #' @examples
-#' my_sankeyplan <- sankeySet(spat_unit = "cell", 
-#' feat_type = "rna", col = "leiden_clus")
+#' my_sankeyplan <- sankeySet(
+#'     spat_unit = "cell",
+#'     feat_type = "rna", col = "leiden_clus"
+#' )
 #' my_sankeyplan <- `sankeyLabel<-`(my_sankeyplan, value = "my_label")
 #' @export
 `sankeyLabel<-` <- function(x, value) {
@@ -242,9 +246,11 @@ setMethod(
         # update addresses
         e1@set_address <- rbind(e1@set_address, e2@set_address)
         if (any(duplicated(
-            e1@set_address[, c("spat_unit", "feat_type", "col")]))) {
+            e1@set_address[, c("spat_unit", "feat_type", "col")]
+        ))) {
             stop(
-            "Not possible to append more than one reference to the same node")
+                "Not possible to append more than one reference to the same node"
+            )
             # TODO try to recover
         }
 
@@ -286,15 +292,18 @@ setMethod(
 #' @param label (optional) character label for a set
 #' @returns a `giottoSankeyPlan`
 #' @examples
-#' my_sankeyplan <- sankeySet(spat_unit = "cell", 
-#' feat_type = "rna", col = "leiden_clus")
-#' 
+#' my_sankeyplan <- sankeySet(
+#'     spat_unit = "cell",
+#'     feat_type = "rna", col = "leiden_clus"
+#' )
+#'
 #' @keywords plotting sankey
 #' @export
-sankeySet <- function(spat_unit = NULL,
-    feat_type = NULL,
-    col, index = NULL,
-    label = NA_character_) {
+sankeySet <- function(
+        spat_unit = NULL,
+        feat_type = NULL,
+        col, index = NULL,
+        label = NA_character_) {
     x <- giottoSankeyPlan(
         set_address = data.table::data.table(
             spat_unit = spat_unit,
@@ -315,7 +324,7 @@ sankeySet <- function(spat_unit = NULL,
 #' @param index new index subset, provided in the same order as the set_id
 #' @returns a `giottoSankeyPlan`
 #' @keywords plotting sankey
-#' 
+#'
 #' @export
 subsetSankeySet <- function(x, set_id, index = list()) {
     if (!is.list(index)) index <- list(index)
@@ -339,10 +348,12 @@ subsetSankeySet <- function(x, set_id, index = list()) {
 #' @param x giottoSankeyPlan object
 #' @returns a `giottoSankeyPlan`
 #' @examples
-#' my_sankeyplan <- sankeySet(spat_unit = "cell", 
-#' feat_type = "rna", col = "leiden_clus")
+#' my_sankeyplan <- sankeySet(
+#'     spat_unit = "cell",
+#'     feat_type = "rna", col = "leiden_clus"
+#' )
 #' my_sankeyplan <- sankeySetAddresses(my_sankeyplan)
-#' 
+#'
 #' @export
 #' @keywords plotting sankey
 sankeySetAddresses <- function(x) {
@@ -581,12 +592,13 @@ setMethod(
         x = "giotto",
         y = "giottoSankeyPlan"
     ),
-    function(x,
-    y,
-    meta_type = c("cell", "feat"),
-    focus_names = NULL,
-    unfocused_color = FALSE,
-    ...) {
+    function(
+        x,
+        y,
+        meta_type = c("cell", "feat"),
+        focus_names = NULL,
+        unfocused_color = FALSE,
+        ...) {
         GiottoUtils::package_check("networkD3")
         meta_type <- match.arg(meta_type, choices = c("cell", "feat"))
         y@data_type <- meta_type
@@ -642,16 +654,15 @@ setMethod(
         x = "giotto",
         y = "character"
     ),
-    function(
-        x,
-        y,
-        spat_unit = NULL,
-        feat_type = NULL,
-        meta_type = c("cell", "feat"),
-        idx = NULL,
-        focus_names = NULL,
-        unfocused_color = FALSE,
-        ...) {
+    function(x,
+    y,
+    spat_unit = NULL,
+    feat_type = NULL,
+    meta_type = c("cell", "feat"),
+    idx = NULL,
+    focus_names = NULL,
+    unfocused_color = FALSE,
+    ...) {
         GiottoUtils::package_check("networkD3")
         checkmate::assert_character(y, len = 2L)
 
@@ -819,18 +830,19 @@ setMethod(
 #' additional params for controlling the plot.
 #' @returns networkd3 sankey
 #' @keywords internal
-.sankey_networkd3 <- function(Links,
-    Nodes,
-    Source = "source",
-    Target = "target",
-    Value = "value",
-    NodeID = "name",
-    nodePadding = 1,
-    sinksRight = FALSE,
-    focus_names = NULL,
-    unfocused_replacer = "",
-    unfocused_color = FALSE,
-    ...) {
+.sankey_networkd3 <- function(
+        Links,
+        Nodes,
+        Source = "source",
+        Target = "target",
+        Value = "value",
+        NodeID = "name",
+        nodePadding = 1,
+        sinksRight = FALSE,
+        focus_names = NULL,
+        unfocused_replacer = "",
+        unfocused_color = FALSE,
+        ...) {
     # NSE vars
     color <- NULL
 

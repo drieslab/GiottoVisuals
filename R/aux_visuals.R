@@ -2,6 +2,34 @@
 NULL
 
 
+# groupby ####
+
+# split apart a table of data based on a group by column
+.groupby <- function(data, group_by, group_by_subset = NULL) {
+    possible_groups <- colnames(data)
+
+    ## error if group_by col is not found
+    if (!group_by %in% possible_groups) {
+        stop("group_by ", group_by, " was not found in pDataDT()")
+    }
+
+    # subset unique_groups if needed
+    if (!is.null(group_by_subset)) {
+        unique_groups <- unique(data[[group_by]])
+        not_found <- group_by_subset[!group_by_subset %in% unique_groups]
+        if (length(not_found) > 0) {
+            message("the following subset was not found: ", not_found)
+        }
+        unique_groups <- unique_groups[unique_groups %in% group_by_subset]
+
+        # subset data to only group_by_subset
+        data <- data[get(group_by) %in% unique_groups]
+    }
+
+    datalist <- split(data, data[[group_by]])
+}
+
+
 # clusters ####
 
 #' @title Decide cluster order
@@ -21,17 +49,16 @@ NULL
 #' @return custom
 #' @details Calculates order for clusters.
 #' @keywords internal
-.decide_cluster_order <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c("normalized", "scaled", "custom"),
-        feats,
-        cluster_column = NULL,
-        cluster_order = c("size", "correlation", "custom"),
-        cluster_custom_order = NULL,
-        cor_method = "pearson",
-        hclust_method = "ward.D") {
+.decide_cluster_order <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c("normalized", "scaled", "custom"),
+    feats,
+    cluster_column = NULL,
+    cluster_order = c("size", "correlation", "custom"),
+    cluster_custom_order = NULL,
+    cor_method = "pearson",
+    hclust_method = "ward.D") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,
@@ -177,13 +204,12 @@ gg_input <- function(ggobject) {
 #' @keywords internal
 #' @noRd
 #' @returns ggplot2::geom_point layer
-giotto_point <- function(
-        plot_method = c("ggplot", "scattermore", "scattermost"),
-        size = 1,
-        ext,
-        scattermost_xy = NULL,
-        scattermost_color = NULL,
-        ...) {
+giotto_point <- function(plot_method = c("ggplot", "scattermore", "scattermost"),
+    size = 1,
+    ext,
+    scattermost_xy = NULL,
+    scattermost_color = NULL,
+    ...) {
     plot_method <- match.arg(
         arg = plot_method,
         choices = c("ggplot", "scattermore", "scattermost")
@@ -252,24 +278,23 @@ giotto_point <- function(
 #' @keywords internal
 #' @noRd
 giotto_point_3d <- function(pl,
-        data,
-        cell_color = NULL,
-        color_as_factor = TRUE,
-        cell_color_code = NULL,
-        cell_color_gradient = NULL,
-        gradient_limits = NULL,
-        gradient_style = "divergent",
-        gradient_midpoint = NULL,
-        point_size = 3,
-        point_alpha = 1,
-        data_other = NULL,
-        select_cells = NULL,
-        show_other_cells = TRUE,
-        other_cell_color = "lightgrey",
-        other_point_size = 0.5,
-        other_cell_alpha = 3,
-        instrs
-) {
+    data,
+    cell_color = NULL,
+    color_as_factor = TRUE,
+    cell_color_code = NULL,
+    cell_color_gradient = NULL,
+    gradient_limits = NULL,
+    gradient_style = "divergent",
+    gradient_midpoint = NULL,
+    point_size = 3,
+    point_alpha = 1,
+    data_other = NULL,
+    select_cells = NULL,
+    show_other_cells = TRUE,
+    other_cell_color = "lightgrey",
+    other_point_size = 0.5,
+    other_cell_alpha = 3,
+    instrs) {
     # plotly params list init & static params
     # ** toplevel ** #
     trace_params <- trace_params_other <- list(
@@ -326,7 +351,7 @@ giotto_point_3d <- function(pl,
                 lower_lim <- gradient_limits[[1L]]
                 upper_lim <- gradient_limits[[2L]]
                 data[, (cell_color) :=
-                         scales::oob_squish(get(cell_color), gradient_limits)]
+                    scales::oob_squish(get(cell_color), gradient_limits)]
             }
         }
         # apply non-default color settings
@@ -344,7 +369,8 @@ giotto_point_3d <- function(pl,
         trace_params_other$data <- data_other
         trace_params_other$marker <- marker_params_other
         pl <- do.call(
-            plotly::add_trace, args = c(list(p = pl), trace_params_other)
+            plotly::add_trace,
+            args = c(list(p = pl), trace_params_other)
         )
     }
 
@@ -386,13 +412,14 @@ mid_rescaler <- function(mid) {
 #' @returns edges in network as data.table
 #'
 #' @export
-plotly_network <- function(network,
-    x = "sdimx_begin",
-    y = "sdimy_begin",
-    z = "sdimz_begin",
-    x_end = "sdimx_end",
-    y_end = "sdimy_end",
-    z_end = "sdimz_end") {
+plotly_network <- function(
+        network,
+        x = "sdimx_begin",
+        y = "sdimy_begin",
+        z = "sdimz_begin",
+        x_end = "sdimx_end",
+        y_end = "sdimy_end",
+        z_end = "sdimz_end") {
     edges <- data.table::data.table(
         edge_id = seq_len(3 * dim(network)[1]),
         x = 0,
@@ -431,22 +458,23 @@ plotly_network <- function(network,
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #'
 #' library(GiottoClass)
-#' g <- createSpatialGrid(gobject = g,
-#' sdimx_stepsize = 400,
-#' sdimy_stepsize = 400,
-#' minimum_padding = 0)
+#' g <- createSpatialGrid(
+#'     gobject = g,
+#'     sdimx_stepsize = 400,
+#'     sdimy_stepsize = 400,
+#'     minimum_padding = 0
+#' )
 #'
 #' my_spatial_grid <- getSpatialGrid(g)
 #'
 #' plotly_grid(my_spatial_grid)
 #'
 #' @export
-plotly_grid <- function(
-        spatial_grid,
-        x_start = "x_start",
-        y_start = "y_start",
-        x_end = "x_end",
-        y_end = "y_end") {
+plotly_grid <- function(spatial_grid,
+    x_start = "x_start",
+    y_start = "y_start",
+    x_end = "x_end",
+    y_end = "y_end") {
     edge_num <- length(unique(spatial_grid[[x_start]])) +
         length(unique(spatial_grid[[y_start]])) + 2
     x_line <- unique(as.numeric(unlist(spatial_grid[, c(x_start, x_end)])))
@@ -488,18 +516,19 @@ plotly_grid <- function(
 #' @param custom_ratio set the ratio artificially
 #' @returns edges in spatial grid as data.table()
 #' @examples
-#' my_cell_locations <- data.frame(x = sample(10), y = sample(10),
-#' z = sample(10))
+#' my_cell_locations <- data.frame(
+#'     x = sample(10), y = sample(10),
+#'     z = sample(10)
+#' )
 #' plotly_axis_scale_3D(my_cell_locations)
 #'
 #' @export
-plotly_axis_scale_3D <- function(
-        cell_locations,
-        sdimx = NULL,
-        sdimy = NULL,
-        sdimz = NULL,
-        mode = c("cube", "real", "custom"),
-        custom_ratio = NULL) {
+plotly_axis_scale_3D <- function(cell_locations,
+    sdimx = NULL,
+    sdimy = NULL,
+    sdimz = NULL,
+    mode = c("cube", "real", "custom"),
+    custom_ratio = NULL) {
     mode <- match.arg(mode, c("cube", "real", "custom"))
     if (mode == "real") {
         x_ratio <- max(cell_locations[[sdimx]]) - min(cell_locations[[sdimx]])
@@ -543,12 +572,11 @@ plotly_axis_scale_3D <- function(
 #' plotly_axis_scale_2D(my_cell_locations)
 #'
 #' @export
-plotly_axis_scale_2D <- function(
-        cell_locations,
-        sdimx = NULL,
-        sdimy = NULL,
-        mode = c("cube", "real", "custom"),
-        custom_ratio = NULL) {
+plotly_axis_scale_2D <- function(cell_locations,
+    sdimx = NULL,
+    sdimy = NULL,
+    mode = c("cube", "real", "custom"),
+    custom_ratio = NULL) {
     mode <- match.arg(mode, c("cube", "real", "custom"))
     if (mode == "real") {
         x_ratio <- max(cell_locations[[sdimx]]) - min(cell_locations[[sdimx]])

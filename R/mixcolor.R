@@ -178,8 +178,9 @@ hex2hsv <- function(x) {
 
 #' @rdname mixHSV
 #' @export
-mixHSV <- function(c1, c2, base_color = c("white", "black"),
-    output = c("hex", "hsv")) {
+mixHSV <- function(
+        c1, c2, base_color = c("white", "black"),
+        output = c("hex", "hsv")) {
     base_color <- match.arg(base_color, choices = c("white", "black"))
     output <- match.arg(output, c("hex", "hsv"))
 

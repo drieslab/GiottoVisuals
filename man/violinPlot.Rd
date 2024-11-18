@@ -75,7 +75,9 @@ Creates violinplot for selected clusters
 }
 \examples{
 g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-violinPlot(g, feats = c("Gna12", "Ccnd2", "Btbd17"),
-cluster_column = "leiden_clus")
+violinPlot(g,
+    feats = c("Gna12", "Ccnd2", "Btbd17"),
+    cluster_column = "leiden_clus"
+)
 
 }

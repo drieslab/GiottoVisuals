@@ -29,15 +29,14 @@
 #' plot_output_handler(g, plot_object = g_spatplot, save_plot = FALSE)
 #'
 #' @export
-plot_output_handler <- function(
-        gobject,
-        plot_object,
-        save_plot = NULL,
-        return_plot = NULL,
-        show_plot = NULL,
-        default_save_name = NULL,
-        save_param = list(),
-        else_return = NULL) {
+plot_output_handler <- function(gobject,
+    plot_object,
+    save_plot = NULL,
+    return_plot = NULL,
+    show_plot = NULL,
+    default_save_name = NULL,
+    save_param = list(),
+    else_return = NULL) {
     checkmate::assert_class(gobject, "giotto")
 
     ## output settings detection ##

@@ -33,7 +33,6 @@ setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "list"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
-
         # apply geom_blank
         ext <- ext %null% ext(gimage[[1L]])
         if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
@@ -58,7 +57,6 @@ setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "giottoImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
-
         # apply geom_blank
         ext <- ext %null% ext(gimage)
         if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
@@ -81,7 +79,6 @@ setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "giottoLargeImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
-
         # geom_blank
         ext <- ext %null% ext(gimage)
         if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
@@ -109,7 +106,6 @@ setMethod(
     "gg_annotation_raster",
     signature(ggobj = "gg", gimage = "giottoAffineImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
-
         # geom_blank
         ext <- ext %null% ext(gimage)
         if (geom_blank) ggobj <- .gg_geom_blank(ggobj, ext)
@@ -137,13 +133,12 @@ setMethod(
 
 # returns the spatial extent needed for the plot
 # ... passes to ext() `giotto` method
-.guess_plot_extent <- function(
-        gobject, spat_unit = NULL, spat_loc_name = NULL, ext = NULL, ...
-    ) {
-
+.guess_plot_extent <- function(gobject, spat_unit = NULL, spat_loc_name = NULL, ext = NULL, ...) {
     if (!is.null(ext)) ext <- ext(ext) # normalize to `SpatExtent` class
     # if ext already given, directly return
-    if (inherits(ext, "SpatExtent")) return(ext)
+    if (inherits(ext, "SpatExtent")) {
+        return(ext)
+    }
 
     # find extent from one of poly, spatlocs, points, in that order of pref
     e <- ext(
@@ -255,23 +250,24 @@ setMethod(
 #' }
 #' @seealso \code{\link[terra]{spatSample}}
 #' @keywords internal
-.auto_resample_gimage <- function(
-        img,
-        plot_ext = NULL,
-        img_border = 0.125,
-        crop_ratio_fun = .img_to_crop_ratio_gimage,
-        sample_fun = .sample_gimage,
-        flex_resample = TRUE,
-        max_sample = getOption("giotto.plot_img_max_sample", 5e5),
-        max_crop = getOption("giotto.plot_img_max_crop", 1e8),
-        max_resample_scale = getOption(
-            "giotto.plot_img_max_resample_scale", 100
-        )
-) {
-
+.auto_resample_gimage <- function(img,
+    plot_ext = NULL,
+    img_border = 0.125,
+    crop_ratio_fun = .img_to_crop_ratio_gimage,
+    sample_fun = .sample_gimage,
+    flex_resample = TRUE,
+    max_sample = getOption("giotto.plot_img_max_sample", 5e5),
+    max_crop = getOption("giotto.plot_img_max_crop", 1e8),
+    max_resample_scale = getOption(
+        "giotto.plot_img_max_resample_scale", 100
+    )) {
     # 1. determine source image and cropping extents
-    if (is.null(plot_ext)) crop_ext <- ext(img) # default to img extent
-    else crop_ext <- ext(plot_ext)
+    if (is.null(plot_ext)) {
+        crop_ext <- ext(img)
+    } # default to img extent
+    else {
+        crop_ext <- ext(plot_ext)
+    }
     bound_poly <- as.polygons(crop_ext)
 
     # 1.1. override max_crop if needed
@@ -280,7 +276,6 @@ setMethod(
     # 1.2. apply img border expansion
     # - note: cropping with extent larger than the image extent is supported
     if (img_border > 0) {
-
         crop_ext <- bound_poly %>%
             rescale(1 + img_border) %>%
             ext()
@@ -307,9 +302,13 @@ setMethod(
             )
         }
 
-        vmsg(.is_debug = TRUE,
-             sprintf("img auto_res: [A] | area: %f | max: %f",
-                     crop_area_px, max_crop))
+        vmsg(
+            .is_debug = TRUE,
+            sprintf(
+                "img auto_res: [A] | area: %f | max: %f",
+                crop_area_px, max_crop
+            )
+        )
 
         crop_img <- terra::crop(img, crop_ext)
         res <- sample_fun(crop_img, size = max_sample)
@@ -320,13 +319,17 @@ setMethod(
         # Sample n values where max_sample is scaled by a value >1
         # Scale factor is fullsize image dim/crop dim. Larger of the two
         # ratios is chosen
-        scalef <- max(1/ratios)
+        scalef <- max(1 / ratios)
         # This scaling is ALSO capped by max_resample_scale
         if (scalef > max_resample_scale) scalef <- max_resample_scale
 
-        vmsg(.is_debug = TRUE,
-             sprintf("img auto_res: [B] | scalef: %f | max_scale: %f",
-                     scalef, max_resample_scale))
+        vmsg(
+            .is_debug = TRUE,
+            sprintf(
+                "img auto_res: [B] | scalef: %f | max_scale: %f",
+                scalef, max_resample_scale
+            )
+        )
 
         oversample_img <- sample_fun(img, size = round(max_sample * scalef))
         res <- terra::crop(oversample_img, crop_ext)
@@ -417,6 +420,7 @@ setMethod(
     if (nlyr == 1L) {
         # SINGLE CHANNEL #
         # max window cutoff
+        maxval <- maxval %na% quantile(x, 0.99)
         if (!is.null(maxval)) x[x > maxval] <- maxval
         # colorize
         if (is.null(col)) {
@@ -439,9 +443,9 @@ setMethod(
 # `x` is array to use
 # `col` is character vector of colors to use
 .colorize_single_channel_raster <- function(x, col) {
-    if (!is.na(dim(x)[3L])) x <- x[,, 1L] # convert to matrix
+    if (!is.na(dim(x)[3L])) x <- x[, , 1L] # convert to matrix
     r <- range(x, na.rm = TRUE)
-    x <- (x - r[1])/(r[2] - r[1])
+    x <- (x - r[1]) / (r[2] - r[1])
     x <- round(x * (length(col) - 1) + 1)
     x[] <- col[x]
     terra::as.raster(x)
@@ -470,5 +474,3 @@ setMethod(
     ggobj <- .gg_append_imagearray(ggobj, a, ext(gimage))
     return(ggobj)
 }
-
-

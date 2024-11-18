@@ -50,35 +50,36 @@ NULL
 #' @examples
 #' g <- GiottoData::loadGiottoMini("vis")
 #' df <- data.frame(x = rnorm(5), y = rnorm(5))
-#' g_plot <- ggplot2::ggplot(df, ggplot2::aes(x,y)) + ggplot2::geom_point()
+#' g_plot <- ggplot2::ggplot(df, ggplot2::aes(x, y)) +
+#'     ggplot2::geom_point()
 #' all_plots_save_function(g, g_plot)
 #'
 #' @export
-all_plots_save_function <- function(gobject,
-    plot_object,
-    save_dir = NULL,
-    save_folder = NULL,
-    save_name = NULL,
-    default_save_name = "giotto_plot",
-    save_format = NULL,
-    show_saved_plot = FALSE,
-    ncol = 1,
-    nrow = 1,
-    scale = 1,
-    base_width = NULL,
-    base_height = NULL,
-    base_aspect_ratio = NULL,
-    units = NULL,
-    dpi = NULL,
-    limitsize = TRUE,
-    plot_count = NULL,
-    GPSPARAM = NULL,
-    ...) {
-
+all_plots_save_function <- function(
+        gobject,
+        plot_object,
+        save_dir = NULL,
+        save_folder = NULL,
+        save_name = NULL,
+        default_save_name = "giotto_plot",
+        save_format = NULL,
+        show_saved_plot = FALSE,
+        ncol = 1,
+        nrow = 1,
+        scale = 1,
+        base_width = NULL,
+        base_height = NULL,
+        base_aspect_ratio = NULL,
+        units = NULL,
+        dpi = NULL,
+        limitsize = TRUE,
+        plot_count = NULL,
+        GPSPARAM = NULL,
+        ...) {
     # get save params
     if (is.null(GPSPARAM)) {
         type <- "general"
-        if(any("ggplot" %in% class(plot_object))) type <- "gg"
+        if (any("ggplot" %in% class(plot_object))) type <- "gg"
         if (any("plotly" %in% class(plot_object))) type <- "plotly"
 
         a <- .grab_gpsparam_args()
@@ -125,25 +126,26 @@ all_plots_save_function <- function(gobject,
 #'   which type of plot to save. This affects which types of outputs are
 #'   possible.
 #' @export
-gpsparam <- function(
-        instructions,
-        type = c("gg", "plotly", "general"),
-        save_dir = NULL,
-        save_folder = NULL,
-        save_name = NULL,
-        default_save_name = "giotto_plot",
-        save_format = NULL,
-        dpi = NULL,
-        base_width = NULL,
-        base_height = NULL,
-        base_aspect_ratio = NULL,
-        units = NULL,
-        plot_count = NULL,
-        ... # ignored
+gpsparam <- function(instructions,
+    type = c("gg", "plotly", "general"),
+    save_dir = NULL,
+    save_folder = NULL,
+    save_name = NULL,
+    default_save_name = "giotto_plot",
+    save_format = NULL,
+    dpi = NULL,
+    base_width = NULL,
+    base_height = NULL,
+    base_aspect_ratio = NULL,
+    units = NULL,
+    plot_count = NULL,
+    ... # ignored
 ) {
     if (!inherits(instructions, c("giotto", "giottoInstructions"))) {
-        stop("`instructions` must be either a `giotto` or",
-             "`giottoInstructions` object.")
+        stop(
+            "`instructions` must be either a `giotto` or",
+            "`giottoInstructions` object."
+        )
     }
     instrs <- instructions # shortname
     checkmate::assert_character(type)
@@ -186,7 +188,8 @@ gpsparam <- function(
         save_name <- paste0(plot_count, "-", save_name)
         if (custom_plot_count) {
             on.exit(options("giotto.plot_count" = plot_count + 1L), # increment
-                    add = TRUE)
+                add = TRUE
+            )
         }
     }
 
@@ -272,17 +275,15 @@ showSaveParameters <- function() {
 # GPSPARAM should be a `giotto_plot_save_param` object if provided
 #' @noMd
 #' @keywords internal
-.ggplot_save_function <- function(
-        gobject,
-        plot_object,
-        show_saved_plot = FALSE,
-        ncol = 1,
-        nrow = 1,
-        scale = 1,
-        limitsize = TRUE,
-        GPSPARAM = NULL,
-        ...
-) {
+.ggplot_save_function <- function(gobject,
+    plot_object,
+    show_saved_plot = FALSE,
+    ncol = 1,
+    nrow = 1,
+    scale = 1,
+    limitsize = TRUE,
+    GPSPARAM = NULL,
+    ...) {
     if (is.null(plot_object)) {
         stop("\t there is no object to plot \t")
     }
@@ -341,13 +342,11 @@ showSaveParameters <- function() {
 # GPSPARAM should be a `giotto_plot_save_param` object if provided
 #' @noMd
 #' @keywords internal
-.general_save_function <- function(
-        gobject,
-        plot_object,
-        show_saved_plot = FALSE,
-        GPSPARAM = NULL,
-        ...
-) {
+.general_save_function <- function(gobject,
+    plot_object,
+    show_saved_plot = FALSE,
+    GPSPARAM = NULL,
+    ...) {
     if (is.null(plot_object)) {
         stop("\t there is no object to plot \t")
     }
@@ -374,7 +373,6 @@ showSaveParameters <- function() {
             file = fullpath
         )
     } else {
-
         switch(save_format,
             "png" = {
                 grDevices::png(
@@ -452,7 +450,6 @@ print.giotto_plot_save_param <- function(x, ...) {
 
 # GPSPARAM should be a `giotto_plot_save_param`
 .plot_px_area <- function(GPSPARAM) {
-
     dims <- c(GPSPARAM$base_height, GPSPARAM$base_width)
     pxdims <- switch(GPSPARAM$units,
         "in" = dims * GPSPARAM$dpi,
@@ -462,5 +459,3 @@ print.giotto_plot_save_param <- function(x, ...) {
     )
     round(prod(pxdims))
 }
-
-

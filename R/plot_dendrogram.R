@@ -22,23 +22,22 @@
 #' showClusterDendrogram(g, cluster_column = "leiden_clus")
 #'
 #' @export
-showClusterDendrogram <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c("normalized", "scaled", "custom"),
-        cluster_column,
-        cor = c("pearson", "spearman"),
-        distance = "ward.D",
-        h = NULL,
-        h_color = "red",
-        rotate = FALSE,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "showClusterDendrogram",
-        ...) {
+showClusterDendrogram <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c("normalized", "scaled", "custom"),
+    cluster_column,
+    cor = c("pearson", "spearman"),
+    distance = "ward.D",
+    h = NULL,
+    h_color = "red",
+    rotate = FALSE,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "showClusterDendrogram",
+    ...) {
     # verify if optional package is installed
     package_check(pkg_name = "ggdendro", repository = "CRAN")
 
@@ -122,24 +121,28 @@ showClusterDendrogram <- function(
 #' g_expression_df <- as.data.frame(as.matrix(g_expression))
 #' g_expression_df$feat_ID <- rownames(g_expression)
 #'
-#' g_expression_melt <- data.table::melt(g_expression_df, id.vars = "feat_ID",
-#' measure.vars = colnames(g_expression), variable.name = "cell_ID",
-#' value.name = "raw_expression")
+#' g_expression_melt <- data.table::melt(g_expression_df,
+#'     id.vars = "feat_ID",
+#'     measure.vars = colnames(g_expression), variable.name = "cell_ID",
+#'     value.name = "raw_expression"
+#' )
 #'
 #' create_cluster_dendrogram(data.table::as.data.table(g_expression_melt),
-#' var_col = "cell_ID", clus_col = "feat_ID", "raw_expression")
+#'     var_col = "cell_ID", clus_col = "feat_ID", "raw_expression"
+#' )
 #'
 #' @export
-create_cluster_dendrogram <- function(data,
-    clus_col = names(data)[[1]],
-    var_col = names(data)[[2]],
-    val_col = names(data)[[3]],
-    cor = c("pearson", "spearman"),
-    distance = "ward.D",
-    h = NULL,
-    h_color = "red",
-    rotate = FALSE,
-    ...) {
+create_cluster_dendrogram <- function(
+        data,
+        clus_col = names(data)[[1]],
+        var_col = names(data)[[2]],
+        val_col = names(data)[[3]],
+        cor = c("pearson", "spearman"),
+        distance = "ward.D",
+        h = NULL,
+        h_color = "red",
+        rotate = FALSE,
+        ...) {
     checkmate::assert_data_table(data)
     checkmate::assert_character(clus_col)
     checkmate::assert_character(var_col)

@@ -114,7 +114,8 @@ parameter and \code{giottoInstructions} values.
 \examples{
 g <- GiottoData::loadGiottoMini("vis")
 df <- data.frame(x = rnorm(5), y = rnorm(5))
-g_plot <- ggplot2::ggplot(df, ggplot2::aes(x,y)) + ggplot2::geom_point()
+g_plot <- ggplot2::ggplot(df, ggplot2::aes(x, y)) +
+    ggplot2::geom_point()
 all_plots_save_function(g, g_plot)
 
 }
