@@ -124,8 +124,10 @@ z-scores rescaled per feature (-1 to 1).
 }
 \examples{
 g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
-selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
+plotMetaDataHeatmap(g,
+    metadata_cols = "leiden_clus",
+    selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935")
+)
 
 }
 \seealso{

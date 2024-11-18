@@ -10,18 +10,18 @@
 #' @details Description of parameters.
 #' @keywords internal
 #' @returns ggplot object
-#' 
+#'
 #' @export
-FSV_show <- function(
-        results,
-        ms_results = NULL,
-        size = c(4, 2, 1),
-        color = c("blue", "green", "red"),
-        sig_alpha = 0.5,
-        unsig_alpha = 0.5) {
+FSV_show <- function(results,
+    ms_results = NULL,
+    size = c(4, 2, 1),
+    color = c("blue", "green", "red"),
+    sig_alpha = 0.5,
+    unsig_alpha = 0.5) {
     results$FSV95conf <- 2 * sqrt(results$s2_FSV)
-    results$intervals <- cut(results$FSV95conf, c(0, 1e-1, 1e0, Inf), 
-                            label = FALSE)
+    results$intervals <- cut(results$FSV95conf, c(0, 1e-1, 1e0, Inf),
+        label = FALSE
+    )
     results$log_pval <- log10(results$pval)
 
     if (is.null(ms_results)) {

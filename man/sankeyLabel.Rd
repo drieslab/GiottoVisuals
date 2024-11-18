@@ -23,12 +23,16 @@ a \code{giottoSankeyPlan}
 Get and set the sankey labels information
 }
 \examples{
-my_sankeyplan <- sankeySet(spat_unit = "cell", 
-feat_type = "rna", col = "leiden_clus")
+my_sankeyplan <- sankeySet(
+    spat_unit = "cell",
+    feat_type = "rna", col = "leiden_clus"
+)
 my_sankeyplan <- `sankeyLabel<-`(my_sankeyplan, value = "my_label")
 sankeyLabel(my_sankeyplan)
 
-my_sankeyplan <- sankeySet(spat_unit = "cell", 
-feat_type = "rna", col = "leiden_clus")
+my_sankeyplan <- sankeySet(
+    spat_unit = "cell",
+    feat_type = "rna", col = "leiden_clus"
+)
 my_sankeyplan <- `sankeyLabel<-`(my_sankeyplan, value = "my_label")
 }

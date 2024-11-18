@@ -19,29 +19,30 @@
 #' @returns ggplot
 #' @examples
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-#' violinPlot(g, feats = c("Gna12", "Ccnd2", "Btbd17"),
-#' cluster_column = "leiden_clus")
+#' violinPlot(g,
+#'     feats = c("Gna12", "Ccnd2", "Btbd17"),
+#'     cluster_column = "leiden_clus"
+#' )
 #'
 #' @export
-violinPlot <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c("normalized", "scaled", "custom"),
-        feats = NULL,
-        cluster_column,
-        cluster_custom_order = NULL,
-        color_violin = c("feats", "cluster"),
-        cluster_color_code = NULL,
-        strip_position = c("top", "right", "left", "bottom"),
-        strip_text = 7,
-        axis_text_x_size = 10,
-        axis_text_y_size = 6,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "violinPlot") {
+violinPlot <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c("normalized", "scaled", "custom"),
+    feats = NULL,
+    cluster_column,
+    cluster_custom_order = NULL,
+    color_violin = c("feats", "cluster"),
+    cluster_color_code = NULL,
+    strip_position = c("top", "right", "left", "bottom"),
+    strip_text = 7,
+    axis_text_x_size = 10,
+    axis_text_y_size = 6,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "violinPlot") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,

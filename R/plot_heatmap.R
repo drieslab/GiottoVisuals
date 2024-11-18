@@ -20,21 +20,20 @@
 #' showClusterHeatmap(g, cluster_column = "leiden_clus")
 #'
 #' @export
-showClusterHeatmap <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c("normalized", "scaled", "custom"),
-        feats = "all",
-        cluster_column,
-        cor = c("pearson", "spearman"),
-        distance = "ward.D",
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "showClusterHeatmap",
-        ...) {
+showClusterHeatmap <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c("normalized", "scaled", "custom"),
+    feats = "all",
+    cluster_column,
+    cor = c("pearson", "spearman"),
+    distance = "ward.D",
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "showClusterHeatmap",
+    ...) {
     # package Check
     package_check(pkg_name = "ComplexHeatmap", repository = "Bioc")
 
@@ -148,39 +147,40 @@ showClusterHeatmap <- function(
 #' }
 #' @examples
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-#' plotHeatmap(g, feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
-#' cluster_column = "leiden_clus")
+#' plotHeatmap(g,
+#'     feats = c("Gm19935", "Gna12", "Ccnd2", "Btbd17"),
+#'     cluster_column = "leiden_clus"
+#' )
 #'
 #' @export
-plotHeatmap <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c("normalized", "scaled", "custom"),
-        feats,
-        cluster_column = NULL,
-        cluster_order = c("size", "correlation", "custom"),
-        cluster_custom_order = NULL,
-        cluster_color_code = NULL,
-        cluster_cor_method = "pearson",
-        cluster_hclust_method = "ward.D",
-        feat_order = c("correlation", "custom"),
-        feat_custom_order = NULL,
-        feat_cor_method = "pearson",
-        feat_hclust_method = "complete",
-        show_values = c("rescaled", "z-scaled", "original"),
-        size_vertical_lines = 1.1,
-        gradient_colors = deprecated(),
-        gradient_color = NULL,
-        gradient_style = c("divergent", "sequential"),
-        feat_label_selection = NULL,
-        axis_text_y_size = NULL,
-        legend_nrows = 1,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "plotHeatmap") {
+plotHeatmap <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c("normalized", "scaled", "custom"),
+    feats,
+    cluster_column = NULL,
+    cluster_order = c("size", "correlation", "custom"),
+    cluster_custom_order = NULL,
+    cluster_color_code = NULL,
+    cluster_cor_method = "pearson",
+    cluster_hclust_method = "ward.D",
+    feat_order = c("correlation", "custom"),
+    feat_custom_order = NULL,
+    feat_cor_method = "pearson",
+    feat_hclust_method = "complete",
+    show_values = c("rescaled", "z-scaled", "original"),
+    size_vertical_lines = 1.1,
+    gradient_colors = deprecated(),
+    gradient_color = NULL,
+    gradient_style = c("divergent", "sequential"),
+    feat_label_selection = NULL,
+    axis_text_y_size = NULL,
+    legend_nrows = 1,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "plotHeatmap") {
     # deprecate
     if (GiottoUtils::is_present(gradient_colors)) {
         deprecate_warn(
@@ -443,40 +443,43 @@ plotHeatmap <- function(
 #' @returns ggplot or data.table
 #' @examples
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
-#' plotMetaDataHeatmap(g, metadata_cols = "leiden_clus",
-#' selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935"))
+#' plotMetaDataHeatmap(g,
+#'     metadata_cols = "leiden_clus",
+#'     selected_feats = c("Gna12", "Ccnd2", "Btbd17", "Gm19935")
+#' )
 #'
 #' @export
-plotMetaDataHeatmap <- function(gobject,
-    spat_unit = NULL,
-    feat_type = NULL,
-    expression_values = c("normalized", "scaled", "custom"),
-    metadata_cols = NULL,
-    selected_feats = NULL,
-    first_meta_col = NULL,
-    second_meta_col = NULL,
-    show_values = c("zscores", "original", "zscores_rescaled"),
-    custom_cluster_order = NULL,
-    clus_cor_method = "pearson",
-    clus_cluster_method = "complete",
-    custom_feat_order = NULL,
-    feat_cor_method = "pearson",
-    feat_cluster_method = "complete",
-    gradient_color = NULL,
-    gradient_midpoint = 0,
-    gradient_style = c("divergent", "sequential"),
-    gradient_limits = NULL,
-    x_text_size = 10,
-    x_text_angle = 45,
-    y_text_size = 10,
-    strip_text_size = 8,
-    title = NULL,
-    plot_title = deprecated(),
-    show_plot = NULL,
-    return_plot = NULL,
-    save_plot = NULL,
-    save_param = list(),
-    default_save_name = "plotMetaDataHeatmap") {
+plotMetaDataHeatmap <- function(
+        gobject,
+        spat_unit = NULL,
+        feat_type = NULL,
+        expression_values = c("normalized", "scaled", "custom"),
+        metadata_cols = NULL,
+        selected_feats = NULL,
+        first_meta_col = NULL,
+        second_meta_col = NULL,
+        show_values = c("zscores", "original", "zscores_rescaled"),
+        custom_cluster_order = NULL,
+        clus_cor_method = "pearson",
+        clus_cluster_method = "complete",
+        custom_feat_order = NULL,
+        feat_cor_method = "pearson",
+        feat_cluster_method = "complete",
+        gradient_color = NULL,
+        gradient_midpoint = 0,
+        gradient_style = c("divergent", "sequential"),
+        gradient_limits = NULL,
+        x_text_size = 10,
+        x_text_angle = 45,
+        y_text_size = 10,
+        strip_text_size = 8,
+        title = NULL,
+        plot_title = deprecated(),
+        show_plot = NULL,
+        return_plot = NULL,
+        save_plot = NULL,
+        save_param = list(),
+        default_save_name = "plotMetaDataHeatmap") {
     # deprecate
     if (GiottoUtils::is_present(plot_title)) {
         deprecate_warn(
@@ -568,7 +571,8 @@ plotMetaDataHeatmap <- function(gobject,
             method = feat_cor_method
         )
         feat_cordist <- stats::as.dist(1 - feat_cormatrix,
-                                    diag = TRUE, upper = TRUE)
+            diag = TRUE, upper = TRUE
+        )
         feat_corclus <- stats::hclust(
             d = feat_cordist,
             method = feat_cluster_method
@@ -830,35 +834,34 @@ plotMetaDataHeatmap <- function(gobject,
 #' @returns ggplot or data.table
 #'
 #' @export
-plotMetaDataCellsHeatmap <- function(
-        gobject,
-        spat_unit = NULL,
-        feat_type = NULL,
-        metadata_cols = NULL,
-        spat_enr_names = NULL,
-        value_cols = NULL,
-        first_meta_col = NULL,
-        second_meta_col = NULL,
-        show_values = c("zscores", "original", "zscores_rescaled"),
-        custom_cluster_order = NULL,
-        clus_cor_method = "pearson",
-        clus_cluster_method = "complete",
-        custom_values_order = NULL,
-        values_cor_method = "pearson",
-        values_cluster_method = "complete",
-        gradient_color = NULL,
-        gradient_midpoint = 0,
-        gradient_style = c("divergent", "sequential"),
-        midpoint = deprecated(),
-        x_text_size = 8,
-        x_text_angle = 45,
-        y_text_size = 8,
-        strip_text_size = 8,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "plotMetaDataCellsHeatmap") {
+plotMetaDataCellsHeatmap <- function(gobject,
+    spat_unit = NULL,
+    feat_type = NULL,
+    metadata_cols = NULL,
+    spat_enr_names = NULL,
+    value_cols = NULL,
+    first_meta_col = NULL,
+    second_meta_col = NULL,
+    show_values = c("zscores", "original", "zscores_rescaled"),
+    custom_cluster_order = NULL,
+    clus_cor_method = "pearson",
+    clus_cluster_method = "complete",
+    custom_values_order = NULL,
+    values_cor_method = "pearson",
+    values_cluster_method = "complete",
+    gradient_color = NULL,
+    gradient_midpoint = 0,
+    gradient_style = c("divergent", "sequential"),
+    midpoint = deprecated(),
+    x_text_size = 8,
+    x_text_angle = 45,
+    y_text_size = 8,
+    strip_text_size = 8,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "plotMetaDataCellsHeatmap") {
     # deprecate
     if (GiottoUtils::is_present(midpoint)) {
         deprecate_warn(
@@ -921,7 +924,8 @@ plotMetaDataCellsHeatmap <- function(
     if (is.null(custom_cluster_order)) {
         cormatrix <- cor_flex(x = testmain_mat, method = clus_cor_method)
         cordist <- stats::as.dist(1 - cormatrix,
-                                diag = TRUE, upper = TRUE)
+            diag = TRUE, upper = TRUE
+        )
         corclus <- stats::hclust(d = cordist, method = clus_cluster_method)
         clus_names <- rownames(cormatrix)
         names(clus_names) <- seq_len(length(clus_names))
@@ -942,8 +946,8 @@ plotMetaDataCellsHeatmap <- function(
             method = values_cor_method
         )
         values_cordist <- stats::as.dist(1 - values_cormatrix,
-                                        diag = TRUE,
-                                        upper = TRUE
+            diag = TRUE,
+            upper = TRUE
         )
         values_corclus <- stats::hclust(
             d = values_cordist,
@@ -965,9 +969,11 @@ plotMetaDataCellsHeatmap <- function(
         factor_column <- variable <- NULL
 
         metaDT[, factor_column := factor(get(metadata_cols),
-            levels = clus_sort_names)]
+            levels = clus_sort_names
+        )]
         metaDT[, variable := factor(get("variable"),
-                                    levels = values_sort_names)]
+            levels = values_sort_names
+        )]
 
         pl <- ggplot2::ggplot()
         pl <- pl +
@@ -1009,10 +1015,12 @@ plotMetaDataCellsHeatmap <- function(
 
             metaDT[, factor_1_column := factor(
                 get(first_meta_col),
-                clus_sort_names)]
+                clus_sort_names
+            )]
             metaDT[, factor_2_column := as.factor(get(second_meta_col))]
             metaDT[, variable := factor(get("variable"),
-                levels = values_sort_names)]
+                levels = values_sort_names
+            )]
 
             pl <- ggplot2::ggplot()
             pl <- pl +
@@ -1021,7 +1029,8 @@ plotMetaDataCellsHeatmap <- function(
                     ggplot2::aes_string(
                         x = "factor_1_column",
                         y = "variable",
-                        fill = show_values),
+                        fill = show_values
+                    ),
                     color = "black"
                 )
             pl <- pl + set_default_color_continuous_heatmap(
@@ -1029,7 +1038,8 @@ plotMetaDataCellsHeatmap <- function(
                 instrs = instructions(gobject),
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                type = "fill")
+                type = "fill"
+            )
             pl <- pl +
                 ggplot2::facet_grid(stats::reformulate("factor_2_column"))
             pl <- pl + ggplot2::theme_classic()
@@ -1037,10 +1047,12 @@ plotMetaDataCellsHeatmap <- function(
                 axis.text.x = ggplot2::element_text(
                     size = x_text_size,
                     angle = x_text_angle,
-                    hjust = 1, vjust = 1),
+                    hjust = 1, vjust = 1
+                ),
                 axis.text.y = ggplot2::element_text(size = y_text_size),
                 strip.text = ggplot2::element_text(size = strip_text_size),
-                legend.title = ggplot2::element_blank())
+                legend.title = ggplot2::element_blank()
+            )
             pl <- pl + ggplot2::labs(
                 x = first_meta_col, y = "genes",
                 title = second_meta_col
@@ -1092,20 +1104,21 @@ plotMetaDataCellsHeatmap <- function(
 #' @return list
 #' @details Creates input data.tables for plotHeatmap function.
 #' @keywords internal
-.create_heatmap_dt <- function(gobject,
-    spat_unit = NULL,
-    feat_type = NULL,
-    expression_values = c("normalized", "scaled", "custom"),
-    feats,
-    cluster_column = NULL,
-    cluster_order = c("size", "correlation", "custom"),
-    cluster_custom_order = NULL,
-    cluster_cor_method = "pearson",
-    cluster_hclust_method = "ward.D",
-    feat_order = c("correlation", "custom"),
-    feat_custom_order = NULL,
-    feat_cor_method = "pearson",
-    feat_hclust_method = "complete") {
+.create_heatmap_dt <- function(
+        gobject,
+        spat_unit = NULL,
+        feat_type = NULL,
+        expression_values = c("normalized", "scaled", "custom"),
+        feats,
+        cluster_column = NULL,
+        cluster_order = c("size", "correlation", "custom"),
+        cluster_custom_order = NULL,
+        cluster_cor_method = "pearson",
+        cluster_hclust_method = "ward.D",
+        feat_order = c("correlation", "custom"),
+        feat_custom_order = NULL,
+        feat_cor_method = "pearson",
+        feat_hclust_method = "complete") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,
@@ -1182,14 +1195,18 @@ plotMetaDataCellsHeatmap <- function(
 
     subset_values_DT[, feats := factor(feats, unique(detected_feats))]
     subset_values_DT[, z_scores := scale(expression), by = feats]
-    subset_values_DT[, scale_scores := scales::rescale(x = expression,
-                                                    to = c(0, 1)),
-                    by = feats]
+    subset_values_DT[, scale_scores := scales::rescale(
+        x = expression,
+        to = c(0, 1)
+    ),
+    by = feats
+    ]
 
 
     ## order cells by mean expression ##
     cell_order_DT <- subset_values_DT[, mean(expression),
-                                    by = c("cells", cluster_column)]
+        by = c("cells", cluster_column)
+    ]
     cell_order_DT <- cell_order_DT[order(get(cluster_column), V1)]
     subset_values_DT[, cells := factor(cells, cell_order_DT$cells)]
 
@@ -1199,18 +1216,21 @@ plotMetaDataCellsHeatmap <- function(
     ## order feats ##
     if (feat_order == "correlation") {
         featsum_per_clus <- subset_values_DT[, sum(expression),
-            by = c("feats", cluster_column)]
+            by = c("feats", cluster_column)
+        ]
 
         my_formula <- paste0("feats~", cluster_column)
         test_mat <- data.table::dcast.data.table(
             data = featsum_per_clus,
             formula = my_formula,
-            value.var = "V1")
+            value.var = "V1"
+        )
         test_matrix <- as.matrix(test_mat[, -1])
         rownames(test_matrix) <- test_mat$feats
 
         feat_dist <- stats::as.dist(1 - cor_flex(t_flex(test_matrix),
-                                                method = feat_cor_method))
+            method = feat_cor_method
+        ))
         feat_clus <- stats::hclust(feat_dist, method = feat_hclust_method)
 
         feat_labels <- rownames(test_matrix)
@@ -1219,7 +1239,8 @@ plotMetaDataCellsHeatmap <- function(
 
         final_feat_order <- names(feat_index[match(
             feat_clus$order,
-            feat_index)])
+            feat_index
+        )])
         subset_values_DT[, "feats" := factor(feats, final_feat_order)]
     } else if (feat_order == "custom") {
         if (is.null(feat_custom_order)) {
@@ -1230,7 +1251,8 @@ plotMetaDataCellsHeatmap <- function(
     }
 
     cell_order_DT[["cells"]] <- factor(cell_order_DT[["cells"]],
-        levels = as.character(cell_order_DT[["cells"]]))
+        levels = as.character(cell_order_DT[["cells"]])
+    )
 
     return(
         list(

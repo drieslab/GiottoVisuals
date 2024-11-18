@@ -1,8 +1,3 @@
-
-
-
-
-
 #' @name dotPlot
 #' @title Create a dotplot
 #' @description Visualize feature expression statistics applied across
@@ -77,46 +72,44 @@
 #'     dot_color_gradient = c("#EEEEFF", "#333377")
 #' )
 #' @export
-dotPlot <- function(
-        gobject,
-        feats,
-        cluster_column,
-        cluster_custom_order = NULL,
-        dot_size = function(x) mean(x != 0) * 100,
-        dot_size_threshold = 0,
-        dot_scale = 6,
-        dot_color = mean,
-        dot_color_gradient = NULL,
-        gradient_midpoint = NULL,
-        gradient_style = "sequential",
-        gradient_limits = NULL,
-        group_by = NULL,
-        group_by_subset = NULL,
-        spat_unit = NULL,
-        feat_type = NULL,
-        expression_values = c(
-            "normalized",
-            "scaled",
-            "custom"
-        ),
-        title = NULL,
-        show_legend = TRUE,
-        legend_text = 10,
-        legend_symbol_size = 2,
-        background_color = "white",
-        axis_text = 10,
-        axis_title = 9,
-        cow_n_col = NULL,
-        cow_rel_h = 1,
-        cow_rel_w = 1,
-        cow_align = "h",
-        theme_param = list(),
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "dotPlot"
-) {
+dotPlot <- function(gobject,
+    feats,
+    cluster_column,
+    cluster_custom_order = NULL,
+    dot_size = function(x) mean(x != 0) * 100,
+    dot_size_threshold = 0,
+    dot_scale = 6,
+    dot_color = mean,
+    dot_color_gradient = NULL,
+    gradient_midpoint = NULL,
+    gradient_style = "sequential",
+    gradient_limits = NULL,
+    group_by = NULL,
+    group_by_subset = NULL,
+    spat_unit = NULL,
+    feat_type = NULL,
+    expression_values = c(
+        "normalized",
+        "scaled",
+        "custom"
+    ),
+    title = NULL,
+    show_legend = TRUE,
+    legend_text = 10,
+    legend_symbol_size = 2,
+    background_color = "white",
+    axis_text = 10,
+    axis_title = 9,
+    cow_n_col = NULL,
+    cow_rel_h = 1,
+    cow_rel_w = 1,
+    cow_align = "h",
+    theme_param = list(),
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "dotPlot") {
     checkmate::assert_character(cluster_column, len = 1L)
     checkmate::assert_class(gobject, "giotto")
     if (!is.null(gradient_limits)) {
@@ -136,12 +129,16 @@ dotPlot <- function(
         unique(c("normalized", "scaled", "custom", expression_values))
     )
 
-    clus <- spatValues(gobject, spat_unit = spat_unit, feat_type = feat_type,
-                       feats = cluster_column, verbose = FALSE)
-    expr <- spatValues(gobject, spat_unit = spat_unit, feat_type = feat_type,
-                       feats = unique(unlist(feats)), # unlist to get all feats
-                       expression_values = expression_values,
-                       verbose = FALSE)
+    clus <- spatValues(gobject,
+        spat_unit = spat_unit, feat_type = feat_type,
+        feats = cluster_column, verbose = FALSE
+    )
+    expr <- spatValues(gobject,
+        spat_unit = spat_unit, feat_type = feat_type,
+        feats = unique(unlist(feats)), # unlist to get all feats
+        expression_values = expression_values,
+        verbose = FALSE
+    )
 
     # combine cluster and expression info
     ann_dt <- clus[expr, on = "cell_ID"]
@@ -253,12 +250,10 @@ dotPlot <- function(
 
 # internals ####
 
-.dplot_single <- function(
-        ann_dt, cluster_column, dot_size, dot_color, feats, dot_size_threshold,
-        cluster_custom_order, gradient_limits, gradient_midpoint,
-        dot_color_gradient, gradient_style, dot_scale, theme_param,
-        legend_text, title, axis_title, axis_text, background_color, instrs
-) {
+.dplot_single <- function(ann_dt, cluster_column, dot_size, dot_color, feats, dot_size_threshold,
+    cluster_custom_order, gradient_limits, gradient_midpoint,
+    dot_color_gradient, gradient_style, dot_scale, theme_param,
+    legend_text, title, axis_title, axis_text, background_color, instrs) {
     # NSE vars
     cluster <- feat <- color <- size <- NULL
 
@@ -281,7 +276,7 @@ dotPlot <- function(
     data.table::setnames(plot_dt, old = cluster_column, new = "cluster")
 
     ## dot size cutoff ##
-    plot_dt <- plot_dt[size > dot_size_threshold,]
+    plot_dt <- plot_dt[size > dot_size_threshold, ]
 
     ## set cluster order ##
     if (is.null(cluster_custom_order)) {
@@ -333,6 +328,3 @@ dotPlot <- function(
 
     return(pl)
 }
-
-
-

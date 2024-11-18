@@ -31,6 +31,3 @@
     # point rasterization
     init_option("giotto.plot_point_raster", 5e5)
 }
-
-
-

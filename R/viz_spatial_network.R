@@ -11,18 +11,17 @@
 #' @param ncol number of columns to visualize the histograms in
 #' @return ggplot plot
 #' @export
-spatNetwDistributionsDistance <- function(
-        gobject,
-        spat_unit = NULL,
-        spatial_network_name = "spatial_network",
-        hist_bins = 30,
-        test_distance_limit = NULL,
-        ncol = 1,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "spatNetwDistributionsDistance") {
+spatNetwDistributionsDistance <- function(gobject,
+    spat_unit = NULL,
+    spatial_network_name = "spatial_network",
+    hist_bins = 30,
+    test_distance_limit = NULL,
+    ncol = 1,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "spatNetwDistributionsDistance") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,
@@ -50,11 +49,13 @@ spatNetwDistributionsDistance <- function(
     if (!is.null(test_distance_limit)) {
         removed_neighbors <- spatial_network[distance > test_distance_limit,
             .N,
-            by = rank_int]
+            by = rank_int
+        ]
         removed_neighbors[, "status" := "remove"]
         keep_neighbors <- spatial_network[distance <= test_distance_limit,
             .N,
-            by = rank_int]
+            by = rank_int
+        ]
         keep_neighbors[, "status" := "keep"]
 
         dist_removal_dt <- rbind(removed_neighbors, keep_neighbors)
@@ -126,16 +127,15 @@ spatNetwDistributionsDistance <- function(
 #' @param hist_bins number of binds to use for the histogram
 #' @return ggplot plot
 #' @export
-spatNetwDistributionsKneighbors <- function(
-        gobject,
-        spat_unit = NULL,
-        spatial_network_name = "spatial_network",
-        hist_bins = 30,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "spatNetwDistributionsKneighbors") {
+spatNetwDistributionsKneighbors <- function(gobject,
+    spat_unit = NULL,
+    spatial_network_name = "spatial_network",
+    hist_bins = 30,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "spatNetwDistributionsKneighbors") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,
@@ -213,19 +213,18 @@ spatNetwDistributionsKneighbors <- function(
 #' over all cells.
 #' @return ggplot plot
 #' @export
-spatNetwDistributions <- function(
-        gobject,
-        spat_unit = NULL,
-        spatial_network_name = "spatial_network",
-        distribution = c("distance", "k_neighbors"),
-        hist_bins = 30,
-        test_distance_limit = NULL,
-        ncol = 1,
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "spatNetwDistributions") {
+spatNetwDistributions <- function(gobject,
+    spat_unit = NULL,
+    spatial_network_name = "spatial_network",
+    distribution = c("distance", "k_neighbors"),
+    hist_bins = 30,
+    test_distance_limit = NULL,
+    ncol = 1,
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "spatNetwDistributions") {
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
         gobject = gobject,
@@ -306,24 +305,23 @@ spatNetwDistributions <- function(
 #' @param \dots Other parameters
 #' @return giotto object with updated spatial network slot
 #' @export
-plotStatDelaunayNetwork <- function(
-        gobject,
-        feat_type = NULL,
-        spat_unit = NULL,
-        method = c("deldir", "delaunayn_geometry", "RTriangle"),
-        dimensions = "all",
-        maximum_distance = "auto", # all
-        minimum_k = 0, # all
-        options = "Pp", # geometry
-        Y = TRUE, # RTriange
-        j = TRUE, # RTriange
-        S = 0, # RTriange
-        show_plot = NULL,
-        return_plot = NULL,
-        save_plot = NULL,
-        save_param = list(),
-        default_save_name = "plotStatDelaunayNetwork",
-        ...) {
+plotStatDelaunayNetwork <- function(gobject,
+    feat_type = NULL,
+    spat_unit = NULL,
+    method = c("deldir", "delaunayn_geometry", "RTriangle"),
+    dimensions = "all",
+    maximum_distance = "auto", # all
+    minimum_k = 0, # all
+    options = "Pp", # geometry
+    Y = TRUE, # RTriange
+    j = TRUE, # RTriange
+    S = 0, # RTriange
+    show_plot = NULL,
+    return_plot = NULL,
+    save_plot = NULL,
+    save_param = list(),
+    default_save_name = "plotStatDelaunayNetwork",
+    ...) {
     # data.table variables
     distance <- rank_int <- N <- NULL
 

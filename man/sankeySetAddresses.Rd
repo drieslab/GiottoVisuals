@@ -17,8 +17,10 @@ Return a data.table containing where the sets of metadata to
 relate to each other exists inside the Giotto object.
 }
 \examples{
-my_sankeyplan <- sankeySet(spat_unit = "cell", 
-feat_type = "rna", col = "leiden_clus")
+my_sankeyplan <- sankeySet(
+    spat_unit = "cell",
+    feat_type = "rna", col = "leiden_clus"
+)
 my_sankeyplan <- sankeySetAddresses(my_sankeyplan)
 
 }

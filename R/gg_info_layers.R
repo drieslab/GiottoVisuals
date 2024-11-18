@@ -25,38 +25,39 @@
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_spat_point_layer_ggplot <- function(ggobject,
-    instrs = NULL,
-    sdimx = NULL,
-    sdimy = NULL,
-    plot_method = c("ggplot", "scattermore"), # does not actually work for fill types
-    cell_locations_metadata_selected,
-    cell_locations_metadata_other,
-    cell_color = NULL,
-    color_as_factor = TRUE,
-    cell_color_code = NULL,
-    cell_color_gradient = NULL,
-    gradient_midpoint = NULL,
-    gradient_style = "divergent",
-    gradient_limits = NULL,
-    select_cell_groups = NULL,
-    select_cells = NULL,
-    point_size = 2,
-    point_alpha = 1,
-    point_border_col = "lightgrey",
-    point_border_stroke = 0.1,
-    show_cluster_center = FALSE,
-    show_center_label = TRUE,
-    center_point_size = 4,
-    center_point_border_col = "black",
-    center_point_border_stroke = 0.1,
-    label_size = 4,
-    label_fontface = "bold",
-    show_other_cells = TRUE,
-    other_cell_color = "lightgrey",
-    other_point_size = 1,
-    show_legend = TRUE,
-    ...) {
+plot_spat_point_layer_ggplot <- function(
+        ggobject,
+        instrs = NULL,
+        sdimx = NULL,
+        sdimy = NULL,
+        plot_method = c("ggplot", "scattermore"), # does not actually work for fill types
+        cell_locations_metadata_selected,
+        cell_locations_metadata_other,
+        cell_color = NULL,
+        color_as_factor = TRUE,
+        cell_color_code = NULL,
+        cell_color_gradient = NULL,
+        gradient_midpoint = NULL,
+        gradient_style = "divergent",
+        gradient_limits = NULL,
+        select_cell_groups = NULL,
+        select_cells = NULL,
+        point_size = 2,
+        point_alpha = 1,
+        point_border_col = "lightgrey",
+        point_border_stroke = 0.1,
+        show_cluster_center = FALSE,
+        show_center_label = TRUE,
+        center_point_size = 4,
+        center_point_border_col = "black",
+        center_point_border_stroke = 0.1,
+        label_size = 4,
+        label_fontface = "bold",
+        show_other_cells = TRUE,
+        other_cell_color = "lightgrey",
+        other_point_size = 1,
+        show_legend = TRUE,
+        ...) {
     ## specify spatial dimensions first
     if (is.null(sdimx) || is.null(sdimy)) {
         warning(wrap_txt("plot_method = ggplot,
@@ -110,7 +111,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
     # cell color default
     if (is.null(cell_color)) {
         cell_color <- "lightblue"
-        pl <- pl + giotto_point(plot_method = plot_method,
+        pl <- pl + giotto_point(
+            plot_method = plot_method,
             data = cell_locations_metadata_selected,
             mapping = aes_string(x = sdimx, y = sdimy),
             show.legend = show_legend,
@@ -130,7 +132,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
             }
             cell_locations_metadata_selected[["temp_color"]] <- cell_color
 
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy, fill = "temp_color"),
                 show.legend = show_legend,
@@ -146,7 +149,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
                     a factor or vector of colors \n")
             }
 
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy),
                 show.legend = show_legend,
@@ -163,7 +167,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
             if (!cell_color %in% grDevices::colors()) {
                 stop(cell_color, " is not a color or a column name \n")
             }
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy),
                 show.legend = show_legend,
@@ -199,7 +204,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
                         limit_numeric_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = cell_locations_metadata_selected,
                     mapping = aes_string2(x = sdimx, y = sdimy, fill = cell_color),
                     show.legend = show_legend,
@@ -230,7 +236,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = cell_locations_metadata_selected,
                     mapping = aes_string2(x = sdimx, y = sdimy, fill = cell_color),
                     show.legend = show_legend,
@@ -246,7 +253,8 @@ plot_spat_point_layer_ggplot <- function(ggobject,
                 if (isTRUE(show_cluster_center) &&
                     (isTRUE(color_as_factor) ||
                         class_cell_color %in% c("character", "factor"))) {
-                    pl <- pl + giotto_point(plot_method = plot_method,
+                    pl <- pl + giotto_point(
+                        plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
                             x = "center_1", y = "center_2",
@@ -280,13 +288,15 @@ plot_spat_point_layer_ggplot <- function(ggobject,
             } else if (isTRUE(color_as_factor)) {
                 number_colors <- length(unique(factor_data))
                 cell_color_code <- set_default_color_discrete_cell(
-                        instrs = instrs)(n = number_colors)
+                    instrs = instrs
+                )(n = number_colors)
                 names(cell_color_code) <- unique(factor_data)
                 pl <- pl + ggplot2::scale_fill_manual(values = cell_color_code)
             } else if (!isTRUE(color_as_factor)) {
                 if (is.null(gradient_midpoint)) {
                     gradient_midpoint <- stats::median(
-                        cell_locations_metadata_selected[[cell_color]])
+                        cell_locations_metadata_selected[[cell_color]]
+                    )
                 }
 
                 pl <- pl + set_default_color_continuous_cell(
@@ -319,34 +329,35 @@ plot_spat_point_layer_ggplot <- function(ggobject,
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
-    instrs = NULL,
-    sdimx = NULL,
-    sdimy = NULL,
-    plot_method = c("ggplot", "scattermore"),
-    cell_locations_metadata_selected,
-    cell_locations_metadata_other,
-    cell_color = NULL,
-    color_as_factor = TRUE,
-    cell_color_code = NULL,
-    cell_color_gradient = NULL,
-    gradient_midpoint = NULL,
-    gradient_style = "divergent",
-    gradient_limits = NULL,
-    select_cell_groups = NULL,
-    select_cells = NULL,
-    point_size = 2,
-    point_alpha = 1,
-    show_cluster_center = FALSE,
-    show_center_label = TRUE,
-    center_point_size = 4,
-    label_size = 4,
-    label_fontface = "bold",
-    show_other_cells = TRUE,
-    other_cell_color = "lightgrey",
-    other_point_size = 1,
-    show_legend = TRUE,
-    ...) {
+plot_spat_point_layer_ggplot_noFILL <- function(
+        ggobject,
+        instrs = NULL,
+        sdimx = NULL,
+        sdimy = NULL,
+        plot_method = c("ggplot", "scattermore"),
+        cell_locations_metadata_selected,
+        cell_locations_metadata_other,
+        cell_color = NULL,
+        color_as_factor = TRUE,
+        cell_color_code = NULL,
+        cell_color_gradient = NULL,
+        gradient_midpoint = NULL,
+        gradient_style = "divergent",
+        gradient_limits = NULL,
+        select_cell_groups = NULL,
+        select_cells = NULL,
+        point_size = 2,
+        point_alpha = 1,
+        show_cluster_center = FALSE,
+        show_center_label = TRUE,
+        center_point_size = 4,
+        label_size = 4,
+        label_fontface = "bold",
+        show_other_cells = TRUE,
+        other_cell_color = "lightgrey",
+        other_point_size = 1,
+        show_legend = TRUE,
+        ...) {
     ## specify spatial dimensions first
     if (is.null(sdimx) || is.null(sdimy)) {
         warning(wrap_txt("plot_method = ggplot, but spatial dimensions
@@ -395,7 +406,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
     # cell color default
     if (is.null(cell_color)) {
         cell_color <- "lightblue"
-        pl <- pl + giotto_point(plot_method = plot_method,
+        pl <- pl + giotto_point(
+            plot_method = plot_method,
             data = cell_locations_metadata_selected,
             mapping = aes_string(x = sdimx, y = sdimy),
             show.legend = show_legend,
@@ -413,7 +425,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
             }
             cell_locations_metadata_selected[["temp_color"]] <- cell_color
 
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy, color = "temp_color"),
                 show.legend = show_legend,
@@ -428,7 +441,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
                     colors \n")
             }
 
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy),
                 show.legend = show_legend, shape = 19,
@@ -442,7 +456,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
             if (!cell_color %in% grDevices::colors()) {
                 stop(cell_color, " is not a color or a column name \n")
             }
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy),
                 show.legend = show_legend,
@@ -454,7 +469,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
             )
         } else {
             class_cell_color <- class(
-                cell_locations_metadata_selected[[cell_color]])
+                cell_locations_metadata_selected[[cell_color]]
+            )
 
             if (class_cell_color %in% c("integer", "numeric") &&
                 !isTRUE(color_as_factor)) {
@@ -469,15 +485,16 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
                         cell_locations_metadata_selected[[cell_color]]
                     limit_numeric_data <- ifelse(
                         numeric_data > upper_lim, upper_lim,
-                            ifelse(numeric_data < lower_lim, lower_lim,
-                                numeric_data
-                            )
+                        ifelse(numeric_data < lower_lim, lower_lim,
+                            numeric_data
                         )
+                    )
                     cell_locations_metadata_selected[[cell_color]] <-
                         limit_numeric_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = cell_locations_metadata_selected,
                     mapping = aes_string2(x = sdimx, y = sdimy, color = cell_color),
                     show.legend = show_legend,
@@ -490,7 +507,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
                 # convert character or numeric to factor
                 if (isTRUE(color_as_factor)) {
                     factor_data <- factor(
-                        cell_locations_metadata_selected[[cell_color]])
+                        cell_locations_metadata_selected[[cell_color]]
+                    )
                     cell_locations_metadata_selected[[cell_color]] <-
                         factor_data
                 }
@@ -507,7 +525,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = cell_locations_metadata_selected,
                     mapping = aes_string2(x = sdimx, y = sdimy, color = cell_color),
                     show.legend = show_legend,
@@ -522,7 +541,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
                 if (isTRUE(show_cluster_center) &&
                     (isTRUE(color_as_factor) ||
                         class_cell_color %in% c("character", "factor"))) {
-                    pl <- pl + giotto_point(plot_method = plot_method,
+                    pl <- pl + giotto_point(
+                        plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
                             x = "center_1", y = "center_2",
@@ -556,13 +576,15 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
             } else if (isTRUE(color_as_factor)) {
                 number_colors <- length(unique(factor_data))
                 cell_color_code <- set_default_color_discrete_cell(
-                    instrs = instrs)(n = number_colors)
+                    instrs = instrs
+                )(n = number_colors)
                 names(cell_color_code) <- unique(factor_data)
                 pl <- pl + ggplot2::scale_color_manual(values = cell_color_code)
             } else if (!isTRUE(color_as_factor)) {
                 if (is.null(gradient_midpoint)) {
                     gradient_midpoint <- stats::median(
-                        cell_locations_metadata_selected[[cell_color]])
+                        cell_locations_metadata_selected[[cell_color]]
+                    )
                 }
 
                 pl <- pl + set_default_color_continuous_cell(
@@ -598,37 +620,38 @@ plot_spat_point_layer_ggplot_noFILL <- function(ggobject,
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_spat_voronoi_layer_ggplot <- function(ggobject,
-    instrs = NULL,
-    sdimx = NULL,
-    sdimy = NULL,
-    cell_locations_metadata_selected,
-    cell_locations_metadata_other,
-    cell_color = NULL,
-    color_as_factor = TRUE,
-    cell_color_code = NULL,
-    cell_color_gradient = NULL,
-    gradient_midpoint = NULL,
-    gradient_style = "divergent",
-    gradient_limits = NULL,
-    select_cell_groups = NULL,
-    select_cells = NULL,
-    point_size = 2,
-    point_alpha = 1,
-    show_cluster_center = FALSE,
-    show_center_label = TRUE,
-    center_point_size = 4,
-    label_size = 4,
-    label_fontface = "bold",
-    show_other_cells = TRUE,
-    other_cell_color = "lightgrey",
-    other_point_size = 1,
-    background_color = "white",
-    vor_border_color = "white",
-    vor_max_radius = 200,
-    vor_alpha = 1,
-    show_legend = TRUE,
-    ...) {
+plot_spat_voronoi_layer_ggplot <- function(
+        ggobject,
+        instrs = NULL,
+        sdimx = NULL,
+        sdimy = NULL,
+        cell_locations_metadata_selected,
+        cell_locations_metadata_other,
+        cell_color = NULL,
+        color_as_factor = TRUE,
+        cell_color_code = NULL,
+        cell_color_gradient = NULL,
+        gradient_midpoint = NULL,
+        gradient_style = "divergent",
+        gradient_limits = NULL,
+        select_cell_groups = NULL,
+        select_cells = NULL,
+        point_size = 2,
+        point_alpha = 1,
+        show_cluster_center = FALSE,
+        show_center_label = TRUE,
+        center_point_size = 4,
+        label_size = 4,
+        label_fontface = "bold",
+        show_other_cells = TRUE,
+        other_cell_color = "lightgrey",
+        other_point_size = 1,
+        background_color = "white",
+        vor_border_color = "white",
+        vor_max_radius = 200,
+        vor_alpha = 1,
+        show_legend = TRUE,
+        ...) {
     ## specify spatial dimensions first
     if (is.null(sdimx) | is.null(sdimy)) {
         warning("plot_method = ggplot, but spatial dimensions for sdimx
@@ -729,7 +752,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
 
             if (is.null(gradient_midpoint)) {
                 gradient_midpoint <- stats::median(
-                    cell_locations_metadata_selected[["temp_color"]])
+                    cell_locations_metadata_selected[["temp_color"]]
+                )
             }
 
             mybg_color <- ifelse(show_other_cells == TRUE, other_cell_color,
@@ -824,7 +848,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
             )
 
             my_color_code <- unique(
-                combn_cell_locations_metadata[["temp_color"]])
+                combn_cell_locations_metadata[["temp_color"]]
+            )
             names(my_color_code) <- my_color_code
             pl <- pl +
                 ggplot2::scale_fill_manual(values = c(
@@ -888,7 +913,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
 
                 if (is.null(gradient_midpoint)) {
                     gradient_midpoint <- stats::median(
-                        cell_locations_metadata_selected[["temp_color"]])
+                        cell_locations_metadata_selected[["temp_color"]]
+                    )
                 }
 
                 pl <- pl + set_default_color_continuous_cell(
@@ -905,7 +931,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
                 # convert character or numeric to factor
                 if (color_as_factor == TRUE) {
                     factor_data <- factor(
-                        cell_locations_metadata_selected[[cell_color]])
+                        cell_locations_metadata_selected[[cell_color]]
+                    )
                     cell_locations_metadata_selected[[cell_color]] <-
                         factor_data
                 }
@@ -918,7 +945,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
                             center_2 = stats::median(get("sdimy"))
                         ), by = cell_color]
                     factor_center_data <- factor(
-                        annotated_DT_centers[[cell_color]])
+                        annotated_DT_centers[[cell_color]]
+                    )
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
@@ -928,9 +956,9 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
                     cell_locations_metadata_other[["temp_color"]] <- "other"
                 }
                 combn_cell_locations_metadata <- rbind(
-                        cell_locations_metadata_selected,
-                        cell_locations_metadata_other
-                    )
+                    cell_locations_metadata_selected,
+                    cell_locations_metadata_other
+                )
 
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = combn_cell_locations_metadata,
@@ -956,7 +984,8 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
                 } else if (isTRUE(color_as_factor)) {
                     number_colors <- length(unique(factor_data))
                     cell_color_code <- set_default_color_discrete_cell(
-                        instrs = instrs)(n = number_colors)
+                        instrs = instrs
+                    )(n = number_colors)
                     names(cell_color_code) <- unique(factor_data)
 
                     cell_color_code[["other"]] <- other_cell_color
@@ -1047,21 +1076,20 @@ plot_spat_voronoi_layer_ggplot <- function(ggobject,
 #' This is most likely a polygon that corresponds to the cell shape.
 #' @keywords internal
 #' @noRd
-plot_cell_polygon_layer <- function(
-        ggobject = NULL,
-        instrs = NULL,
-        polygon_dt,
-        polygon_grouping = "poly_ID",
-        fill = NULL,
-        poly_fill_gradient = NULL,
-        fill_gradient_midpoint = NULL,
-        fill_gradient_style = "divergent",
-        fill_as_factor = TRUE,
-        fill_code = NULL,
-        bg_color = "black",
-        color = "black",
-        alpha = 0.5,
-        size = 2) {
+plot_cell_polygon_layer <- function(ggobject = NULL,
+    instrs = NULL,
+    polygon_dt,
+    polygon_grouping = "poly_ID",
+    fill = NULL,
+    poly_fill_gradient = NULL,
+    fill_gradient_midpoint = NULL,
+    fill_gradient_style = "divergent",
+    fill_as_factor = TRUE,
+    fill_code = NULL,
+    bg_color = "black",
+    color = "black",
+    alpha = 0.5,
+    size = 2) {
     # check fill column
     if (!is.null(fill)) {
         if (isTRUE(fill_as_factor)) {
@@ -1102,7 +1130,8 @@ plot_cell_polygon_layer <- function(
             } else {
                 fill_values_names <- unique(polygon_dt[["final_fill"]])
                 fill_code <- set_default_color_discrete_poly(
-                    instrs = instrs)(length(fill_values_names))
+                    instrs = instrs
+                )(length(fill_values_names))
                 names(fill_code) <- fill_values_names
                 pl <- pl + ggplot2::scale_fill_manual(values = fill_code)
             }
@@ -1158,26 +1187,25 @@ plot_cell_polygon_layer <- function(
 #' These plots can get very big very fast.
 #' @keywords internal
 #' @noRd
-plot_feature_points_layer <- function(
-        ggobject,
-        instrs = NULL,
-        ext,
-        spatial_feat_info,
-        feats,
-        feats_color_code = NULL,
-        feat_shape_code = NULL,
-        sdimx = "x",
-        sdimy = "y",
-        color = "feat_ID",
-        shape = "feat",
-        point_size = 1.5,
-        stroke = NULL,
-        show_legend = TRUE,
-        plot_method = c("ggplot", "scattermore", "scattermost"),
-        expand_counts = FALSE,
-        count_info_column = "count",
-        jitter = c(0, 0),
-        verbose = TRUE) {
+plot_feature_points_layer <- function(ggobject,
+    instrs = NULL,
+    ext,
+    spatial_feat_info,
+    feats,
+    feats_color_code = NULL,
+    feat_shape_code = NULL,
+    sdimx = "x",
+    sdimy = "y",
+    color = "feat_ID",
+    shape = "feat",
+    point_size = 1.5,
+    stroke = NULL,
+    show_legend = TRUE,
+    plot_method = c("ggplot", "scattermore", "scattermost"),
+    expand_counts = FALSE,
+    count_info_column = "count",
+    jitter = c(0, 0),
+    verbose = TRUE) {
     # define plotting method
     plot_method <- match.arg(
         arg = plot_method,
@@ -1220,7 +1248,8 @@ plot_feature_points_layer <- function(
         } else {
             feats_names <- unique(spatial_feat_info_subset[[color]])
             feats_color_code <- set_default_color_discrete_feat(
-                instrs = instrs)(length(feats_names))
+                instrs = instrs
+            )(length(feats_names))
             names(feats_color_code) <- feats_names
             scattermost_color <-
                 feats_color_code[spatial_feat_info_subset[["feat_ID"]]]
@@ -1254,7 +1283,8 @@ plot_feature_points_layer <- function(
     } else {
         feats_names <- unique(spatial_feat_info_subset[[color]])
         feats_color_code <- set_default_color_discrete_feat(
-            instrs = instrs)(length(feats_names))
+            instrs = instrs
+        )(length(feats_names))
         names(feats_color_code) <- feats_names
         pl <- pl + ggplot2::scale_color_manual(values = feats_color_code)
     }
@@ -1282,13 +1312,14 @@ plot_feature_points_layer <- function(
 #' @details This function can plot one feature for one modality.
 #' @keywords internal
 #' @noRd
-plot_feature_raster_density_layer <- function(ggobject = NULL,
-    instrs = NULL,
-    spatial_feat_info,
-    sel_feat,
-    sdimx = "x",
-    sdimy = "y",
-    alpha = 0.5) {
+plot_feature_raster_density_layer <- function(
+        ggobject = NULL,
+        instrs = NULL,
+        spatial_feat_info,
+        sel_feat,
+        sdimx = "x",
+        sdimy = "y",
+        alpha = 0.5) {
     # data.table variable
     feat_ID <- NULL
 
@@ -1330,16 +1361,15 @@ plot_feature_raster_density_layer <- function(ggobject = NULL,
 #' @details This function can plot one feature for one modality.
 #' @keywords internal
 #' @noRd
-plot_feature_hexbin_layer <- function(
-        ggobject = NULL,
-        instrs = NULL,
-        spatial_feat_info,
-        sel_feat,
-        sdimx = "x",
-        sdimy = "y",
-        binwidth = NULL,
-        min_axis_bins = 10L,
-        alpha = 0.5) {
+plot_feature_hexbin_layer <- function(ggobject = NULL,
+    instrs = NULL,
+    spatial_feat_info,
+    sel_feat,
+    sdimx = "x",
+    sdimy = "y",
+    binwidth = NULL,
+    min_axis_bins = 10L,
+    alpha = 0.5) {
     # data.table variables
     feat_ID <- NULL
 
@@ -1348,8 +1378,8 @@ plot_feature_hexbin_layer <- function(
     # set default binwidth to 1/10 of minor axis
     if (is.null(binwidth)) {
         minorRange <- spatial_feat_info_subset[,
-                        min(diff(vapply(.SD, range, FUN.VALUE = numeric(2)))),
-                        .SDcols = c("x", "y")
+            min(diff(vapply(.SD, range, FUN.VALUE = numeric(2)))),
+            .SDcols = c("x", "y")
         ]
         binwidth <- as.integer(minorRange / min_axis_bins)
     }
@@ -1401,15 +1431,14 @@ plot_feature_hexbin_layer <- function(
 #' @return ggplot
 #' @keywords internal
 #' @noRd
-plot_spat_image_layer_ggplot <- function(
-        gg_obj,
-        gobject,
-        gimage,
-        spat_unit = NULL,
-        feat_type = NULL,
-        spat_loc_name = NULL,
-        polygon_feat_type = NULL,
-        ...) {
+plot_spat_image_layer_ggplot <- function(gg_obj,
+    gobject,
+    gimage,
+    spat_unit = NULL,
+    feat_type = NULL,
+    spat_loc_name = NULL,
+    polygon_feat_type = NULL,
+    ...) {
     if (is.null(gobject) || is.null(gimage)) {
         stop("A giotto object and a giotto image need to be provided")
     }
@@ -1457,17 +1486,16 @@ plot_spat_image_layer_ggplot <- function(
 #' @return ggplot
 #' @keywords internal
 #' @noRd
-plot_spat_scatterpie_layer_ggplot <- function(
-        ggobject,
-        instrs = NULL,
-        sdimx = "sdimx",
-        sdimy = "sdimy",
-        spatial_locations = NULL,
-        spatial_enrichment = NULL,
-        radius = 10,
-        color = NA,
-        alpha = 1,
-        cell_color_code = NULL) {
+plot_spat_scatterpie_layer_ggplot <- function(ggobject,
+    instrs = NULL,
+    sdimx = "sdimx",
+    sdimy = "sdimy",
+    spatial_locations = NULL,
+    spatial_enrichment = NULL,
+    radius = 10,
+    color = NA,
+    alpha = 1,
+    cell_color_code = NULL) {
     # get cell names
     cell_names <- colnames(spatial_enrichment)[-1]
 
@@ -1494,7 +1522,8 @@ plot_spat_scatterpie_layer_ggplot <- function(
     } else {
         number_colors <- length(unique(cell_names))
         cell_color_code <- set_default_color_discrete_cell(
-            instrs = instrs)(n = number_colors)
+            instrs = instrs
+        )(n = number_colors)
         names(cell_color_code) <- unique(cell_names)
         pl <- pl + ggplot2::scale_fill_manual(values = cell_color_code)
     }
@@ -1519,11 +1548,12 @@ plot_spat_scatterpie_layer_ggplot <- function(
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_network_layer_ggplot <- function(ggobject,
-    instrs = NULL,
-    annotated_network_DT,
-    edge_alpha = NULL,
-    show_legend = TRUE) {
+plot_network_layer_ggplot <- function(
+        ggobject,
+        instrs = NULL,
+        annotated_network_DT,
+        edge_alpha = NULL,
+        show_legend = TRUE) {
     from_dims <- grep("from_Dim", colnames(annotated_network_DT), value = TRUE)
     to_dims <- grep("to_Dim", colnames(annotated_network_DT), value = TRUE)
 
@@ -1577,35 +1607,36 @@ plot_network_layer_ggplot <- function(ggobject,
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_point_layer_ggplot <- function(ggobject,
-    instrs = NULL,
-    annotated_DT_selected,
-    annotated_DT_other,
-    cell_color = NULL,
-    color_as_factor = TRUE,
-    cell_color_code = NULL,
-    cell_color_gradient = NULL,
-    gradient_midpoint = 0,
-    gradient_style = "divergent",
-    gradient_limits = NULL,
-    select_cell_groups = NULL,
-    select_cells = NULL,
-    point_size = 1,
-    point_alpha = 1,
-    point_border_col = "black",
-    point_border_stroke = 0.1,
-    show_cluster_center = FALSE,
-    show_center_label = TRUE,
-    center_point_size = 4,
-    center_point_border_col = "black",
-    center_point_border_stroke = 0.1,
-    label_size = 4,
-    label_fontface = "bold",
-    edge_alpha = NULL,
-    show_other_cells = TRUE,
-    other_cell_color = "lightgrey",
-    other_point_size = 0.5,
-    show_legend = TRUE) {
+plot_point_layer_ggplot <- function(
+        ggobject,
+        instrs = NULL,
+        annotated_DT_selected,
+        annotated_DT_other,
+        cell_color = NULL,
+        color_as_factor = TRUE,
+        cell_color_code = NULL,
+        cell_color_gradient = NULL,
+        gradient_midpoint = 0,
+        gradient_style = "divergent",
+        gradient_limits = NULL,
+        select_cell_groups = NULL,
+        select_cells = NULL,
+        point_size = 1,
+        point_alpha = 1,
+        point_border_col = "black",
+        point_border_stroke = 0.1,
+        show_cluster_center = FALSE,
+        show_center_label = TRUE,
+        center_point_size = 4,
+        center_point_border_col = "black",
+        center_point_border_stroke = 0.1,
+        label_size = 4,
+        label_fontface = "bold",
+        edge_alpha = NULL,
+        show_other_cells = TRUE,
+        other_cell_color = "lightgrey",
+        other_point_size = 0.5,
+        show_legend = TRUE) {
     pl <- ggobject
 
 
@@ -1648,7 +1679,7 @@ plot_point_layer_ggplot <- function(ggobject,
             size = point_size,
             alpha = point_alpha
         )
-    # map color for each cell
+        # map color for each cell
     } else if (length(cell_color) > 1) {
         if (is.numeric(cell_color) | is.factor(cell_color)) {
             if (nrow(annotated_DT_selected) != length(cell_color)) {
@@ -1740,7 +1771,8 @@ plot_point_layer_ggplot <- function(ggobject,
                         center_2 = stats::median(get(dims[2]))
                     ), by = cell_color]
                     factor_center_data <- factor(
-                        annotated_DT_centers[[cell_color]])
+                        annotated_DT_centers[[cell_color]]
+                    )
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
@@ -1795,7 +1827,8 @@ plot_point_layer_ggplot <- function(ggobject,
             } else if (isTRUE(color_as_factor)) {
                 number_colors <- length(unique(factor_data))
                 cell_color_code <- set_default_color_discrete_cell(
-                    instrs = instrs)(n = number_colors)
+                    instrs = instrs
+                )(n = number_colors)
                 names(cell_color_code) <- unique(factor_data)
                 pl <- pl + ggplot2::scale_fill_manual(values = cell_color_code)
             } else if (!isTRUE(color_as_factor)) {
@@ -1829,34 +1862,33 @@ plot_point_layer_ggplot <- function(ggobject,
 #' @details Description of parameters.
 #' @keywords internal
 #' @noRd
-plot_point_layer_ggplot_noFILL <- function(
-        ggobject,
-        plot_method = "ggplot",
-        instrs = NULL,
-        annotated_DT_selected,
-        annotated_DT_other,
-        cell_color = NULL,
-        color_as_factor = TRUE,
-        cell_color_code = NULL,
-        cell_color_gradient = NULL,
-        gradient_midpoint = 0,
-        gradient_style = "divergent",
-        gradient_limits = NULL,
-        select_cell_groups = NULL,
-        select_cells = NULL,
-        point_size = 1,
-        point_alpha = 1,
-        show_cluster_center = FALSE,
-        show_center_label = TRUE,
-        center_point_size = 4,
-        label_size = 4,
-        label_fontface = "bold",
-        edge_alpha = NULL,
-        show_other_cells = TRUE,
-        other_cell_color = "lightgrey",
-        other_point_size = 0.5,
-        show_legend = TRUE,
-        ...) {
+plot_point_layer_ggplot_noFILL <- function(ggobject,
+    plot_method = "ggplot",
+    instrs = NULL,
+    annotated_DT_selected,
+    annotated_DT_other,
+    cell_color = NULL,
+    color_as_factor = TRUE,
+    cell_color_code = NULL,
+    cell_color_gradient = NULL,
+    gradient_midpoint = 0,
+    gradient_style = "divergent",
+    gradient_limits = NULL,
+    select_cell_groups = NULL,
+    select_cells = NULL,
+    point_size = 1,
+    point_alpha = 1,
+    show_cluster_center = FALSE,
+    show_center_label = TRUE,
+    center_point_size = 4,
+    label_size = 4,
+    label_fontface = "bold",
+    edge_alpha = NULL,
+    show_other_cells = TRUE,
+    other_cell_color = "lightgrey",
+    other_point_size = 0.5,
+    show_legend = TRUE,
+    ...) {
     pl <- ggobject
 
     plot_method <- match.arg(plot_method, c("ggplot", "scattermore"))
@@ -1890,7 +1922,8 @@ plot_point_layer_ggplot_noFILL <- function(
 
     if (is.null(cell_color)) {
         cell_color <- "lightblue"
-        pl <- pl + giotto_point(plot_method = plot_method,
+        pl <- pl + giotto_point(
+            plot_method = plot_method,
             data = annotated_DT_selected,
             mapping = aes_string(x = dims[1], dims[2]),
             color = cell_color, show.legend = show_legend, size = point_size,
@@ -1916,7 +1949,8 @@ plot_point_layer_ggplot_noFILL <- function(
                 stop("cell_color is not numeric, a factor or vector
                     of colors \n")
             }
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = annotated_DT_selected,
                 mapping = aes_string2(x = dims[1], y = dims[2]),
                 show.legend = show_legend, shape = 19,
@@ -1930,7 +1964,8 @@ plot_point_layer_ggplot_noFILL <- function(
             if (!cell_color %in% grDevices::colors()) {
                 stop(cell_color, " is not a color or a column name \n")
             }
-            pl <- pl + giotto_point(plot_method = plot_method,
+            pl <- pl + giotto_point(
+                plot_method = plot_method,
                 data = annotated_DT_selected,
                 mapping = aes_string(x = dims[1], y = dims[2]),
                 show.legend = show_legend, shape = 19,
@@ -1959,7 +1994,8 @@ plot_point_layer_ggplot_noFILL <- function(
                     annotated_DT_selected[[cell_color]] <- limit_numeric_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = annotated_DT_selected,
                     mapping = aes_string2(x = dims[1], y = dims[2], color = cell_color),
                     show.legend = show_legend, shape = 19, size = point_size,
@@ -1984,7 +2020,8 @@ plot_point_layer_ggplot_noFILL <- function(
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
-                pl <- pl + giotto_point(plot_method = plot_method,
+                pl <- pl + giotto_point(
+                    plot_method = plot_method,
                     data = annotated_DT_selected,
                     mapping = aes_string2(x = dims[1], y = dims[2], color = cell_color),
                     show.legend = show_legend, shape = 19, size = point_size,
@@ -1997,7 +2034,8 @@ plot_point_layer_ggplot_noFILL <- function(
                 if (show_cluster_center == TRUE &
                     (color_as_factor == TRUE |
                         class_cell_color %in% c("character", "factor"))) {
-                    pl <- pl + giotto_point(plot_method = plot_method,
+                    pl <- pl + giotto_point(
+                        plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
                             x = "center_1", y = "center_2",
@@ -2030,13 +2068,15 @@ plot_point_layer_ggplot_noFILL <- function(
             } else if (color_as_factor == TRUE) {
                 number_colors <- length(unique(factor_data))
                 cell_color_code <- set_default_color_discrete_cell(
-                    instrs = instrs)(n = number_colors)
+                    instrs = instrs
+                )(n = number_colors)
                 names(cell_color_code) <- unique(factor_data)
                 pl <- pl + ggplot2::scale_color_manual(values = cell_color_code)
             } else if (color_as_factor == FALSE) {
                 if (is.null(gradient_midpoint)) {
                     gradient_midpoint <- stats::median(
-                        annotated_DT_selected[[cell_color]])
+                        annotated_DT_selected[[cell_color]]
+                    )
                 }
                 pl <- pl + set_default_color_continuous_cell(
                     colors = cell_color_gradient,
@@ -2076,19 +2116,19 @@ plot_point_layer_ggplot_noFILL <- function(
 #' g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 #'
 #' my_giottoimage <- GiottoClass::createGiottoImage(g,
-#' mg_object = system.file("image.png", package = "GiottoVisuals"),
-#' name = 'image')
+#'     mg_object = system.file("image.png", package = "GiottoVisuals"),
+#'     name = "image"
+#' )
 #'
 #' my_spatplot <- spatPlot2D(g, return_plot = TRUE)
 #'
 #' addGiottoImageToSpatPlot(spatpl = my_spatplot, gimage = my_giottoimage)
 #'
 #' @export
-addGiottoImageToSpatPlot <- function(
-        spatpl = NULL,
-        gimage = NULL,
-        layer = c("bg", "overlay"),
-        alpha = NULL) {
+addGiottoImageToSpatPlot <- function(spatpl = NULL,
+    gimage = NULL,
+    layer = c("bg", "overlay"),
+    alpha = NULL) {
     layer <- match.arg(arg = layer, choices = c("bg", "overlay"))
 
     if (is.null(spatpl) | is.null(gimage)) {

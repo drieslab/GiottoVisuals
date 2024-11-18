@@ -1,16 +1,12 @@
-
-
 # wrapper for ggplot2 with some adapters for Giotto settings
 # ggplot2-native arg inputs are preferred
 #
-.gg_theme <- function(
-        legend_text = 8,
-        axis_title = 8,
-        axis_text = 8,
-        axis_text_y_angle = 90,
-        background_color = "white",
-        ...
-) {
+.gg_theme <- function(legend_text = 8,
+    axis_title = 8,
+    axis_text = 8,
+    axis_text_y_angle = 90,
+    background_color = "white",
+    ...) {
     a <- list(...)
 
     # giotto masked args
@@ -48,5 +44,3 @@ theme_dark2 <- theme(
     legend.text = element_text(color = "white"),
     legend.title = element_text(color = "white")
 )
-
-

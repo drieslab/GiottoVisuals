@@ -11,6 +11,8 @@ dimFeatPlot2D(
   expression_values = c("normalized", "scaled", "custom"),
   feats = NULL,
   order = TRUE,
+  group_by = NULL,
+  group_by_subset = NULL,
   dim_reduction_to_use = "umap",
   dim_reduction_name = NULL,
   dim1_to_use = 1,
@@ -58,6 +60,11 @@ dimFeatPlot2D(
 \item{feats}{features to show}
 
 \item{order}{order points according to feature expression}
+
+\item{group_by}{character. Create multiple plots based on cell
+annotation column}
+
+\item{group_by_subset}{character. subset the group_by factor column}
 
 \item{dim_reduction_to_use}{character. dimension reduction to use}
 
@@ -145,5 +152,17 @@ Description of parameters.
 g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 dimFeatPlot2D(g, feats = c("Gna12", "Ccnd2", "Btbd17"))
 
+# with group_by
+dimFeatPlot2D(g,
+    feats = c("Gna12"),
+    group_by = "leiden_clus",
+    gradient_midpoint = 3 # setting a specific midpoint can be helpful
+)
+# with group_by and group_by_subset
+dimFeatPlot2D(g,
+    feats = c("Gna12", "Ccnd2", "Btbd17"),
+    group_by = "leiden_clus",
+    group_by_subset = c(2, 5)
+)
 }
 \concept{dimension reduction feature expression visualizations}

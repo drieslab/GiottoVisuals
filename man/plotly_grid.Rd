@@ -33,10 +33,12 @@ provide grid segment to draw in plot_ly()
 g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 
 library(GiottoClass)
-g <- createSpatialGrid(gobject = g,
-sdimx_stepsize = 400,
-sdimy_stepsize = 400,
-minimum_padding = 0)
+g <- createSpatialGrid(
+    gobject = g,
+    sdimx_stepsize = 400,
+    sdimy_stepsize = 400,
+    minimum_padding = 0
+)
 
 my_spatial_grid <- getSpatialGrid(g)
 
