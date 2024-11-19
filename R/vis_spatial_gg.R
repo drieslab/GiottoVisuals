@@ -3385,7 +3385,7 @@ spatFeatPlot2D <- function(
     pl <- pl + ggplot2::labs(
         x = "coord x",
         y = "coord y",
-        title = paste(group_id, feat, sep = "-")
+        title = paste(c(group_id, feat), collapse = "-")
     )
 
     ## aesthetics
