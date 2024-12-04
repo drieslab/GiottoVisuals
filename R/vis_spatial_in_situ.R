@@ -190,6 +190,7 @@ spatInSituPlotPoints <- function(
     if (isTRUE(show_image) &&
         !is.null(gimage)) {
 
+        e <- NULL
         if (!is.null(xlim) && !is.null(ylim)) {
             e <- ext(c(xlim, ylim))
         }
