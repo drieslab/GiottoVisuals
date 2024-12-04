@@ -1,4 +1,9 @@
 
+# GiottoVisuals 0.2.10 (2024/12/04)
+
+## bug fixes
+- fix missing `e` extent error during `spatInSituPlotPoints()` with `show_image = TRUE` introduced in v0.2.9 [#96](https://github.com/drieslab/GiottoVisuals/issues/96) by kunleng
+
 # GiottoVisuals 0.2.9 (2024/11/18)
 
 ## bug fixes

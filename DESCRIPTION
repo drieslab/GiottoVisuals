@@ -1,6 +1,6 @@
 Package: GiottoVisuals
 Title: Visuals for the Giotto spatial biology analysis ecosystem
-Version: 0.2.9
+Version: 0.2.10
 Authors@R: c(
 	person("Ruben", "Dries", email = "rubendries@gmail.com",
 		 role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7650-7754")),
@@ -66,6 +66,9 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown
+Remotes:
+    drieslab/GiottoUtils,
+    drieslab/GiottoClass
 Config/testthat/edition: 3
 Collate: 
     'aux_defaults.R'
