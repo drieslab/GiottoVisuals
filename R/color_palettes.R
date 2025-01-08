@@ -340,6 +340,11 @@ get_continuous_colors <- function(col, n, strategy) {
 }
 
 
+.is_color_code <- function(x) {
+    pattern <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    grepl(pattern, x) | x %in% grDevices::colors()
+}
+
 
 #' @name simple_palette_factory
 #' @title Generate a simple palette function
