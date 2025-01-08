@@ -1,4 +1,9 @@
 
+# GiottoVisuals 0.2.11
+
+## bug fixes
+- fix color code/name checking to allow hex codes in `cell_color` plotting param.
+
 # GiottoVisuals 0.2.10 (2024/12/04)
 
 ## bug fixes
