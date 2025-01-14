@@ -1,6 +1,9 @@
 
 # GiottoVisuals 0.2.11
 
+## enhancements
+- improve efficiency of `spatInSituPlotDensity()`
+
 ## bug fixes
 - fix color code/name checking to allow hex codes in `cell_color` plotting param.
 

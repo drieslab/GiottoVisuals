@@ -757,8 +757,8 @@ spatInSituPlotHex <- function(gobject,
 #' @details This function can plot one feature for one modality.
 #' @keywords internal
 .spatInSituPlotDensity_single <- function(gobject,
+    data,
     feat = NULL,
-    feat_type = "rna",
     sdimx = "x",
     sdimy = "y",
     alpha = 0.95,
@@ -780,6 +780,18 @@ spatInSituPlotHex <- function(gobject,
     }
 
     plot <- ggplot2::ggplot()
+
+    feat_data <- data[feat_ID == feat,]
+
+    plot <- plot_feature_raster_density_layer(
+        ggobject = plot,
+        instrs = instructions(gobject),
+        spatial_feat_info = feat_data,
+        sel_feat = feat,
+        sdimx = sdimx,
+        sdimy = sdimy,
+        alpha = alpha
+    )
 
     ## polygon layer ##
     if (show_polygon == TRUE) {
@@ -806,29 +818,6 @@ spatInSituPlotHex <- function(gobject,
             size = polygon_size
         )
     }
-
-
-
-    ## density layer ##
-    form_feat <- list(feat_type = c(feat))
-    spatial_feat_info <- combineFeatureOverlapData(
-        gobject = gobject,
-        feat_type = feat_type,
-        sel_feats = form_feat,
-        poly_info = polygon_feat_type
-    )
-
-    spatial_feat_info <- do.call("rbind", spatial_feat_info)
-
-    plot <- plot_feature_raster_density_layer(
-        ggobject = plot,
-        instrs = instructions(gobject),
-        spatial_feat_info = spatial_feat_info,
-        sel_feat = feat,
-        sdimx = sdimx,
-        sdimy = sdimy,
-        alpha = alpha
-    )
 
 
     ## adjust theme settings
@@ -940,8 +929,15 @@ spatInSituPlotDensity <- function(gobject,
         return_plot
     )
 
-
-
+    feats2get <- list(feat_type = feats)
+    data <- combineFeatureOverlapData(
+        gobject = gobject,
+        feat_type = feat_type,
+        sel_feats = feats2get,
+        poly_info = polygon_feat_type
+    )
+    data <- do.call(rbind, data)
+    data <- data[, c("feat_ID", "x", "y")]
 
     ## plotting ##
     savelist <- list()
@@ -949,8 +945,8 @@ spatInSituPlotDensity <- function(gobject,
     for (sel_feat in feats) {
         pl <- .spatInSituPlotDensity_single(
             gobject = gobject,
+            data = data,
             feat = sel_feat,
-            feat_type = feat_type,
             sdimx = sdimx,
             sdimy = sdimy,
             alpha = alpha,
