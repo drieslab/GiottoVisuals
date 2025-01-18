@@ -339,6 +339,20 @@ get_continuous_colors <- function(col, n, strategy) {
     )
 }
 
+# check if input vector defines R colors or hexcodes
+.is_color_code <- function(x) {
+    pattern <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    grepl(pattern, x) | x %in% grDevices::colors()
+}
+
+# map numerical values to a monochrome color gradient
+# returns the color vector as hex codes
+.map_colors <- function(values, color) {
+    # Normalize to 0-1
+    normalized <- (values - min(values)) / (diff(range(values)))
+    colors <- getMonochromeColors(color, 256)
+    colors[ceiling(normalized * 255) + 1]
+}
 
 
 #' @name simple_palette_factory
