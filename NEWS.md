@@ -1,5 +1,5 @@
 
-# GiottoVisuals 0.2.11
+# GiottoVisuals 0.2.11 (2025/01/17)
 
 ## enhancements
 - improve efficiency of `spatInSituPlotDensity()`
