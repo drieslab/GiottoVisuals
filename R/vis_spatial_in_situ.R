@@ -774,6 +774,9 @@ spatInSituPlotHex <- function(gobject,
     axis_title = 8,
     legend_text = 6,
     background_color = "black") {
+
+    feat_ID <- NULL # NSE vars
+
     if (is.null(feat)) {
         stop("You need to select a feature (feat) and modify feature types
             (feat_type) if needed \n")
