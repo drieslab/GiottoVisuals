@@ -3218,6 +3218,9 @@ spatFeatPlot2D <- function(
         axis_text = 8,
         axis_title = 8,
         instrs) {
+
+    to <- from <- NULL # NSE vars
+
     # order spatial units (e.g. cell IDs) based on expression of feature
     if (isTRUE(order)) {
         data <- data[order(get(feat))]

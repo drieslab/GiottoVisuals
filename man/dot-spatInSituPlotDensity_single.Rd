@@ -6,8 +6,8 @@
 \usage{
 .spatInSituPlotDensity_single(
   gobject,
+  data,
   feat = NULL,
-  feat_type = "rna",
   sdimx = "x",
   sdimy = "y",
   alpha = 0.95,
