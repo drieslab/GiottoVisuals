@@ -144,7 +144,7 @@ plot_spat_point_layer_ggplot <- function(
                 alpha = point_alpha
             )
         } else if (is.character(cell_color)) { # cell_color is hex codes
-            if (!all(cell_color %in% grDevices::colors())) {
+            if (!all(.is_color_code(cell_color))) {
                 stop("cell_color is not numeric,
                     a factor or vector of colors \n")
             }
@@ -164,7 +164,7 @@ plot_spat_point_layer_ggplot <- function(
         }
     } else if (is.character(cell_color)) {
         if (!cell_color %in% colnames(cell_locations_metadata_selected)) {
-            if (!cell_color %in% grDevices::colors()) {
+            if (!.is_color_code(cell_color)) {
                 stop(cell_color, " is not a color or a column name \n")
             }
             pl <- pl + giotto_point(
@@ -436,7 +436,7 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                 ...
             )
         } else if (is.character(cell_color)) {
-            if (!all(cell_color %in% grDevices::colors())) {
+            if (!all(.is_color_code(cell_color))) {
                 stop("cell_color is not numeric, a factor or vector of
                     colors \n")
             }
@@ -453,7 +453,7 @@ plot_spat_point_layer_ggplot_noFILL <- function(
         }
     } else if (is.character(cell_color)) {
         if (!cell_color %in% colnames(cell_locations_metadata_selected)) {
-            if (!cell_color %in% grDevices::colors()) {
+            if (!.is_color_code(cell_color)) {
                 stop(cell_color, " is not a color or a column name \n")
             }
             pl <- pl + giotto_point(
@@ -774,7 +774,7 @@ plot_spat_voronoi_layer_ggplot <- function(
         } else if (is.character(cell_color)) {
             ## 3. character vector to convert to colors ##
 
-            if (!all(cell_color %in% grDevices::colors())) {
+            if (!all(.is_color_code(cell_color))) {
                 stop("cell_color is not numeric, a factor or vector of
                     colors \n")
             }
@@ -819,7 +819,7 @@ plot_spat_voronoi_layer_ggplot <- function(
         }
     } else if (is.character(cell_color)) {
         if (!cell_color %in% colnames(cell_locations_metadata_selected)) {
-            if (!cell_color %in% grDevices::colors()) {
+            if (!.is_color_code(cell_color)) {
                 stop(cell_color, " is not a color or a column name \n")
             }
 
@@ -1698,7 +1698,7 @@ plot_point_layer_ggplot <- function(
                 alpha = point_alpha
             )
         } else if (is.character(cell_color)) {
-            if (!all(cell_color %in% grDevices::colors())) {
+            if (!all(.is_color_code(cell_color))) {
                 stop("cell_color is not numeric,
                     a factor or vector of colors \n")
             }
@@ -1715,7 +1715,7 @@ plot_point_layer_ggplot <- function(
     } else if (is.character(cell_color)) {
         # color by col values
         if (!cell_color %in% colnames(annotated_DT_selected)) {
-            if (!cell_color %in% grDevices::colors()) {
+            if (!.is_color_code(cell_color)) {
                 stop(cell_color, " is not a color or a column name \n")
             }
             pl <- pl + ggplot2::geom_point(
@@ -1945,7 +1945,7 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                 alpha = point_alpha
             )
         } else if (is.character(cell_color)) {
-            if (!all(cell_color %in% grDevices::colors())) {
+            if (!all(.is_color_code(cell_color))) {
                 stop("cell_color is not numeric, a factor or vector
                     of colors \n")
             }
@@ -1961,7 +1961,7 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
         }
     } else if (is.character(cell_color)) {
         if (!cell_color %in% colnames(annotated_DT_selected)) {
-            if (!cell_color %in% grDevices::colors()) {
+            if (!.is_color_code(cell_color)) {
                 stop(cell_color, " is not a color or a column name \n")
             }
             pl <- pl + giotto_point(

@@ -12,6 +12,7 @@ spatInSituPlotDensity(
   sdimy = "y",
   alpha = 0.95,
   show_polygon = TRUE,
+  use_overlap = FALSE,
   polygon_feat_type = "cell",
   polygon_color = "black",
   polygon_fill = NULL,
@@ -49,6 +50,9 @@ spatInSituPlotDensity(
 \item{alpha}{alpha of density plot}
 
 \item{show_polygon}{overlay polygon information (e.g. cell shape)}
+
+\item{use_overlap}{whether features should be restricted to those overlapped
+by the \code{polygon_feat_type} spatial unit.}
 
 \item{polygon_feat_type}{feature type associated with polygon information}
 

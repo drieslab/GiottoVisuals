@@ -1,4 +1,13 @@
 
+# GiottoVisuals 0.2.11 (2025/01/17)
+
+## enhancements
+- improve efficiency of `spatInSituPlotDensity()`
+- `use_overlap` param for `spatInSituPlotDensity()` to allow the unoverlapped data to be used for density
+
+## bug fixes
+- fix color code/name checking to allow hex codes in `cell_color` plotting param.
+
 # GiottoVisuals 0.2.10 (2024/12/04)
 
 ## bug fixes
