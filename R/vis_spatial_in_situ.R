@@ -854,6 +854,8 @@ spatInSituPlotHex <- function(gobject,
 #' @param sdimx spatial dimension x
 #' @param sdimy spatial dimension y
 #' @param alpha alpha of density plot
+#' @param use_overlap whether features should be restricted to those overlapped
+#' by the `polygon_feat_type` spatial unit.
 #' @param polygon_size deprecated
 #' @param coord_fix_ratio fix ratio between x and y-axis
 #' @param axis_text axis text size
@@ -878,6 +880,7 @@ spatInSituPlotDensity <- function(gobject,
     sdimy = "y",
     alpha = 0.95,
     show_polygon = TRUE,
+    use_overlap = FALSE,
     polygon_feat_type = "cell",
     polygon_color = "black",
     polygon_fill = NULL,
@@ -929,14 +932,23 @@ spatInSituPlotDensity <- function(gobject,
         return_plot
     )
 
-    feats2get <- list(feat_type = feats)
-    data <- combineFeatureOverlapData(
-        gobject = gobject,
-        feat_type = feat_type,
-        sel_feats = feats2get,
-        poly_info = polygon_feat_type
-    )
-    data <- do.call(rbind, data)
+    if (isTRUE(use_overlap)) {
+        feats2get <- list(feat_type = feats)
+        data <- combineFeatureOverlapData(gobject,
+            feat_type = feat_type,
+            sel_feats = feats2get,
+            poly_info = polygon_feat_type
+        )
+        data <- do.call(rbind, data)
+    } else {
+        data <- getFeatureInfo(gobject,
+            feat_type = feat_type,
+            return_giottoPoints = TRUE
+        )
+        data <- data[feats]
+        data <- data.table::as.data.table(data, geom = "XY")
+    }
+
     data <- data[, c("feat_ID", "x", "y")]
 
     ## plotting ##

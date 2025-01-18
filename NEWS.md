@@ -3,6 +3,7 @@
 
 ## enhancements
 - improve efficiency of `spatInSituPlotDensity()`
+- `use_overlap` param for `spatInSituPlotDensity()` to allow the unoverlapped data to be used for density
 
 ## bug fixes
 - fix color code/name checking to allow hex codes in `cell_color` plotting param.
