@@ -135,6 +135,7 @@ spatInSituPlotPoints <- function(
         save_param = list(),
         default_save_name = "spatInSituPlotPoints",
         verbose = TRUE) {
+    handle_errors({
     # set polygon_feat_type
     avail_poly_names <- list_spatial_info_names(gobject = gobject)
     if (polygon_feat_type == "cell" &&
@@ -449,6 +450,7 @@ spatInSituPlotPoints <- function(
         save_param = save_param,
         else_return = NULL
     ))
+    }, prefix = "spatInSituPlotPoints()")
 }
 
 
