@@ -856,6 +856,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
     x_text_size = 8,
     x_text_angle = 45,
     y_text_size = 8,
+    y_axis_title = "genes",
     strip_text_size = 8,
     show_plot = NULL,
     return_plot = NULL,
@@ -1003,7 +1004,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
             axis.text.y = ggplot2::element_text(size = y_text_size),
             legend.title = ggplot2::element_blank()
         )
-        pl <- pl + ggplot2::labs(x = metadata_cols, y = "genes")
+        pl <- pl + ggplot2::labs(x = metadata_cols, y = y_axis_title)
     } else {
         if (is.null(first_meta_col) | is.null(second_meta_col)) {
             message("both first_meta_col and second_meta_col need to be defined,
@@ -1054,7 +1055,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
                 legend.title = ggplot2::element_blank()
             )
             pl <- pl + ggplot2::labs(
-                x = first_meta_col, y = "genes",
+                x = first_meta_col, y = y_axis_title,
                 title = second_meta_col
             )
         }

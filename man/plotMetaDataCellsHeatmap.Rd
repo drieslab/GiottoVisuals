@@ -27,6 +27,7 @@ plotMetaDataCellsHeatmap(
   x_text_size = 8,
   x_text_angle = 45,
   y_text_size = 8,
+  y_axis_title = "genes",
   strip_text_size = 8,
   show_plot = NULL,
   return_plot = NULL,
