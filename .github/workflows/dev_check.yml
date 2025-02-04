@@ -39,6 +39,7 @@ jobs:
           _R_CHECK_RD_XREFS: false
         with:
           install-pandoc: false
+          dependencies: '"hard"'
           extra-packages: |
             any::ggdendro
             any::ComplexHeatmap
