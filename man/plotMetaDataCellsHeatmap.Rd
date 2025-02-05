@@ -88,6 +88,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{y_text_size}{size of y-axis text}
 
+\item{y_axis_title}{character. default is "genes".}
+
 \item{strip_text_size}{size of strip text}
 
 \item{show_plot}{logical. show plot}

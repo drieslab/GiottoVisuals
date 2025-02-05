@@ -826,6 +826,7 @@ plotMetaDataHeatmap <- function(
 #' @param x_text_size size of x-axis text
 #' @param x_text_angle angle of x-axis text
 #' @param y_text_size size of y-axis text
+#' @param y_axis_title character. default is "genes".
 #' @param strip_text_size size of strip text
 #' @details Creates heatmap for the average values of selected value columns
 #' in the different annotation groups.
