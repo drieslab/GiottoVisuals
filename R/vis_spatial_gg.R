@@ -575,9 +575,12 @@ spatPlot2D <- function(
         image_name <- c(image_name, largeImage_name)
     }
 
-    point_shape <- match.arg(point_shape, c("border", "no_border", "voronoi"))
+    point_shape <- match.arg(
+        point_shape, c("border", "no_border", "voronoi")
+    )
 
-    if (identical(plot_method, "scattermore") && point_shape != "no_border") {
+    if (identical(plot_method, "scattermore") &&
+        point_shape != "no_border") {
         warning("point_shape changed to \"no_border\" for scattermore")
         point_shape <- "no_border"
     }
@@ -632,7 +635,11 @@ spatPlot2D <- function(
     ## check group_by
     if (is.null(group_by)) { # ----------------------------------------------- #
 
-        do.call(.spatPlot2D_single, args = spp_params)
+        handle_errors(
+            do.call(.spatPlot2D_single, args = spp_params),
+            prefix = "spatPlot2D()"
+        )
+
     } else { # -------------------------------------------------------------- #
 
         # setup for group_by
@@ -737,7 +744,10 @@ spatPlot2D <- function(
                 spp_params$image_name <- image_name[group_id]
             }
 
-            pl <- do.call(.spatPlot2D_single, args = spp_params)
+            pl <- handle_errors(
+                do.call(.spatPlot2D_single, args = spp_params),
+                prefix = sprintf("spatPlot2D() group: %s", group_id)
+            )
 
             savelist[[group_id]] <- pl
         }
@@ -1514,126 +1524,11 @@ dimPlot2D <- function(
     # arg_list <- c(as.list(environment())) # get all args as list
     checkmate::assert_class(gobject, "giotto")
 
-    ## check group_by
-    if (is.null(group_by)) {
-        .dimPlot2D_single(
-            gobject = gobject,
-            spat_unit = spat_unit,
-            feat_type = feat_type,
-            dim_reduction_to_use = dim_reduction_to_use,
-            dim_reduction_name = dim_reduction_name,
-            dim1_to_use = dim1_to_use,
-            dim2_to_use = dim2_to_use,
-            spat_enr_names = spat_enr_names,
-            show_NN_network = show_NN_network,
-            nn_network_to_use = nn_network_to_use,
-            network_name = network_name,
-            cell_color = cell_color,
-            color_as_factor = color_as_factor,
-            cell_color_code = cell_color_code,
-            cell_color_gradient = cell_color_gradient,
-            gradient_midpoint = gradient_midpoint,
-            gradient_style = gradient_style,
-            gradient_limits = gradient_limits,
-            select_cell_groups = select_cell_groups,
-            select_cells = select_cells,
-            show_other_cells = show_other_cells,
-            other_cell_color = other_cell_color,
-            other_point_size = other_point_size,
-            show_cluster_center = show_cluster_center,
-            show_center_label = show_center_label,
-            center_point_size = center_point_size,
-            center_point_border_col = center_point_border_col,
-            center_point_border_stroke = center_point_border_stroke,
-            label_size = label_size,
-            label_fontface = label_fontface,
-            edge_alpha = edge_alpha,
-            point_shape = point_shape,
-            point_size = point_size,
-            point_alpha = point_alpha,
-            point_border_col = point_border_col,
-            point_border_stroke = point_border_stroke,
-            title = title,
-            show_legend = show_legend,
-            legend_text = legend_text,
-            legend_symbol_size = legend_symbol_size,
-            background_color = background_color,
-            axis_text = axis_text,
-            axis_title = axis_title,
-            show_plot = show_plot,
-            return_plot = return_plot,
-            save_plot = save_plot,
-            save_param = save_param,
-            default_save_name = default_save_name
-        )
-    } else {
-        comb_metadata <- combineMetadata(
-            gobject = gobject,
-            spat_unit = spat_unit,
-            feat_type = feat_type,
-            spat_enr_names = spat_enr_names,
-            spat_loc_name = NULL
-        )
-        possible_meta_groups <- colnames(comb_metadata)
-
-        ## check if group_by is found
-        if (!group_by %in% possible_meta_groups) {
-            stop("group_by ", group_by, " was not found in pDataDT()")
-        }
-
-        unique_groups <- unique(comb_metadata[[group_by]])
-
-        # subset unique_groups
-        if (!is.null(group_by_subset)) {
-            not_found <- group_by_subset[!group_by_subset %in% unique_groups]
-
-            if (length(not_found) > 0) {
-                message("the following subset was not found: ", not_found)
-            }
-            unique_groups <- unique_groups[unique_groups %in% group_by_subset]
-        }
-
-
-        # create matching cell_color_code for groupby factors
-        # best done prior to the following groupby subsetGiotto() operation
-        if (is.null(cell_color_code)) { # TODO add getColors() support
-            if (is.character(cell_color)) {
-                if (cell_color %in% colnames(comb_metadata)) {
-                    if (color_as_factor == TRUE) {
-                        number_colors <- length(
-                            unique(comb_metadata[[cell_color]])
-                        )
-                        cell_color_code <- set_default_color_discrete_cell(
-                            instrs = instructions(gobject)
-                        )(n = number_colors)
-                        names(cell_color_code) <- unique(
-                            comb_metadata[[cell_color]]
-                        )
-                        cell_color_code <- cell_color_code
-                    }
-                }
-            }
-        }
-
-        ## plotting ##
-        savelist <- list()
-
-
-        for (group_id in seq_len(length(unique_groups))) {
-            group <- unique_groups[group_id]
-
-            subset_cell_IDs <- comb_metadata[
-                get(group_by) == group
-            ][["cell_ID"]]
-            temp_gobject <- subsetGiotto(
+    handle_errors({
+        ## check group_by
+        if (is.null(group_by)) {
+            .dimPlot2D_single(
                 gobject = gobject,
-                spat_unit = spat_unit,
-                feat_type = feat_type,
-                cell_ids = subset_cell_IDs
-            )
-
-            pl <- .dimPlot2D_single(
-                gobject = temp_gobject,
                 spat_unit = spat_unit,
                 feat_type = feat_type,
                 dim_reduction_to_use = dim_reduction_to_use,
@@ -1645,8 +1540,8 @@ dimPlot2D <- function(
                 nn_network_to_use = nn_network_to_use,
                 network_name = network_name,
                 cell_color = cell_color,
-                cell_color_code = cell_color_code,
                 color_as_factor = color_as_factor,
+                cell_color_code = cell_color_code,
                 cell_color_gradient = cell_color_gradient,
                 gradient_midpoint = gradient_midpoint,
                 gradient_style = gradient_style,
@@ -1669,47 +1564,164 @@ dimPlot2D <- function(
                 point_alpha = point_alpha,
                 point_border_col = point_border_col,
                 point_border_stroke = point_border_stroke,
-                title = group,
+                title = title,
                 show_legend = show_legend,
                 legend_text = legend_text,
                 legend_symbol_size = legend_symbol_size,
                 background_color = background_color,
                 axis_text = axis_text,
                 axis_title = axis_title,
-                show_plot = FALSE,
-                return_plot = TRUE,
-                save_plot = FALSE,
-                save_param = list(),
+                show_plot = show_plot,
+                return_plot = return_plot,
+                save_plot = save_plot,
+                save_param = save_param,
                 default_save_name = default_save_name
             )
+        } else {
+            comb_metadata <- combineMetadata(
+                gobject = gobject,
+                spat_unit = spat_unit,
+                feat_type = feat_type,
+                spat_enr_names = spat_enr_names,
+                spat_loc_name = NULL
+            )
+            possible_meta_groups <- colnames(comb_metadata)
+
+            ## check if group_by is found
+            if (!group_by %in% possible_meta_groups) {
+                stop("group_by ", group_by, " was not found in pDataDT()")
+            }
+
+            unique_groups <- unique(comb_metadata[[group_by]])
+
+            # subset unique_groups
+            if (!is.null(group_by_subset)) {
+                not_found <- group_by_subset[!group_by_subset %in% unique_groups]
+
+                if (length(not_found) > 0) {
+                    message("the following subset was not found: ", not_found)
+                }
+                unique_groups <- unique_groups[unique_groups %in% group_by_subset]
+            }
 
 
-            savelist[[group_id]] <- pl
+            # create matching cell_color_code for groupby factors
+            # best done prior to the following groupby subsetGiotto() operation
+            if (is.null(cell_color_code)) { # TODO add getColors() support
+                if (is.character(cell_color)) {
+                    if (cell_color %in% colnames(comb_metadata)) {
+                        if (color_as_factor == TRUE) {
+                            number_colors <- length(
+                                unique(comb_metadata[[cell_color]])
+                            )
+                            cell_color_code <- set_default_color_discrete_cell(
+                                instrs = instructions(gobject)
+                            )(n = number_colors)
+                            names(cell_color_code) <- unique(
+                                comb_metadata[[cell_color]]
+                            )
+                            cell_color_code <- cell_color_code
+                        }
+                    }
+                }
+            }
+
+            ## plotting ##
+            savelist <- list()
+
+
+            for (group_id in seq_len(length(unique_groups))) {
+                group <- unique_groups[group_id]
+
+                subset_cell_IDs <- comb_metadata[
+                    get(group_by) == group
+                ][["cell_ID"]]
+                temp_gobject <- subsetGiotto(
+                    gobject = gobject,
+                    spat_unit = spat_unit,
+                    feat_type = feat_type,
+                    cell_ids = subset_cell_IDs
+                )
+
+                pl <- .dimPlot2D_single(
+                    gobject = temp_gobject,
+                    spat_unit = spat_unit,
+                    feat_type = feat_type,
+                    dim_reduction_to_use = dim_reduction_to_use,
+                    dim_reduction_name = dim_reduction_name,
+                    dim1_to_use = dim1_to_use,
+                    dim2_to_use = dim2_to_use,
+                    spat_enr_names = spat_enr_names,
+                    show_NN_network = show_NN_network,
+                    nn_network_to_use = nn_network_to_use,
+                    network_name = network_name,
+                    cell_color = cell_color,
+                    cell_color_code = cell_color_code,
+                    color_as_factor = color_as_factor,
+                    cell_color_gradient = cell_color_gradient,
+                    gradient_midpoint = gradient_midpoint,
+                    gradient_style = gradient_style,
+                    gradient_limits = gradient_limits,
+                    select_cell_groups = select_cell_groups,
+                    select_cells = select_cells,
+                    show_other_cells = show_other_cells,
+                    other_cell_color = other_cell_color,
+                    other_point_size = other_point_size,
+                    show_cluster_center = show_cluster_center,
+                    show_center_label = show_center_label,
+                    center_point_size = center_point_size,
+                    center_point_border_col = center_point_border_col,
+                    center_point_border_stroke = center_point_border_stroke,
+                    label_size = label_size,
+                    label_fontface = label_fontface,
+                    edge_alpha = edge_alpha,
+                    point_shape = point_shape,
+                    point_size = point_size,
+                    point_alpha = point_alpha,
+                    point_border_col = point_border_col,
+                    point_border_stroke = point_border_stroke,
+                    title = group,
+                    show_legend = show_legend,
+                    legend_text = legend_text,
+                    legend_symbol_size = legend_symbol_size,
+                    background_color = background_color,
+                    axis_text = axis_text,
+                    axis_title = axis_title,
+                    show_plot = FALSE,
+                    return_plot = TRUE,
+                    save_plot = FALSE,
+                    save_param = list(),
+                    default_save_name = default_save_name
+                )
+
+
+                savelist[[group_id]] <- pl
+            }
+
+            # combine plots with cowplot
+            combo_plot <- cowplot::plot_grid(
+                plotlist = savelist,
+                ncol = set_default_cow_n_col(
+                    cow_n_col = cow_n_col,
+                    nr_plots = length(savelist)
+                ),
+                rel_heights = cow_rel_h,
+                rel_widths = cow_rel_w,
+                align = cow_align
+            )
+
+            return(plot_output_handler(
+                gobject = gobject,
+                plot_object = combo_plot,
+                save_plot = save_plot,
+                return_plot = return_plot,
+                show_plot = show_plot,
+                default_save_name = default_save_name,
+                save_param = save_param,
+                else_return = NULL
+            ))
         }
-
-        # combine plots with cowplot
-        combo_plot <- cowplot::plot_grid(
-            plotlist = savelist,
-            ncol = set_default_cow_n_col(
-                cow_n_col = cow_n_col,
-                nr_plots = length(savelist)
-            ),
-            rel_heights = cow_rel_h,
-            rel_widths = cow_rel_w,
-            align = cow_align
-        )
-
-        return(plot_output_handler(
-            gobject = gobject,
-            plot_object = combo_plot,
-            save_plot = save_plot,
-            return_plot = return_plot,
-            show_plot = show_plot,
-            default_save_name = default_save_name,
-            save_param = save_param,
-            else_return = NULL
-        ))
-    }
+    }, prefix = "dimPlot2D()")
 }
 
 
@@ -3485,262 +3497,265 @@ dimFeatPlot2D <- function(
         save_plot = NULL,
         save_param = list(),
         default_save_name = "dimFeatPlot2D") {
-    # print, return and save parameters
-    show_plot <- ifelse(is.null(show_plot),
-        readGiottoInstructions(gobject, param = "show_plot"),
-        show_plot
-    )
-    save_plot <- ifelse(is.null(save_plot),
-        readGiottoInstructions(gobject, param = "save_plot"),
-        save_plot
-    )
-    return_plot <- ifelse(is.null(return_plot),
-        readGiottoInstructions(gobject, param = "return_plot"),
-        return_plot
-    )
 
-    # point shape
-    point_shape <- match.arg(point_shape, choices = c("border", "no_border"))
+    handle_errors({
+        # print, return and save parameters
+        show_plot <- ifelse(is.null(show_plot),
+            readGiottoInstructions(gobject, param = "show_plot"),
+            show_plot
+        )
+        save_plot <- ifelse(is.null(save_plot),
+            readGiottoInstructions(gobject, param = "save_plot"),
+            save_plot
+        )
+        return_plot <- ifelse(is.null(return_plot),
+            readGiottoInstructions(gobject, param = "return_plot"),
+            return_plot
+        )
 
-    # Set feat_type and spat_unit
-    spat_unit <- set_default_spat_unit(
-        gobject = gobject,
-        spat_unit = spat_unit
-    )
-    feat_type <- set_default_feat_type(
-        gobject = gobject,
-        spat_unit = spat_unit,
-        feat_type = feat_type
-    )
+        # point shape
+        point_shape <- match.arg(point_shape, choices = c("border", "no_border"))
 
-    # specify dim_reduction_name according to provided feat_type
-    if (!is.null(dim_reduction_to_use)) {
-        if (is.null(dim_reduction_name)) {
-            if (feat_type == "rna") {
-                dim_reduction_name <- dim_reduction_to_use
-            } else {
-                dim_reduction_name <- paste0(
-                    feat_type, ".",
-                    dim_reduction_to_use
-                )
+        # Set feat_type and spat_unit
+        spat_unit <- set_default_spat_unit(
+            gobject = gobject,
+            spat_unit = spat_unit
+        )
+        feat_type <- set_default_feat_type(
+            gobject = gobject,
+            spat_unit = spat_unit,
+            feat_type = feat_type
+        )
+
+        # specify dim_reduction_name according to provided feat_type
+        if (!is.null(dim_reduction_to_use)) {
+            if (is.null(dim_reduction_name)) {
+                if (feat_type == "rna") {
+                    dim_reduction_name <- dim_reduction_to_use
+                } else {
+                    dim_reduction_name <- paste0(
+                        feat_type, ".",
+                        dim_reduction_to_use
+                    )
+                }
             }
         }
-    }
 
 
-    # expression values
-    values <- match.arg(
-        expression_values,
-        unique(c(
-            "normalized", "scaled", "custom",
-            expression_values
-        ))
-    )
-    expr_values <- getExpression(
-        gobject = gobject,
-        spat_unit = spat_unit,
-        feat_type = feat_type,
-        values = values,
-        output = "matrix"
-    )
-
-    # only keep feats that are in the dataset
-    if (length(feats) == 0) {
-        stop("No `feats` selected to plot.", call. = FALSE)
-    }
-    selected_feats <- feats
-    selected_feats <- selected_feats[selected_feats %in% rownames(expr_values)]
-    if (length(selected_feats) == 0) {
-        stop("Selected `feats` not found in expression information",
-            call. = FALSE
+        # expression values
+        values <- match.arg(
+            expression_values,
+            unique(c(
+                "normalized", "scaled", "custom",
+                expression_values
+            ))
         )
-    }
-
-    #
-    if (length(selected_feats) == 1) {
-        subset_expr_data <- expr_values[
-            rownames(expr_values) %in% selected_feats,
-        ]
-        t_sub_expr_data_DT <- data.table::data.table(
-            "selected_feat" = subset_expr_data,
-            "cell_ID" = colnames(expr_values)
-        )
-        data.table::setnames(
-            t_sub_expr_data_DT, "selected_feat",
-            selected_feats
-        )
-    } else {
-        subset_expr_data <- expr_values[rownames(expr_values) %in%
-            selected_feats, ]
-        t_sub_expr_data <- t_flex(subset_expr_data)
-        t_sub_expr_data_DT <- data.table::as.data.table(
-            as.matrix(t_sub_expr_data)
-        )
-
-        # data.table variables
-        cell_ID <- NULL
-
-        t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
-    }
-
-
-    ## dimension reduction ##
-    dim_dfr <- getDimReduction(
-        gobject = gobject,
-        feat_type = feat_type,
-        spat_unit = spat_unit,
-        reduction = "cells",
-        reduction_method = dim_reduction_to_use,
-        name = dim_reduction_name,
-        output = "data.table"
-    )
-
-    dim_names <- colnames(dim_dfr)
-    dim_DT <- data.table::as.data.table(dim_dfr)
-    dim_DT[, cell_ID := rownames(dim_dfr)]
-
-    ## annotated cell metadata
-    cell_metadata <- pDataDT(
-        gobject = gobject,
-        spat_unit = spat_unit,
-        feat_type = feat_type
-    )
-
-    annotated_DT <- data.table::merge.data.table(cell_metadata,
-        dim_DT,
-        by = "cell_ID"
-    )
-
-    ## merge feat info
-    annotated_feat_DT <- data.table::merge.data.table(annotated_DT,
-        t_sub_expr_data_DT,
-        by = "cell_ID"
-    )
-
-    # create input for network
-    if (show_NN_network == TRUE) {
-        # nn_network
-        selected_nn_network <- getNearestNetwork(
+        expr_values <- getExpression(
             gobject = gobject,
             spat_unit = spat_unit,
             feat_type = feat_type,
-            nn_type = nn_network_to_use,
-            name = network_name,
-            output = "igraph"
+            values = values,
+            output = "matrix"
         )
 
-        network_DT <- data.table::as.data.table(
-            igraph::as_data_frame(selected_nn_network, what = "edges")
+        # only keep feats that are in the dataset
+        if (length(feats) == 0) {
+            stop("No `feats` selected to plot.", call. = FALSE)
+        }
+        selected_feats <- feats
+        selected_feats <- selected_feats[selected_feats %in% rownames(expr_values)]
+        if (length(selected_feats) == 0) {
+            stop("Selected `feats` not found in expression information",
+                call. = FALSE
+            )
+        }
+
+        #
+        if (length(selected_feats) == 1) {
+            subset_expr_data <- expr_values[
+                rownames(expr_values) %in% selected_feats,
+            ]
+            t_sub_expr_data_DT <- data.table::data.table(
+                "selected_feat" = subset_expr_data,
+                "cell_ID" = colnames(expr_values)
+            )
+            data.table::setnames(
+                t_sub_expr_data_DT, "selected_feat",
+                selected_feats
+            )
+        } else {
+            subset_expr_data <- expr_values[rownames(expr_values) %in%
+                selected_feats, ]
+            t_sub_expr_data <- t_flex(subset_expr_data)
+            t_sub_expr_data_DT <- data.table::as.data.table(
+                as.matrix(t_sub_expr_data)
+            )
+
+            # data.table variables
+            cell_ID <- NULL
+
+            t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
+        }
+
+
+        ## dimension reduction ##
+        dim_dfr <- getDimReduction(
+            gobject = gobject,
+            feat_type = feat_type,
+            spat_unit = spat_unit,
+            reduction = "cells",
+            reduction_method = dim_reduction_to_use,
+            name = dim_reduction_name,
+            output = "data.table"
         )
 
-        # annotated network
-        old_dim_names <- dim_names
+        dim_names <- colnames(dim_dfr)
+        dim_DT <- data.table::as.data.table(dim_dfr)
+        dim_DT[, cell_ID := rownames(dim_dfr)]
 
-        annotated_network_DT <- data.table::merge.data.table(
-            network_DT, dim_DT,
-            by.x = "from", by.y = "cell_ID"
-        )
-        from_dim_names <- paste0("from_", old_dim_names)
-        data.table::setnames(annotated_network_DT,
-            old = old_dim_names,
-            new = from_dim_names
+        ## annotated cell metadata
+        cell_metadata <- pDataDT(
+            gobject = gobject,
+            spat_unit = spat_unit,
+            feat_type = feat_type
         )
 
-        annotated_network_DT <- data.table::merge.data.table(
-            annotated_network_DT, dim_DT,
-            by.x = "to", by.y = "cell_ID"
+        annotated_DT <- data.table::merge.data.table(cell_metadata,
+            dim_DT,
+            by = "cell_ID"
         )
-        to_dim_names <- paste0("to_", old_dim_names)
-        data.table::setnames(annotated_network_DT,
-            old = old_dim_names,
-            new = to_dim_names
+
+        ## merge feat info
+        annotated_feat_DT <- data.table::merge.data.table(annotated_DT,
+            t_sub_expr_data_DT,
+            by = "cell_ID"
         )
-    }
 
-    # params list for plotting
-    a <- list(
-        feats = feats,
-        selected_feats = selected_feats,
-        order = order,
-        dim_names = dim_names,
-        show_NN_network = show_NN_network,
-        edge_alpha = edge_alpha,
-        scale_alpha_with_expression = scale_alpha_with_expression,
-        point_shape = point_shape,
-        point_size = point_size,
-        point_alpha = point_alpha,
-        cell_color_gradient = cell_color_gradient,
-        gradient_midpoint = gradient_midpoint,
-        gradient_style = gradient_style,
-        gradient_limits = gradient_limits,
-        point_border_col = point_border_col,
-        point_border_stroke = point_border_stroke,
-        show_legend = show_legend,
-        legend_text = legend_text,
-        background_color = background_color,
-        axis_text = axis_text,
-        axis_title = axis_title,
-        instrs = instructions(gobject)
-    )
+        # create input for network
+        if (show_NN_network == TRUE) {
+            # nn_network
+            selected_nn_network <- getNearestNetwork(
+                gobject = gobject,
+                spat_unit = spat_unit,
+                feat_type = feat_type,
+                nn_type = nn_network_to_use,
+                name = network_name,
+                output = "igraph"
+            )
 
-    if (isTRUE(show_NN_network)) {
-        a$network_color <- network_color
-        a$from_dim_names <- from_dim_names
-        a$to_dim_names <- to_dim_names
-        a$annotated_network_DT <- annotated_network_DT
-    }
+            network_DT <- data.table::as.data.table(
+                igraph::as_data_frame(selected_nn_network, what = "edges")
+            )
 
-    ## generate plot(s) ##
-    if (is.null(group_by)) {
-        a$data <- annotated_feat_DT
-        savelist <- do.call(.dimFeatPlot2D_single, a)
-    } else {
-        datalist <- .groupby(annotated_feat_DT,
-            group_by = group_by,
-            group_by_subset = group_by_subset
+            # annotated network
+            old_dim_names <- dim_names
+
+            annotated_network_DT <- data.table::merge.data.table(
+                network_DT, dim_DT,
+                by.x = "from", by.y = "cell_ID"
+            )
+            from_dim_names <- paste0("from_", old_dim_names)
+            data.table::setnames(annotated_network_DT,
+                old = old_dim_names,
+                new = from_dim_names
+            )
+
+            annotated_network_DT <- data.table::merge.data.table(
+                annotated_network_DT, dim_DT,
+                by.x = "to", by.y = "cell_ID"
+            )
+            to_dim_names <- paste0("to_", old_dim_names)
+            data.table::setnames(annotated_network_DT,
+                old = old_dim_names,
+                new = to_dim_names
+            )
+        }
+
+        # params list for plotting
+        a <- list(
+            feats = feats,
+            selected_feats = selected_feats,
+            order = order,
+            dim_names = dim_names,
+            show_NN_network = show_NN_network,
+            edge_alpha = edge_alpha,
+            scale_alpha_with_expression = scale_alpha_with_expression,
+            point_shape = point_shape,
+            point_size = point_size,
+            point_alpha = point_alpha,
+            cell_color_gradient = cell_color_gradient,
+            gradient_midpoint = gradient_midpoint,
+            gradient_style = gradient_style,
+            gradient_limits = gradient_limits,
+            point_border_col = point_border_col,
+            point_border_stroke = point_border_stroke,
+            show_legend = show_legend,
+            legend_text = legend_text,
+            background_color = background_color,
+            axis_text = axis_text,
+            axis_title = axis_title,
+            instrs = instructions(gobject)
         )
-        gp_savelist <- lapply(datalist, function(data) {
-            a$data <- data
-            group_id <- data[[group_by]][[1]]
-            a$group_id <- group_id
-            do.call(.dimFeatPlot2D_single, a)
-        })
-        savelist <- do.call(c, gp_savelist)
-    }
+
+        if (isTRUE(show_NN_network)) {
+            a$network_color <- network_color
+            a$from_dim_names <- from_dim_names
+            a$to_dim_names <- to_dim_names
+            a$annotated_network_DT <- annotated_network_DT
+        }
+
+        ## generate plot(s) ##
+        if (is.null(group_by)) {
+            a$data <- annotated_feat_DT
+            savelist <- do.call(.dimFeatPlot2D_single, a)
+        } else {
+            datalist <- .groupby(annotated_feat_DT,
+                group_by = group_by,
+                group_by_subset = group_by_subset
+            )
+            gp_savelist <- lapply(datalist, function(data) {
+                a$data <- data
+                group_id <- data[[group_by]][[1]]
+                a$group_id <- group_id
+                do.call(.dimFeatPlot2D_single, a)
+            })
+            savelist <- do.call(c, gp_savelist)
+        }
 
 
-    # combine plots with cowplot
-    combo_plot <- cowplot::plot_grid(
-        plotlist = savelist,
-        ncol = set_default_cow_n_col(
-            cow_n_col = cow_n_col,
-            nr_plots = length(savelist)
-        ),
-        rel_heights = cow_rel_h, rel_widths = cow_rel_w,
-        align = cow_align
-    )
-
-
-    ## print plot
-    if (show_plot == TRUE) {
-        print(combo_plot)
-    }
-
-    ## save plot
-    if (save_plot == TRUE) {
-        do.call(
-            "all_plots_save_function",
-            c(list(
-                gobject = gobject, plot_object = combo_plot,
-                default_save_name = default_save_name
-            ), save_param)
+        # combine plots with cowplot
+        combo_plot <- cowplot::plot_grid(
+            plotlist = savelist,
+            ncol = set_default_cow_n_col(
+                cow_n_col = cow_n_col,
+                nr_plots = length(savelist)
+            ),
+            rel_heights = cow_rel_h, rel_widths = cow_rel_w,
+            align = cow_align
         )
-    }
 
-    ## return plot
-    if (return_plot == TRUE) {
-        return(combo_plot)
-    }
+
+        ## print plot
+        if (show_plot == TRUE) {
+            print(combo_plot)
+        }
+
+        ## save plot
+        if (save_plot == TRUE) {
+            do.call(
+                "all_plots_save_function",
+                c(list(
+                    gobject = gobject, plot_object = combo_plot,
+                    default_save_name = default_save_name
+                ), save_param)
+            )
+        }
+
+        ## return plot
+        if (return_plot == TRUE) {
+            return(combo_plot)
+        }
+    }, prefix = "dimFeatPlot2D()")
 }
 
 

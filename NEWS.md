@@ -1,3 +1,8 @@
+# GiottoVisuals 0.2.12 (2025/02/04)
+
+## enhancements
+- requested images not within the plotting window are now handled as warning instead of erroring
+- `y_axis_title` param added to `plotMetaDataCellsHeatmap()`
 
 # GiottoVisuals 0.2.11 (2025/01/17)
 
