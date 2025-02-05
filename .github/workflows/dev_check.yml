@@ -39,6 +39,7 @@ jobs:
           _R_CHECK_RD_XREFS: false
         with:
           install-pandoc: false
+          dependencies: '"hard"'
           extra-packages: |
             any::ggdendro
             any::ComplexHeatmap
@@ -46,6 +47,9 @@ jobs:
             any::ggforce
             any::ggraph
             any::hexbin
+            any::rcmdcheck
+            any::magick
+            any::testthat
 
       - name: Set up dependencies (GiottoUtils)
         run: |

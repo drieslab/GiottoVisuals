@@ -12,7 +12,7 @@ results_folder <- file.path(
 )
 
 # load in dummy gobject
-g <- GiottoData::loadGiottoMini("vis", verbose = FALSE)
+g <- GiottoData::loadGiottoMini("visium", verbose = FALSE)
 instructions(g, "save_dir") <- results_folder
 
 # create dummy plot

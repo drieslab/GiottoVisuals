@@ -284,6 +284,13 @@ setMethod(
         crop_ext <- ext(crop(bound_poly, crop_ext))
     }
 
+    # 1.3 check intersects
+    if (!relate(crop_ext, ext(img), relation = "intersects")[1]) {
+        warning("image '", objName(img), "' is not within the plotting window",
+                call. = FALSE)
+        return(NULL)
+    }
+
     # 2. determine cropping area
     original_dims <- dim(img)[c(2L, 1L)] # x, y ordering
     ratios <- crop_ratio_fun(img = img, crop_ext = crop_ext) # x, y ordering
@@ -464,6 +471,8 @@ setMethod(
 # append a giotto image object containing a SpatRaster that has already been
 # resampled/pulled into memory. Output is a `gg` object
 .gg_append_spatraster <- function(ggobj, gimage) {
+    if (is.null(gimage)) return(ggobj) # passthrough
+
     # convert gimage to a raster
     a <- terra::as.array(gimage@raster_object) %>%
         .gg_imgarray_2_raster(

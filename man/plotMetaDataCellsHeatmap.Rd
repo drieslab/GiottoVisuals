@@ -27,6 +27,7 @@ plotMetaDataCellsHeatmap(
   x_text_size = 8,
   x_text_angle = 45,
   y_text_size = 8,
+  y_axis_title = "genes",
   strip_text_size = 8,
   show_plot = NULL,
   return_plot = NULL,
@@ -86,6 +87,8 @@ or 'sequential' (scaled based on data range)}
 \item{x_text_angle}{angle of x-axis text}
 
 \item{y_text_size}{size of y-axis text}
+
+\item{y_axis_title}{character. default is "genes".}
 
 \item{strip_text_size}{size of strip text}
 
