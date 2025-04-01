@@ -1451,7 +1451,8 @@ plotPCA_3D <- function(
 
 
 #' @rdname spatPlot
-#' @param sdimz z-axis dimension name (default = 'sdimy')
+#' @param sdimz z-axis dimension name (default = 'sdimy'). Can be set to `NULL`
+#' to force 2D plotting with {plotly}
 #' @param grid_alpha opacity of spatial grid
 #' @param axis_scale the way to scale the axis
 #' @param custom_ratio customize the scale of the plot
@@ -1513,6 +1514,7 @@ spatPlot3D <- function(
             sdimy = sdimy,
             point_size = point_size,
             cell_color = cell_color,
+            color_as_factor = color_as_factor,
             cell_color_code = cell_color_code,
             select_cell_groups = select_cell_groups,
             select_cells = select_cells,
