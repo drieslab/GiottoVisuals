@@ -2739,7 +2739,9 @@ spatFeatPlot3D <- function(
 
     selected_genes <- feats
 
-    values <- match.arg(expression_values, c("normalized", "scaled", "custom"))
+    values <- match.arg(expression_values,
+        unique(c("normalized", "scaled", "custom", expression_values))
+    )
     expr_values <- getExpression(
         gobject = gobject,
         spat_unit = spat_unit,
