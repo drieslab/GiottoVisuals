@@ -8,14 +8,24 @@ ridgePlot(
   gobject,
   feats,
   ...,
+  group_by = NULL,
+  group_by_subset = NULL,
+  spat_unit = NULL,
+  feat_type = NULL,
   stat = "density_ridges",
-  alpha = 1,
-  scale_axis = "log2",
+  ridge_alpha = 1,
+  ridge_scale = 5,
+  scale_axis = "identity",
   axis_offset = NULL,
   background_color = "white",
   remove_na = NULL,
   show_legend = FALSE,
+  title = NULL,
   theme_param = list(),
+  cow_n_col = NULL,
+  cow_rel_h = 1,
+  cow_rel_w = 1,
+  cow_align = "h",
   show_plot = NULL,
   return_plot = NULL,
   save_plot = NULL,
@@ -31,10 +41,21 @@ ridgePlot(
 
 \item{...}{additional params to pass to \code{\link[GiottoClass:spatValues]{GiottoClass::spatValues()}}}
 
+\item{group_by}{character. Create multiple plots based on cell
+annotation column}
+
+\item{group_by_subset}{character. subset the group_by factor column}
+
+\item{spat_unit}{spatial unit (e.g. "cell")}
+
+\item{feat_type}{feature type (e.g. "rna", "dna", "protein")}
+
 \item{stat}{character. A \code{stat} accepted by
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}}
 
-\item{alpha}{numeric. Alpha to use for ridgeline plot. Value from 0 to 1.}
+\item{ridge_alpha}{numeric. Alpha to use for ridgeline plot. Value from 0 to 1.}
+
+\item{ridge_scale}{numeric. Controls height of ridges.}
 
 \item{axis_offset}{numeric. Value to add to values. When this value is not
 provided and \code{axis_scale} is one of \code{"log"}, \code{"log2"}, or \code{"log10"}, a
@@ -47,7 +68,17 @@ removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show_legend}{logical. Whether to show legend}
 
+\item{title}{character. Title for plot}
+
 \item{theme_param}{list of additional params passed to \code{ggplot2::theme()}}
+
+\item{cow_n_col}{cowplot param: how many columns}
+
+\item{cow_rel_h}{cowplot param: relative heights of rows (e.g. c(1,2))}
+
+\item{cow_rel_w}{cowplot param: relative widths of columns (e.g. c(1,2))}
+
+\item{cow_align}{cowplot param: how to align}
 
 \item{show_plot}{logical. show plot}
 
@@ -71,7 +102,9 @@ An x axis scaling to use. This value is passed to
 ggplot
 }
 \description{
-Create a ridgeline plot
+Plot continuous numeric features as a series of density ridges. Particularly
+useful for making comparisons between feature distributions within a
+population.
 }
 \examples{
 g <- GiottoData::loadGiottoMini("visium")
@@ -80,11 +113,19 @@ g <- GiottoData::loadGiottoMini("visium")
 ridgePlot(g,
     feats = head(rownames(g)),
     expression_values = "normalized"
+    scale_axis = "log2"
 )
 
 # plot distribution on PCA PCs
 ridgePlot(g,
     feats = sprintf("Dim.\%d", 1:20),
     scale_axis = "identity"
+)
+
+ridgePlot(g,
+    feats = sprintf("Dim.\%d", 1:20),
+    scale_axis = "identity",
+    group_by = "leiden_clus",
+    group_by_subset = c(1:4)
 )
 }
