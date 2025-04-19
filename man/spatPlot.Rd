@@ -271,7 +271,8 @@ change save_name in save_param}
 
 \item{\dots}{spatPLot(...) passes to spatPlot2D}
 
-\item{sdimz}{z-axis dimension name (default = 'sdimy')}
+\item{sdimz}{z-axis dimension name (default = 'sdimy'). Can be set to \code{NULL}
+to force 2D plotting with {plotly}}
 
 \item{other_cell_alpha}{(0 to 1) alpha for not selected cells}
 

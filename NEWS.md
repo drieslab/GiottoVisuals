@@ -1,3 +1,7 @@
+
+## new
+- `ridgePlot()`
+
 # GiottoVisuals 0.2.12 (2025/02/04)
 
 ## enhancements
