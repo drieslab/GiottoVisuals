@@ -155,7 +155,7 @@ setMethod(
     if (is.null(e)) {
         stop(wrap_txt(
             "No `ext` provided and no spatial locations or polygons discovered.
-             Cannot determine largeImage resample extent"
+            Cannot determine largeImage resample extent"
         ))
     }
     return(e)
