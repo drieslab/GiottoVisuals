@@ -184,6 +184,12 @@ spatInSituPlotPoints <- function(
         )
     }
 
+    if (isTRUE(show_image)) {
+        polygon_alpha <- polygon_alpha %null% 0.5
+    } else {
+        polygon_alpha <- polygon_alpha %null% 1
+    }
+
     # start plotting
     plot <- ggplot2::ggplot()
 
@@ -264,11 +270,6 @@ spatInSituPlotPoints <- function(
 
         ## 2. plot polygons/morphology second/last
         if (isTRUE(show_polygon)) {
-            if (isTRUE(show_image)) {
-                polygon_alpha <- polygon_alpha %null% 0.5
-            } else {
-                polygon_alpha <- polygon_alpha %null% 1
-            }
 
             # Set feat_type and spat_unit
             polygon_feat_type <- set_default_spat_unit(
