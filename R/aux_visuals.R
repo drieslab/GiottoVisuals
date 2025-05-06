@@ -2,6 +2,13 @@
 NULL
 
 
+# coord fixed ratio ####
+
+.aspect_ratio <- function(pl, coord_fix_ratio = NULL) {
+    if (is.null(coord_fix_ratio)) return(pl)
+    pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
+}
+
 # groupby ####
 
 # split apart a table of data based on a group by column
@@ -168,15 +175,12 @@ aes_string2 <- function(...) {
 }
 
 
-#' @title gg input
-#' @name gg_input
-#' @description modular handling of ggplot inputs for functions that may either
-#' append additional information to a ggplot object or be where the ggobject is
-#' first made.
-#' @param ggobject ggplot object or NULL
-#' @keywords internal
-#' @returns A ggplot object
-gg_input <- function(ggobject) {
+# handle ggplot inputs for functions that may either
+# append additional information to a ggplot object or be where the ggobject is
+# first made.
+# `ggobject` ggplot object or NULL
+# returns ggplot object
+.gg_input <- function(ggobject) {
     if (is.null(ggobject)) {
         return(ggplot2::ggplot())
     } else {
