@@ -38,13 +38,13 @@
 #' polygons (default) or points.
 #' @param theme_param list of additional params passed to `ggplot2::theme()`
 #' @param verbose be verbose
+#' @param ... additional params to pass to [spatValues()]
 #' @returns ggplot
 #' @examples
 #' g <- GiottoData::loadGiottoMini("vizgen")
 #'
 #' # plot the number detected features in the `giotto` object.
-#' spatInSituPlotPoints(
-#'     g,
+#' spatInSituPlotPoints(g,
 #'     polygon_feat_type = "aggregate",
 #'     polygon_fill = "nr_feats",
 #'     polygon_fill_as_factor = FALSE,
@@ -56,8 +56,7 @@
 #' # plot the same as above, but with the first 4 rna features plotted as
 #' # detection points. Also add in the background and change the polygon
 #' # alpha and border color
-#' spatInSituPlotPoints(
-#'     g,
+#' spatInSituPlotPoints(g,
 #'     polygon_feat_type = "aggregate",
 #'     polygon_fill = "nr_feats",
 #'     polygon_fill_as_factor = FALSE,
@@ -73,14 +72,25 @@
 #' )
 #'
 #' # plot with spatial enrichment information
-#' spatInSituPlotPoints(
-#'     g,
+#' spatInSituPlotPoints(g,
 #'     polygon_feat_type = "aggregate",
 #'     spat_enr_names = "cluster_metagene",
 #'     polygon_fill = "1",
 #'     polygon_fill_as_factor = FALSE,
 #'     polygon_fill_gradient_style = "sequential",
 #'     polygon_alpha = 1
+#' )
+#'
+#' # plot with xlim,ylim and feature expression
+#' spatInSituPlotPoints(g,
+#'     polygon_feat_type = "aggregate",
+#'     xlim = c(6500, 6920),
+#'     ylim = c(-5100, -4820),
+#'     polygon_alpha = 1,
+#'     polygon_fill = "Slc17a7",
+#'     polygon_fill_gradient_midpoint = 0,
+#'     expression_values = "scaled",
+#'     show_image = TRUE
 #' )
 #'
 #' @family In Situ visualizations
@@ -134,7 +144,10 @@ spatInSituPlotPoints <- function(
         save_plot = NULL,
         save_param = list(),
         default_save_name = "spatInSituPlotPoints",
-        verbose = TRUE) {
+        verbose = TRUE,
+        ...) {
+    # currently not intended for more than one thing to plot
+    checkmate::assert_character(polygon_fill, null.ok = TRUE, len = 1L)
     handle_errors({
     # set polygon_feat_type
     avail_poly_names <- list_spatial_info_names(gobject = gobject)
@@ -288,11 +301,26 @@ spatInSituPlotPoints <- function(
                 feat_type = feat_type,
                 include_poly_info = TRUE,
                 poly_info = polygon_feat_type,
-                include_spat_enr = TRUE,
-                spat_enr_names = spat_enr_names
+                # include_spat_enr = TRUE,
+                # spat_enr_names = spat_enr_names,
+                xlim = xlim,
+                ylim = ylim
             )
 
             polygon_dt <- data.table::rbindlist(polygon_combo, fill = TRUE)
+
+            if (!is.null(polygon_fill) &&
+                !polygon_fill %in% names(polygon_dt)) {
+                data <- spatValues(gobject,
+                    feats = polygon_fill,
+                    spat_unit = polygon_feat_type,
+                    feat_type = feat_type,
+                    spat_enr_name = spat_enr_names,
+                    ...
+                )
+                polygon_dt <- merge(polygon_dt, data,
+                    by = "cell_ID", all.x = TRUE)
+            }
 
             data.table::setnames(polygon_dt, old = "cell_ID", new = "poly_ID")
 
