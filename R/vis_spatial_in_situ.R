@@ -20,6 +20,11 @@
 #' @param sdimy spatial dimension y
 #' @param xlim limits of x-scale (min/max vector)
 #' @param ylim limits of y-scale (min/max vector)
+#' @param remove_background_polygon logical (default = `TRUE`). `xlim` and
+#' `ylim` which work through (`crop()`) may
+#' sometimes produce extent-filling polygons when the original geometry is
+#' problematic or invalid. Set `TRUE` to remove these, based on whether a
+#' polygon fills up most of the x and y range.
 #' @param point_size size of the points
 #' @param stroke stroke to apply to feature points
 #' @param expand_counts expand feature coordinate counts (see details)
@@ -111,6 +116,7 @@ spatInSituPlotPoints <- function(
         sdimy = "y",
         xlim = NULL,
         ylim = NULL,
+        remove_background_polygon = TRUE,
         spat_enr_names = NULL,
         point_size = 1.5,
         stroke = 0.5,
@@ -301,6 +307,7 @@ spatInSituPlotPoints <- function(
                 feat_type = feat_type,
                 include_poly_info = TRUE,
                 poly_info = polygon_feat_type,
+                remove_background_polygon = remove_background_polygon,
                 # include_spat_enr = TRUE,
                 # spat_enr_names = spat_enr_names,
                 xlim = xlim,
