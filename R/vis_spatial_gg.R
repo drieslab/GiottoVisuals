@@ -410,9 +410,7 @@
 
 
     # fix coord ratio
-    if (!is.null(coord_fix_ratio)) {
-        pl <- pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+    pl <- .aspect_ratio(pl, coord_fix_ratio)
 
     # provide x, y and plot titles
     if (is.null(title)) title <- cell_color
