@@ -18,7 +18,7 @@
 gg_simple_scatter <- function(
         ggobject = NULL, data, x, y,
         xlab = "x", ylab = "y", main = NULL, ...) {
-    pl <- gg_input(ggobject)
+    pl <- .gg_input(ggobject)
 
     pl <- pl +
         ggplot2::geom_point(data = data, aes_string2(x, y, ...)) +

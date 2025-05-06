@@ -20,6 +20,7 @@ spatInSituPlotPoints(
   sdimy = "y",
   xlim = NULL,
   ylim = NULL,
+  remove_background_polygon = TRUE,
   spat_enr_names = NULL,
   point_size = 1.5,
   stroke = 0.5,
@@ -53,7 +54,8 @@ spatInSituPlotPoints(
   save_plot = NULL,
   save_param = list(),
   default_save_name = "spatInSituPlotPoints",
-  verbose = TRUE
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
@@ -86,6 +88,12 @@ spatInSituPlotPoints(
 \item{xlim}{limits of x-scale (min/max vector)}
 
 \item{ylim}{limits of y-scale (min/max vector)}
+
+\item{remove_background_polygon}{logical (default = \code{TRUE}). \code{xlim} and
+\code{ylim} which work through (\code{crop()}) may
+sometimes produce extent-filling polygons when the original geometry is
+problematic or invalid. Set \code{TRUE} to remove these, based on whether a
+polygon fills up most of the x and y range.}
 
 \item{spat_enr_names}{character. names of spatial enrichment results
 to include}
@@ -165,6 +173,8 @@ see \code{\link{showSaveParameters}}}
 change save_name in save_param}
 
 \item{verbose}{be verbose}
+
+\item{...}{additional params to pass to \code{\link[=spatValues]{spatValues()}}}
 }
 \value{
 ggplot
@@ -177,8 +187,7 @@ at the spatial in situ level
 g <- GiottoData::loadGiottoMini("vizgen")
 
 # plot the number detected features in the `giotto` object.
-spatInSituPlotPoints(
-    g,
+spatInSituPlotPoints(g,
     polygon_feat_type = "aggregate",
     polygon_fill = "nr_feats",
     polygon_fill_as_factor = FALSE,
@@ -190,8 +199,7 @@ spatInSituPlotPoints(
 # plot the same as above, but with the first 4 rna features plotted as
 # detection points. Also add in the background and change the polygon
 # alpha and border color
-spatInSituPlotPoints(
-    g,
+spatInSituPlotPoints(g,
     polygon_feat_type = "aggregate",
     polygon_fill = "nr_feats",
     polygon_fill_as_factor = FALSE,
@@ -207,14 +215,25 @@ spatInSituPlotPoints(
 )
 
 # plot with spatial enrichment information
-spatInSituPlotPoints(
-    g,
+spatInSituPlotPoints(g,
     polygon_feat_type = "aggregate",
     spat_enr_names = "cluster_metagene",
     polygon_fill = "1",
     polygon_fill_as_factor = FALSE,
     polygon_fill_gradient_style = "sequential",
     polygon_alpha = 1
+)
+
+# plot with xlim,ylim and feature expression
+spatInSituPlotPoints(g,
+    polygon_feat_type = "aggregate",
+    xlim = c(6500, 6920),
+    ylim = c(-5100, -4820),
+    polygon_alpha = 1,
+    polygon_fill = "Slc17a7",
+    polygon_fill_gradient_midpoint = 0,
+    expression_values = "scaled",
+    show_image = TRUE
 )
 
 }

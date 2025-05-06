@@ -1,12 +1,17 @@
 
+# GiottoVisuals 0.2.12 (2025/05/06)
+
 ## new
 - `ridgePlot()`
 
-# GiottoVisuals 0.2.12 (2025/02/04)
+## bug fixes
+- fix `spatInSituPlotDensity()` `polygon_alpha` default setting when polygons plotted last
 
 ## enhancements
 - requested images not within the plotting window are now handled as warning instead of erroring
 - `y_axis_title` param added to `plotMetaDataCellsHeatmap()`
+- `spatInSituPlotDensity()` `xlim`/`ylim` now crops on polys
+- `spatInSituPlotDensity()` feature plotting via `spatValues()`retrieval
 
 # GiottoVisuals 0.2.11 (2025/01/17)
 
