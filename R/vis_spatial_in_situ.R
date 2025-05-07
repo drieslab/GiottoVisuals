@@ -345,7 +345,8 @@ spatInSituPlotPoints <- function(
                 bg_color = polygon_bg_color,
                 color = polygon_color,
                 alpha = polygon_alpha,
-                size = polygon_line_size
+                size = polygon_line_size,
+                show_legend = show_legend
             )
 
             if (isTRUE(verbose)) wrap_msg("plot polygon layer done")
@@ -396,7 +397,8 @@ spatInSituPlotPoints <- function(
                 bg_color = polygon_bg_color,
                 color = polygon_color,
                 alpha = polygon_alpha,
-                size = polygon_line_size
+                size = polygon_line_size,
+                show_legend = show_legend
             )
 
             if (isTRUE(verbose)) wrap_msg("plot polygon layer done")
