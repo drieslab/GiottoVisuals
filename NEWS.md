@@ -1,3 +1,7 @@
+# GiottoVisuals 0.2.12 (2025/06/20)
+
+## changes
+- replacement of argument radius by pie_scale in `spatDeconvPlot()` to modify pie size.
 
 # GiottoVisuals 0.2.12 (2025/05/06)
 
