@@ -1482,7 +1482,7 @@ plot_spat_image_layer_ggplot <- function(gg_obj,
 #' @param sdimy y-axis dimension name (default = 'sdimy')
 #' @param spatial_locations spatial locations
 #' @param spatial_enrichment spatial enrichment results
-#' @param radius radius of scatterpie
+#' @param pie_scale amount to scale the pie size if there is no radius mapping exists
 #' @param color color of lines within pie chart
 #' @param cell_color_code color code for the cell types
 #' @return ggplot
@@ -1494,7 +1494,7 @@ plot_spat_scatterpie_layer_ggplot <- function(ggobject,
     sdimy = "sdimy",
     spatial_locations = NULL,
     spatial_enrichment = NULL,
-    radius = 10,
+    pie_scale = 0.35,
     color = NA,
     alpha = 1,
     cell_color_code = NULL) {
@@ -1512,7 +1512,8 @@ plot_spat_scatterpie_layer_ggplot <- function(ggobject,
     pl <- ggobject
     pl <- pl + scatterpie::geom_scatterpie(
         data = combined_spat_enrichm,
-        aes(x = sdimx, y = sdimy, r = radius),
+        aes(x = sdimx, y = sdimy),
+        pie_scale = pie_scale,
         cols = cell_names,
         color = color,
         alpha = alpha

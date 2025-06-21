@@ -868,7 +868,7 @@ spatPlot <- function(...) {
 #' @param sdimx x-axis dimension name (default = 'sdimx')
 #' @param sdimy y-axis dimension name (default = 'sdimy')
 #' @param line_color color of line within pie charts
-#' @param radius radios of pie charts
+#' @param pie_scale amount to scale the pie size if there is no radius mapping exists
 #' @param alpha alpha of pie charts
 #' @param coord_fix_ratio fix ratio between x and y-axis
 #' @param title title of plot
@@ -894,7 +894,7 @@ spatDeconvPlot <- function(
         sdimy = "sdimy",
         cell_color_code = NULL,
         line_color = NA,
-        radius = 10,
+        pie_scale = 0.35,
         alpha = 1,
         legend_text = 8,
         background_color = "white",
@@ -963,9 +963,6 @@ spatDeconvPlot <- function(
         output = "data.table"
     )
 
-
-
-
     ### create 2D plot with ggplot ###
 
     pl <- ggplot2::ggplot()
@@ -992,7 +989,7 @@ spatDeconvPlot <- function(
         sdimy = sdimy,
         spatial_locations = spatial_locations,
         spatial_enrichment = spatial_enrichment,
-        radius = radius,
+        pie_scale = pie_scale,
         color = line_color,
         alpha = alpha,
         cell_color_code = cell_color_code

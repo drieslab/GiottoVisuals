@@ -18,7 +18,7 @@ spatDeconvPlot(
   sdimy = "sdimy",
   cell_color_code = NULL,
   line_color = NA,
-  radius = 10,
+  pie_scale = 0.35,
   alpha = 1,
   legend_text = 8,
   background_color = "white",
@@ -62,7 +62,7 @@ named vector of colors}
 
 \item{line_color}{color of line within pie charts}
 
-\item{radius}{radios of pie charts}
+\item{pie_scale}{amount to scale the pie size if there is no radius mapping exists}
 
 \item{alpha}{alpha of pie charts}
 
