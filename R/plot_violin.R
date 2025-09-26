@@ -144,21 +144,25 @@ violinPlot <- function(gobject,
     if (color_violin == "feats") {
         pl <- pl + ggplot2::geom_violin(
             data = metadata_expr_m,
-            aes_string(
+            ggplot2::aes(
                 x = cluster_column,
-                y = "value", fill = "feats"
+                y = "value", 
+                fill = "feats"
             ),
-            width = 1, scale = "width",
+            width = 1, 
+            scale = "width",
             show.legend = FALSE
         )
     } else {
         pl <- pl + ggplot2::geom_violin(
             data = metadata_expr_m,
-            aes_string(
-                x = cluster_column, y = "value",
+            ggplot2::aes(
+                x = cluster_column, 
+                y = "value",
                 fill = cluster_column
             ),
-            width = 1, scale = "width",
+            width = 1, 
+            scale = "width",
             show.legend = FALSE
         )
 
