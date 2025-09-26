@@ -237,11 +237,10 @@ plotHeatmap <- function(gobject,
     clus_pl <- clus_pl +
         ggplot2::geom_raster(
             data = cell_order_DT,
-            ggplot2::aes_string(
-                x = "cells", y = "1",
-                fill = cluster_column
-            )
-        )
+            ggplot2::aes(
+                x = "cells", 
+                y = "1",
+                fill = cluster_column))
     clus_pl <- clus_pl +
         ggplot2::geom_vline(
             xintercept = x_lines,
@@ -288,15 +287,17 @@ plotHeatmap <- function(gobject,
     hmap <- hmap +
         ggplot2::geom_tile(
             data = subset_values_DT,
-            aes_string(
-                x = "cells", y = "feats",
+            ggplot2::aes(
+                x = "cells", 
+                y = "feats",
                 fill = value_column
             )
         )
     hmap <- hmap +
         ggplot2::geom_vline(
             xintercept = x_lines,
-            color = "white", size = size_vertical_lines
+            color = "white", 
+            size = size_vertical_lines
         )
     hmap <- hmap + set_default_color_continuous_heatmap(
         colors = gradient_color,
@@ -616,7 +617,7 @@ plotMetaDataHeatmap <- function(
         pl <- ggplot2::ggplot()
         pl <- pl + ggplot2::geom_tile(
             data = metaDT,
-            ggplot2::aes_string(
+            ggplot2::aes(
                 x = "factor_column",
                 y = "variable",
                 fill = show_values
@@ -718,7 +719,7 @@ plotMetaDataHeatmap <- function(
             pl <- pl +
                 ggplot2::geom_tile(
                     data = metaDT,
-                    ggplot2::aes_string(
+                    ggplot2::aes(
                         x = "factor_1_column",
                         y = "variable",
                         fill = show_values
@@ -981,7 +982,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
         pl <- pl +
             ggplot2::geom_tile(
                 data = metaDT,
-                ggplot2::aes_string(
+                ggplot2::aes(
                     x = "factor_column",
                     y = "variable",
                     fill = show_values
@@ -1028,11 +1029,10 @@ plotMetaDataCellsHeatmap <- function(gobject,
             pl <- pl +
                 ggplot2::geom_tile(
                     data = metaDT,
-                    ggplot2::aes_string(
+                    ggplot2::aes(
                         x = "factor_1_column",
                         y = "variable",
-                        fill = show_values
-                    ),
+                        fill = show_values),
                     color = "black"
                 )
             pl <- pl + set_default_color_continuous_heatmap(

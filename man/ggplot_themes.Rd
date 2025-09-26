@@ -6,7 +6,7 @@
 \alias{theme_dark2}
 \title{ggplot2 plotting themes}
 \format{
-An object of class \code{theme} (inherits from \code{gg}) of length 10.
+An object of class \code{theme} (inherits from \code{ggplot2::theme}, \code{gg}, \code{S7_object}) of length 10.
 }
 \usage{
 theme_dark2

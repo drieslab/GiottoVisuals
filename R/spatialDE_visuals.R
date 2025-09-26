@@ -41,20 +41,29 @@ FSV_show <- function(results,
     pl <- pl + ggplot2::theme_bw()
     pl <- pl + ggplot2::geom_point(
         data = results[results$qval < 0.05, ],
-        ggplot2::aes_string(
-            x = "FSV", y = "log_pval",
-            fill = "model_bic", size = "intervals"
+        ggplot2::aes(
+            x = "FSV", 
+            y = "log_pval",
+            fill = "model_bic", 
+            size = "intervals"
         ),
-        show.legend = TRUE, shape = 21, alpha = sig_alpha,
+        show.legend = TRUE, 
+        shape = 21, 
+        alpha = sig_alpha,
         # size = size[results_cp_s$inftervals],
-        stroke = 0.1, color = "black"
+        stroke = 0.1, 
+        color = "black"
     ) +
         ggplot2::geom_point(
             data = results[results$qval > 0.05, ],
-            ggplot2::aes_string(x = "FSV", y = "log_pval", size = "intervals"),
-            show.legend = TRUE, shape = 21, alpha = unsig_alpha,
-            fill = "black", # size = size[results_cp_ns$inftervals],
-            stroke = 0.1, color = "black"
+            ggplot2::aes(x = "FSV", y = "log_pval", size = "intervals"),
+            show.legend = TRUE, 
+            shape = 21, 
+            alpha = unsig_alpha,
+            fill = "black", 
+            # size = size[results_cp_ns$inftervals],
+            stroke = 0.1, 
+            color = "black"
         ) +
         ggplot2::scale_size_manual(values = size, guide = FALSE) +
         ggplot2::scale_color_manual(values = color) +
@@ -69,7 +78,8 @@ FSV_show <- function(results,
         ) +
         ggplot2::geom_text(
             ggplot2::aes(0.9, max(results[results$qval < 0.05, ]$log_pval),
-                label = "FDR = 0.05", vjust = -1
+                label = "FDR = 0.05", 
+                vjust = -1
             )
         ) +
         ggplot2::scale_y_reverse()

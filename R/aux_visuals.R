@@ -160,18 +160,18 @@ NULL
 
 # ggplot helper ####
 
-#' @title aes_string2
-#' @name aes_string2
-#' @param \dots aes_string parameters
+#' @title aes2
+#' @name aes2
+#' @param \dots aes parameters
 #' @keywords internal
-#' @description makes sure aes_string can also be used with names that
+#' @description makes sure aes can also be used with names that
 #' start with numeric values
 #' @keywords internal
 #' @returns Aesthetics elements
 #'
-aes_string2 <- function(...) {
+aes2 <- function(...) {
     args <- lapply(list(...), function(x) sprintf("`%s`", x))
-    do.call(ggplot2::aes_string, args)
+    do.call(ggplot2::aes, args)
 }
 
 
