@@ -174,6 +174,38 @@ aes2 <- function(...) {
     do.call(ggplot2::aes, args)
 }
 
+#' aes_string2
+#'
+#' @param x,y,... List of name-value pairs in the form `aesthetic = variable` 
+#' describing which variables in the layer data should be mapped to which 
+#' aesthetics used by the paired geom/stat.
+#'
+#' @returns An S7 object representing a list with class mapping. 
+#' @export
+#'
+#' @examples
+#' ggplot2::ggplot(iris) + 
+#' ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
+aes_string2 <- function(x, y, ...) {
+    mapping <- list(...)
+    if (!missing(x)) 
+        mapping["x"] <- list(x)
+    if (!missing(y)) 
+        mapping["y"] <- list(y)
+    mapping <- lapply(mapping, function(x) {
+        if (is.character(x)) {
+            x <- as.name(x)
+        }
+        x
+    })
+    structure(.rename_aes(mapping), class = "uneval")
+}
+
+.rename_aes <- function (x) {
+    names(x) <- ggplot2::standardise_aes_names(names(x))
+    duplicated_names <- names(x)[duplicated(names(x))]
+    return(x)
+}
 
 # handle ggplot inputs for functions that may either
 # append additional information to a ggplot object or be where the ggobject is

@@ -2634,7 +2634,7 @@ spatFeatPlot2D_single <- function(
                 yend <- paste0(sdimy, "_end")
                 pl <- pl + ggplot2::geom_segment(
                     data = spatial_network,
-                    ggplot2::aes(
+                    aes_string2(
                         x = xbegin,
                         y = ybegin,
                         xend = xend,
@@ -2669,7 +2669,7 @@ spatFeatPlot2D_single <- function(
 
                 pl <- pl + ggplot2::geom_rect(
                     data = spatial_grid,
-                    ggplot2::aes(
+                    aes_string2(
                         xmin = xmin,
                         xmax = xmax,
                         ymin = ymin,
@@ -2707,7 +2707,7 @@ spatFeatPlot2D_single <- function(
             # * aes - dynamic values found in the `data`
             # * args - static values to set
 
-            points_aes <- aes2(x = sdimx, y = sdimy)
+            points_aes <- aes_string2(x = sdimx, y = sdimy)
 
             points_args <- list()
             # common args
@@ -2769,7 +2769,7 @@ spatFeatPlot2D_single <- function(
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
-                    ggplot2::aes(
+                   aes_string2(
                         x = sdimx, 
                         y = sdimy,
                         group = "-1L",
@@ -2783,7 +2783,7 @@ spatFeatPlot2D_single <- function(
             } else {
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
-                    ggplot2::aes(
+                    aes_string2(
                         x = sdimx, 
                         y = sdimy,
                         group = "-1L",
@@ -2808,7 +2808,7 @@ spatFeatPlot2D_single <- function(
                 yend <- paste0(sdimy, "_end")
                 pl <- pl + ggplot2::geom_segment(
                     data = spatial_network, 
-                    ggplot2::aes(
+                    aes_string2(
                         x = xbegin, 
                         y = ybegin,
                         xend = xend, 
@@ -2843,7 +2843,7 @@ spatFeatPlot2D_single <- function(
 
                 pl <- pl + ggplot2::geom_rect(
                     data = spatial_grid, 
-                    ggplot2::aes(
+                    aes_string2(
                         xmin = xmin, xmax = xmax,
                         ymin = ymin, ymax = ymax
                     ),
@@ -3258,7 +3258,7 @@ spatFeatPlot2D <- function(
             edge_alpha <- 0.5
             pl <- pl + ggplot2::geom_segment(
                 data = annotated_network_DT,
-                ggplot2::aes(
+                aes_string2(
                     x = from_dim_names[1], y = from_dim_names[2],
                     xend = to_dim_names[1], yend = to_dim_names[2]
                 ),
@@ -3270,7 +3270,7 @@ spatFeatPlot2D <- function(
         } else if (is.numeric(edge_alpha)) {
             pl <- pl + ggplot2::geom_segment(
                 data = annotated_network_DT,
-                ggplot2::aes(
+                aes_string2(
                     x = from_dim_names[1], y = from_dim_names[2],
                     xend = to_dim_names[1], yend = to_dim_names[2]
                 ),
@@ -3283,7 +3283,7 @@ spatFeatPlot2D <- function(
             if (edge_alpha %in% colnames(annotated_network_DT)) {
                 pl <- pl + ggplot2::geom_segment(
                     data = annotated_network_DT,
-                    ggplot2::aes(
+                    aes_string2(
                         x = from_dim_names[1], 
                         y = from_dim_names[2],
                         xend = to_dim_names[1],
@@ -3304,7 +3304,7 @@ spatFeatPlot2D <- function(
         message("no feats selected")
         pl <- pl + ggplot2::geom_point(
             data = data,
-            ggplot2::aes(x = dim_names[1], dim_names[2]),
+            aes_string2(x = dim_names[1], dim_names[2]),
             fill = cell_color, 
             show.legend = show_legend,
             size = point_size, 
@@ -3335,7 +3335,8 @@ spatFeatPlot2D <- function(
         if (point_shape == "border") {
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, aes2(
+                    data = data, 
+                    aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         fill = feat, 
@@ -3349,7 +3350,8 @@ spatFeatPlot2D <- function(
                 )
             } else {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, aes2(
+                    data = data, 
+                    aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         fill = feat
@@ -3380,7 +3382,8 @@ spatFeatPlot2D <- function(
         if (point_shape == "no_border") {
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, aes2(
+                    data = data, 
+                    aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         color = feat, 
@@ -3392,7 +3395,8 @@ spatFeatPlot2D <- function(
                 )
             } else {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, aes2(
+                    data = data, 
+                    aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         color = feat
@@ -3535,7 +3539,8 @@ dimFeatPlot2D <- function(
         )
 
         # point shape
-        point_shape <- match.arg(point_shape, choices = c("border", "no_border"))
+        point_shape <- match.arg(
+            point_shape, choices = c("border", "no_border"))
 
         # Set feat_type and spat_unit
         spat_unit <- set_default_spat_unit(
@@ -3584,7 +3589,8 @@ dimFeatPlot2D <- function(
             stop("No `feats` selected to plot.", call. = FALSE)
         }
         selected_feats <- feats
-        selected_feats <- selected_feats[selected_feats %in% rownames(expr_values)]
+        selected_feats <- selected_feats[
+            selected_feats %in% rownames(expr_values)]
         if (length(selected_feats) == 0) {
             stop("Selected `feats` not found in expression information",
                 call. = FALSE
@@ -3605,8 +3611,8 @@ dimFeatPlot2D <- function(
                 selected_feats
             )
         } else {
-            subset_expr_data <- expr_values[rownames(expr_values) %in%
-                selected_feats, ]
+            subset_expr_data <- expr_values[
+                rownames(expr_values) %in% selected_feats, ]
             t_sub_expr_data <- t_flex(subset_expr_data)
             t_sub_expr_data_DT <- data.table::as.data.table(
                 as.matrix(t_sub_expr_data)
@@ -3641,13 +3647,15 @@ dimFeatPlot2D <- function(
             feat_type = feat_type
         )
 
-        annotated_DT <- data.table::merge.data.table(cell_metadata,
+        annotated_DT <- data.table::merge.data.table(
+            cell_metadata,
             dim_DT,
             by = "cell_ID"
         )
 
         ## merge feat info
-        annotated_feat_DT <- data.table::merge.data.table(annotated_DT,
+        annotated_feat_DT <- data.table::merge.data.table(
+            annotated_DT,
             t_sub_expr_data_DT,
             by = "cell_ID"
         )
@@ -3676,7 +3684,8 @@ dimFeatPlot2D <- function(
                 by.x = "from", by.y = "cell_ID"
             )
             from_dim_names <- paste0("from_", old_dim_names)
-            data.table::setnames(annotated_network_DT,
+            data.table::setnames(
+                annotated_network_DT,
                 old = old_dim_names,
                 new = from_dim_names
             )
@@ -3686,7 +3695,8 @@ dimFeatPlot2D <- function(
                 by.x = "to", by.y = "cell_ID"
             )
             to_dim_names <- paste0("to_", old_dim_names)
-            data.table::setnames(annotated_network_DT,
+            data.table::setnames(
+                annotated_network_DT,
                 old = old_dim_names,
                 new = to_dim_names
             )
@@ -3751,7 +3761,8 @@ dimFeatPlot2D <- function(
                 cow_n_col = cow_n_col,
                 nr_plots = length(savelist)
             ),
-            rel_heights = cow_rel_h, rel_widths = cow_rel_w,
+            rel_heights = cow_rel_h, 
+            rel_widths = cow_rel_w,
             align = cow_align
         )
 
@@ -3766,7 +3777,8 @@ dimFeatPlot2D <- function(
             do.call(
                 "all_plots_save_function",
                 c(list(
-                    gobject = gobject, plot_object = combo_plot,
+                    gobject = gobject, 
+                    plot_object = combo_plot,
                     default_save_name = default_save_name
                 ), save_param)
             )
@@ -3996,17 +4008,24 @@ spatDimFeatPlot2D <- function(
         ncol <- 1
         nrow <- 2
         combo_plot <- cowplot::plot_grid(
-            dmpl, spl,
-            ncol = ncol, nrow = nrow, rel_heights = c(1),
-            rel_widths = c(1), align = "v"
+            dmpl, 
+            spl,
+            ncol = ncol, 
+            nrow = nrow, 
+            rel_heights = c(1),
+            rel_widths = c(1), 
+            align = "v"
         )
     } else {
         ncol <- 2
         nrow <- 1
         combo_plot <- cowplot::plot_grid(
             dmpl, spl,
-            ncol = ncol, nrow = nrow, rel_heights = c(1),
-            rel_widths = c(1), align = "h"
+            ncol = ncol, 
+            nrow = nrow, 
+            rel_heights = c(1),
+            rel_widths = c(1), 
+            align = "h"
         )
     }
 
@@ -4745,7 +4764,8 @@ spatDimCellPlot2D <- function(
     if (plot_alignment == "vertical") {
         ncol <- 1
         nrow <- 2
-        combo_plot <- cowplot::plot_grid(dmpl, spl,
+        combo_plot <- cowplot::plot_grid(
+            dmpl, spl,
             ncol = ncol, nrow = nrow,
             rel_heights = c(1), rel_widths = c(1),
             align = "v"
@@ -4753,7 +4773,8 @@ spatDimCellPlot2D <- function(
     } else {
         ncol <- 2
         nrow <- 1
-        combo_plot <- cowplot::plot_grid(dmpl, spl,
+        combo_plot <- cowplot::plot_grid(
+            dmpl, spl,
             ncol = ncol, nrow = nrow,
             rel_heights = c(1), rel_widths = c(1),
             align = "h"

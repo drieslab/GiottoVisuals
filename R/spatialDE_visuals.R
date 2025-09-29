@@ -41,7 +41,7 @@ FSV_show <- function(results,
     pl <- pl + ggplot2::theme_bw()
     pl <- pl + ggplot2::geom_point(
         data = results[results$qval < 0.05, ],
-        ggplot2::aes(
+        aes_string2(
             x = "FSV", 
             y = "log_pval",
             fill = "model_bic", 
@@ -56,7 +56,7 @@ FSV_show <- function(results,
     ) +
         ggplot2::geom_point(
             data = results[results$qval > 0.05, ],
-            ggplot2::aes(x = "FSV", y = "log_pval", size = "intervals"),
+            aes_string2(x = "FSV", y = "log_pval", size = "intervals"),
             show.legend = TRUE, 
             shape = 21, 
             alpha = unsig_alpha,
