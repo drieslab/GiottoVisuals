@@ -219,15 +219,15 @@ plotHeatmap <- function(gobject,
     ## assign colors to each cluster
     if (is.null(cluster_color_code)) {
         clus_values <- unique(cell_order_DT[[cluster_column]])
-        clus_colors <-
-            set_default_color_discrete_heatmap_clus(
-                instrs = instructions(gobject)
-            )(n = length(clus_values))
+        clus_colors <- set_default_color_discrete_heatmap_clus(
+            instrs = instructions(gobject))(n = length(clus_values))
         names(clus_colors) <- clus_values
     } else {
         clus_colors <-
             set_default_color_discrete(
-                colors = cluster_color_code, NULL, NULL,
+                colors = cluster_color_code, 
+                NULL, 
+                NULL,
                 "interpolate"
             )(n = length(unique(cell_order_DT[[cluster_column]])))
     }
@@ -237,14 +237,15 @@ plotHeatmap <- function(gobject,
     clus_pl <- clus_pl +
         ggplot2::geom_raster(
             data = cell_order_DT,
-            ggplot2::aes(
+            aes_string2(
                 x = "cells", 
                 y = "1",
                 fill = cluster_column))
     clus_pl <- clus_pl +
         ggplot2::geom_vline(
             xintercept = x_lines,
-            color = "white", size = size_vertical_lines
+            color = "white",
+            size = size_vertical_lines
         )
     clus_pl <- clus_pl +
         ggplot2::scale_fill_manual(
@@ -317,9 +318,10 @@ plotHeatmap <- function(gobject,
         )
 
         ## align and combine
-        aligned <- cowplot::align_plots(clus_pl, empty, hmap +
+        aligned <- cowplot::align_plots(
+            clus_pl, empty, hmap +
             ggplot2::theme(legend.position = "none"),
-        align = "v", axis = "l"
+            align = "v", axis = "l"
         )
         aligned <- append(aligned, list(cowplot::get_legend(hmap)))
         combplot <- cowplot::plot_grid(
@@ -351,10 +353,9 @@ plotHeatmap <- function(gobject,
             as.character(feats), ""
         )]
 
-        axis <- ggplot2::ggplot(data = featDT, aes(
-            x = 0, y = featOrder,
-            label = subset_feats
-        ))
+        axis <- ggplot2::ggplot(
+            data = featDT, 
+            aes(x = 0, y = featOrder,label = subset_feats))
         axis <- axis + ggrepel::geom_text_repel(
             min.segment.length = grid::unit(0, "pt"),
             color = "grey30", ## ggplot2 theme_grey() axis text
@@ -374,10 +375,12 @@ plotHeatmap <- function(gobject,
         )
 
         ## align and combine
-        aligned <- cowplot::align_plots(clus_pl, empty, empty, hmap +
+        aligned <- cowplot::align_plots(
+            clus_pl, empty, empty, hmap +
             theme(legend.position = "none"),
-        axis,
-        align = "h", axis = "b"
+            axis,
+            align = "h", 
+            axis = "b"
         )
         aligned <- append(aligned, list(cowplot::get_legend(hmap)))
         combplot <- cowplot::plot_grid(
@@ -617,7 +620,7 @@ plotMetaDataHeatmap <- function(
         pl <- ggplot2::ggplot()
         pl <- pl + ggplot2::geom_tile(
             data = metaDT,
-            ggplot2::aes(
+            aes_string2(
                 x = "factor_column",
                 y = "variable",
                 fill = show_values
@@ -719,7 +722,7 @@ plotMetaDataHeatmap <- function(
             pl <- pl +
                 ggplot2::geom_tile(
                     data = metaDT,
-                    ggplot2::aes(
+                    aes_string2(
                         x = "factor_1_column",
                         y = "variable",
                         fill = show_values
@@ -748,26 +751,30 @@ plotMetaDataHeatmap <- function(
             )
             pl <- pl +
                 ggplot2::labs(
-                    x = first_meta_col, y = "feats",
+                    x = first_meta_col, 
+                    y = "feats",
                     title = second_meta_col
                 )
 
 
             # print, return and save parameters
             show_plot <- ifelse(is.na(show_plot),
-                readGiottoInstructions(gobject,
+                readGiottoInstructions(
+                    gobject,
                     param = "show_plot"
                 ),
                 show_plot
             )
             save_plot <- ifelse(is.na(save_plot),
-                readGiottoInstructions(gobject,
+                readGiottoInstructions(
+                    gobject,
                     param = "save_plot"
                 ),
                 save_plot
             )
             return_plot <- ifelse(is.na(return_plot),
-                readGiottoInstructions(gobject,
+                readGiottoInstructions(
+                    gobject,
                     param = "return_plot"
                 ),
                 return_plot
@@ -784,7 +791,8 @@ plotMetaDataHeatmap <- function(
                 do.call(
                     "all_plots_save_function",
                     c(list(
-                        gobject = gobject, plot_object = pl,
+                        gobject = gobject, 
+                        plot_object = pl,
                         default_save_name = default_save_name
                     ), save_param)
                 )
@@ -982,7 +990,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
         pl <- pl +
             ggplot2::geom_tile(
                 data = metaDT,
-                ggplot2::aes(
+                aes_string2(
                     x = "factor_column",
                     y = "variable",
                     fill = show_values
@@ -1029,7 +1037,7 @@ plotMetaDataCellsHeatmap <- function(gobject,
             pl <- pl +
                 ggplot2::geom_tile(
                     data = metaDT,
-                    ggplot2::aes(
+                    aes_string2(
                         x = "factor_1_column",
                         y = "variable",
                         fill = show_values),

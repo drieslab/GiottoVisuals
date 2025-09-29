@@ -144,7 +144,7 @@ violinPlot <- function(gobject,
     if (color_violin == "feats") {
         pl <- pl + ggplot2::geom_violin(
             data = metadata_expr_m,
-            ggplot2::aes(
+            aes_string2(
                 x = cluster_column,
                 y = "value", 
                 fill = "feats"
@@ -156,7 +156,7 @@ violinPlot <- function(gobject,
     } else {
         pl <- pl + ggplot2::geom_violin(
             data = metadata_expr_m,
-            ggplot2::aes(
+            aes_string2(
                 x = cluster_column, 
                 y = "value",
                 fill = cluster_column

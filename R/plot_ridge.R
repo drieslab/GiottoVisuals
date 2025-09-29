@@ -207,7 +207,7 @@ ridgePlot <- function(gobject, feats, ...,
     theme_param = list()
 ) {
     # accumulate plot aesthetics
-    plot_aes <- ggplot2::aes(
+    plot_aes <- aes_string2(
         x = "value",
         y = "feat",
         fill = "feat"
