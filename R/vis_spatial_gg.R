@@ -292,7 +292,7 @@
                 yend = sdimy_end
             ),
             color = network_color,
-            size = 0.5,
+            linewidth = 0.5,
             alpha = network_alpha
         )
     }
@@ -1979,7 +1979,7 @@ plotPCA <- function(
 #' @param sdimy = spatial dimension to use on y-axis
 #' @param spat_point_shape shape of points (border, no_border or voronoi)
 #' @param spat_point_size size of spatial points
-#' @param spat_point_alpha transparancy of spatial points
+#' @param spat_point_alpha transparency of spatial points
 #' @param spat_point_border_col border color of spatial points
 #' @param spat_point_border_stroke border stroke of spatial points
 #' @param dim_show_cluster_center show the center of each cluster
@@ -2641,7 +2641,7 @@ spatFeatPlot2D_single <- function(
                         yend = yend
                     ),
                     color = network_color,
-                    size = 0.5,
+                    linewidth = 0.5,
                     alpha = edge_alpha
                 )
             }
@@ -2815,7 +2815,7 @@ spatFeatPlot2D_single <- function(
                         yend = yend
                     ),
                     color = network_color, 
-                    size = 0.5, 
+                    linewidth = 0.5, 
                     alpha = 0.5
                 )
             }
@@ -3264,7 +3264,7 @@ spatFeatPlot2D <- function(
                 ),
                 alpha = edge_alpha, 
                 color = network_color, 
-                size = 0.1,
+                linewidth = 0.1,
                 show.legend = FALSE
             )
         } else if (is.numeric(edge_alpha)) {
@@ -3276,7 +3276,7 @@ spatFeatPlot2D <- function(
                 ),
                 alpha = edge_alpha, 
                 color = network_color, 
-                size = 0.1,
+                linewidth = 0.1,
                 show.legend = FALSE
             )
         } else if (is.character(edge_alpha)) {

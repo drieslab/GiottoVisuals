@@ -345,7 +345,7 @@ spatInSituPlotPoints <- function(
                 bg_color = polygon_bg_color,
                 color = polygon_color,
                 alpha = polygon_alpha,
-                size = polygon_line_size,
+                linewidth = polygon_line_size,
                 show_legend = show_legend
             )
 
@@ -397,7 +397,7 @@ spatInSituPlotPoints <- function(
                 bg_color = polygon_bg_color,
                 color = polygon_color,
                 alpha = polygon_alpha,
-                size = polygon_line_size,
+                linewidth = polygon_line_size,
                 show_legend = show_legend
             )
 
@@ -562,7 +562,7 @@ spatInSituPlotPoints <- function(
             fill_as_factor = polygon_fill_as_factor,
             color = polygon_color,
             alpha = polygon_alpha,
-            size = polygon_size
+            linewidth = polygon_size
         )
     }
 
@@ -858,7 +858,7 @@ spatInSituPlotHex <- function(gobject,
             fill_as_factor = polygon_fill_as_factor,
             color = polygon_color,
             alpha = polygon_alpha,
-            size = polygon_size
+            linewidth = polygon_size
         )
     }
 
