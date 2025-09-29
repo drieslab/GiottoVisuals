@@ -1118,7 +1118,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
     bg_color = "black",
     color = "black",
     alpha = 0.5,
-    size = 2) {
+    linewidth = 2) {
     # check fill column
     if (!is.null(fill)) {
         if (isTRUE(fill_as_factor)) {
@@ -1150,7 +1150,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
             show.legend = show_legend,
             alpha = alpha,
             color = color,
-            size = size
+            linewidth = linewidth
         )
 
         # manual fill colors for factor values
@@ -1190,7 +1190,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
             fill = bg_color,
             alpha = alpha,
             color = color,
-            size = size
+            linewidth = linewidth
         )
     }
 

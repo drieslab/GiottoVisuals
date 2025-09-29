@@ -245,7 +245,7 @@ plotHeatmap <- function(gobject,
         ggplot2::geom_vline(
             xintercept = x_lines,
             color = "white",
-            size = size_vertical_lines
+            linewidth = size_vertical_lines
         )
     clus_pl <- clus_pl +
         ggplot2::scale_fill_manual(
@@ -298,7 +298,7 @@ plotHeatmap <- function(gobject,
         ggplot2::geom_vline(
             xintercept = x_lines,
             color = "white", 
-            size = size_vertical_lines
+            linewidth = size_vertical_lines
         )
     hmap <- hmap + set_default_color_continuous_heatmap(
         colors = gradient_color,
