@@ -167,7 +167,6 @@ NULL
 #' aesthetics used by the paired geom/stat.
 #'
 #' @returns An S7 object representing a list with class mapping.
-#' @export
 #'
 #' @examples
 #' ggplot2::ggplot(iris) +
