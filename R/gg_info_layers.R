@@ -30,7 +30,7 @@ plot_spat_point_layer_ggplot <- function(
         instrs = NULL,
         sdimx = NULL,
         sdimy = NULL,
-        plot_method = c("ggplot", "scattermore"), # does not actually work for fill types
+        plot_method = c("ggplot", "scattermore"), # does not work for fill types
         cell_locations_metadata_selected,
         cell_locations_metadata_other,
         cell_color = NULL,
@@ -90,7 +90,7 @@ plot_spat_point_layer_ggplot <- function(
         isTRUE(show_other_cells)) {
         pl <- pl + ggplot2::geom_point(
             data = cell_locations_metadata_other,
-            mapping = aes_string(x = sdimx, sdimy),
+            mapping = aes_string2(x = sdimx, sdimy),
             color = other_cell_color,
             show.legend = FALSE,
             size = other_point_size,
@@ -114,7 +114,7 @@ plot_spat_point_layer_ggplot <- function(
         pl <- pl + giotto_point(
             plot_method = plot_method,
             data = cell_locations_metadata_selected,
-            mapping = aes_string(x = sdimx, y = sdimy),
+            mapping = aes_string2(x = sdimx, y = sdimy),
             show.legend = show_legend,
             shape = 21,
             fill = cell_color,
@@ -135,7 +135,10 @@ plot_spat_point_layer_ggplot <- function(
             pl <- pl + giotto_point(
                 plot_method = plot_method,
                 data = cell_locations_metadata_selected,
-                mapping = aes_string2(x = sdimx, y = sdimy, fill = "temp_color"),
+                mapping = aes_string2(
+                    x = sdimx,
+                    y = sdimy,
+                    fill = "temp_color"),
                 show.legend = show_legend,
                 shape = 21,
                 size = point_size,
@@ -207,7 +210,10 @@ plot_spat_point_layer_ggplot <- function(
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = cell_locations_metadata_selected,
-                    mapping = aes_string2(x = sdimx, y = sdimy, fill = cell_color),
+                    mapping = aes_string2(
+                        x = sdimx,
+                        y = sdimy,
+                        fill = cell_color),
                     show.legend = show_legend,
                     shape = 21,
                     size = point_size,
@@ -239,7 +245,10 @@ plot_spat_point_layer_ggplot <- function(
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = cell_locations_metadata_selected,
-                    mapping = aes_string2(x = sdimx, y = sdimy, fill = cell_color),
+                    mapping = aes_string2(
+                        x = sdimx,
+                        y = sdimy,
+                        fill = cell_color),
                     show.legend = show_legend,
                     shape = 21,
                     size = point_size,
@@ -257,7 +266,8 @@ plot_spat_point_layer_ggplot <- function(
                         plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             fill = cell_color
                         ),
                         color = center_point_border_col,
@@ -273,7 +283,8 @@ plot_spat_point_layer_ggplot <- function(
                     pl <- pl + ggrepel::geom_text_repel(
                         data = annotated_DT_centers,
                         mapping = aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             label = cell_color
                         ),
                         size = label_size,
@@ -385,7 +396,7 @@ plot_spat_point_layer_ggplot_noFILL <- function(
         isTRUE(show_other_cells)) {
         pl <- pl + ggplot2::geom_point(
             data = cell_locations_metadata_other,
-            aes_string(x = sdimx, sdimy),
+            aes_string2(x = sdimx, sdimy),
             color = other_cell_color,
             show.legend = FALSE,
             size = other_point_size,
@@ -409,7 +420,7 @@ plot_spat_point_layer_ggplot_noFILL <- function(
         pl <- pl + giotto_point(
             plot_method = plot_method,
             data = cell_locations_metadata_selected,
-            mapping = aes_string(x = sdimx, y = sdimy),
+            mapping = aes_string2(x = sdimx, y = sdimy),
             show.legend = show_legend,
             shape = 19,
             color = cell_color,
@@ -428,7 +439,10 @@ plot_spat_point_layer_ggplot_noFILL <- function(
             pl <- pl + giotto_point(
                 plot_method = plot_method,
                 data = cell_locations_metadata_selected,
-                mapping = aes_string2(x = sdimx, y = sdimy, color = "temp_color"),
+                mapping = aes_string2(
+                    x = sdimx,
+                    y = sdimy,
+                    color = "temp_color"),
                 show.legend = show_legend,
                 shape = 19,
                 size = point_size,
@@ -445,8 +459,10 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                 plot_method = plot_method,
                 data = cell_locations_metadata_selected,
                 mapping = aes_string2(x = sdimx, y = sdimy),
-                show.legend = show_legend, shape = 19,
-                color = cell_color, size = point_size,
+                show.legend = show_legend,
+                shape = 19,
+                color = cell_color,
+                size = point_size,
                 alpha = point_alpha,
                 ...
             )
@@ -496,7 +512,10 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = cell_locations_metadata_selected,
-                    mapping = aes_string2(x = sdimx, y = sdimy, color = cell_color),
+                    mapping = aes_string2(
+                        x = sdimx,
+                        y = sdimy,
+                        color = cell_color),
                     show.legend = show_legend,
                     shape = 19,
                     size = point_size,
@@ -528,7 +547,10 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = cell_locations_metadata_selected,
-                    mapping = aes_string2(x = sdimx, y = sdimy, color = cell_color),
+                    mapping = aes_string2(
+                        x = sdimx,
+                        y = sdimy,
+                        color = cell_color),
                     show.legend = show_legend,
                     shape = 19,
                     size = point_size,
@@ -545,7 +567,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                         plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             color = cell_color
                         ),
                         size = center_point_size,
@@ -560,7 +583,8 @@ plot_spat_point_layer_ggplot_noFILL <- function(
                     pl <- pl + ggrepel::geom_text_repel(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             label = cell_color
                         ),
                         size = label_size,
@@ -699,7 +723,9 @@ plot_spat_voronoi_layer_ggplot <- function(
         pl <- pl + ggforce::geom_voronoi_tile(
             data = combn_cell_locations_metadata,
             aes(
-                x = sdimx, y = sdimy, group = -1L,
+                x = sdimx,
+                y = sdimy,
+                group = -1L,
                 fill = as.factor(temp_color)
             ),
             colour = vor_border_color,
@@ -1003,7 +1029,8 @@ plot_spat_voronoi_layer_ggplot <- function(
                     pl <- pl + ggplot2::geom_point(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             color = cell_color
                         ),
                         size = center_point_size,
@@ -1016,7 +1043,8 @@ plot_spat_voronoi_layer_ggplot <- function(
                     pl <- pl + ggrepel::geom_text_repel(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             label = cell_color
                         ),
                         size = label_size,
@@ -1035,7 +1063,7 @@ plot_spat_voronoi_layer_ggplot <- function(
         isTRUE(show_other_cells)) {
         pl <- pl + ggplot2::geom_point(
             data = cell_locations_metadata_other,
-            aes_string(x = sdimx, sdimy),
+            aes_string2(x = sdimx, sdimy),
             color = "black",
             show.legend = FALSE,
             size = other_point_size,
@@ -1046,7 +1074,7 @@ plot_spat_voronoi_layer_ggplot <- function(
     ## plot selected cells
     pl <- pl + ggplot2::geom_point(
         data = cell_locations_metadata_selected,
-        aes_string(x = sdimx, y = sdimy),
+        aes_string2(x = sdimx, y = sdimy),
         show.legend = FALSE,
         color = "black",
         size = point_size,
@@ -1090,7 +1118,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
     bg_color = "black",
     color = "black",
     alpha = 0.5,
-    size = 2) {
+    linewidth = 2) {
     # check fill column
     if (!is.null(fill)) {
         if (isTRUE(fill_as_factor)) {
@@ -1113,7 +1141,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
     if (!is.null(fill)) {
         pl <- pl + ggplot2::geom_polygon(
             data = polygon_dt,
-            ggplot2::aes_string(
+            aes_string2(
                 x = "x",
                 y = "y",
                 group = polygon_grouping,
@@ -1122,7 +1150,7 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
             show.legend = show_legend,
             alpha = alpha,
             color = color,
-            size = size
+            linewidth = linewidth
         )
 
         # manual fill colors for factor values
@@ -1158,15 +1186,11 @@ plot_cell_polygon_layer <- function(ggobject = NULL,
     } else {
         pl <- pl + ggplot2::geom_polygon(
             data = polygon_dt,
-            ggplot2::aes_string(
-                x = "x",
-                y = "y",
-                group = "poly_ID"
-            ),
+            aes_string2(x = "x", y = "y", group = "poly_ID"),
             fill = bg_color,
             alpha = alpha,
             color = color,
-            size = size
+            linewidth = linewidth
         )
     }
 
@@ -1262,7 +1286,7 @@ plot_feature_points_layer <- function(ggobject,
         plot_method = plot_method,
         data = spatial_feat_info_subset,
         ext = ext,
-        mapping = ggplot2::aes_string(
+        mapping = aes_string2(
             x = sdimx,
             y = sdimy,
             color = color,
@@ -1335,10 +1359,10 @@ plot_feature_raster_density_layer <- function(
 
     pl <- pl + ggplot2::stat_density_2d(
         data = spatial_feat_info_subset,
-        ggplot2::aes_string(
+        aes_string2(
             x = sdimx,
             y = sdimy,
-            fill = "after_stat(density)"
+            fill = "ggplot2::after_stat(density)"
         ),
         geom = "raster",
         alpha = alpha,
@@ -1394,10 +1418,7 @@ plot_feature_hexbin_layer <- function(ggobject = NULL,
 
     pl <- pl + ggplot2::geom_hex(
         data = spatial_feat_info_subset,
-        ggplot2::aes_string(
-            x = sdimx,
-            y = sdimy
-        ),
+        aes_string2(x = sdimx, y = sdimy),
         binwidth = binwidth,
         alpha = alpha
     )
@@ -1482,7 +1503,8 @@ plot_spat_image_layer_ggplot <- function(gg_obj,
 #' @param sdimy y-axis dimension name (default = 'sdimy')
 #' @param spatial_locations spatial locations
 #' @param spatial_enrichment spatial enrichment results
-#' @param radius radius of scatterpie
+#' @param pie_scale amount to scale the pie size if there is no radius mapping
+#' exists
 #' @param color color of lines within pie chart
 #' @param cell_color_code color code for the cell types
 #' @return ggplot
@@ -1494,7 +1516,7 @@ plot_spat_scatterpie_layer_ggplot <- function(ggobject,
     sdimy = "sdimy",
     spatial_locations = NULL,
     spatial_enrichment = NULL,
-    radius = 10,
+    pie_scale = 0.35,
     color = NA,
     alpha = 1,
     cell_color_code = NULL) {
@@ -1512,7 +1534,8 @@ plot_spat_scatterpie_layer_ggplot <- function(ggobject,
     pl <- ggobject
     pl <- pl + scatterpie::geom_scatterpie(
         data = combined_spat_enrichm,
-        aes(x = sdimx, y = sdimy, r = radius),
+        aes_string2(x = sdimx, y = sdimy),
+        pie_scale = pie_scale,
         cols = cell_names,
         color = color,
         alpha = alpha
@@ -1566,26 +1589,37 @@ plot_network_layer_ggplot <- function(
     if (is.null(edge_alpha)) {
         edge_alpha <- 0.05
         pl <- pl + ggplot2::geom_segment(
-            data = annotated_network_DT, aes_string2(
-                x = from_dims[1], y = from_dims[2],
-                xend = to_dims[1], yend = to_dims[2]
+            data = annotated_network_DT,
+            aes_string2(
+                x = from_dims[1],
+                y = from_dims[2],
+                xend = to_dims[1],
+                yend = to_dims[2]
             ),
-            alpha = edge_alpha, show.legend = show_legend
+            alpha = edge_alpha,
+            show.legend = show_legend
         )
     } else if (is.numeric(edge_alpha)) {
         pl <- pl + ggplot2::geom_segment(
-            data = annotated_network_DT, aes_string2(
-                x = from_dims[1], y = from_dims[2],
-                xend = to_dims[1], yend = to_dims[2]
+            data = annotated_network_DT,
+            aes_string2(
+                x = from_dims[1],
+                y = from_dims[2],
+                xend = to_dims[1],
+                yend = to_dims[2]
             ),
-            alpha = edge_alpha, show.legend = show_legend
+            alpha = edge_alpha,
+            show.legend = show_legend
         )
     } else if (is.character(edge_alpha)) {
         if (edge_alpha %in% colnames(annotated_network_DT)) {
             pl <- pl + ggplot2::geom_segment(
-                data = annotated_network_DT, aes_string2(
-                    x = from_dims[1], y = from_dims[2],
-                    xend = to_dims[1], yend = to_dims[2],
+                data = annotated_network_DT,
+                aes_string2(
+                    x = from_dims[1],
+                    y = from_dims[2],
+                    xend = to_dims[1],
+                    yend = to_dims[2],
                     alpha = edge_alpha
                 ),
                 show.legend = show_legend
@@ -1649,7 +1683,7 @@ plot_point_layer_ggplot <- function(
         dims <- grep("Dim.", colnames(annotated_DT_other), value = TRUE)
         pl <- pl + ggplot2::geom_point(
             data = annotated_DT_other,
-            ggplot2::aes_string(x = dims[1], dims[2]),
+            aes_string2(x = dims[1], y = dims[2]),
             color = other_cell_color,
             show.legend = FALSE,
             size = other_point_size,
@@ -1675,7 +1709,7 @@ plot_point_layer_ggplot <- function(
         cell_color <- "lightblue"
         pl <- pl + ggplot2::geom_point(
             data = annotated_DT_selected,
-            ggplot2::aes_string(x = dims[1], dims[2]),
+            aes_string2(x = dims[1], y = dims[2]),
             color = cell_color,
             show.legend = show_legend,
             size = point_size,
@@ -1707,7 +1741,9 @@ plot_point_layer_ggplot <- function(
             pl <- pl + ggplot2::geom_point(
                 data = annotated_DT_selected,
                 aes_string2(x = dims[1], y = dims[2]),
-                show.legend = show_legend, shape = 21, fill = cell_color,
+                show.legend = show_legend,
+                shape = 21,
+                fill = cell_color,
                 size = point_size,
                 color = point_border_col,
                 stroke = point_border_stroke,
@@ -1722,8 +1758,10 @@ plot_point_layer_ggplot <- function(
             }
             pl <- pl + ggplot2::geom_point(
                 data = annotated_DT_selected,
-                ggplot2::aes_string(x = dims[1], y = dims[2]),
-                show.legend = show_legend, shape = 21, fill = cell_color,
+                aes_string2(x = dims[1], y = dims[2]),
+                show.legend = show_legend,
+                shape = 21,
+                fill = cell_color,
                 size = point_size,
                 color = point_border_col,
                 stroke = point_border_stroke,
@@ -1755,8 +1793,11 @@ plot_point_layer_ggplot <- function(
                 pl <- pl + ggplot2::geom_point(
                     data = annotated_DT_selected,
                     aes_string2(x = dims[1], y = dims[2], fill = cell_color),
-                    show.legend = show_legend, shape = 21, size = point_size,
-                    color = point_border_col, stroke = point_border_stroke,
+                    show.legend = show_legend,
+                    shape = 21,
+                    size = point_size,
+                    color = point_border_col,
+                    stroke = point_border_stroke,
                     alpha = point_alpha
                 )
             } else {
@@ -1785,8 +1826,11 @@ plot_point_layer_ggplot <- function(
                 pl <- pl + ggplot2::geom_point(
                     data = annotated_DT_selected,
                     aes_string2(x = dims[1], y = dims[2], fill = cell_color),
-                    show.legend = show_legend, shape = 21, size = point_size,
-                    color = point_border_col, stroke = point_border_stroke,
+                    show.legend = show_legend,
+                    shape = 21,
+                    size = point_size,
+                    color = point_border_col,
+                    stroke = point_border_stroke,
                     alpha = point_alpha
                 )
 
@@ -1798,12 +1842,14 @@ plot_point_layer_ggplot <- function(
                     pl <- pl + ggplot2::geom_point(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             fill = cell_color
                         ),
                         color = center_point_border_col,
                         stroke = center_point_border_stroke,
-                        size = center_point_size, shape = 21,
+                        size = center_point_size,
+                        shape = 21,
                         alpha = point_alpha
                     )
                 }
@@ -1813,10 +1859,12 @@ plot_point_layer_ggplot <- function(
                     pl <- pl + ggrepel::geom_text_repel(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             label = cell_color
                         ),
-                        size = label_size, fontface = label_fontface
+                        size = label_size,
+                        fontface = label_fontface
                     )
                 }
             }
@@ -1901,8 +1949,10 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
         !is.null(select_cell_groups)) & show_other_cells == TRUE) {
         dims <- grep("Dim.", colnames(annotated_DT_other), value = TRUE)
         pl <- pl + ggplot2::geom_point(
-            data = annotated_DT_other, aes_string(x = dims[1], dims[2]),
-            color = other_cell_color, show.legend = FALSE,
+            data = annotated_DT_other,
+            aes_string2(x = dims[1], dims[2]),
+            color = other_cell_color,
+            show.legend = FALSE,
             size = other_point_size,
             alpha = point_alpha
         )
@@ -1927,8 +1977,10 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
         pl <- pl + giotto_point(
             plot_method = plot_method,
             data = annotated_DT_selected,
-            mapping = aes_string(x = dims[1], dims[2]),
-            color = cell_color, show.legend = show_legend, size = point_size,
+            mapping = aes_string2(x = dims[1], dims[2]),
+            color = cell_color,
+            show.legend = show_legend,
+            size = point_size,
             alpha = point_alpha,
             ...
         )
@@ -1943,7 +1995,9 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
             pl <- pl + giotto_point(
                 data = annotated_DT_selected,
                 aes_string2(x = dims[1], y = dims[2], color = "temp_color"),
-                show.legend = show_legend, shape = 19, size = point_size,
+                show.legend = show_legend,
+                shape = 19,
+                size = point_size,
                 alpha = point_alpha
             )
         } else if (is.character(cell_color)) {
@@ -1955,8 +2009,10 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                 plot_method = plot_method,
                 data = annotated_DT_selected,
                 mapping = aes_string2(x = dims[1], y = dims[2]),
-                show.legend = show_legend, shape = 19,
-                fill = cell_color, size = point_size,
+                show.legend = show_legend,
+                shape = 19,
+                fill = cell_color,
+                size = point_size,
                 alpha = point_alpha,
                 ...
             )
@@ -1969,9 +2025,11 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
             pl <- pl + giotto_point(
                 plot_method = plot_method,
                 data = annotated_DT_selected,
-                mapping = aes_string(x = dims[1], y = dims[2]),
-                show.legend = show_legend, shape = 19,
-                color = cell_color, size = point_size,
+                mapping = aes_string2(x = dims[1], y = dims[2]),
+                show.legend = show_legend,
+                shape = 19,
+                color = cell_color,
+                size = point_size,
                 alpha = point_alpha,
                 ...
             )
@@ -1999,8 +2057,13 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = annotated_DT_selected,
-                    mapping = aes_string2(x = dims[1], y = dims[2], color = cell_color),
-                    show.legend = show_legend, shape = 19, size = point_size,
+                    mapping = aes_string2(
+                        x = dims[1],
+                        y = dims[2],
+                        color = cell_color),
+                    show.legend = show_legend,
+                    shape = 19,
+                    size = point_size,
                     alpha = point_alpha,
                     ...
                 )
@@ -2025,8 +2088,13 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                 pl <- pl + giotto_point(
                     plot_method = plot_method,
                     data = annotated_DT_selected,
-                    mapping = aes_string2(x = dims[1], y = dims[2], color = cell_color),
-                    show.legend = show_legend, shape = 19, size = point_size,
+                    mapping = aes_string2(
+                        x = dims[1],
+                        y = dims[2],
+                        color = cell_color),
+                    show.legend = show_legend,
+                    shape = 19,
+                    size = point_size,
                     alpha = point_alpha,
                     ...
                 )
@@ -2040,10 +2108,12 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                         plot_method = plot_method,
                         data = annotated_DT_centers,
                         mapping = aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             color = cell_color
                         ),
-                        size = center_point_size, shape = 19,
+                        size = center_point_size,
+                        shape = 19,
                         alpha = point_alpha,
                         ...
                     )
@@ -2054,10 +2124,12 @@ plot_point_layer_ggplot_noFILL <- function(ggobject,
                     pl <- pl + ggrepel::geom_text_repel(
                         data = annotated_DT_centers,
                         aes_string2(
-                            x = "center_1", y = "center_2",
+                            x = "center_1",
+                            y = "center_2",
                             label = cell_color
                         ),
-                        size = label_size, fontface = label_fontface,
+                        size = label_size,
+                        fontface = label_fontface,
                         alpha = point_alpha
                     )
                 }
@@ -2160,9 +2232,12 @@ addGiottoImageToSpatPlot <- function(spatpl = NULL,
     ymax_b <- gimage@boundaries[3]
     ymin_b <- gimage@boundaries[4]
 
-    newpl <- spatpl + annotation_raster(img_array,
-        xmin = my_xmin - xmin_b, xmax = my_xmax + xmax_b,
-        ymin = my_ymin - ymin_b, ymax = my_ymax + ymax_b
+    newpl <- spatpl + annotation_raster(
+        img_array,
+        xmin = my_xmin - xmin_b,
+        xmax = my_xmax + xmax_b,
+        ymin = my_ymin - ymin_b,
+        ymax = my_ymax + ymax_b
     )
 
     # position new layer

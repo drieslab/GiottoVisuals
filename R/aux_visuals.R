@@ -161,19 +161,44 @@ NULL
 # ggplot helper ####
 
 #' @title aes_string2
-#' @name aes_string2
-#' @param \dots aes_string parameters
-#' @keywords internal
-#' @description makes sure aes_string can also be used with names that
-#' start with numeric values
-#' @keywords internal
-#' @returns Aesthetics elements
+#' @description
+#' Internal replacement for the removed `ggplot2::aes_string()` pre-v4.0
 #'
-aes_string2 <- function(...) {
-    args <- lapply(list(...), function(x) sprintf("`%s`", x))
-    do.call(ggplot2::aes_string, args)
+#' @param x,y,... List of name-value pairs in the form `aesthetic = variable`
+#' describing which variables in the layer data should be mapped to which
+#' aesthetics used by the paired geom/stat.
+#'
+#' * Mapped values should be provided as a single character input.
+#' * Non-character inputs will not be altered and will be processed as usual.
+#' * Expressions to be evaluated may be passed as a character string to be
+#' interpreted via `str2lang()`
+#'
+#' @returns An S7 object representing a list with class mapping.
+#' @keywords internal
+#' @examples
+#' ggplot2::ggplot(iris) +
+#' ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
+aes_string2 <- function(x, y, ...) {
+    mapping <- list(...)
+    if (!missing(x))
+        mapping["x"] <- list(x)
+    if (!missing(y))
+        mapping["y"] <- list(y)
+    mapping <- lapply(mapping, function(x) {
+        if (is.character(x)) {
+            if (length(x) != 1L) {
+                stop("[aes_string2] incompatible with len >1 character inputs",
+                     call. = FALSE)
+            }
+            if (identical(x, "")) {
+                stop("[aes_string2] empty string not allowed", call. = FALSE)
+            }
+            x <- str2lang(x)
+        }
+        x
+    })
+    do.call(ggplot2::aes, mapping)
 }
-
 
 # handle ggplot inputs for functions that may either
 # append additional information to a ggplot object or be where the ggobject is
