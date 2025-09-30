@@ -2,19 +2,19 @@
 % Please edit documentation in R/gg_annotation_raster.R
 \name{gg_annotation_raster}
 \alias{gg_annotation_raster}
-\alias{gg_annotation_raster,gg,list-method}
-\alias{gg_annotation_raster,gg,giottoImage-method}
-\alias{gg_annotation_raster,gg,giottoLargeImage-method}
-\alias{gg_annotation_raster,gg,giottoAffineImage-method}
+\alias{gg_annotation_raster,ggUnionClass,list-method}
+\alias{gg_annotation_raster,ggUnionClass,giottoImage-method}
+\alias{gg_annotation_raster,ggUnionClass,giottoLargeImage-method}
+\alias{gg_annotation_raster,ggUnionClass,giottoAffineImage-method}
 \title{Append image to ggplot as annotation_raster}
 \usage{
-\S4method{gg_annotation_raster}{gg,list}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
+\S4method{gg_annotation_raster}{ggUnionClass,list}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 
-\S4method{gg_annotation_raster}{gg,giottoImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
+\S4method{gg_annotation_raster}{ggUnionClass,giottoImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 
-\S4method{gg_annotation_raster}{gg,giottoLargeImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
+\S4method{gg_annotation_raster}{ggUnionClass,giottoLargeImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 
-\S4method{gg_annotation_raster}{gg,giottoAffineImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
+\S4method{gg_annotation_raster}{ggUnionClass,giottoAffineImage}(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 }
 \arguments{
 \item{ggobj}{ggplot2 \code{gg} object}

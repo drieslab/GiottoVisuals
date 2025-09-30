@@ -31,7 +31,7 @@ NULL
 #' @export
 setMethod(
     "gg_annotation_raster",
-    signature(ggobj = "gg", gimage = "list"),
+    signature(ggobj = "ggUnionClass", gimage = "list"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
         # apply geom_blank
         ext <- ext %null% ext(gimage[[1L]])
@@ -55,7 +55,7 @@ setMethod(
 #' @export
 setMethod(
     "gg_annotation_raster",
-    signature(ggobj = "gg", gimage = "giottoImage"),
+    signature(ggobj = "ggUnionClass", gimage = "giottoImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
         # apply geom_blank
         ext <- ext %null% ext(gimage)
@@ -77,7 +77,7 @@ setMethod(
 #' @export
 setMethod(
     "gg_annotation_raster",
-    signature(ggobj = "gg", gimage = "giottoLargeImage"),
+    signature(ggobj = "ggUnionClass", gimage = "giottoLargeImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
         # geom_blank
         ext <- ext %null% ext(gimage)
@@ -104,7 +104,7 @@ setMethod(
 #' @export
 setMethod(
     "gg_annotation_raster",
-    signature(ggobj = "gg", gimage = "giottoAffineImage"),
+    signature(ggobj = "ggUnionClass", gimage = "giottoAffineImage"),
     function(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...) {
         # geom_blank
         ext <- ext %null% ext(gimage)
