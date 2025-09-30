@@ -180,6 +180,13 @@ aes_string2 <- function(x, y, ...) {
         mapping["y"] <- list(y)
     mapping <- lapply(mapping, function(x) {
         if (is.character(x)) {
+            if (length(x) != 1L) {
+                stop("[aes_string2] incompatible with len >1 character inputs",
+                     call. = FALSE)
+            }
+            if (identical(x, "")) {
+                stop("[aes_string2] empty string not allowed", call. = FALSE)
+            }
             x <- as.name(x)
         }
         x
