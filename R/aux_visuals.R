@@ -160,37 +160,23 @@ NULL
 
 # ggplot helper ####
 
-#' @title aes2
-#' @name aes2
-#' @param \dots aes parameters
-#' @keywords internal
-#' @description makes sure aes can also be used with names that
-#' start with numeric values
-#' @keywords internal
-#' @returns Aesthetics elements
-#'
-aes2 <- function(...) {
-    args <- lapply(list(...), function(x) sprintf("`%s`", x))
-    do.call(ggplot2::aes, args)
-}
-
 #' aes_string2
 #'
-#' @param x,y,... List of name-value pairs in the form `aesthetic = variable` 
-#' describing which variables in the layer data should be mapped to which 
+#' @param x,y,... List of name-value pairs in the form `aesthetic = variable`
+#' describing which variables in the layer data should be mapped to which
 #' aesthetics used by the paired geom/stat.
 #'
-#' @returns An S7 object representing a list with class mapping. 
+#' @returns An S7 object representing a list with class mapping.
 #' @export
 #'
 #' @examples
-#' ggplot2::ggplot(iris) + 
+#' ggplot2::ggplot(iris) +
 #' ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
 aes_string2 <- function(x, y, ...) {
     mapping <- list(...)
-    if (!missing(x)) 
+    if (!missing(x))
         mapping["x"] <- list(x)
-    if (!missing(y)) 
+    if (!missing(y))
         mapping["y"] <- list(y)
     mapping <- lapply(mapping, function(x) {
         if (is.character(x)) {

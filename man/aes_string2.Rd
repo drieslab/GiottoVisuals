@@ -18,6 +18,6 @@ An S7 object representing a list with class mapping.
 aes_string2
 }
 \examples{
-ggplot2::ggplot(iris) + 
+ggplot2::ggplot(iris) +
 ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
 }
