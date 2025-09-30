@@ -170,8 +170,9 @@ NULL
 #' inputs will not be altered and will be processed as usual.
 #'
 #' Internal replacement for the removed `ggplot2::aes_string()` pre-v4.0
-#' \cr Note that this function does not support quoted expression inputs.
 #'
+#' Expressions to be evaluated may be passed as a character string to be
+#' interpreted via `str2lang()`
 #'
 #' @returns An S7 object representing a list with class mapping.
 #' @keywords internal
@@ -193,7 +194,7 @@ aes_string2 <- function(x, y, ...) {
             if (identical(x, "")) {
                 stop("[aes_string2] empty string not allowed", call. = FALSE)
             }
-            x <- as.name(x)
+            x <- str2lang(x)
         }
         x
     })

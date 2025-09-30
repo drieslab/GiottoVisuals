@@ -1362,7 +1362,7 @@ plot_feature_raster_density_layer <- function(
         aes_string2(
             x = sdimx,
             y = sdimy,
-            fill = ggplot2::after_stat(density)
+            fill = "ggplot2::after_stat(density)"
         ),
         geom = "raster",
         alpha = alpha,
