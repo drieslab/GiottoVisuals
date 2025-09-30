@@ -197,16 +197,7 @@ aes_string2 <- function(x, y, ...) {
         }
         x
     })
-    structure(.rename_aes(mapping), class = "uneval")
-}
-
-.rename_aes <- function (x) {
-    names(x) <- ggplot2::standardise_aes_names(names(x))
-    duplicated_names <- names(x)[duplicated(names(x))]
-    if (length(duplicated_names) > 0L) {
-        warning("Duplicated aesthetics after name standardization")
-    }
-    return(x)
+    do.call(ggplot2::aes, mapping)
 }
 
 # handle ggplot inputs for functions that may either
