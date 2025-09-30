@@ -174,7 +174,7 @@ change save_name in save_param}
 
 \item{verbose}{be verbose}
 
-\item{...}{additional params to pass to \code{\link[=spatValues]{spatValues()}}}
+\item{...}{additional params to pass to \code{\link[GiottoClass:spatValues]{GiottoClass::spatValues()}}}
 }
 \value{
 ggplot

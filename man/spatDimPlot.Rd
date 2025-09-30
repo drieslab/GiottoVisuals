@@ -164,7 +164,7 @@ reduction space}
 
 \item{spat_point_size}{size of spatial points}
 
-\item{spat_point_alpha}{transparancy of spatial points}
+\item{spat_point_alpha}{transparency of spatial points}
 
 \item{spat_point_border_col}{border color of spatial points}
 

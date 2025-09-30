@@ -1,3 +1,10 @@
+# GiottoVisuals 0.2.13 (2025/09/30)
+
+## bug fixes
+- update for removal of `ggplot2::aes_string()` in ggplot2 v4 [#1192](https://github.com/drieslab/Giotto/issues/1192) by jdub0211
+
+## changes
+- replacement of argument radius by pie_scale in `spatDeconvPlot()` to modify pie size.
 
 # GiottoVisuals 0.2.12 (2025/05/06)
 
