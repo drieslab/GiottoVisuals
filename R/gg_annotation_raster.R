@@ -1,6 +1,3 @@
-setOldClass("ggplot2::ggplot")
-setClassUnion("ggUnionClass", c("ggplot2::ggplot", "gg"))
-
 #' @name gg_annotation_raster
 #' @title Append image to ggplot as annotation_raster
 #' @description
