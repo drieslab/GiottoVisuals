@@ -2770,9 +2770,9 @@ spatFeatPlot2D_single <- function(
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
                    aes_string2(
-                        x = sdimx, 
+                        x = sdimx,
                         y = sdimy,
-                        group = "-1L",
+                        group = -1L,
                         fill = feat,
                         alpha = feat
                     ),
@@ -2784,9 +2784,9 @@ spatFeatPlot2D_single <- function(
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
                     aes_string2(
-                        x = sdimx, 
+                        x = sdimx,
                         y = sdimy,
-                        group = "-1L",
+                        group = -1L,
                         fill = feat
                     ),
                     colour = vor_border_color,
@@ -2807,15 +2807,15 @@ spatFeatPlot2D_single <- function(
                 xend <- paste0(sdimx, "_end")
                 yend <- paste0(sdimy, "_end")
                 pl <- pl + ggplot2::geom_segment(
-                    data = spatial_network, 
+                    data = spatial_network,
                     aes_string2(
-                        x = xbegin, 
+                        x = xbegin,
                         y = ybegin,
-                        xend = xend, 
+                        xend = xend,
                         yend = yend
                     ),
-                    color = network_color, 
-                    linewidth = 0.5, 
+                    color = network_color,
+                    linewidth = 0.5,
                     alpha = 0.5
                 )
             }
@@ -2842,12 +2842,12 @@ spatFeatPlot2D_single <- function(
                 ), "_end")
 
                 pl <- pl + ggplot2::geom_rect(
-                    data = spatial_grid, 
+                    data = spatial_grid,
                     aes_string2(
                         xmin = xmin, xmax = xmax,
                         ymin = ymin, ymax = ymax
                     ),
-                    color = grid_color, 
+                    color = grid_color,
                     fill = NA
                 )
             }
@@ -3262,8 +3262,8 @@ spatFeatPlot2D <- function(
                     x = from_dim_names[1], y = from_dim_names[2],
                     xend = to_dim_names[1], yend = to_dim_names[2]
                 ),
-                alpha = edge_alpha, 
-                color = network_color, 
+                alpha = edge_alpha,
+                color = network_color,
                 linewidth = 0.1,
                 show.legend = FALSE
             )
@@ -3274,8 +3274,8 @@ spatFeatPlot2D <- function(
                     x = from_dim_names[1], y = from_dim_names[2],
                     xend = to_dim_names[1], yend = to_dim_names[2]
                 ),
-                alpha = edge_alpha, 
-                color = network_color, 
+                alpha = edge_alpha,
+                color = network_color,
                 linewidth = 0.1,
                 show.legend = FALSE
             )
@@ -3284,10 +3284,10 @@ spatFeatPlot2D <- function(
                 pl <- pl + ggplot2::geom_segment(
                     data = annotated_network_DT,
                     aes_string2(
-                        x = from_dim_names[1], 
+                        x = from_dim_names[1],
                         y = from_dim_names[2],
                         xend = to_dim_names[1],
-                        yend = to_dim_names[2], 
+                        yend = to_dim_names[2],
                         alpha = edge_alpha
                     ),
                     color = network_color,
@@ -3305,9 +3305,9 @@ spatFeatPlot2D <- function(
         pl <- pl + ggplot2::geom_point(
             data = data,
             aes_string2(x = dim_names[1], dim_names[2]),
-            fill = cell_color, 
+            fill = cell_color,
             show.legend = show_legend,
-            size = point_size, 
+            size = point_size,
             alpha = point_alpha
         )
     } else {
@@ -3335,31 +3335,31 @@ spatFeatPlot2D <- function(
         if (point_shape == "border") {
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, 
+                    data = data,
                     aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
-                        fill = feat, 
+                        fill = feat,
                         alpha = feat
                     ),
-                    show.legend = show_legend, 
+                    show.legend = show_legend,
                     shape = 21,
                     size = point_size,
-                    color = point_border_col, 
+                    color = point_border_col,
                     stroke = point_border_stroke
                 )
             } else {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, 
+                    data = data,
                     aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         fill = feat
                     ),
-                    show.legend = show_legend, 
+                    show.legend = show_legend,
                     shape = 21,
                     size = point_size,
-                    color = point_border_col, 
+                    color = point_border_col,
                     stroke = point_border_stroke,
                     alpha = point_alpha
                 )
@@ -3382,26 +3382,26 @@ spatFeatPlot2D <- function(
         if (point_shape == "no_border") {
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, 
+                    data = data,
                     aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
-                        color = feat, 
+                        color = feat,
                         alpha = feat
                     ),
-                    show.legend = show_legend, 
-                    shape = 19, 
+                    show.legend = show_legend,
+                    shape = 19,
                     size = point_size
                 )
             } else {
                 pl <- pl + ggplot2::geom_point(
-                    data = data, 
+                    data = data,
                     aes_string2(
                         x = dim_names[1],
                         y = dim_names[2],
                         color = feat
                     ),
-                    show.legend = show_legend, 
+                    show.legend = show_legend,
                     shape = 19,
                     size = point_size,
                     alpha = point_alpha
@@ -3761,7 +3761,7 @@ dimFeatPlot2D <- function(
                 cow_n_col = cow_n_col,
                 nr_plots = length(savelist)
             ),
-            rel_heights = cow_rel_h, 
+            rel_heights = cow_rel_h,
             rel_widths = cow_rel_w,
             align = cow_align
         )
@@ -3777,7 +3777,7 @@ dimFeatPlot2D <- function(
             do.call(
                 "all_plots_save_function",
                 c(list(
-                    gobject = gobject, 
+                    gobject = gobject,
                     plot_object = combo_plot,
                     default_save_name = default_save_name
                 ), save_param)
@@ -4008,12 +4008,12 @@ spatDimFeatPlot2D <- function(
         ncol <- 1
         nrow <- 2
         combo_plot <- cowplot::plot_grid(
-            dmpl, 
+            dmpl,
             spl,
-            ncol = ncol, 
-            nrow = nrow, 
+            ncol = ncol,
+            nrow = nrow,
             rel_heights = c(1),
-            rel_widths = c(1), 
+            rel_widths = c(1),
             align = "v"
         )
     } else {
@@ -4021,10 +4021,10 @@ spatDimFeatPlot2D <- function(
         nrow <- 1
         combo_plot <- cowplot::plot_grid(
             dmpl, spl,
-            ncol = ncol, 
-            nrow = nrow, 
+            ncol = ncol,
+            nrow = nrow,
             rel_heights = c(1),
-            rel_widths = c(1), 
+            rel_widths = c(1),
             align = "h"
         )
     }
