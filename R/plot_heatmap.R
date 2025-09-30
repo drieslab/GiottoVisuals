@@ -225,8 +225,8 @@ plotHeatmap <- function(gobject,
     } else {
         clus_colors <-
             set_default_color_discrete(
-                colors = cluster_color_code, 
-                NULL, 
+                colors = cluster_color_code,
+                NULL,
                 NULL,
                 "interpolate"
             )(n = length(unique(cell_order_DT[[cluster_column]])))
@@ -238,8 +238,8 @@ plotHeatmap <- function(gobject,
         ggplot2::geom_raster(
             data = cell_order_DT,
             aes_string2(
-                x = "cells", 
-                y = "1",
+                x = "cells",
+                y = 1,
                 fill = cluster_column))
     clus_pl <- clus_pl +
         ggplot2::geom_vline(
@@ -288,8 +288,8 @@ plotHeatmap <- function(gobject,
     hmap <- hmap +
         ggplot2::geom_tile(
             data = subset_values_DT,
-            ggplot2::aes(
-                x = "cells", 
+            aes_string2(
+                x = "cells",
                 y = "feats",
                 fill = value_column
             )
@@ -297,7 +297,7 @@ plotHeatmap <- function(gobject,
     hmap <- hmap +
         ggplot2::geom_vline(
             xintercept = x_lines,
-            color = "white", 
+            color = "white",
             linewidth = size_vertical_lines
         )
     hmap <- hmap + set_default_color_continuous_heatmap(
@@ -354,7 +354,7 @@ plotHeatmap <- function(gobject,
         )]
 
         axis <- ggplot2::ggplot(
-            data = featDT, 
+            data = featDT,
             aes(x = 0, y = featOrder,label = subset_feats))
         axis <- axis + ggrepel::geom_text_repel(
             min.segment.length = grid::unit(0, "pt"),
@@ -379,7 +379,7 @@ plotHeatmap <- function(gobject,
             clus_pl, empty, empty, hmap +
             theme(legend.position = "none"),
             axis,
-            align = "h", 
+            align = "h",
             axis = "b"
         )
         aligned <- append(aligned, list(cowplot::get_legend(hmap)))
@@ -751,7 +751,7 @@ plotMetaDataHeatmap <- function(
             )
             pl <- pl +
                 ggplot2::labs(
-                    x = first_meta_col, 
+                    x = first_meta_col,
                     y = "feats",
                     title = second_meta_col
                 )
@@ -791,7 +791,7 @@ plotMetaDataHeatmap <- function(
                 do.call(
                     "all_plots_save_function",
                     c(list(
-                        gobject = gobject, 
+                        gobject = gobject,
                         plot_object = pl,
                         default_save_name = default_save_name
                     ), save_param)
