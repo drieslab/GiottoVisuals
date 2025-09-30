@@ -10,20 +10,18 @@ aes_string2(x, y, ...)
 \item{x, y, ...}{List of name-value pairs in the form \code{aesthetic = variable}
 describing which variables in the layer data should be mapped to which
 aesthetics used by the paired geom/stat.
-
-Mapped values should be provided as a single character input. Non-character
-inputs will not be altered and will be processed as usual.
-
-Internal replacement for the removed \code{ggplot2::aes_string()} pre-v4.0
-
-Expressions to be evaluated may be passed as a character string to be
-interpreted via \code{str2lang()}}
+\itemize{
+\item Mapped values should be provided as a single character input.
+\item Non-character inputs will not be altered and will be processed as usual.
+\item Expressions to be evaluated may be passed as a character string to be
+interpreted via \code{str2lang()}
+}}
 }
 \value{
 An S7 object representing a list with class mapping.
 }
 \description{
-aes_string2
+Internal replacement for the removed \code{ggplot2::aes_string()} pre-v4.0
 }
 \examples{
 ggplot2::ggplot(iris) +

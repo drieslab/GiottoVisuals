@@ -160,18 +160,17 @@ NULL
 
 # ggplot helper ####
 
-#' aes_string2
+#' @title aes_string2
+#' @description
+#' Internal replacement for the removed `ggplot2::aes_string()` pre-v4.0
 #'
 #' @param x,y,... List of name-value pairs in the form `aesthetic = variable`
 #' describing which variables in the layer data should be mapped to which
 #' aesthetics used by the paired geom/stat.
 #'
-#' Mapped values should be provided as a single character input. Non-character
-#' inputs will not be altered and will be processed as usual.
-#'
-#' Internal replacement for the removed `ggplot2::aes_string()` pre-v4.0
-#'
-#' Expressions to be evaluated may be passed as a character string to be
+#' * Mapped values should be provided as a single character input.
+#' * Non-character inputs will not be altered and will be processed as usual.
+#' * Expressions to be evaluated may be passed as a character string to be
 #' interpreted via `str2lang()`
 #'
 #' @returns An S7 object representing a list with class mapping.
