@@ -15,7 +15,6 @@ Mapped values should be provided as a single character input. Non-character
 inputs will not be altered and will be processed as usual.
 
 Internal replacement for the removed \code{ggplot2::aes_string()} pre-v4.0
-\cr Note that this function does not support quoted expression inputs.
 
 Expressions to be evaluated may be passed as a character string to be
 interpreted via \code{str2lang()}}
