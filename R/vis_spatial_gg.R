@@ -1019,15 +1019,15 @@ spatDeconvPlot <- function(
 
     # print, return and save parameters
     show_plot <- ifelse(is.null(show_plot),
-        readGiottoInstructions(gobject, param = "show_plot"),
+        instructions(gobject, param = "show_plot"),
         show_plot
     )
     save_plot <- ifelse(is.null(save_plot),
-        readGiottoInstructions(gobject, param = "save_plot"),
+        instructions(gobject, param = "save_plot"),
         save_plot
     )
     return_plot <- ifelse(is.null(return_plot),
-        readGiottoInstructions(gobject, param = "return_plot"),
+        instructions(gobject, param = "return_plot"),
         return_plot
     )
 
@@ -2436,15 +2436,15 @@ spatFeatPlot2D_single <- function(
 
     # print, return and save parameters
     show_plot <- ifelse(is.null(show_plot),
-        readGiottoInstructions(gobject, param = "show_plot"),
+        instructions(gobject, param = "show_plot"),
         show_plot
     )
     save_plot <- ifelse(is.null(save_plot),
-        readGiottoInstructions(gobject, param = "save_plot"),
+        instructions(gobject, param = "save_plot"),
         save_plot
     )
     return_plot <- ifelse(is.null(return_plot),
-        readGiottoInstructions(gobject, param = "return_plot"),
+        instructions(gobject, param = "return_plot"),
         return_plot
     )
 
@@ -3526,15 +3526,15 @@ dimFeatPlot2D <- function(
     handle_errors({
         # print, return and save parameters
         show_plot <- ifelse(is.null(show_plot),
-            readGiottoInstructions(gobject, param = "show_plot"),
+            instructions(gobject, param = "show_plot"),
             show_plot
         )
         save_plot <- ifelse(is.null(save_plot),
-            readGiottoInstructions(gobject, param = "save_plot"),
+            instructions(gobject, param = "save_plot"),
             save_plot
         )
         return_plot <- ifelse(is.null(return_plot),
-            readGiottoInstructions(gobject, param = "return_plot"),
+            instructions(gobject, param = "return_plot"),
             return_plot
         )
 
