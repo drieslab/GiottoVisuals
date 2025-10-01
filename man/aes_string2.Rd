@@ -27,4 +27,3 @@ Internal replacement for the removed \code{ggplot2::aes_string()} pre-v4.0
 ggplot2::ggplot(iris) +
 ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
 }
-\keyword{internal}

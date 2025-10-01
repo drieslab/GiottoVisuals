@@ -174,10 +174,10 @@ NULL
 #' interpreted via `str2lang()`
 #'
 #' @returns An S7 object representing a list with class mapping.
-#' @keywords internal
 #' @examples
 #' ggplot2::ggplot(iris) +
 #' ggplot2::geom_point(aes_string2(x = "Sepal.Length", y = "Petal.Length"))
+#' @export
 aes_string2 <- function(x, y, ...) {
     mapping <- list(...)
     if (!missing(x))
