@@ -2753,7 +2753,7 @@ spatFeatPlot2D_single <- function(
                 instrs = instructions(gobject),
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = scale_type
             )
             pl <- pl + ggplot2::labs(
@@ -2860,7 +2860,7 @@ spatFeatPlot2D_single <- function(
                 instrs = instructions(gobject),
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "fill"
             )
             pl <- pl + ggplot2::labs(x = "coord x", y = "coord y", title = feat)
@@ -3372,7 +3372,7 @@ spatFeatPlot2D <- function(
                 instrs = instrs,
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "fill"
             )
         }
@@ -3415,7 +3415,7 @@ spatFeatPlot2D <- function(
                 instrs = instrs,
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "color"
             )
         }
