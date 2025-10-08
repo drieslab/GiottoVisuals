@@ -192,7 +192,8 @@ reduction space}
 
 \item{spat_center_point_border_col}{border color of spatial center points}
 
-\item{spat_center_point_border_stroke}{border strike size of spatial center points}
+\item{spat_center_point_border_stroke}{border strike size of spatial center
+points}
 
 \item{spat_label_size}{size of the center label}
 
@@ -239,7 +240,8 @@ if show_NN_network = TRUE}
 
 \item{legend_symbol_size}{size of legend symbols}
 
-\item{dim_background_color}{background color of points in dim. reduction space}
+\item{dim_background_color}{background color of points in dim. reduction
+space}
 
 \item{spat_background_color}{background color of spatial points}
 

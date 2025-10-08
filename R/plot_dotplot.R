@@ -250,15 +250,18 @@ dotPlot <- function(gobject,
 
 # internals ####
 
-.dplot_single <- function(ann_dt, cluster_column, dot_size, dot_color, feats, dot_size_threshold,
+.dplot_single <- function(
+    ann_dt, cluster_column, dot_size, dot_color, feats, dot_size_threshold,
     cluster_custom_order, gradient_limits, gradient_midpoint,
     dot_color_gradient, gradient_style, dot_scale, theme_param,
     legend_text, title, axis_title, axis_text, background_color, instrs) {
     # NSE vars
     cluster <- feat <- color <- size <- NULL
 
-    dsize <- ann_dt[, lapply(.SD, dot_size), .SDcols = feats, by = cluster_column]
-    dcol <- ann_dt[, lapply(.SD, dot_color), .SDcols = feats, by = cluster_column]
+    dsize <- ann_dt[, lapply(.SD, dot_size), .SDcols = feats,
+                    by = cluster_column]
+    dcol <- ann_dt[, lapply(.SD, dot_color), .SDcols = feats,
+                    by = cluster_column]
 
     dsize <- data.table::melt(dsize,
         id.vars = cluster_column,
@@ -280,7 +283,8 @@ dotPlot <- function(gobject,
 
     ## set cluster order ##
     if (is.null(cluster_custom_order)) {
-        plot_dt[, cluster := factor(cluster, levels = mixedsort(unique(cluster)))]
+        plot_dt[
+            , cluster := factor(cluster, levels = mixedsort(unique(cluster)))]
     } else {
         plot_dt[, cluster := factor(cluster, levels = cluster_custom_order)]
     }

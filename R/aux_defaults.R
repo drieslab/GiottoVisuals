@@ -426,7 +426,8 @@ set_default_color_continuous <- function(
 }
 
 
-.evaluate_color_gradient_divergent <- function(colors, reverse, midpoint, ..., grad2, grad, gradn) {
+.evaluate_color_gradient_divergent <- function(
+        colors, reverse, midpoint, ..., grad2, grad, gradn) {
     if (is.null(midpoint)) midpoint <- 0
 
     if (inherits(colors, "character")) {
@@ -472,7 +473,8 @@ set_default_color_continuous <- function(
     gradient
 }
 
-.evaluate_color_gradient_sequential <- function(colors, reverse, ..., gradn, grad) {
+.evaluate_color_gradient_sequential <- function(
+        colors, reverse, ..., gradn, grad) {
     if (inherits(colors, "character")) {
         if (length(colors) == 3L) {
             # assume simple palette if 3 entries in vector

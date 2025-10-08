@@ -29,7 +29,8 @@
 ggplot
 }
 \description{
-low level function to plot density plots at the spatial in situ level
+low level function to plot density plots at the spatial in
+situ level
 }
 \details{
 This function can plot one feature for one modality.

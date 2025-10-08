@@ -121,7 +121,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{midpoint}{expression midpoint}
 
-\item{scale_alpha_with_expression}{scale expression with ggplot alpha parameter}
+\item{scale_alpha_with_expression}{scale expression with ggplot alpha
+parameter}
 
 \item{point_shape}{point with border or not (border or no_border)}
 
