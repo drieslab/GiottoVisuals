@@ -112,7 +112,7 @@ g <- GiottoData::loadGiottoMini("visium")
 # plot normalized expresion of first 6 features
 ridgePlot(g,
     feats = head(rownames(g)),
-    expression_values = "normalized"
+    expression_values = "normalized",
     scale_axis = "log2"
 )
 
