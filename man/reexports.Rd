@@ -23,12 +23,12 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{GiottoUtils}{\code{\link[GiottoUtils]{getDistinctColors}}, \code{\link[GiottoUtils]{getRainbowColors}}}
+
   \item{colorRamp2}{\code{\link[colorRamp2]{colorRamp2}}}
 
   \item{cowplot}{\code{\link[cowplot]{plot_grid}}}
 
   \item{ggrepel}{\code{\link[ggrepel:geom_text_repel]{geom_label_repel}}, \code{\link[ggrepel]{geom_text_repel}}}
-
-  \item{GiottoUtils}{\code{\link[GiottoUtils]{getDistinctColors}}, \code{\link[GiottoUtils]{getRainbowColors}}}
 }}
 

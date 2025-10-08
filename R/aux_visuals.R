@@ -188,7 +188,7 @@ aes_string2 <- function(x, y, ...) {
         if (is.character(x)) {
             if (length(x) != 1L) {
                 stop("[aes_string2] incompatible with len >1 character inputs",
-                     call. = FALSE)
+                    call. = FALSE)
             }
             if (identical(x, "")) {
                 stop("[aes_string2] empty string not allowed", call. = FALSE)
@@ -233,7 +233,8 @@ aes_string2 <- function(x, y, ...) {
 #' @keywords internal
 #' @noRd
 #' @returns ggplot2::geom_point layer
-giotto_point <- function(plot_method = c("ggplot", "scattermore", "scattermost"),
+giotto_point <- function(plot_method = c(
+    "ggplot", "scattermore", "scattermost"),
     size = 1,
     ext,
     scattermost_xy = NULL,

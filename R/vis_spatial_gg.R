@@ -726,7 +726,8 @@ spatPlot2D <- function(
         for (group_id in seq_along(unique_groups)) {
             group <- unique_groups[group_id]
 
-            subset_cell_IDs <- comb_metadata[get(group_by) == group][["cell_ID"]]
+            subset_cell_IDs <- comb_metadata[
+                get(group_by) == group][["cell_ID"]]
             spp_params$gobject <- subsetGiotto(
                 gobject = gobject,
                 spat_unit = spat_unit,
@@ -868,7 +869,8 @@ spatPlot <- function(...) {
 #' @param sdimx x-axis dimension name (default = 'sdimx')
 #' @param sdimy y-axis dimension name (default = 'sdimy')
 #' @param line_color color of line within pie charts
-#' @param pie_scale amount to scale the pie size if there is no radius mapping exists
+#' @param pie_scale amount to scale the pie size if there is no radius
+#' mapping exists
 #' @param alpha alpha of pie charts
 #' @param coord_fix_ratio fix ratio between x and y-axis
 #' @param title title of plot
@@ -1591,12 +1593,14 @@ dimPlot2D <- function(
 
             # subset unique_groups
             if (!is.null(group_by_subset)) {
-                not_found <- group_by_subset[!group_by_subset %in% unique_groups]
+                not_found <- group_by_subset[
+                    !group_by_subset %in% unique_groups]
 
                 if (length(not_found) > 0) {
                     message("the following subset was not found: ", not_found)
                 }
-                unique_groups <- unique_groups[unique_groups %in% group_by_subset]
+                unique_groups <- unique_groups[
+                    unique_groups %in% group_by_subset]
             }
 
 
@@ -1993,7 +1997,8 @@ plotPCA <- function(
 #' @param spat_show_center_label provide a label for each cluster
 #' @param spat_center_point_size size of the center point
 #' @param spat_center_point_border_col border color of spatial center points
-#' @param spat_center_point_border_stroke border strike size of spatial center points
+#' @param spat_center_point_border_stroke border strike size of spatial center
+#' points
 #' @param spat_label_size size of the center label
 #' @param spat_label_fontface font of the center label
 #' @param show_spatial_grid show spatial grid
@@ -2006,7 +2011,8 @@ plotPCA <- function(
 #' @param spat_other_cells_alpha alpha of not selected spat cells
 #' @param dim_show_legend show legend of dimension reduction plot
 #' @param spat_show_legend show legend of spatial plot
-#' @param dim_background_color background color of points in dim. reduction space
+#' @param dim_background_color background color of points in dim. reduction
+#' space
 #' @param spat_background_color background color of spatial points
 #' @param vor_border_color border color for voronoi plot
 #' @param vor_max_radius maximum radius for voronoi 'cells'
@@ -2769,7 +2775,7 @@ spatFeatPlot2D_single <- function(
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
-                   aes_string2(
+                    aes_string2(
                         x = sdimx,
                         y = sdimy,
                         group = -1L,
@@ -2946,7 +2952,8 @@ spatFeatPlot2D_single <- function(
 #' @param grid_color color of spatial grid
 #' @param spatial_grid_name name of spatial grid to use
 #' @param midpoint expression midpoint
-#' @param scale_alpha_with_expression scale expression with ggplot alpha parameter
+#' @param scale_alpha_with_expression scale expression with ggplot alpha
+#' parameter
 #' @param coord_fix_ratio fix ratio between x and y-axis (default = 1)
 #' @param background_color color of plot background
 #' @param vor_border_color border colorr for voronoi plot

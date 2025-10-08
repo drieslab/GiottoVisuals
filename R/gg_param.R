@@ -33,6 +33,7 @@
 #' combine_aes(a, b, warn_duplicates = FALSE) # b values used for a,c
 #' combine_aes(b, a, warn_duplicates = FALSE) # a values used for a,c
 #' @family ggplot2 plotting wrangling functions
+#' @returns uneval object
 #' @export
 combine_aes <- function(..., warn_duplicates = TRUE) {
     input <- list(...)
@@ -115,7 +116,8 @@ combine_aes <- function(..., warn_duplicates = TRUE) {
 #'
 #' # ----- nested appending ----- #
 #' p_nest <- gg_param(p_single, p_multi)
-#' p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5, ]) # change the data to use
+#' # change the data to use
+#' p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5, ])
 #'
 #' ggplot() +
 #'     do.call(geom_point, p_nest)

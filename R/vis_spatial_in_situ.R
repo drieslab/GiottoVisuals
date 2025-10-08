@@ -792,7 +792,8 @@ spatInSituPlotHex <- function(gobject,
 
 #' @title Spatial in-situ density plot - single
 #' @name .spatInSituPlotDensity_single
-#' @description low level function to plot density plots at the spatial in situ level
+#' @description low level function to plot density plots at the spatial in
+#' situ level
 #' @return ggplot
 #' @details This function can plot one feature for one modality.
 #' @keywords internal

@@ -53,7 +53,8 @@ annotation column}
 \item{stat}{character. A \code{stat} accepted by
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}}
 
-\item{ridge_alpha}{numeric. Alpha to use for ridgeline plot. Value from 0 to 1.}
+\item{ridge_alpha}{numeric. Alpha to use for ridgeline plot. Value from 0
+to 1.}
 
 \item{ridge_scale}{numeric. Controls height of ridges.}
 

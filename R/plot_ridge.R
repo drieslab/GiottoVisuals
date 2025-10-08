@@ -12,7 +12,8 @@
 #' @param ... additional params to pass to [GiottoClass::spatValues()]
 #' @param stat character. A `stat` accepted by
 #' [ggridges::geom_density_ridges()]
-#' @param ridge_alpha numeric. Alpha to use for ridgeline plot. Value from 0 to 1.
+#' @param ridge_alpha numeric. Alpha to use for ridgeline plot. Value from 0
+#' to 1.
 #' @param ridge_scale numeric. Controls height of ridges.
 #' @param axis_scale character (default = `"log2"`.
 #' An x axis scaling to use. This value is passed to

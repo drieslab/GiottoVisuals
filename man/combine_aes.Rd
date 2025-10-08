@@ -12,6 +12,9 @@ combine_aes(..., warn_duplicates = TRUE)
 
 \item{warn_duplicates}{logical. Warn when aes names overlap}
 }
+\value{
+uneval object
+}
 \description{
 Utility for combining ggplot2 \code{aes} lists. Uses the last
 provided value when aes names overlap.
