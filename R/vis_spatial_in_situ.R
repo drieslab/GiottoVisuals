@@ -370,6 +370,7 @@ spatInSituPlotPoints <- function(
     )
 
     vmsg(.v = verbose, "plot image layer done")
+    plot
 }
 
 .sissp_polygon <- function(plot, gobject,
