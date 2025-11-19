@@ -1,5 +1,8 @@
 # GiottoVisuals 0.2.14
 
+## bug fixes
+- allow `coord_fix_ratio = TRUE` usage again after ggplot2 changes
+
 ## changes
 - change `spatInSituPlotPoints()` param `spat_enr_names` to `spat_enr_name`
 
