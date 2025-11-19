@@ -215,7 +215,7 @@ spatInSituPlotPoints(g,
 # plot with spatial enrichment information
 spatInSituPlotPoints(g,
     polygon_feat_type = "aggregate",
-    spat_enr_names = "cluster_metagene",
+    spat_enr_name = "cluster_metagene",
     polygon_fill = "1",
     polygon_fill_as_factor = FALSE,
     polygon_fill_gradient_style = "sequential",
