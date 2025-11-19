@@ -41,6 +41,7 @@ spatFeatPlot2D(
   point_border_stroke = 0.1,
   coord_fix_ratio = 1,
   show_legend = TRUE,
+  show_axes = NULL,
   legend_text = 8,
   background_color = "white",
   vor_border_color = "white",
@@ -137,6 +138,8 @@ parameter}
 \item{coord_fix_ratio}{fix ratio between x and y-axis (default = 1)}
 
 \item{show_legend}{logical. show legend}
+
+\item{show_axes}{logical. show axes}
 
 \item{legend_text}{size of legend text}
 
