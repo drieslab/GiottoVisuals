@@ -89,6 +89,7 @@
         coord_fix_ratio = 1,
         title = NULL,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         legend_symbol_size = 1,
         background_color = "white",
@@ -111,6 +112,8 @@
         point_shape,
         choices = c("border", "no_border", "voronoi")
     )
+
+    show_axes <- show_axes %null% TRUE
 
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
@@ -393,6 +396,10 @@
     )
     pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
+    if (!show_axes) {
+        pl <- .theme_remove_axes(pl)
+    }
+
     ## change symbol size of legend
     if (isTRUE(color_as_factor)) {
         if (point_shape %in% c("border", "voronoi")) {
@@ -541,6 +548,7 @@ spatPlot2D <- function(
         coord_fix_ratio = 1,
         title = NULL,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 10,
         legend_symbol_size = 2,
         background_color = "white",
@@ -619,7 +627,7 @@ spatPlot2D <- function(
         # [grid aes]
         "show_grid", "spatial_grid_name", "grid_color",
         # [figure params]
-        "coord_fix_ratio", "show_legend", "legend_text",
+        "coord_fix_ratio", "show_legend", "show_axes", "legend_text",
         "legend_symbol_size", "background_color", "axis_text",
         "axis_title", "title",
         # [return params]
@@ -2406,6 +2414,7 @@ spatFeatPlot2D_single <- function(
         point_border_stroke = 0.1,
         coord_fix_ratio = 1,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         background_color = "white",
         vor_border_color = "white",
@@ -2437,6 +2446,8 @@ spatFeatPlot2D_single <- function(
         )
         image_name <- c(image_name, largeImage_name)
     }
+
+    show_axes <- show_axes %null% TRUE
 
     # print, return and save parameters
     show_plot <- ifelse(is.null(show_plot),
@@ -2880,6 +2891,10 @@ spatFeatPlot2D_single <- function(
         )
         pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
+        if (!show_axes) {
+            pl <- .theme_remove_axes(pl)
+        }
+
         pl <- .aspect_ratio(pl, coord_fix_ratio)
 
         savelist[[feat]] <- pl
@@ -3004,6 +3019,7 @@ spatFeatPlot2D <- function(
         point_border_stroke = 0.1,
         coord_fix_ratio = 1,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         background_color = "white",
         vor_border_color = "white",
@@ -3068,7 +3084,7 @@ spatFeatPlot2D <- function(
         "show_grid", "grid_color", "spatial_grid_name",
         # [figure params]
         "coord_fix_ratio", "show_legend", "legend_text", "background_color",
-        "axis_text", "axis_title",
+        "axis_text", "axis_title", "show_axes",
         "cow_n_col", "cow_rel_h", "cow_rel_w", "cow_align",
         # [return params]
         "show_plot", "return_plot", "save_plot", "save_param",
