@@ -6,6 +6,7 @@ NULL
 
 .aspect_ratio <- function(pl, coord_fix_ratio = NULL) {
     if (is.null(coord_fix_ratio)) return(pl)
+    if (identical(coord_fix_ratio, TRUE)) coord_fix_ratio <- 1
     pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
 }
 

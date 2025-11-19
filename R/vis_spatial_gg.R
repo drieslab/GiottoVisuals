@@ -1009,9 +1009,7 @@ spatDeconvPlot <- function(
     pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
     # fix coord ratio
-    if (!is.null(coord_fix_ratio)) {
-        pl <- pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+    pl <- .aspect_ratio(pl, coord_fix_ratio)
 
     # provide x, y and plot titles
     if (is.null(title)) title <- deconv_name
@@ -2882,9 +2880,7 @@ spatFeatPlot2D_single <- function(
         )
         pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
-        if (!is.null(coord_fix_ratio)) {
-            pl <- pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-        }
+        pl <- .aspect_ratio(pl, coord_fix_ratio)
 
         savelist[[feat]] <- pl
     }

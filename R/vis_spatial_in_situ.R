@@ -324,10 +324,7 @@ spatInSituPlotPoints <- function(
     }
 
     # fix coordinates
-    if (!is.null(coord_fix_ratio)) {
-        plot <- plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
-
+    plot <- .aspect_ratio(plot, coord_fix_ratio)
 
     return(plot_output_handler(
         gobject = gobject,
@@ -628,9 +625,7 @@ spatInSituPlotPoints <- function(
     )
 
     # fix coord ratio
-    if (!is.null(coord_fix_ratio)) {
-        plot <- plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+    plot <- .aspect_ratio(plot, coord_fix_ratio)
 
     return(plot)
 }
@@ -900,9 +895,7 @@ spatInSituPlotHex <- function(gobject,
     )
 
     # fix coord ratio
-    if (!is.null(coord_fix_ratio)) {
-        plot <- plot + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+    plot <- .aspect_ratio(plot, coord_fix_ratio)
 
     return(plot)
 }
