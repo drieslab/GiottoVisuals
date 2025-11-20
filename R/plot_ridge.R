@@ -12,9 +12,10 @@
 #' @param ... additional params to pass to [GiottoClass::spatValues()]
 #' @param stat character. A `stat` accepted by
 #' [ggridges::geom_density_ridges()]
-#' @param ridge_alpha numeric. Alpha to use for ridgeline plot. Value from 0 to 1.
+#' @param ridge_alpha numeric. Alpha to use for ridgeline plot. Value from 0
+#' to 1.
 #' @param ridge_scale numeric. Controls height of ridges.
-#' @param axis_scale character (default = `"log2"`.
+#' @param scale_axis character (default = `"log2"`.
 #' An x axis scaling to use. This value is passed to
 #' [ggplot2::scale_x_continuous()]. Set `"identity"` to remove scaling.
 #' @param axis_offset numeric. Value to add to values. When this value is not
@@ -34,7 +35,7 @@
 #' # plot normalized expresion of first 6 features
 #' ridgePlot(g,
 #'     feats = head(rownames(g)),
-#'     expression_values = "normalized"
+#'     expression_values = "normalized",
 #'     scale_axis = "log2"
 #' )
 #'
