@@ -80,7 +80,8 @@ ggplot() +
 
 # ----- nested appending ----- #
 p_nest <- gg_param(p_single, p_multi)
-p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5, ]) # change the data to use
+# change the data to use
+p_nest_sub <- gg_param(p_single, p_multi, data = d[1:5, ])
 
 ggplot() +
     do.call(geom_point, p_nest)

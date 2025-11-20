@@ -133,7 +133,8 @@ setMethod(
 
 # returns the spatial extent needed for the plot
 # ... passes to ext() `giotto` method
-.guess_plot_extent <- function(gobject, spat_unit = NULL, spat_loc_name = NULL, ext = NULL, ...) {
+.guess_plot_extent <- function(
+        gobject, spat_unit = NULL, spat_loc_name = NULL, ext = NULL, ...) {
     if (!is.null(ext)) ext <- ext(ext) # normalize to `SpatExtent` class
     # if ext already given, directly return
     if (inherits(ext, "SpatExtent")) {

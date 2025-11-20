@@ -53,9 +53,14 @@ annotation column}
 \item{stat}{character. A \code{stat} accepted by
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}}
 
-\item{ridge_alpha}{numeric. Alpha to use for ridgeline plot. Value from 0 to 1.}
+\item{ridge_alpha}{numeric. Alpha to use for ridgeline plot. Value from 0
+to 1.}
 
 \item{ridge_scale}{numeric. Controls height of ridges.}
+
+\item{scale_axis}{character (default = \code{"log2"}.
+An x axis scaling to use. This value is passed to
+\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}. Set \code{"identity"} to remove scaling.}
 
 \item{axis_offset}{numeric. Value to add to values. When this value is not
 provided and \code{axis_scale} is one of \code{"log"}, \code{"log2"}, or \code{"log10"}, a
@@ -93,10 +98,6 @@ see \code{\link{showSaveParameters}}}
 change save_name in save_param}
 
 \item{verbose}{be verbose}
-
-\item{axis_scale}{character (default = \code{"log2"}.
-An x axis scaling to use. This value is passed to
-\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}. Set \code{"identity"} to remove scaling.}
 }
 \value{
 ggplot
@@ -112,7 +113,7 @@ g <- GiottoData::loadGiottoMini("visium")
 # plot normalized expresion of first 6 features
 ridgePlot(g,
     feats = head(rownames(g)),
-    expression_values = "normalized"
+    expression_values = "normalized",
     scale_axis = "log2"
 )
 

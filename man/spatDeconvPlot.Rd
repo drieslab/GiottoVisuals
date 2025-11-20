@@ -62,7 +62,8 @@ named vector of colors}
 
 \item{line_color}{color of line within pie charts}
 
-\item{pie_scale}{amount to scale the pie size if there is no radius mapping exists}
+\item{pie_scale}{amount to scale the pie size if there is no radius
+mapping exists}
 
 \item{alpha}{alpha of pie charts}
 

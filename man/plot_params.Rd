@@ -64,6 +64,8 @@ cell_color parameter}
 
 \item{show_legend}{logical. show legend}
 
+\item{show_axes}{logical. show axes}
+
 \item{legend_text}{size of legend text}
 
 \item{legend_symbol_size}{size of legend symbols}

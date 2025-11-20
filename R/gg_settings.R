@@ -26,6 +26,19 @@
     do.call(ggplot2::theme, args = a)
 }
 
+# remove xy axes and margin
+.theme_remove_axes <- function(p) {
+    p + ggplot2::  theme(
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        axis.line = element_blank(),
+        panel.border = element_blank(),
+        plot.margin = unit(c(0,0,0,0), "cm")
+    )
+}
+
 
 #' @name ggplot_themes
 #' @title ggplot2 plotting themes

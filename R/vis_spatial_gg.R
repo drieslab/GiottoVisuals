@@ -89,6 +89,7 @@
         coord_fix_ratio = 1,
         title = NULL,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         legend_symbol_size = 1,
         background_color = "white",
@@ -111,6 +112,8 @@
         point_shape,
         choices = c("border", "no_border", "voronoi")
     )
+
+    show_axes <- show_axes %null% TRUE
 
     # Set feat_type and spat_unit
     spat_unit <- set_default_spat_unit(
@@ -393,6 +396,10 @@
     )
     pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
+    if (!show_axes) {
+        pl <- .theme_remove_axes(pl)
+    }
+
     ## change symbol size of legend
     if (isTRUE(color_as_factor)) {
         if (point_shape %in% c("border", "voronoi")) {
@@ -541,6 +548,7 @@ spatPlot2D <- function(
         coord_fix_ratio = 1,
         title = NULL,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 10,
         legend_symbol_size = 2,
         background_color = "white",
@@ -619,7 +627,7 @@ spatPlot2D <- function(
         # [grid aes]
         "show_grid", "spatial_grid_name", "grid_color",
         # [figure params]
-        "coord_fix_ratio", "show_legend", "legend_text",
+        "coord_fix_ratio", "show_legend", "show_axes", "legend_text",
         "legend_symbol_size", "background_color", "axis_text",
         "axis_title", "title",
         # [return params]
@@ -726,7 +734,8 @@ spatPlot2D <- function(
         for (group_id in seq_along(unique_groups)) {
             group <- unique_groups[group_id]
 
-            subset_cell_IDs <- comb_metadata[get(group_by) == group][["cell_ID"]]
+            subset_cell_IDs <- comb_metadata[
+                get(group_by) == group][["cell_ID"]]
             spp_params$gobject <- subsetGiotto(
                 gobject = gobject,
                 spat_unit = spat_unit,
@@ -868,7 +877,8 @@ spatPlot <- function(...) {
 #' @param sdimx x-axis dimension name (default = 'sdimx')
 #' @param sdimy y-axis dimension name (default = 'sdimy')
 #' @param line_color color of line within pie charts
-#' @param pie_scale amount to scale the pie size if there is no radius mapping exists
+#' @param pie_scale amount to scale the pie size if there is no radius
+#' mapping exists
 #' @param alpha alpha of pie charts
 #' @param coord_fix_ratio fix ratio between x and y-axis
 #' @param title title of plot
@@ -1007,9 +1017,7 @@ spatDeconvPlot <- function(
     pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
     # fix coord ratio
-    if (!is.null(coord_fix_ratio)) {
-        pl <- pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
-    }
+    pl <- .aspect_ratio(pl, coord_fix_ratio)
 
     # provide x, y and plot titles
     if (is.null(title)) title <- deconv_name
@@ -1019,15 +1027,15 @@ spatDeconvPlot <- function(
 
     # print, return and save parameters
     show_plot <- ifelse(is.null(show_plot),
-        readGiottoInstructions(gobject, param = "show_plot"),
+        instructions(gobject, param = "show_plot"),
         show_plot
     )
     save_plot <- ifelse(is.null(save_plot),
-        readGiottoInstructions(gobject, param = "save_plot"),
+        instructions(gobject, param = "save_plot"),
         save_plot
     )
     return_plot <- ifelse(is.null(return_plot),
-        readGiottoInstructions(gobject, param = "return_plot"),
+        instructions(gobject, param = "return_plot"),
         return_plot
     )
 
@@ -1591,12 +1599,14 @@ dimPlot2D <- function(
 
             # subset unique_groups
             if (!is.null(group_by_subset)) {
-                not_found <- group_by_subset[!group_by_subset %in% unique_groups]
+                not_found <- group_by_subset[
+                    !group_by_subset %in% unique_groups]
 
                 if (length(not_found) > 0) {
                     message("the following subset was not found: ", not_found)
                 }
-                unique_groups <- unique_groups[unique_groups %in% group_by_subset]
+                unique_groups <- unique_groups[
+                    unique_groups %in% group_by_subset]
             }
 
 
@@ -1993,7 +2003,8 @@ plotPCA <- function(
 #' @param spat_show_center_label provide a label for each cluster
 #' @param spat_center_point_size size of the center point
 #' @param spat_center_point_border_col border color of spatial center points
-#' @param spat_center_point_border_stroke border strike size of spatial center points
+#' @param spat_center_point_border_stroke border strike size of spatial center
+#' points
 #' @param spat_label_size size of the center label
 #' @param spat_label_fontface font of the center label
 #' @param show_spatial_grid show spatial grid
@@ -2006,7 +2017,8 @@ plotPCA <- function(
 #' @param spat_other_cells_alpha alpha of not selected spat cells
 #' @param dim_show_legend show legend of dimension reduction plot
 #' @param spat_show_legend show legend of spatial plot
-#' @param dim_background_color background color of points in dim. reduction space
+#' @param dim_background_color background color of points in dim. reduction
+#' space
 #' @param spat_background_color background color of spatial points
 #' @param vor_border_color border color for voronoi plot
 #' @param vor_max_radius maximum radius for voronoi 'cells'
@@ -2402,6 +2414,7 @@ spatFeatPlot2D_single <- function(
         point_border_stroke = 0.1,
         coord_fix_ratio = 1,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         background_color = "white",
         vor_border_color = "white",
@@ -2434,17 +2447,19 @@ spatFeatPlot2D_single <- function(
         image_name <- c(image_name, largeImage_name)
     }
 
+    show_axes <- show_axes %null% TRUE
+
     # print, return and save parameters
     show_plot <- ifelse(is.null(show_plot),
-        readGiottoInstructions(gobject, param = "show_plot"),
+        instructions(gobject, param = "show_plot"),
         show_plot
     )
     save_plot <- ifelse(is.null(save_plot),
-        readGiottoInstructions(gobject, param = "save_plot"),
+        instructions(gobject, param = "save_plot"),
         save_plot
     )
     return_plot <- ifelse(is.null(return_plot),
-        readGiottoInstructions(gobject, param = "return_plot"),
+        instructions(gobject, param = "return_plot"),
         return_plot
     )
 
@@ -2753,7 +2768,7 @@ spatFeatPlot2D_single <- function(
                 instrs = instructions(gobject),
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = scale_type
             )
             pl <- pl + ggplot2::labs(
@@ -2769,7 +2784,7 @@ spatFeatPlot2D_single <- function(
             if (scale_alpha_with_expression == TRUE) {
                 pl <- pl + ggforce::geom_voronoi_tile(
                     data = cell_locations_metadata_feats,
-                   aes_string2(
+                    aes_string2(
                         x = sdimx,
                         y = sdimy,
                         group = -1L,
@@ -2860,7 +2875,7 @@ spatFeatPlot2D_single <- function(
                 instrs = instructions(gobject),
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "fill"
             )
             pl <- pl + ggplot2::labs(x = "coord x", y = "coord y", title = feat)
@@ -2876,9 +2891,11 @@ spatFeatPlot2D_single <- function(
         )
         pl <- pl + do.call(.gg_theme, args = gg_theme_args)
 
-        if (!is.null(coord_fix_ratio)) {
-            pl <- pl + ggplot2::coord_fixed(ratio = coord_fix_ratio)
+        if (!show_axes) {
+            pl <- .theme_remove_axes(pl)
         }
+
+        pl <- .aspect_ratio(pl, coord_fix_ratio)
 
         savelist[[feat]] <- pl
     }
@@ -2946,7 +2963,8 @@ spatFeatPlot2D_single <- function(
 #' @param grid_color color of spatial grid
 #' @param spatial_grid_name name of spatial grid to use
 #' @param midpoint expression midpoint
-#' @param scale_alpha_with_expression scale expression with ggplot alpha parameter
+#' @param scale_alpha_with_expression scale expression with ggplot alpha
+#' parameter
 #' @param coord_fix_ratio fix ratio between x and y-axis (default = 1)
 #' @param background_color color of plot background
 #' @param vor_border_color border colorr for voronoi plot
@@ -3001,6 +3019,7 @@ spatFeatPlot2D <- function(
         point_border_stroke = 0.1,
         coord_fix_ratio = 1,
         show_legend = TRUE,
+        show_axes = NULL,
         legend_text = 8,
         background_color = "white",
         vor_border_color = "white",
@@ -3065,7 +3084,7 @@ spatFeatPlot2D <- function(
         "show_grid", "grid_color", "spatial_grid_name",
         # [figure params]
         "coord_fix_ratio", "show_legend", "legend_text", "background_color",
-        "axis_text", "axis_title",
+        "axis_text", "axis_title", "show_axes",
         "cow_n_col", "cow_rel_h", "cow_rel_w", "cow_align",
         # [return params]
         "show_plot", "return_plot", "save_plot", "save_param",
@@ -3372,7 +3391,7 @@ spatFeatPlot2D <- function(
                 instrs = instrs,
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "fill"
             )
         }
@@ -3415,7 +3434,7 @@ spatFeatPlot2D <- function(
                 instrs = instrs,
                 midpoint = gradient_midpoint,
                 style = gradient_style,
-                guide = guide_colorbar(title = ""),
+                guide = ggplot2::guide_colorbar(title = ""),
                 type = "color"
             )
         }
@@ -3526,15 +3545,15 @@ dimFeatPlot2D <- function(
     handle_errors({
         # print, return and save parameters
         show_plot <- ifelse(is.null(show_plot),
-            readGiottoInstructions(gobject, param = "show_plot"),
+            instructions(gobject, param = "show_plot"),
             show_plot
         )
         save_plot <- ifelse(is.null(save_plot),
-            readGiottoInstructions(gobject, param = "save_plot"),
+            instructions(gobject, param = "save_plot"),
             save_plot
         )
         return_plot <- ifelse(is.null(return_plot),
-            readGiottoInstructions(gobject, param = "return_plot"),
+            instructions(gobject, param = "return_plot"),
             return_plot
         )
 

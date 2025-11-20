@@ -51,6 +51,7 @@
   coord_fix_ratio = 1,
   title = NULL,
   show_legend = TRUE,
+  show_axes = NULL,
   legend_text = 8,
   legend_symbol_size = 1,
   background_color = "white",
