@@ -1,0 +1,51 @@
+# .spatPlot_3d_plotly
+
+Visualize cells at their 3D spatial locations with plotly
+
+## Usage
+
+``` r
+.spatPlot_3d_plotly(
+  gobject,
+  spat_unit = NULL,
+  feat_type = NULL,
+  spat_loc_name = "raw",
+  sdimx = NULL,
+  sdimy = NULL,
+  sdimz = NULL,
+  spat_enr_names = NULL,
+  point_size = 3,
+  point_alpha = 1,
+  cell_color = NULL,
+  cell_color_code = NULL,
+  cell_color_gradient = NULL,
+  color_as_factor = TRUE,
+  gradient_limits = NULL,
+  gradient_style = "divergent",
+  gradient_midpoint = NULL,
+  select_cell_groups = NULL,
+  select_cells = NULL,
+  show_other_cells = TRUE,
+  other_cell_color = "lightgrey",
+  other_point_size = 3,
+  show_network = FALSE,
+  spatial_network_name = "spatial_network",
+  network_color = NULL,
+  network_alpha = 1,
+  other_cell_alpha = 0.5,
+  show_grid = FALSE,
+  spatial_grid_name = "spatial_grid",
+  title = "",
+  show_legend = TRUE,
+  axis_scale = c("cube", "real", "custom"),
+  custom_ratio = NULL,
+  x_ticks = NULL,
+  y_ticks = NULL,
+  z_ticks = NULL,
+  show_plot = FALSE
+)
+```
+
+## Value
+
+plotly object

@@ -35,12 +35,10 @@
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/getColors.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/get_continuous_colors.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/gg_annotation_raster.html</loc></url>
-<url><loc>https://drieslab.github.io/GiottoVisuals/reference/gg_input.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/gg_param.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/gg_simple_scatter.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/ggplot_themes.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/giottoSankeyPlan.html</loc></url>
-<url><loc>https://drieslab.github.io/GiottoVisuals/reference/giotto_point.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/hidden_aliases.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/index.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/mixHSV.html</loc></url>
@@ -77,6 +75,7 @@
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/plotly_grid.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/plotly_network.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/reexports.html</loc></url>
+<url><loc>https://drieslab.github.io/GiottoVisuals/reference/ridgePlot.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/sankeyLabel.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/sankeyPlot.html</loc></url>
 <url><loc>https://drieslab.github.io/GiottoVisuals/reference/sankeyRelate.html</loc></url>

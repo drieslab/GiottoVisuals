@@ -8,9 +8,9 @@
 <title>Introduction to GiottoVisuals • GiottoVisuals</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to GiottoVisuals">
 </head>
 <body>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">GiottoVisuals</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.14</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,18 +60,28 @@
 <div class="section level2">
 <h2 id="description-of-the-module-giottovisuals">Description of the module GiottoVisuals<a class="anchor" aria-label="anchor" href="#description-of-the-module-giottovisuals"></a>
 </h2>
-<p>GiottoVisuals contains the main plotting functions of Giotto Suite.</p>
+<p>GiottoVisuals contains the main plotting functions of Giotto
+Suite.</p>
 <p>For full examples of the usage of Giotto visualizations visit <a href="http://giottosuite.com" class="external-link uri">http://giottosuite.com</a></p>
 </div>
 <div class="section level2">
 <h2 id="script-organization-by-prefixes">Script Organization by Prefixes:<a class="anchor" aria-label="anchor" href="#script-organization-by-prefixes"></a>
 </h2>
-<p>aux_ - auxiliary and meta functionality - aux_output.R - plot output handling - aux_save.R - plot saving - aux_defaults.R - set plotting defaults - aux_visuals.R - general auxiliary plotting functions</p>
-<p>plot_ - general plotting functions organized by type of plot - plot_scatter.R - scatter plots - plot_violin.R - violin plots - plot_heatmap.R - heatmaps - plot_dendrogram.R - dendrograms</p>
-<p>vis_ - specific plotting functions organized by topic - vis_hvf.R - highly variable features plots - vis_pc.R - principle components plots - vis_spatial.R - vis_spatial_in_situ.R</p>
-<p>gg_ - ggplot2 related - gg_info_layers.R - modular internals for plotting the different layers of information</p>
+<p>aux_ - auxiliary and meta functionality - aux_output.R - plot output
+handling - aux_save.R - plot saving - aux_defaults.R - set plotting
+defaults - aux_visuals.R - general auxiliary plotting functions</p>
+<p>plot_ - general plotting functions organized by type of plot -
+plot_scatter.R - scatter plots - plot_violin.R - violin plots -
+plot_heatmap.R - heatmaps - plot_dendrogram.R - dendrograms</p>
+<p>vis_ - specific plotting functions organized by topic - vis_hvf.R -
+highly variable features plots - vis_pc.R - principle components plots -
+vis_spatial.R - vis_spatial_in_situ.R</p>
+<p>gg_ - ggplot2 related - gg_info_layers.R - modular internals for
+plotting the different layers of information</p>
 <p>Other: - color_palettes.R - color palettes and factory functions</p>
-<p>Package: - package_imports.R - all imports - globals.R - global variables - dd.R - dummy documentation for inheriting - zzz.R - onloads</p>
+<p>Package: - package_imports.R - all imports - globals.R - global
+variables - dd.R - dummy documentation for inheriting - zzz.R -
+onloads</p>
 </div>
 <div class="section level2">
 <h2 id="spatial-plots">Spatial plots<a class="anchor" aria-label="anchor" href="#spatial-plots"></a>
@@ -91,7 +101,7 @@
 <span>    sdimy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">giotto_object</span> <span class="op">&lt;-</span> <span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/createGiottoObject.html" class="external-link">createGiottoObject</a></span><span class="op">(</span></span>
+<span><span class="va">giotto_object</span> <span class="op">&lt;-</span> <span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/create_giotto.html" class="external-link">createGiottoObject</a></span><span class="op">(</span></span>
 <span>    expression <span class="op">=</span> <span class="va">expression_matrix</span>,</span>
 <span>    spatial_locs <span class="op">=</span> <span class="va">spatial_locations</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -107,20 +117,20 @@
 <p>Plot the spatial locations</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/spatPlot.html">spatPlot2D</a></span><span class="op">(</span><span class="va">giotto_object</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_to_GiottoVisuals_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="intro_to_GiottoVisuals_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R version 4.4.1 (2024-06-14)</span></span>
+<pre><code><span><span class="co">## R version 4.5.2 (2025-10-31)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">## Running under: Ubuntu 22.04.5 LTS</span></span>
+<span><span class="co">## Running under: Ubuntu 24.04.3 LTS</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
 <span><span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
-<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span></span>
+<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## locale:</span></span>
 <span><span class="co">##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></span>
@@ -135,28 +145,27 @@
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] GiottoVisuals_0.2.6</span></span>
+<span><span class="co">## [1] GiottoVisuals_0.2.14</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] rappdirs_0.3.3    tidyr_1.3.1       plotly_4.10.4     sass_0.4.9       </span></span>
-<span><span class="co">##  [5] utf8_1.2.4        generics_0.1.3    gtools_3.9.5      lattice_0.22-6   </span></span>
-<span><span class="co">##  [9] digest_0.6.37     magrittr_2.0.3    evaluate_1.0.1    grid_4.4.1       </span></span>
-<span><span class="co">## [13] fastmap_1.2.0     jsonlite_1.8.9    Matrix_1.7-0      ggrepel_0.9.6    </span></span>
-<span><span class="co">## [17] backports_1.5.0   scattermore_1.2   httr_1.4.7        purrr_1.0.2      </span></span>
-<span><span class="co">## [21] fansi_1.0.6       viridisLite_0.4.2 scales_1.3.0      lazyeval_0.2.2   </span></span>
-<span><span class="co">## [25] codetools_0.2-20  textshaping_0.4.0 jquerylib_0.1.4   cli_3.6.3        </span></span>
-<span><span class="co">## [29] rlang_1.1.4       cowplot_1.1.3     munsell_0.5.1     withr_3.0.1      </span></span>
-<span><span class="co">## [33] cachem_1.1.0      yaml_2.3.10       colorRamp2_0.1.0  parallel_4.4.1   </span></span>
-<span><span class="co">## [37] tools_4.4.1       GiottoUtils_0.2.0 checkmate_2.3.2   dplyr_1.1.4      </span></span>
-<span><span class="co">## [41] colorspace_2.1-1  ggplot2_3.5.1     reticulate_1.39.0 png_0.1-8        </span></span>
-<span><span class="co">## [45] vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.4   fs_1.6.4         </span></span>
-<span><span class="co">## [49] htmlwidgets_1.6.4 ragg_1.3.3        pkgconfig_2.0.3   desc_1.4.3       </span></span>
-<span><span class="co">## [53] pkgdown_2.1.1     terra_1.7-83      bslib_0.8.0       pillar_1.9.0     </span></span>
-<span><span class="co">## [57] gtable_0.3.6      data.table_1.16.2 glue_1.8.0        Rcpp_1.0.13      </span></span>
-<span><span class="co">## [61] systemfonts_1.1.0 highr_0.11        xfun_0.48         tibble_3.2.1     </span></span>
-<span><span class="co">## [65] tidyselect_1.2.1  knitr_1.48        farver_2.1.2      GiottoClass_0.4.0</span></span>
-<span><span class="co">## [69] htmltools_0.5.8.1 igraph_2.1.1      labeling_0.4.3    rmarkdown_2.28   </span></span>
-<span><span class="co">## [73] compiler_4.4.1</span></span></code></pre>
+<span><span class="co">##  [1] rappdirs_0.3.3     tidyr_1.3.1        plotly_4.11.0      sass_0.4.10       </span></span>
+<span><span class="co">##  [5] generics_0.1.4     gtools_3.9.5       lattice_0.22-7     digest_0.6.39     </span></span>
+<span><span class="co">##  [9] magrittr_2.0.4     evaluate_1.0.5     grid_4.5.2         RColorBrewer_1.1-3</span></span>
+<span><span class="co">## [13] fastmap_1.2.0      jsonlite_2.0.0     Matrix_1.7-4       ggrepel_0.9.6     </span></span>
+<span><span class="co">## [17] backports_1.5.0    scattermore_1.2    httr_1.4.7         purrr_1.2.0       </span></span>
+<span><span class="co">## [21] viridisLite_0.4.2  scales_1.4.0       lazyeval_0.2.2     codetools_0.2-20  </span></span>
+<span><span class="co">## [25] textshaping_1.0.4  jquerylib_0.1.4    cli_3.6.5          rlang_1.1.6       </span></span>
+<span><span class="co">## [29] cowplot_1.2.0      withr_3.0.2        cachem_1.1.0       yaml_2.3.10       </span></span>
+<span><span class="co">## [33] colorRamp2_0.1.0   parallel_4.5.2     tools_4.5.2        GiottoUtils_0.2.5 </span></span>
+<span><span class="co">## [37] checkmate_2.3.3    dplyr_1.1.4        colorspace_2.1-2   ggplot2_4.0.1     </span></span>
+<span><span class="co">## [41] reticulate_1.44.1  png_0.1-8          vctrs_0.6.5        R6_2.6.1          </span></span>
+<span><span class="co">## [45] lifecycle_1.0.4    fs_1.6.6           htmlwidgets_1.6.4  ragg_1.5.0        </span></span>
+<span><span class="co">## [49] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      terra_1.8-80      </span></span>
+<span><span class="co">## [53] bslib_0.9.0        pillar_1.11.1      gtable_0.3.6       data.table_1.17.8 </span></span>
+<span><span class="co">## [57] glue_1.8.0         Rcpp_1.1.0         systemfonts_1.3.1  xfun_0.54         </span></span>
+<span><span class="co">## [61] tibble_3.3.0       tidyselect_1.2.1   knitr_1.50         farver_2.1.2      </span></span>
+<span><span class="co">## [65] GiottoClass_0.4.10 htmltools_0.5.8.1  igraph_2.2.1       labeling_0.4.3    </span></span>
+<span><span class="co">## [69] rmarkdown_2.30     compiler_4.5.2     S7_0.2.1</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -169,7 +178,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
