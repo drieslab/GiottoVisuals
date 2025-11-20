@@ -55,6 +55,7 @@ jobs:
             any::rgl
             github::drieslab/GiottoData
             github::drieslab/GiottoClass
+            local::.
           needs: website
 
       - name: Build site
