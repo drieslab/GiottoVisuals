@@ -189,6 +189,7 @@ NULL
 #'
 #' @param title character. title for plot, defaults to cell_color parameter
 #' @param show_legend logical. show legend
+#' @param show_axes logical. show axes
 #' @param legend_text size of legend text
 #' @param legend_symbol_size size of legend symbols
 #' @param background_color color of plot background

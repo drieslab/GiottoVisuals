@@ -96,11 +96,14 @@ plot_output_handler <- function(gobject,
 #     # will be checked and used.
 #     # IF setting is NOT NA then the provided value will be used directly.
 #     show_plot = ifelse(is.na(show_plot),
-#                        readGiottoInstructions(instr, param = 'show_plot'), show_plot)
+#                        readGiottoInstructions(instr, param = 'show_plot'),
+#.                       show_plot)
 #     save_plot = ifelse(is.na(save_plot),
-#                        readGiottoInstructions(instr, param = 'save_plot'), save_plot)
+#                        readGiottoInstructions(instr, param = 'save_plot'),
+#.                       save_plot)
 #     return_plot = ifelse(is.na(return_plot),
-#                          readGiottoInstructions(instr, param = 'return_plot'), return_plot)
+#                          readGiottoInstructions(instr, param = 'return_plot'),
+#                          return_plot)
 # }
 
 

@@ -56,6 +56,7 @@ spatPlot2D(
   coord_fix_ratio = 1,
   title = NULL,
   show_legend = TRUE,
+  show_axes = NULL,
   legend_text = 10,
   legend_symbol_size = 2,
   background_color = "white",
@@ -230,6 +231,8 @@ cell_color parameter}
 \item{title}{title of plot}
 
 \item{show_legend}{show legend}
+
+\item{show_axes}{logical. show axes}
 
 \item{legend_text}{size of legend text}
 

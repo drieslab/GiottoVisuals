@@ -41,6 +41,7 @@ spatFeatPlot2D(
   point_border_stroke = 0.1,
   coord_fix_ratio = 1,
   show_legend = TRUE,
+  show_axes = NULL,
   legend_text = 8,
   background_color = "white",
   vor_border_color = "white",
@@ -121,7 +122,8 @@ or 'sequential' (scaled based on data range)}
 
 \item{midpoint}{expression midpoint}
 
-\item{scale_alpha_with_expression}{scale expression with ggplot alpha parameter}
+\item{scale_alpha_with_expression}{scale expression with ggplot alpha
+parameter}
 
 \item{point_shape}{point with border or not (border or no_border)}
 
@@ -136,6 +138,8 @@ or 'sequential' (scaled based on data range)}
 \item{coord_fix_ratio}{fix ratio between x and y-axis (default = 1)}
 
 \item{show_legend}{logical. show legend}
+
+\item{show_axes}{logical. show axes}
 
 \item{legend_text}{size of legend text}
 
