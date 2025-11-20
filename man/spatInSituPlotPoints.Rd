@@ -21,7 +21,7 @@ spatInSituPlotPoints(
   xlim = NULL,
   ylim = NULL,
   remove_background_polygon = TRUE,
-  spat_enr_names = NULL,
+  spat_enr_name = NULL,
   point_size = 1.5,
   stroke = 0.5,
   expand_counts = FALSE,
@@ -46,6 +46,7 @@ spatInSituPlotPoints(
   coord_fix_ratio = 1,
   background_color = "black",
   show_legend = TRUE,
+  show_axes = NULL,
   plot_method = c("ggplot", "scattermore", "scattermost"),
   plot_last = c("polygons", "points"),
   theme_param = list(),
@@ -94,9 +95,6 @@ spatInSituPlotPoints(
 sometimes produce extent-filling polygons when the original geometry is
 problematic or invalid. Set \code{TRUE} to remove these, based on whether a
 polygon fills up most of the x and y range.}
-
-\item{spat_enr_names}{character. names of spatial enrichment results
-to include}
 
 \item{point_size}{size of the points}
 
@@ -217,7 +215,7 @@ spatInSituPlotPoints(g,
 # plot with spatial enrichment information
 spatInSituPlotPoints(g,
     polygon_feat_type = "aggregate",
-    spat_enr_names = "cluster_metagene",
+    spat_enr_name = "cluster_metagene",
     polygon_fill = "1",
     polygon_fill_as_factor = FALSE,
     polygon_fill_gradient_style = "sequential",

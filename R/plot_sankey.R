@@ -249,7 +249,7 @@ setMethod(
             e1@set_address[, c("spat_unit", "feat_type", "col")]
         ))) {
             stop(
-                "Not possible to append more than one reference to the same node"
+            "Not possible to append more than one reference to the same node"
             )
             # TODO try to recover
         }

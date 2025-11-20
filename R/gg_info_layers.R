@@ -1819,10 +1819,6 @@ plot_point_layer_ggplot <- function(
                     annotated_DT_centers[[cell_color]] <- factor_center_data
                 }
 
-                # if (!is.null(gradient_limits) && !color_as_factor) {
-                #     annotated_DT_selected[, (cell_color) := scales::oob_squish(get(cell_color), gradient_limits)]
-                # }
-
                 pl <- pl + ggplot2::geom_point(
                     data = annotated_DT_selected,
                     aes_string2(x = dims[1], y = dims[2], fill = cell_color),
