@@ -1,4 +1,15 @@
-# GiottoVisuals 0.2.14
+# GiottoVisuals 0.2.15 (2026/05/14)
+
+## bug fixes
+- fix color gradient error when GiottoVisuals is not attached (loaded as dependency or via `::`): `giotto.color_cd_pal` and `giotto.color_cs_pal` options now have inline fallback defaults in `set_default_color_continuous()`
+- `aes_string2()` fixed handling for column names that parse as numeric literals (e.g. "1", "2") that caused plotting to fail
+
+## changes
+- `auto_image_resample()` rewritten to use `terra::window()` instead of the two-method crop/oversample approach, simplifying the implementation and avoiding materialization of large crops to disk. `giottoAffineImage` is now also supported. Removed params: `flex_resample`, `max_crop`, `max_resample_scale` and their corresponding global options `giotto.plot_img_max_crop` and `giotto.plot_img_max_resample_scale`.
+- feature value collection in `spatFeatPlot2D_single()`, `dimFeatPlot2D()`, `spatFeatPlot3D()`, `dimFeatPlot3D()`, `spatDimFeatPlot3D()`, and `violinPlot()` now uses `spatValues()`, replacing manual expression matrix extraction and transposition
+- minimum GiottoClass version bumped to `>= 0.5.1`
+
+# GiottoVisuals 0.2.14 (2025/11/19)
 
 ## bug fixes
 - allow `coord_fix_ratio = TRUE` usage again after ggplot2 changes
