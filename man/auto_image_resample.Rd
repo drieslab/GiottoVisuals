@@ -9,12 +9,8 @@
   img,
   plot_ext = NULL,
   img_border = 0.125,
-  crop_ratio_fun = .img_to_crop_ratio_gimage,
   sample_fun = .sample_gimage,
-  flex_resample = TRUE,
-  max_sample = getOption("giotto.plot_img_max_sample", 5e+05),
-  max_crop = getOption("giotto.plot_img_max_crop", 1e+08),
-  max_resample_scale = getOption("giotto.plot_img_max_resample_scale", 100)
+  max_sample = getOption("giotto.plot_img_max_sample", 5e+05)
 )
 }
 \arguments{
@@ -22,68 +18,28 @@
 
 \item{plot_ext}{extent of plot (defaults to the image extent)}
 
-\item{img_border}{if not 0 or FALSE, expand plot_ext by this percentage on
-each side before applying crop on image. See details}
+\item{img_border}{numeric. Default = 0.125. If greater than 0, expand
+\code{plot_ext} by this fraction on each side before setting the window. See
+details.}
 
-\item{flex_resample}{logical. Default = TRUE. Forces usage of method A when
-FALSE.}
-
-\item{max_sample}{numeric. Default = 5e5. Maximum n values to sample from the
-image. If larger than \code{max_crop}, will override \code{max_crop.}
-Globally settable with the option "giotto.plot_img_max_sample"}
-
-\item{max_crop}{numeric. Default = 1e8. Maximum crop size (px area) allowed
-for \strong{method A} before switching to \strong{method B}
-(see description).
-Globally settable with option "giotto.plot_img_max_crop"}
-
-\item{max_resample_scale}{numeric. Default = 100. Maximum scalefactor allowed
-to be applied on \code{max_sample} in order to oversample when compensating
-for decreased resolution when cropping after sampling. Globally settable with
-option "giotto.plot_img_max_resample_scale".}
+\item{max_sample}{numeric. Default = 5e5. Maximum number of values to sample
+from the image. Globally settable with option "giotto.plot_img_max_sample"}
 }
 \value{
-a giotto image cropped and resampled properly for plotting
+a giotto image resampled within the plot window
 }
 \description{
-Downsample terra-based images for plotting. Uses
-\code{\link[terra]{spatSample}} to load onlya  portion of the original image,
-speeding up plotting and lowering memory footprint.
-
-Default behavior of \code{spatSample} is to crop if only a smaller ROI is
-needed for plotting followed by the sampling process in order to reduce
-wasted sampling by focusing the sample space. For very large ROIs, this
-crop can be time intensive and require writing to disk.
-
-This function examines the ROI dimensions as defined through the limits of
-the spatial locations to be plotted, and decides between the following two
-methods in order to avoid this issue:
-\itemize{
-\item{\strong{Method A.} First crop original image, then sample
-\code{max_sample} (default = 5e5) values to generate final image. Intended
-for smaller ROIs. Force usage of this method by setting
-\code{flex_resample = FALSE}}
-\item{\strong{Method B.} First oversample, then crop. Intended for larger
-ROIs. Base sample size is \code{max_sample}, which is then multiplied by a
-scale factor >1 that increases the smaller the ROI is and is defined by:
-original dimensions/crop dimensions where the larger ratio between x
-and y dims is chosen. Scale factor is capped by
-\code{max_resample_scale}}
-}
-Control points for this function are set by \code{max_crop} which decides
-the max ROI area after which switchover to method B happens in order to
-avoid laborious crops and \code{max_resample_scale} which determines the
-maximum scale factor for number of values to sample. Both values can be
-adjusted depending on system resources. Additionally, \code{flex_resample}
-determines if this switching behavior happens.
-When set to \code{FALSE}, only method A is used.
+Downsample terra-based images for plotting. Uses \code{\link[terra]{window}}
+to set a virtual reading window on the image before calling
+\code{\link[terra]{spatSample}}, so only the relevant spatial ROI is read
+from disk. This avoids materializing a crop to disk for large ROIs while
+still focusing sampling on the plot region.
 }
 \details{
 \strong{img_border}
-expand ext to use for plotting the image. This makes it so that the image
-is not cut off sharply at the edge of the plot extent. Needed since plots
-often define extent by centroids, and polygons may hang over the edge of the
-extent.
+Expands the window extent used for reading the image. This prevents the
+image from being cut off sharply at the plot boundary, since plot extents
+are typically defined by centroids and polygons may hang over the edge.
 }
 \examples{
 \dontrun{
@@ -92,6 +48,6 @@ img <- GiottoData::loadSubObjectMini("giottoLargeImage")
 }
 }
 \seealso{
-\code{\link[terra]{spatSample}}
+\code{\link[terra]{window}}, \code{\link[terra]{spatSample}}
 }
 \keyword{internal}

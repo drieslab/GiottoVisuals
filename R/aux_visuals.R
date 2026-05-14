@@ -194,7 +194,12 @@ aes_string2 <- function(x, y, ...) {
             if (identical(x, "")) {
                 stop("[aes_string2] empty string not allowed", call. = FALSE)
             }
-            x <- str2lang(x)
+            parsed <- str2lang(x)
+            x <- if (is.symbol(parsed) || is.call(parsed)) {
+                parsed
+            }  else {
+                as.name(x)
+            }
         }
         x
     })

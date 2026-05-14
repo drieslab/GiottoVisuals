@@ -41,8 +41,7 @@ of the plot requested.
 }
 \details{
 No ... params are implemented for \code{giottoImage}. \cr ... params for
-\code{giottoLargeImage} passes to automated resampling params see
-\code{?auto_image_resample} for details
+\code{giottoLargeImage} and \code{giottoAffineImage} pass to \code{?auto_image_resample}
 }
 \examples{
 gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")

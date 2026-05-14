@@ -380,8 +380,8 @@ set_default_color_continuous <- function(
 
     # global giotto options
     opt_pal <- switch(style,
-        "divergent" = getOption("giotto.color_cd_pal"),
-        "sequential" = getOption("giotto.color_cs_pal")
+        "divergent" = getOption("giotto.color_cd_pal", c("blue", "white", "red")),
+        "sequential" = getOption("giotto.color_cs_pal", "viridis")
     )
 
     opt_rev <- getOption("giotto.color_c_rev", FALSE)

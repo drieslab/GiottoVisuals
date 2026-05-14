@@ -2495,40 +2495,17 @@ spatFeatPlot2D_single <- function(
             expression_values
         ))
     )
-    expr_values <- getExpression(
-        gobject = gobject,
+
+    # collect feature values using spatValues
+    t_sub_expr_data_DT <- spatValues(
+        gobject,
+        feats = feats,
         spat_unit = spat_unit,
         feat_type = feat_type,
-        values = values,
-        output = "matrix"
+        expression_values = values,
+        verbose = FALSE
     )
-
-    # only keep feats that are in the dataset
-    selected_feats <- feats
-    selected_feats <- selected_feats[selected_feats %in% rownames(expr_values)]
-
-
-    # get selected feat expression values in data.table format
-    if (length(selected_feats) == 1) {
-        subset_expr_data <- expr_values[rownames(expr_values) %in%
-            selected_feats, ]
-        t_sub_expr_data_DT <- data.table::data.table(
-            "selected_feat" = subset_expr_data,
-            "cell_ID" = colnames(expr_values)
-        )
-        data.table::setnames(
-            t_sub_expr_data_DT, "selected_feat",
-            selected_feats
-        )
-    } else {
-        subset_expr_data <- expr_values[rownames(expr_values) %in%
-            selected_feats, ]
-        t_sub_expr_data <- t_flex(subset_expr_data)
-        t_sub_expr_data_DT <- data.table::as.data.table(
-            as.matrix(t_sub_expr_data)
-        )
-        t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
-    }
+    selected_feats <- setdiff(colnames(t_sub_expr_data_DT), "cell_ID")
 
 
     ## extract cell locations
@@ -3595,52 +3572,28 @@ dimFeatPlot2D <- function(
                 expression_values
             ))
         )
-        expr_values <- getExpression(
-            gobject = gobject,
-            spat_unit = spat_unit,
-            feat_type = feat_type,
-            values = values,
-            output = "matrix"
-        )
 
-        # only keep feats that are in the dataset
+        # data.table variables
+        cell_ID <- NULL
+
         if (length(feats) == 0) {
             stop("No `feats` selected to plot.", call. = FALSE)
         }
-        selected_feats <- feats
-        selected_feats <- selected_feats[
-            selected_feats %in% rownames(expr_values)]
+
+        # collect feature values using spatValues
+        t_sub_expr_data_DT <- spatValues(
+            gobject,
+            feats = feats,
+            spat_unit = spat_unit,
+            feat_type = feat_type,
+            expression_values = values,
+            verbose = FALSE
+        )
+        selected_feats <- setdiff(colnames(t_sub_expr_data_DT), "cell_ID")
         if (length(selected_feats) == 0) {
             stop("Selected `feats` not found in expression information",
                 call. = FALSE
             )
-        }
-
-        #
-        if (length(selected_feats) == 1) {
-            subset_expr_data <- expr_values[
-                rownames(expr_values) %in% selected_feats,
-            ]
-            t_sub_expr_data_DT <- data.table::data.table(
-                "selected_feat" = subset_expr_data,
-                "cell_ID" = colnames(expr_values)
-            )
-            data.table::setnames(
-                t_sub_expr_data_DT, "selected_feat",
-                selected_feats
-            )
-        } else {
-            subset_expr_data <- expr_values[
-                rownames(expr_values) %in% selected_feats, ]
-            t_sub_expr_data <- t_flex(subset_expr_data)
-            t_sub_expr_data_DT <- data.table::as.data.table(
-                as.matrix(t_sub_expr_data)
-            )
-
-            # data.table variables
-            cell_ID <- NULL
-
-            t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
         }
 
 
