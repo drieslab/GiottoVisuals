@@ -5,15 +5,15 @@
 
 <!-- badges: start -->
 
-![Version](https://img.shields.io/github/r-package/v/drieslab/GiottoVisuals)
+![Version](https://img.shields.io/github/r-package/v/giotto-suite/GiottoVisuals)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![codecov](https://codecov.io/github/drieslab/GiottoVisuals/graph/badge.svg?token=F4ga1Ahbhw)](https://codecov.io/github/drieslab/GiottoVisuals)
-[![R-CMD-check](https://github.com/drieslab/GiottoVisuals/actions/workflows/main_check.yml/badge.svg)](https://github.com/drieslab/GiottoVisuals/actions/workflows/main_check.yml)
+[![codecov](https://codecov.io/github/giotto-suite/GiottoVisuals/graph/badge.svg?token=F4ga1Ahbhw)](https://codecov.io/github/giotto-suite/GiottoVisuals)
+[![R-CMD-check](https://github.com/giotto-suite/GiottoVisuals/actions/workflows/main_check.yml/badge.svg)](https://github.com/giotto-suite/GiottoVisuals/actions/workflows/main_check.yml)
 [![GitHub
-issues](https://img.shields.io/github/issues/drieslab/Giotto)](https://github.com/drieslab/Giotto/issues)
+issues](https://img.shields.io/github/issues/giotto-suite/Giotto)](https://github.com/giotto-suite/Giotto/issues)
 [![GitHub
-pulls](https://img.shields.io/github/issues-pr/drieslab/GiottoVisuals)](https://github.com/drieslab/GiottoVisuals/pulls)
+pulls](https://img.shields.io/github/issues-pr/giotto-suite/GiottoVisuals)](https://github.com/giotto-suite/GiottoVisuals/pulls)
 <!-- badges: end -->
 
 GiottoVisuals contains the main plotting functions of Giotto Suite
@@ -24,7 +24,7 @@ You can install GiottoVisuals like:
 
 ``` r
 if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
-pak::pak("drieslab/GiottoVisuals")
+pak::pak("giotto-suite/GiottoVisuals")
 ```
 
 ## Script Organization by Prefixes:
