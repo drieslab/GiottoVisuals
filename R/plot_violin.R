@@ -71,57 +71,37 @@ violinPlot <- function(gobject,
             expression_values
         ))
     )
-    expr_data <- getExpression(
-        gobject = gobject,
-        feat_type = feat_type,
+
+    # collect expression values using spatValues
+    expr_dt <- spatValues(gobject,
+        feats = unique(feats),
         spat_unit = spat_unit,
-        values = values,
-        output = "matrix"
+        feat_type = feat_type,
+        expression_values = values,
+        verbose = FALSE
     )
+    selected_feats <- setdiff(colnames(expr_dt), "cell_ID")
 
-    # only keep feats that are in the dataset
-    selected_feats <- feats[feats %in% rownames(expr_data)]
-    dup_feats <- selected_feats[duplicated(selected_feats)]
-    if (length(dup_feats) != 0) {
-        message(
-            "These feats have duplicates: \n",
-            paste(dup_feats, collapse = ", ")
-        )
-        selected_feats <- unique(selected_feats)
-    }
-
-    # stop and provide warning if no feats have been found
+    # stop if no feats have been found
     if (length(selected_feats) == 0) {
         stop("No overlapping features have been found,
             check inputer for parameter 'feats'")
     }
 
-    subset_data <-
-        as.matrix(expr_data[rownames(expr_data) %in% selected_feats, ])
-
-    if (length(feats) == 1) {
-        t_subset_data <- subset_data
-    } else {
-        t_subset_data <- t_flex(subset_data)
-    }
-
-    # metadata
-    metadata <- pDataDT(gobject,
+    # cluster column
+    clus_dt <- spatValues(gobject,
+        feats = cluster_column,
+        spat_unit = spat_unit,
         feat_type = feat_type,
-        spat_unit = spat_unit
+        verbose = FALSE
     )
 
-    if (length(feats) == 1) {
-        metadata_expr <- cbind(metadata, t_subset_data)
-        data.table::setnames(metadata_expr, "V1", feats)
-    } else {
-        metadata_expr <- cbind(metadata, t_subset_data)
-    }
+    metadata_expr <- clus_dt[expr_dt, on = "cell_ID"]
 
 
     metadata_expr_m <-
         data.table::melt.data.table(metadata_expr,
-            measure.vars = unique(selected_feats),
+            measure.vars = selected_feats,
             variable.name = "feats"
         )
     metadata_expr_m[, feats := factor(feats, selected_feats)]

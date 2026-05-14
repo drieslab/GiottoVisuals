@@ -2739,43 +2739,20 @@ spatFeatPlot3D <- function(
     # data.table variables
     cell_ID <- NULL
 
-    selected_genes <- feats
-
     values <- match.arg(expression_values,
         unique(c("normalized", "scaled", "custom", expression_values))
     )
-    expr_values <- getExpression(
-        gobject = gobject,
+
+    # collect feature values using spatValues
+    t_sub_expr_data_DT <- spatValues(
+        gobject,
+        feats = feats,
         spat_unit = spat_unit,
         feat_type = feat_type,
-        values = values,
-        output = "matrix"
+        expression_values = values,
+        verbose = FALSE
     )
-
-    # only keep genes that are in the dataset
-    selected_genes <- selected_genes[selected_genes %in% rownames(expr_values)]
-
-    # get selected feature expression values in data.table format
-    if (length(selected_genes) == 1) {
-        subset_expr_data <- expr_values[rownames(expr_values) %in%
-            selected_genes, ]
-        t_sub_expr_data_DT <- data.table::data.table(
-            "selected_gene" = subset_expr_data,
-            "cell_ID" = colnames(expr_values)
-        )
-        data.table::setnames(
-            t_sub_expr_data_DT,
-            "selected_gene", selected_genes
-        )
-    } else {
-        subset_expr_data <- expr_values[rownames(expr_values) %in%
-            selected_genes, ]
-        t_sub_expr_data <- t_flex(subset_expr_data)
-        t_sub_expr_data_DT <- data.table::as.data.table(
-            as.matrix(t_sub_expr_data)
-        )
-        t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
-    }
+    selected_genes <- setdiff(colnames(t_sub_expr_data_DT), "cell_ID")
 
 
     ## extract cell locations
@@ -3230,46 +3207,22 @@ dimFeatPlot3D <- function(
         feat_type = feat_type
     )
 
+    # data.table variables
+    cell_ID <- NULL
+
     ## select genes ##
-    selected_genes <- genes
     values <- match.arg(expression_values, c("normalized", "scaled", "custom"))
-    expr_values <- getExpression(
-        gobject = gobject,
+
+    # collect feature values using spatValues
+    t_sub_expr_data_DT <- spatValues(
+        gobject,
+        feats = genes,
         spat_unit = spat_unit,
         feat_type = feat_type,
-        values = values,
-        output = "matrix"
+        expression_values = values,
+        verbose = FALSE
     )
-
-    # only keep genes that are in the dataset
-    selected_genes <- selected_genes[selected_genes %in% rownames(expr_values)]
-
-    #
-    if (length(selected_genes) == 1) {
-        subset_expr_data <- expr_values[
-            rownames(expr_values) %in% selected_genes,
-        ]
-        t_sub_expr_data_DT <- data.table::data.table(
-            "selected_gene" = subset_expr_data,
-            "cell_ID" = colnames(expr_values)
-        )
-        data.table::setnames(
-            t_sub_expr_data_DT, "selected_gene", selected_genes
-        )
-    } else {
-        subset_expr_data <- expr_values[
-            rownames(expr_values) %in% selected_genes,
-        ]
-        t_sub_expr_data <- t_flex(subset_expr_data)
-        t_sub_expr_data_DT <- data.table::as.data.table(
-            as.matrix(t_sub_expr_data)
-        )
-
-        # data.table variables
-        cell_ID <- NULL
-
-        t_sub_expr_data_DT[, cell_ID := rownames(t_sub_expr_data)]
-    }
+    selected_genes <- setdiff(colnames(t_sub_expr_data_DT), "cell_ID")
 
 
     ## dimension reduction ##
@@ -3730,23 +3683,18 @@ spatDimFeatPlot3D <- function(
                 gene will be plot\n")
         genes <- genes[1]
     }
-    selected_genes <- genes
     values <- match.arg(expression_values, c("normalized", "scaled", "custom"))
-    expr_values <- getExpression(
-        gobject = gobject,
+
+    # collect feature values using spatValues
+    t_sub_expr_data_DT <- spatValues(
+        gobject,
+        feats = genes,
         spat_unit = spat_unit,
         feat_type = feat_type,
-        values = values,
-        output = "matrix"
+        expression_values = values,
+        verbose = FALSE
     )
-
-    # only keep genes that are in the dataset
-    selected_genes <- selected_genes[selected_genes %in% rownames(expr_values)]
-    subset_expr_data <- expr_values[rownames(expr_values) %in% selected_genes, ]
-    t_sub_expr_data_DT <- data.table::data.table(
-        "selected_gene" = subset_expr_data, "cell_ID" = colnames(expr_values)
-    )
-    data.table::setnames(t_sub_expr_data_DT, "selected_gene", selected_genes)
+    selected_genes <- setdiff(colnames(t_sub_expr_data_DT), "cell_ID")
 
 
     ## dimension reduction ##

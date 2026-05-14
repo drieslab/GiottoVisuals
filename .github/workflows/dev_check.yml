@@ -54,21 +54,21 @@ jobs:
       - name: Set up dependencies (GiottoUtils)
         run: |
           suppressWarnings({
-            remotes::install_github('drieslab/GiottoUtils', build = FALSE)
+            remotes::install_github('giotto-suite/GiottoUtils', build = FALSE)
           })
         shell: Rscript {0}
 
       - name: Set up dependencies (GiottoClass)
         run: |
           suppressWarnings({
-            remotes::install_github('drieslab/GiottoClass', build = FALSE)
+            remotes::install_github('giotto-suite/GiottoClass', build = FALSE)
           })
         shell: Rscript {0}
 
       - name: Set up dependencies (GiottoData)
         run: |
           suppressWarnings({
-            remotes::install_github('drieslab/GiottoData', build = FALSE)
+            remotes::install_github('giotto-suite/GiottoData', build = FALSE)
           })
         shell: Rscript {0}
 
