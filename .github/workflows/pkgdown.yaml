@@ -24,7 +24,7 @@ jobs:
     steps:
 
       - name: Checkout repo for workflow access
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v2
@@ -54,7 +54,6 @@ jobs:
             any::plotly
             any::rgl
             github::giotto-suite/GiottoData
-            github::giotto-suite/GiottoClass
             local::.
           needs: website
 
