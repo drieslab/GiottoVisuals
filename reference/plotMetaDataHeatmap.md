@@ -159,7 +159,7 @@ plotMetaDataHeatmap(
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 
@@ -180,7 +180,7 @@ z-scores rescaled per feature (-1 to 1).
 
 ## See also
 
-[`plotMetaDataCellsHeatmap`](https://drieslab.github.io/GiottoVisuals/reference/plotMetaDataCellsHeatmap.md)
+[`plotMetaDataCellsHeatmap`](https://giotto-suite.github.io/GiottoVisuals/reference/plotMetaDataCellsHeatmap.md)
 for numeric cell annotation instead of feature expression.
 
 ## Examples

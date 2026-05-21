@@ -27,7 +27,7 @@ uneval object
 ## See also
 
 Other ggplot2 plotting wrangling functions:
-[`gg_param()`](https://drieslab.github.io/GiottoVisuals/reference/gg_param.md)
+[`gg_param()`](https://giotto-suite.github.io/GiottoVisuals/reference/gg_param.md)
 
 ## Examples
 
@@ -40,27 +40,27 @@ combine_aes(a, b, warn_duplicates = FALSE) # b values used for a,c
 #> $b
 #> <quosure>
 #> expr: ^b1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $x
 #> <quosure>
 #> expr: ^x1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $y
 #> <quosure>
 #> expr: ^y1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $a
 #> <quosure>
 #> expr: ^a2
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $c
 #> <quosure>
 #> expr: ^c2
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> attr(,"class")
 #> [1] "uneval"
@@ -68,27 +68,27 @@ combine_aes(b, a, warn_duplicates = FALSE) # a values used for a,c
 #> $x
 #> <quosure>
 #> expr: ^x1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $y
 #> <quosure>
 #> expr: ^y1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $a
 #> <quosure>
 #> expr: ^a1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $b
 #> <quosure>
 #> expr: ^b1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> $c
 #> <quosure>
 #> expr: ^c1
-#> env:  0x557a4f3239c0
+#> env:  0x556480fd6b50
 #> 
 #> attr(,"class")
 #> [1] "uneval"

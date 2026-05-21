@@ -55,10 +55,8 @@ gg_annotation_raster(ggobj, gimage, ext = NULL, geom_blank = TRUE, ...)
 ## Details
 
 No ... params are implemented for `giottoImage`.  
-... params for `giottoLargeImage` passes to automated resampling params
-see
-[`?auto_image_resample`](https://drieslab.github.io/GiottoVisuals/reference/auto_image_resample.md)
-for details
+... params for `giottoLargeImage` and `giottoAffineImage` pass to
+[`?auto_image_resample`](https://giotto-suite.github.io/GiottoVisuals/reference/auto_image_resample.md)
 
 ## Examples
 

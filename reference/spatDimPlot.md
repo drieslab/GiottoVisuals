@@ -419,7 +419,7 @@ spatDimPlot(gobject, ...)
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 
@@ -442,10 +442,10 @@ Description of parameters.
 
 ## See also
 
-[`spatDimPlot3D`](https://drieslab.github.io/GiottoVisuals/reference/spatDimPlot3D.md)
+[`spatDimPlot3D`](https://giotto-suite.github.io/GiottoVisuals/reference/spatDimPlot3D.md)
 
 Other spatial and dimension reduction visualizations:
-[`spatDimPlot3D()`](https://drieslab.github.io/GiottoVisuals/reference/spatDimPlot3D.md)
+[`spatDimPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatDimPlot3D.md)
 
 ## Examples
 

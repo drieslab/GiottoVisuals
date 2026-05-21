@@ -37,7 +37,7 @@ gg_param(..., data = NULL, warn_duplicates = TRUE)
 ## See also
 
 Other ggplot2 plotting wrangling functions:
-[`combine_aes()`](https://drieslab.github.io/GiottoVisuals/reference/combine_aes.md)
+[`combine_aes()`](https://giotto-suite.github.io/GiottoVisuals/reference/combine_aes.md)
 
 ## Examples
 

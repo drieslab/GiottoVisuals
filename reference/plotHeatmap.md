@@ -150,7 +150,7 @@ plotHeatmap(
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 

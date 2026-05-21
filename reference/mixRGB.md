@@ -26,7 +26,7 @@ a vector of hex codes or an rgb matrix
 ## See also
 
 Other colormixing functions:
-[`mixHSV()`](https://drieslab.github.io/GiottoVisuals/reference/mixHSV.md)
+[`mixHSV()`](https://giotto-suite.github.io/GiottoVisuals/reference/mixHSV.md)
 
 ## Examples
 

@@ -160,7 +160,7 @@ spatInSituPlotHex(
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 
@@ -178,8 +178,8 @@ TODO
 ## See also
 
 Other In Situ visualizations:
-[`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md),
-[`spatInSituPlotPoints()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
+[`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md),
+[`spatInSituPlotPoints()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
 
 ## Examples
 
@@ -188,9 +188,6 @@ g <- GiottoData::loadGiottoMini("vizgen")
 #> 1. read Giotto object
 #> 2. read Giotto feature information
 #> 3. read Giotto spatial information
-#> 3.1 read Giotto spatial shape information
-#> 3.2 read Giotto spatial centroid information
-#> 3.3 read Giotto spatial overlap information
 #> 4. read Giotto image information
 #> python already initialized in this session
 #>  active environment : '/usr/bin/python3'

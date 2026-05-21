@@ -1,6 +1,42 @@
 # Changelog
 
-## GiottoVisuals 0.2.14
+## GiottoVisuals 0.2.15 (2026/05/14)
+
+### bug fixes
+
+- fix color gradient error when GiottoVisuals is not attached (loaded as
+  dependency or via `::`): `giotto.color_cd_pal` and
+  `giotto.color_cs_pal` options now have inline fallback defaults in
+  [`set_default_color_continuous()`](https://giotto-suite.github.io/GiottoVisuals/reference/set_default_color_continuous.md)
+- [`aes_string2()`](https://giotto-suite.github.io/GiottoVisuals/reference/aes_string2.md)
+  fixed handling for column names that parse as numeric literals
+  (e.g. “1”, “2”) that caused plotting to fail
+
+### changes
+
+- [`auto_image_resample()`](https://giotto-suite.github.io/GiottoVisuals/reference/auto_image_resample.md)
+  rewritten to use
+  [`terra::window()`](https://rspatial.github.io/terra/reference/window.html)
+  instead of the two-method crop/oversample approach, simplifying the
+  implementation and avoiding materialization of large crops to disk.
+  `giottoAffineImage` is now also supported. Removed params:
+  `flex_resample`, `max_crop`, `max_resample_scale` and their
+  corresponding global options `giotto.plot_img_max_crop` and
+  `giotto.plot_img_max_resample_scale`.
+- feature value collection in
+  [`spatFeatPlot2D_single()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D_single.md),
+  [`dimFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/dimFeatPlot2D.md),
+  [`spatFeatPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot3D.md),
+  [`dimFeatPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/dimFeatPlot3D.md),
+  [`spatDimFeatPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatDimFeatPlot3D.md),
+  and
+  [`violinPlot()`](https://giotto-suite.github.io/GiottoVisuals/reference/violinPlot.md)
+  now uses
+  [`spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html),
+  replacing manual expression matrix extraction and transposition
+- minimum GiottoClass version bumped to `>= 0.5.1`
+
+## GiottoVisuals 0.2.14 (2025/11/19)
 
 ### bug fixes
 
@@ -9,13 +45,13 @@
 ### changes
 
 - change
-  [`spatInSituPlotPoints()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
+  [`spatInSituPlotPoints()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
   param `spat_enr_names` to `spat_enr_name`
 
 ### enhancements
 
 - `show_axes` param for
-  [`spatInSituPlotPoints()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
+  [`spatInSituPlotPoints()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
 
 ## GiottoVisuals 0.2.13 (2025/09/30)
 
@@ -29,19 +65,19 @@
 ### changes
 
 - replacement of argument radius by pie_scale in
-  [`spatDeconvPlot()`](https://drieslab.github.io/GiottoVisuals/reference/spatDeconvPlot.md)
+  [`spatDeconvPlot()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatDeconvPlot.md)
   to modify pie size.
 
 ## GiottoVisuals 0.2.12 (2025/05/06)
 
 ### new
 
-- [`ridgePlot()`](https://drieslab.github.io/GiottoVisuals/reference/ridgePlot.md)
+- [`ridgePlot()`](https://giotto-suite.github.io/GiottoVisuals/reference/ridgePlot.md)
 
 ### bug fixes
 
 - fix
-  [`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
+  [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
   `polygon_alpha` default setting when polygons plotted last
 
 ### enhancements
@@ -49,10 +85,10 @@
 - requested images not within the plotting window are now handled as
   warning instead of erroring
 - `y_axis_title` param added to
-  [`plotMetaDataCellsHeatmap()`](https://drieslab.github.io/GiottoVisuals/reference/plotMetaDataCellsHeatmap.md)
-- [`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
+  [`plotMetaDataCellsHeatmap()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotMetaDataCellsHeatmap.md)
+- [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
   `xlim`/`ylim` now crops on polys
-- [`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
+- [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
   feature plotting via
   [`spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html)retrieval
 
@@ -61,9 +97,9 @@
 ### enhancements
 
 - improve efficiency of
-  [`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
+  [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
 - `use_overlap` param for
-  [`spatInSituPlotDensity()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
+  [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
   to allow the unoverlapped data to be used for density
 
 ### bug fixes
@@ -76,7 +112,7 @@
 ### bug fixes
 
 - fix missing `e` extent error during
-  [`spatInSituPlotPoints()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
+  [`spatInSituPlotPoints()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
   with `show_image = TRUE` introduced in v0.2.9
   [\#96](https://github.com/drieslab/GiottoVisuals/issues/96) by kunleng
 
@@ -84,13 +120,13 @@
 
 ### bug fixes
 
-- [`spatInSituPlotPoints()`](https://drieslab.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
+- [`spatInSituPlotPoints()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotPoints.md)
   `xlim` and `ylim` params now also affect image resampling
 
 ### enhancements
 
 - `group_by` and `group_by_subset` for
-  [`dimFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/dimFeatPlot2D.md)
+  [`dimFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/dimFeatPlot2D.md)
   [\#1069](https://github.com/drieslab/Giotto/issues/1069) by
   xhNorthwestern
 - image plotting will now scale values to the 99th percentile when a
@@ -100,14 +136,14 @@
 
 ### enhancements
 
-- [`spatPlot3D()`](https://drieslab.github.io/GiottoVisuals/reference/spatPlot.md)
+- [`spatPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatPlot.md)
   now works with non-categorical data. Uses same params as
-  [`spatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatPlot.md)
+  [`spatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatPlot.md)
   for color/gradient selection
 
 ### changes
 
-- [`spatPlot3D()`](https://drieslab.github.io/GiottoVisuals/reference/spatPlot.md)
+- [`spatPlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatPlot.md)
   `other_point_size` default changed to 3 from 0.5 which was too hard to
   notice.
 
@@ -116,21 +152,21 @@
 ### enhancements
 
 - scattermore plotting for
-  [`spatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatPlot.md)
+  [`spatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatPlot.md)
   and
-  [`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+  [`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
 
 ### bug fixes
 
 - fix color scaling bug for
-  [`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+  [`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
   introduced in 0.2.6
 
 ## GiottoVisuals 0.2.6 (2024/10/27)
 
 ### new
 
-- [`combine_aes()`](https://drieslab.github.io/GiottoVisuals/reference/combine_aes.md)
+- [`combine_aes()`](https://giotto-suite.github.io/GiottoVisuals/reference/combine_aes.md)
   for combining ggplot2 mappings in a last item wins manner. Allows more
   than 2 aes to be combined at the same time and provides an optional
   informative warning
@@ -141,17 +177,17 @@
 
 ### new
 
-- [`gpsparam()`](https://drieslab.github.io/GiottoVisuals/reference/plot_save.md)
+- [`gpsparam()`](https://giotto-suite.github.io/GiottoVisuals/reference/plot_save.md)
   for generating an object containing plot saving parameters
 - [`cowplot::plot_grid()`](https://wilkelab.org/cowplot/reference/plot_grid.html)
   re-exported
-- [`dotPlot()`](https://drieslab.github.io/GiottoVisuals/reference/dotPlot.md)
+- [`dotPlot()`](https://giotto-suite.github.io/GiottoVisuals/reference/dotPlot.md)
   visualization
 
 ### bug fixes
 
 - fix `coord_fix_ratio` passing in
-  [`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+  [`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
   [\#972](https://github.com/drieslab/Giotto/issues/972) by kaizen89
 
 ## GiottoVisuals 0.2.4 (2024/07/26)
@@ -162,7 +198,7 @@
   during ggplot plotting
 - `giottoAffineImage` compatibility for giotto ggplot2 plotting
   functions
-- [`gg_annotation_raster()`](https://drieslab.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
+- [`gg_annotation_raster()`](https://giotto-suite.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
   now also performs
   [`geom_blank()`](https://ggplot2.tidyverse.org/reference/geom_blank.html)
   with the extent provided through `ext` param. This can be turned off
@@ -204,8 +240,8 @@
   instead
 - spatial y dim values are not vertically plotted
 - deprecated
-  [`spatDimGenePlot3D()`](https://drieslab.github.io/GiottoVisuals/reference/spatDimFeatPlot3D.md),
-  [`spatGenePlot3D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot3D.md),
+  [`spatDimGenePlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatDimFeatPlot3D.md),
+  [`spatGenePlot3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot3D.md),
   `dimGenePlot3D` in favor of the ‘feat’ naming scheme
 
 ### bug fixes
@@ -218,10 +254,10 @@
   provides access to
   [`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html)
   finetuning
-- [`gg_annotation_raster()`](https://drieslab.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
+- [`gg_annotation_raster()`](https://giotto-suite.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
   now performs plot extent detection and resampling of largeImages
 - resampling args are now globally settable (see
-  [`?auto_image_resample`](https://drieslab.github.io/GiottoVisuals/reference/auto_image_resample.md))
+  [`?auto_image_resample`](https://giotto-suite.github.io/GiottoVisuals/reference/auto_image_resample.md))
 - `polygon_alpha` default is now 1 when plotting polys without images,
   and 0.5 when plotting with images.
 
@@ -239,18 +275,18 @@
 ### bug fixes
 
 - fix
-  [`spatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatPlot.md)
+  [`spatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatPlot.md)
   and
-  [`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+  [`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
   largeImage plotting when using `group_by`
 - fix `edge_alpha` arg in
-  [`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+  [`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
 
 ### new
 
-- [`mixRGB()`](https://drieslab.github.io/GiottoVisuals/reference/mixRGB.md)
+- [`mixRGB()`](https://giotto-suite.github.io/GiottoVisuals/reference/mixRGB.md)
   vectorized additive mixing in RGB space
-- [`mixHSV()`](https://drieslab.github.io/GiottoVisuals/reference/mixHSV.md)
+- [`mixHSV()`](https://giotto-suite.github.io/GiottoVisuals/reference/mixHSV.md)
   vectorized color mixing in HSV space
 
 ## GiottoVisuals 0.1.4 (2024/01/25)
@@ -263,7 +299,7 @@
 
 ### new
 
-- [`gg_annotation_raster()`](https://drieslab.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
+- [`gg_annotation_raster()`](https://giotto-suite.github.io/GiottoVisuals/reference/gg_annotation_raster.md)
   internal generic for adding a `giottoImage`, `giottoLargeImage`, or
   `list` thereof to a `ggplot` object
 

@@ -1,13 +1,13 @@
 # Introduction to GiottoVisuals
 
-## Description of the module GiottoVisuals
+## 0.1 Description of the module GiottoVisuals
 
 GiottoVisuals contains the main plotting functions of Giotto Suite.
 
 For full examples of the usage of Giotto visualizations visit
 <http://giottosuite.com>
 
-## Script Organization by Prefixes:
+## 0.2 Script Organization by Prefixes:
 
 aux\_ - auxiliary and meta functionality - aux_output.R - plot output
 handling - aux_save.R - plot saving - aux_defaults.R - set plotting
@@ -29,17 +29,19 @@ Other: - color_palettes.R - color palettes and factory functions
 Package: - package_imports.R - all imports - globals.R - global
 variables - dd.R - dummy documentation for inheriting - zzz.R - onloads
 
-## Spatial plots
+## 0.3 Spatial plots
 
 Load the package
 
 ``` r
+
 library(GiottoVisuals)
 ```
 
 Create a small Giotto object
 
 ``` r
+
 expression_matrix <- matrix(rnorm(1000), nrow = 10)
 colnames(expression_matrix) <- paste0("cell_", 1:100)
 rownames(expression_matrix) <- paste0("gene_", 1:10)
@@ -56,72 +58,67 @@ giotto_object <- GiottoClass::createGiottoObject(
 )
 ```
 
-    ## checking default envname 'giotto_env'
-
-    ## a system default python environment was found
-
-    ## Using python path:
-    ##  "/usr/bin/python3"
-
-    ## Warning: Some of Giotto's expected python module(s) were not found:
-    ## pandas, igraph, leidenalg, community, networkx, sklearn
-    ## (This is fine if python-based functions are not needed)
-    ## 
-    ## ** Python path used: "/usr/bin/python3"
-
 Plot the spatial locations
 
 ``` r
+
 spatPlot2D(giotto_object)
 ```
 
-![](intro_to_GiottoVisuals_files/figure-html/unnamed-chunk-3-1.png)
-
-## Session Info
+## 0.4 Session Info
 
 ``` r
+
 sessionInfo()
 ```
 
-    ## R version 4.5.2 (2025-10-31)
-    ## Platform: x86_64-pc-linux-gnu
-    ## Running under: Ubuntu 24.04.3 LTS
-    ## 
-    ## Matrix products: default
-    ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-    ## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
-    ## 
-    ## locale:
-    ##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-    ##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-    ##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-    ## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-    ## 
-    ## time zone: UTC
-    ## tzcode source: system (glibc)
-    ## 
-    ## attached base packages:
-    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
-    ## other attached packages:
-    ## [1] GiottoVisuals_0.2.14
-    ## 
-    ## loaded via a namespace (and not attached):
-    ##  [1] rappdirs_0.3.3     tidyr_1.3.1        plotly_4.11.0      sass_0.4.10       
-    ##  [5] generics_0.1.4     gtools_3.9.5       lattice_0.22-7     digest_0.6.39     
-    ##  [9] magrittr_2.0.4     evaluate_1.0.5     grid_4.5.2         RColorBrewer_1.1-3
-    ## [13] fastmap_1.2.0      jsonlite_2.0.0     Matrix_1.7-4       ggrepel_0.9.6     
-    ## [17] backports_1.5.0    scattermore_1.2    httr_1.4.7         purrr_1.2.0       
-    ## [21] viridisLite_0.4.2  scales_1.4.0       lazyeval_0.2.2     codetools_0.2-20  
-    ## [25] textshaping_1.0.4  jquerylib_0.1.4    cli_3.6.5          rlang_1.1.6       
-    ## [29] cowplot_1.2.0      withr_3.0.2        cachem_1.1.0       yaml_2.3.10       
-    ## [33] colorRamp2_0.1.0   parallel_4.5.2     tools_4.5.2        GiottoUtils_0.2.5 
-    ## [37] checkmate_2.3.3    dplyr_1.1.4        colorspace_2.1-2   ggplot2_4.0.1     
-    ## [41] reticulate_1.44.1  png_0.1-8          vctrs_0.6.5        R6_2.6.1          
-    ## [45] lifecycle_1.0.4    fs_1.6.6           htmlwidgets_1.6.4  ragg_1.5.0        
-    ## [49] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      terra_1.8-80      
-    ## [53] bslib_0.9.0        pillar_1.11.1      gtable_0.3.6       data.table_1.17.8 
-    ## [57] glue_1.8.0         Rcpp_1.1.0         systemfonts_1.3.1  xfun_0.54         
-    ## [61] tibble_3.3.0       tidyselect_1.2.1   knitr_1.50         farver_2.1.2      
-    ## [65] GiottoClass_0.4.10 htmltools_0.5.8.1  igraph_2.2.1       labeling_0.4.3    
-    ## [69] rmarkdown_2.30     compiler_4.5.2     S7_0.2.1
+``` r
+R version 4.5.3 (2026-03-11)
+Platform: x86_64-apple-darwin20
+Running under: macOS Tahoe 26.4.1
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] GiottoVisuals_0.2.15
+
+loaded via a namespace (and not attached):
+ [1] SummarizedExperiment_1.40.0 gtable_0.3.6                rjson_0.2.23               
+ [4] xfun_0.57                   ggplot2_4.0.2               htmlwidgets_1.6.4          
+ [7] ggrepel_0.9.8               Biobase_2.70.0              lattice_0.22-9             
+[10] vctrs_0.7.3                 tools_4.5.3                 generics_0.1.4             
+[13] parallel_4.5.3              stats4_4.5.3                tibble_3.3.1               
+[16] colorRamp2_0.1.0            pkgconfig_2.0.3             Matrix_1.7-4               
+[19] data.table_1.18.2.1         checkmate_2.3.4             RColorBrewer_1.1-3         
+[22] S7_0.2.1                    S4Vectors_0.48.0            lifecycle_1.0.5            
+[25] compiler_4.5.3              farver_2.1.2                GiottoUtils_0.2.5          
+[28] terra_1.9-11                Seqinfo_1.0.0               codetools_0.2-20           
+[31] scattermore_1.2             htmltools_0.5.9             GiottoClass_0.5.1          
+[34] yaml_2.3.12                 lazyeval_0.2.2              plotly_4.12.0              
+[37] tidyr_1.3.2                 pillar_1.11.1               SingleCellExperiment_1.32.0
+[40] DelayedArray_0.36.1         magick_2.9.1                abind_1.4-8                
+[43] gtools_3.9.5                tidyselect_1.2.1            digest_0.6.39              
+[46] purrr_1.2.2                 dplyr_1.2.1                 labeling_0.4.3             
+[49] cowplot_1.2.0               fastmap_1.2.0               grid_4.5.3                 
+[52] colorspace_2.1-2            cli_3.6.6                   SparseArray_1.10.10        
+[55] magrittr_2.0.5              S4Arrays_1.10.1             withr_3.0.2                
+[58] scales_1.4.0                backports_1.5.1             rmarkdown_2.31             
+[61] XVector_0.50.0              httr_1.4.8                  matrixStats_1.5.0          
+[64] igraph_2.2.2                otel_0.2.0                  reticulate_1.45.0          
+[67] png_0.1-9                   SpatialExperiment_1.20.0    evaluate_1.0.5             
+[70] knitr_1.51                  GenomicRanges_1.62.1        IRanges_2.44.0             
+[73] viridisLite_0.4.3           rlang_1.2.0                 Rcpp_1.1.1                 
+[76] glue_1.8.1                  BiocGenerics_0.56.0         rstudioapi_0.18.0          
+[79] jsonlite_2.0.0              R6_2.6.1                    MatrixGenerics_1.22.0   
+```

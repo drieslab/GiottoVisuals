@@ -44,9 +44,6 @@ g <- GiottoData::loadGiottoMini("vizgen")
 #> 1. read Giotto object
 #> 2. read Giotto feature information
 #> 3. read Giotto spatial information
-#> 3.1 read Giotto spatial shape information
-#> 3.2 read Giotto spatial centroid information
-#> 3.3 read Giotto spatial overlap information
 #> 4. read Giotto image information
 #> python already initialized in this session
 #>  active environment : '/usr/bin/python3'

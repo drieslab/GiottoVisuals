@@ -25,7 +25,7 @@ plotPCA(gobject, dim_reduction_name = NULL, default_save_name = "PCA", ...)
 - ...:
 
   Arguments passed on to
-  [`dimPlot2D`](https://drieslab.github.io/GiottoVisuals/reference/dimPlot.md)
+  [`dimPlot2D`](https://giotto-suite.github.io/GiottoVisuals/reference/dimPlot.md)
 
   `spat_unit`
 
@@ -50,7 +50,7 @@ plotPCA(gobject, dim_reduction_name = NULL, default_save_name = "PCA", ...)
   `save_param`
 
   :   list of saving parameters, see
-      [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+      [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
   `dim1_to_use`
 
@@ -240,22 +240,22 @@ ggplot
 ## Details
 
 Description of parameters, see
-[`dimPlot2D`](https://drieslab.github.io/GiottoVisuals/reference/dimPlot.md).
+[`dimPlot2D`](https://giotto-suite.github.io/GiottoVisuals/reference/dimPlot.md).
 For 3D plots see
-[`plotPCA_3D`](https://drieslab.github.io/GiottoVisuals/reference/plotPCA_3D.md)
+[`plotPCA_3D`](https://giotto-suite.github.io/GiottoVisuals/reference/plotPCA_3D.md)
 
 ## See also
 
 Other reduced dimension visualizations:
-[`dimPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/dimPlot.md),
-[`plotPCA_2D()`](https://drieslab.github.io/GiottoVisuals/reference/plotPCA_2D.md),
-[`plotPCA_3D()`](https://drieslab.github.io/GiottoVisuals/reference/plotPCA_3D.md),
-[`plotTSNE()`](https://drieslab.github.io/GiottoVisuals/reference/plotTSNE.md),
-[`plotTSNE_2D()`](https://drieslab.github.io/GiottoVisuals/reference/plotTSNE_2D.md),
-[`plotTSNE_3D()`](https://drieslab.github.io/GiottoVisuals/reference/plotTSNE_3D.md),
-[`plotUMAP()`](https://drieslab.github.io/GiottoVisuals/reference/plotUMAP.md),
-[`plotUMAP_2D()`](https://drieslab.github.io/GiottoVisuals/reference/plotUMAP_2D.md),
-[`plotUMAP_3D()`](https://drieslab.github.io/GiottoVisuals/reference/plotUMAP_3D.md)
+[`dimPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/dimPlot.md),
+[`plotPCA_2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotPCA_2D.md),
+[`plotPCA_3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotPCA_3D.md),
+[`plotTSNE()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotTSNE.md),
+[`plotTSNE_2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotTSNE_2D.md),
+[`plotTSNE_3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotTSNE_3D.md),
+[`plotUMAP()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotUMAP.md),
+[`plotUMAP_2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotUMAP_2D.md),
+[`plotUMAP_3D()`](https://giotto-suite.github.io/GiottoVisuals/reference/plotUMAP_3D.md)
 
 ## Examples
 

@@ -275,7 +275,7 @@ spatFeatPlot2D_single(
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 
@@ -292,10 +292,10 @@ Description of parameters.
 
 ## See also
 
-[`spatFeatPlot3D`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot3D.md)
+[`spatFeatPlot3D`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot3D.md)
 
 Other spatial feature expression visualizations:
-[`spatFeatPlot2D()`](https://drieslab.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
+[`spatFeatPlot2D()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatFeatPlot2D.md)
 
 ## Examples
 

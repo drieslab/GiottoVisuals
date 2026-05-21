@@ -44,7 +44,7 @@ a vector of hex codes or an hsv matrix
 ## See also
 
 Other colormixing functions:
-[`mixRGB()`](https://drieslab.github.io/GiottoVisuals/reference/mixRGB.md)
+[`mixRGB()`](https://giotto-suite.github.io/GiottoVisuals/reference/mixRGB.md)
 
 ## Examples
 

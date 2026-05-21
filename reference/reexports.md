@@ -64,8 +64,8 @@ colorRamp2::colorRamp2(breaks = seq_len(2), colors = c("blue", "red"))
 #>         return(res_col2)
 #>     }
 #> }
-#> <bytecode: 0x557a3a9bd2d0>
-#> <environment: 0x557a3a981720>
+#> <bytecode: 0x55646f2b85d8>
+#> <environment: 0x55646f2b29c0>
 #> attr(,"breaks")
 #> [1] 1 2
 #> attr(,"colors")

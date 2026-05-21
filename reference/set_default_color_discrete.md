@@ -16,13 +16,13 @@ Supports colors setting at three levels:
 
   - options('giotto.color_d_strategy) - strategy to use when making
     colors continuous. See
-    [`get_continuous_colors()`](https://drieslab.github.io/GiottoVisuals/reference/get_continuous_colors.md)
+    [`get_continuous_colors()`](https://giotto-suite.github.io/GiottoVisuals/reference/get_continuous_colors.md)
 
 - **giotto instructions** (gobject specific and effects specific types
   of plots)
 
   - run
-    [`showColorInstructions()`](https://drieslab.github.io/GiottoVisuals/reference/showColorInstructions.md)
+    [`showColorInstructions()`](https://giotto-suite.github.io/GiottoVisuals/reference/showColorInstructions.md)
     for details on options/params to set in the `giottoInstructions`
     object
 
@@ -32,10 +32,10 @@ Supports colors setting at three levels:
 
 If a character vector of length 1 input is provided then it will be
 assumed that a known color palette is being requested from
-[`pal_names()`](https://drieslab.github.io/GiottoVisuals/reference/pal_names.md).  
+[`pal_names()`](https://giotto-suite.github.io/GiottoVisuals/reference/pal_names.md).  
 If a longer character input is provided then they will be expected to be
 a vector of colors to use. These values will be passed to
-[simple_palette_factory](https://drieslab.github.io/GiottoVisuals/reference/simple_palette_factory.md)
+[simple_palette_factory](https://giotto-suite.github.io/GiottoVisuals/reference/simple_palette_factory.md)
 which will generate a palette function that interpolates between the
 colors provided by default and has a `n` param for number of requested
 colors.  
@@ -104,6 +104,6 @@ set_default_color_discrete(
 #>     col <- getColors(pal = pal, n = n, rev = rev, strategy = "cutoff")
 #>     get_continuous_colors(col = col, n = n, strategy = strategy)
 #> }
-#> <bytecode: 0x557a544e91d0>
-#> <environment: 0x557a39536720>
+#> <bytecode: 0x55648a4033c8>
+#> <environment: 0x5564683e1bb0>
 ```

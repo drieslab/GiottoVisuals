@@ -1,7 +1,7 @@
 # showSaveParameters
 
 Description of Giotto saving options, links to
-[`all_plots_save_function`](https://drieslab.github.io/GiottoVisuals/reference/plot_save.md)
+[`all_plots_save_function`](https://giotto-suite.github.io/GiottoVisuals/reference/plot_save.md)
 
 ## Usage
 

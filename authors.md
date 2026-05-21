@@ -19,17 +19,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/drieslab/Giotto/blob/website/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/giotto-suite/Giotto/blob/website/DESCRIPTION)
 
 Dries R, George Chen J, Yuan G, O'Brien M, Chávez-Fuentes J, Ruiz E
-(2025). *GiottoVisuals: Visuals for the Giotto spatial biology analysis
-ecosystem*. R package version 0.2.14,
-<https://drieslab.github.io/Giotto/>.
+(2026). *GiottoVisuals: Visuals for the Giotto spatial biology analysis
+ecosystem*. R package version 0.2.15,
+<https://giotto-suite.github.io/Giotto/>.
 
     @Manual{,
       title = {GiottoVisuals: Visuals for the Giotto spatial biology analysis ecosystem},
       author = {Ruben Dries and Jiaji {George Chen} and Guo-Cheng Yuan and Matthew O'Brien and Joselyn C. Chávez-Fuentes and Edward Ruiz},
-      year = {2025},
-      note = {R package version 0.2.14},
-      url = {https://drieslab.github.io/Giotto/},
+      year = {2026},
+      note = {R package version 0.2.15},
+      url = {https://giotto-suite.github.io/Giotto/},
     }

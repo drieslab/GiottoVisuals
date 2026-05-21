@@ -261,7 +261,7 @@ dimCellPlot(gobject, ...)
 - save_param:
 
   list of saving parameters, see
-  [`showSaveParameters`](https://drieslab.github.io/GiottoVisuals/reference/showSaveParameters.md)
+  [`showSaveParameters`](https://giotto-suite.github.io/GiottoVisuals/reference/showSaveParameters.md)
 
 - default_save_name:
 
@@ -281,7 +281,7 @@ ggplot
 ## Details
 
 Description of parameters. For 3D plots see
-[`dimPlot3D`](https://drieslab.github.io/GiottoVisuals/reference/dimPlot.md)
+[`dimPlot3D`](https://giotto-suite.github.io/GiottoVisuals/reference/dimPlot.md)
 
 ## Examples
 
