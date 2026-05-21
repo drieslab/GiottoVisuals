@@ -1,4 +1,4 @@
-url: https://drieslab.github.io/GiottoVisuals/
+url: https://giotto-suite.github.io/GiottoVisuals/
 
 authors:
   Ruben Dries:
@@ -38,10 +38,10 @@ navbar:
       href: news/index.html
     suite:
       text: Suite
-      href: https://drieslab.github.io/Giotto/
+      href: https://giotto-suite.github.io/Giotto/
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/drieslab/GiottoVisuals/
+      href: https://github.com/giotto-suite/GiottoVisuals/
       aria-label: github
 
 news:
