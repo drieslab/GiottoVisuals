@@ -53,8 +53,8 @@ jobs:
             any::qs
             any::plotly
             any::rgl
-            github::drieslab/GiottoData
-            github::drieslab/GiottoClass
+            github::giotto-suite/GiottoData
+            github::giotto-suite/GiottoClass
             local::.
           needs: website
 
