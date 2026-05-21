@@ -50,7 +50,7 @@ jobs:
             any::R.utils
             any::sf
             any::scattermore
-            any::qs
+            any::qs2
             any::plotly
             any::rgl
             github::giotto-suite/GiottoData
