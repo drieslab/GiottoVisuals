@@ -574,7 +574,7 @@ spatInSituPlotPoints <- function(
 
         polygon_dt <- getPolygonInfo(
             gobject = gobject,
-            polygon_name = polygon_feat_type
+            name = polygon_feat_type
         ) %>%
             data.table::as.data.table(geom = "XY")
 
@@ -869,7 +869,7 @@ spatInSituPlotHex <- function(gobject,
 
         polygon_dt <- getPolygonInfo(
             gobject = gobject,
-            polygon_name = polygon_feat_type
+            name = polygon_feat_type
         ) %>%
             data.table::as.data.table(geom = "XY")
 
