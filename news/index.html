@@ -43,7 +43,7 @@
 <h3 id="changes-0-2-15">changes<a class="anchor" aria-label="anchor" href="#changes-0-2-15"></a></h3>
 <ul><li>
 <code><a href="../reference/auto_image_resample.html">auto_image_resample()</a></code> rewritten to use <code><a href="https://rspatial.github.io/terra/reference/window.html" class="external-link">terra::window()</a></code> instead of the two-method crop/oversample approach, simplifying the implementation and avoiding materialization of large crops to disk. <code>giottoAffineImage</code> is now also supported. Removed params: <code>flex_resample</code>, <code>max_crop</code>, <code>max_resample_scale</code> and their corresponding global options <code>giotto.plot_img_max_crop</code> and <code>giotto.plot_img_max_resample_scale</code>.</li>
-<li>feature value collection in <code><a href="../reference/spatFeatPlot2D_single.html">spatFeatPlot2D_single()</a></code>, <code><a href="../reference/dimFeatPlot2D.html">dimFeatPlot2D()</a></code>, <code><a href="../reference/spatFeatPlot3D.html">spatFeatPlot3D()</a></code>, <code><a href="../reference/dimFeatPlot3D.html">dimFeatPlot3D()</a></code>, <code><a href="../reference/spatDimFeatPlot3D.html">spatDimFeatPlot3D()</a></code>, and <code><a href="../reference/violinPlot.html">violinPlot()</a></code> now uses <code><a href="https://drieslab.github.io/GiottoClass/reference/spatValues.html" class="external-link">spatValues()</a></code>, replacing manual expression matrix extraction and transposition</li>
+<li>feature value collection in <code><a href="../reference/spatFeatPlot2D_single.html">spatFeatPlot2D_single()</a></code>, <code><a href="../reference/dimFeatPlot2D.html">dimFeatPlot2D()</a></code>, <code><a href="../reference/spatFeatPlot3D.html">spatFeatPlot3D()</a></code>, <code><a href="../reference/dimFeatPlot3D.html">dimFeatPlot3D()</a></code>, <code><a href="../reference/spatDimFeatPlot3D.html">spatDimFeatPlot3D()</a></code>, and <code><a href="../reference/violinPlot.html">violinPlot()</a></code> now uses <code><a href="https://giotto-suite.github.io/GiottoClass/reference/spatValues.html" class="external-link">spatValues()</a></code>, replacing manual expression matrix extraction and transposition</li>
 <li>minimum GiottoClass version bumped to <code>&gt;= 0.5.1</code>
 </li>
 </ul></div>
@@ -96,7 +96,7 @@
 <li>
 <code><a href="../reference/spatInSituPlotDensity.html">spatInSituPlotDensity()</a></code> <code>xlim</code>/<code>ylim</code> now crops on polys</li>
 <li>
-<code><a href="../reference/spatInSituPlotDensity.html">spatInSituPlotDensity()</a></code> feature plotting via <code><a href="https://drieslab.github.io/GiottoClass/reference/spatValues.html" class="external-link">spatValues()</a></code>retrieval</li>
+<code><a href="../reference/spatInSituPlotDensity.html">spatInSituPlotDensity()</a></code> feature plotting via <code><a href="https://giotto-suite.github.io/GiottoClass/reference/spatValues.html" class="external-link">spatValues()</a></code>retrieval</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -298,12 +298,12 @@
 <h2 class="pkg-version" data-toc-text="0.1.1" id="giottovisuals-011-20231216">GiottoVisuals 0.1.1 (2023/12/16)<a class="anchor" aria-label="anchor" href="#giottovisuals-011-20231216"></a></h2>
 <div class="section level3">
 <h3 id="breaking-changes-0-1-1">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-1"></a></h3>
-<ul><li>Removed: <code><a href="https://drieslab.github.io/GiottoUtils/reference/getDistinctColors.html" class="external-link">getDistinctColors()</a></code> to <em>GiottoUtils</em>
+<ul><li>Removed: <code><a href="https://giotto-suite.github.io/GiottoUtils/reference/getDistinctColors.html" class="external-link">getDistinctColors()</a></code> to <em>GiottoUtils</em>
 </li>
 </ul></div>
 <div class="section level3">
 <h3 id="added-0-1-1">Added<a class="anchor" aria-label="anchor" href="#added-0-1-1"></a></h3>
-<ul><li>Add: <code><a href="https://drieslab.github.io/GiottoUtils/reference/getDistinctColors.html" class="external-link">getDistinctColors()</a></code> and <code><a href="https://drieslab.github.io/GiottoUtils/reference/getRainbowColors.html" class="external-link">getRainbowColors()</a></code> as re-exports from <em>GiottoUtils</em>
+<ul><li>Add: <code><a href="https://giotto-suite.github.io/GiottoUtils/reference/getDistinctColors.html" class="external-link">getDistinctColors()</a></code> and <code><a href="https://giotto-suite.github.io/GiottoUtils/reference/getRainbowColors.html" class="external-link">getRainbowColors()</a></code> as re-exports from <em>GiottoUtils</em>
 </li>
 </ul></div>
 <div class="section level3">
@@ -327,7 +327,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

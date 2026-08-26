@@ -18,8 +18,8 @@ to see their documentation.
 
 - GiottoUtils:
 
-  [`getDistinctColors`](https://drieslab.github.io/GiottoUtils/reference/getDistinctColors.html),
-  [`getRainbowColors`](https://drieslab.github.io/GiottoUtils/reference/getRainbowColors.html)
+  [`getDistinctColors`](https://giotto-suite.github.io/GiottoUtils/reference/getDistinctColors.html),
+  [`getRainbowColors`](https://giotto-suite.github.io/GiottoUtils/reference/getRainbowColors.html)
 
 ## Value
 
@@ -64,8 +64,8 @@ colorRamp2::colorRamp2(breaks = seq_len(2), colors = c("blue", "red"))
 #>         return(res_col2)
 #>     }
 #> }
-#> <bytecode: 0x55646f2b85d8>
-#> <environment: 0x55646f2b29c0>
+#> <bytecode: 0x55864b5ffdb8>
+#> <environment: 0x55864b605140>
 #> attr(,"breaks")
 #> [1] 1 2
 #> attr(,"colors")

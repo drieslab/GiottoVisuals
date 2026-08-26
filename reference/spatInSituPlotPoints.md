@@ -274,7 +274,7 @@ spatInSituPlotPoints(
 - ...:
 
   additional params to pass to
-  [`GiottoClass::spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html)
+  [`GiottoClass::spatValues()`](https://giotto-suite.github.io/GiottoClass/reference/spatValues.html)
 
 ## Value
 

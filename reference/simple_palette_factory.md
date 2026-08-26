@@ -41,6 +41,6 @@ simple_palette_factory(col = "#eb4034")
 #> {
 #>     get_continuous_colors(col = col, n = n, strategy = strategy)
 #> }
-#> <bytecode: 0x5564846a1c50>
-#> <environment: 0x55648b3d2b28>
+#> <bytecode: 0x558639451fd0>
+#> <environment: 0x55862dd491b8>
 ```

@@ -32,7 +32,7 @@
   and
   [`violinPlot()`](https://giotto-suite.github.io/GiottoVisuals/reference/violinPlot.md)
   now uses
-  [`spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html),
+  [`spatValues()`](https://giotto-suite.github.io/GiottoClass/reference/spatValues.html),
   replacing manual expression matrix extraction and transposition
 - minimum GiottoClass version bumped to `>= 0.5.1`
 
@@ -90,7 +90,7 @@
   `xlim`/`ylim` now crops on polys
 - [`spatInSituPlotDensity()`](https://giotto-suite.github.io/GiottoVisuals/reference/spatInSituPlotDensity.md)
   feature plotting via
-  [`spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html)retrieval
+  [`spatValues()`](https://giotto-suite.github.io/GiottoClass/reference/spatValues.html)retrieval
 
 ## GiottoVisuals 0.2.11 (2025/01/17)
 
@@ -315,15 +315,15 @@
 ### Breaking Changes
 
 - Removed:
-  [`getDistinctColors()`](https://drieslab.github.io/GiottoUtils/reference/getDistinctColors.html)
+  [`getDistinctColors()`](https://giotto-suite.github.io/GiottoUtils/reference/getDistinctColors.html)
   to *GiottoUtils*
 
 ### Added
 
 - Add:
-  [`getDistinctColors()`](https://drieslab.github.io/GiottoUtils/reference/getDistinctColors.html)
+  [`getDistinctColors()`](https://giotto-suite.github.io/GiottoUtils/reference/getDistinctColors.html)
   and
-  [`getRainbowColors()`](https://drieslab.github.io/GiottoUtils/reference/getRainbowColors.html)
+  [`getRainbowColors()`](https://giotto-suite.github.io/GiottoUtils/reference/getRainbowColors.html)
   as re-exports from *GiottoUtils*
 
 ### Changes

@@ -104,6 +104,6 @@ set_default_color_discrete(
 #>     col <- getColors(pal = pal, n = n, rev = rev, strategy = "cutoff")
 #>     get_continuous_colors(col = col, n = n, strategy = strategy)
 #> }
-#> <bytecode: 0x55648a4033c8>
-#> <environment: 0x5564683e1bb0>
+#> <bytecode: 0x558641901918>
+#> <environment: 0x558625a637d8>
 ```

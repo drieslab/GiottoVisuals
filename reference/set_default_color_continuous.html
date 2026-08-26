@@ -205,7 +205,7 @@ that needs defaults setting (plots or types of features).</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">GiottoData</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GiottoData/man/loadGiottoMini.html" class="external-link">loadGiottoMini</a></span><span class="op">(</span><span class="st">"vizgen"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">GiottoData</span><span class="fu">::</span><span class="fu"><a href="https://giotto-suite.github.io/GiottoData/reference/loadGiottoMini.html" class="external-link">loadGiottoMini</a></span><span class="op">(</span><span class="st">"vizgen"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1. read Giotto object</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2. read Giotto feature information</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3. read Giotto spatial information</span>
@@ -241,12 +241,12 @@ that needs defaults setting (plots or types of features).</p></li>
 <span class="r-plt img"><img src="set_default_color_continuous-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set instructions level: magma</span></span></span>
-<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_pal"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"magma"</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://giotto-suite.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_pal"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"magma"</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
 <span class="r-plt img"><img src="set_default_color_continuous-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://giotto-suite.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
 <span class="r-plt img"><img src="set_default_color_continuous-4.png" alt="" width="700" height="433"></span>
@@ -256,7 +256,7 @@ that needs defaults setting (plots or types of features).</p></li>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set function level: mako</span></span></span>
-<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://drieslab.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="fu">GiottoClass</span><span class="fu">::</span><span class="fu"><a href="https://giotto-suite.github.io/GiottoClass/reference/giotto_instructions.html" class="external-link">instructions</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"poly_color_c_rev"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="fu">nr_feat_polys</span><span class="op">(</span>polygon_fill_gradient <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> plot polygon layer done</span>
 <span class="r-plt img"><img src="set_default_color_continuous-6.png" alt="" width="700" height="433"></span>
@@ -296,7 +296,7 @@ that needs defaults setting (plots or types of features).</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

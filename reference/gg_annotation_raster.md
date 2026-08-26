@@ -62,6 +62,7 @@ No ... params are implemented for `giottoImage`.
 
 ``` r
 gimg <- GiottoData::loadSubObjectMini("giottoLargeImage")
+#> Warning: [rast] unknown extent
 gg <- ggplot2::ggplot()
 out <- GiottoVisuals::gg_annotation_raster(gg, gimg)
 print(out)

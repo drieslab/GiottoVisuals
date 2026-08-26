@@ -47,12 +47,12 @@ ridgePlot(
 - feats:
 
   features to plot. Passed to
-  [`GiottoClass::spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html)
+  [`GiottoClass::spatValues()`](https://giotto-suite.github.io/GiottoClass/reference/spatValues.html)
 
 - ...:
 
   additional params to pass to
-  [`GiottoClass::spatValues()`](https://drieslab.github.io/GiottoClass/reference/spatValues.html)
+  [`GiottoClass::spatValues()`](https://giotto-suite.github.io/GiottoClass/reference/spatValues.html)
 
 - group_by:
 
