@@ -1,13 +1,13 @@
 # Introduction to GiottoVisuals
 
-## 0.1 Description of the module GiottoVisuals
+## 1 Description of the module GiottoVisuals
 
 GiottoVisuals contains the main plotting functions of Giotto Suite.
 
 For full examples of the usage of Giotto visualizations visit
 <http://giottosuite.com>
 
-## 0.2 Script Organization by Prefixes:
+## 2 Script Organization by Prefixes:
 
 aux\_ - auxiliary and meta functionality - aux_output.R - plot output
 handling - aux_save.R - plot saving - aux_defaults.R - set plotting
@@ -29,7 +29,7 @@ Other: - color_palettes.R - color palettes and factory functions
 Package: - package_imports.R - all imports - globals.R - global
 variables - dd.R - dummy documentation for inheriting - zzz.R - onloads
 
-## 0.3 Spatial plots
+## 3 Spatial plots
 
 Load the package
 
@@ -65,7 +65,7 @@ Plot the spatial locations
 spatPlot2D(giotto_object)
 ```
 
-## 0.4 Session Info
+## 4 Session Info
 
 ``` r
 
